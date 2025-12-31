@@ -1,0 +1,284 @@
+{
+  "$schema_version": "2.0",
+  "agencies": [
+    {
+      "id": "agency-brta",
+      "name": "Bangladesh Road Transport Authority",
+      "short_name": "BRTA",
+      "website": "https://brta.gov.bd"
+    },
+    {
+      "id": "agency-dip",
+      "name": "Department of Immigration and Passports",
+      "short_name": "DIP",
+      "website": "https://dip.gov.bd"
+    },
+    {
+      "id": "agency-nid",
+      "name": "Election Commission - NID Wing",
+      "short_name": "EC-NID",
+      "website": "https://nidw.gov.bd"
+    },
+    {
+      "id": "agency-nbr",
+      "name": "National Board of Revenue",
+      "short_name": "NBR",
+      "website": "https://nbr.gov.bd"
+    }
+  ],
+  "source_pages": [
+    {
+      "id": "src-brta-driving-license",
+      "canonical_url": "https://brta.gov.bd/site/page/driving-license",
+      "domain": "brta.gov.bd",
+      "fetched_at": "2024-12-15T10:30:00Z",
+      "content_hash": "abc123def456",
+      "snapshot_ref": "snapshots/brta-driving-license.md"
+    },
+    {
+      "id": "src-passport-fees",
+      "canonical_url": "https://dip.gov.bd/passport-fees",
+      "domain": "dip.gov.bd",
+      "fetched_at": "2024-12-20T08:15:00Z",
+      "content_hash": "xyz789ghi012",
+      "snapshot_ref": "snapshots/passport-fees.md"
+    },
+    {
+      "id": "src-nid-application",
+      "canonical_url": "https://nidw.gov.bd/how-to-apply",
+      "domain": "nidw.gov.bd",
+      "fetched_at": "2024-12-18T14:45:00Z",
+      "content_hash": "mno345pqr678",
+      "snapshot_ref": "snapshots/nid-application.md"
+    },
+    {
+      "id": "src-etin-registration",
+      "canonical_url": "https://nbr.gov.bd/etin-registration",
+      "domain": "nbr.gov.bd",
+      "fetched_at": "2024-12-10T09:00:00Z",
+      "content_hash": "stu901vwx234",
+      "snapshot_ref": "snapshots/etin-registration.md"
+    }
+  ],
+  "claims": [
+    {
+      "id": "claim-dl-age-requirement",
+      "category": "eligibility",
+      "text": "Applicant must be at least 18 years old for light motor vehicle license",
+      "summary": "Minimum age 18 for light vehicle license",
+      "status": "verified",
+      "verified_at": "2024-12-16T12:00:00Z",
+      "verified_by": "system-audit",
+      "verification_notes": "Confirmed from official BRTA page",
+      "citations": [
+        {
+          "source_page_id": "src-brta-driving-license",
+          "locator": "Section: Eligibility Requirements, Paragraph 2"
+        }
+      ]
+    },
+    {
+      "id": "claim-dl-fee-light",
+      "category": "fees",
+      "text": "Driving license fee for light motor vehicles is BDT 1,130",
+      "summary": "Light vehicle license fee: BDT 1,130",
+      "status": "verified",
+      "verified_at": "2024-12-16T12:05:00Z",
+      "verified_by": "system-audit",
+      "citations": [
+        {
+          "source_page_id": "src-brta-driving-license",
+          "locator": "Fee Schedule Table, Row 1"
+        }
+      ]
+    },
+    {
+      "id": "claim-dl-documents",
+      "category": "required_documents",
+      "text": "Required: NID copy, 2 passport-size photos, medical fitness certificate, educational certificate",
+      "summary": "NID, photos, medical cert, education cert required",
+      "status": "verified",
+      "verified_at": "2024-12-16T12:10:00Z",
+      "verified_by": "system-audit",
+      "citations": [
+        {
+          "source_page_id": "src-brta-driving-license",
+          "locator": "Section: Required Documents"
+        }
+      ]
+    },
+    {
+      "id": "claim-dl-processing-time",
+      "category": "processing_time",
+      "text": "Standard processing takes 15-20 working days after successful driving test",
+      "summary": "15-20 working days processing",
+      "status": "unverified",
+      "citations": [
+        {
+          "source_page_id": "src-brta-driving-license",
+          "locator": "FAQ Section"
+        }
+      ]
+    },
+    {
+      "id": "claim-passport-fee-regular",
+      "category": "fees",
+      "text": "Regular passport (48 pages) fee is BDT 5,750 for 5 years validity",
+      "summary": "Regular passport: BDT 5,750 (5 years)",
+      "status": "verified",
+      "verified_at": "2024-12-21T09:00:00Z",
+      "verified_by": "manual-review",
+      "citations": [
+        {
+          "source_page_id": "src-passport-fees",
+          "locator": "Fee Table, Regular Category"
+        }
+      ]
+    },
+    {
+      "id": "claim-passport-processing",
+      "category": "processing_time",
+      "text": "Normal processing takes 21 working days; express takes 7 working days",
+      "summary": "Normal: 21 days, Express: 7 days",
+      "status": "stale",
+      "stale_marked_at": "2024-12-25T10:00:00Z",
+      "stale_due_to_source_hash": true,
+      "previous_status": "verified",
+      "citations": [
+        {
+          "source_page_id": "src-passport-fees",
+          "locator": "Processing Timeline Section"
+        }
+      ]
+    },
+    {
+      "id": "claim-nid-eligibility",
+      "category": "eligibility",
+      "text": "Bangladeshi citizens aged 18 years or above are eligible for NID",
+      "summary": "Citizens 18+ eligible for NID",
+      "status": "verified",
+      "verified_at": "2024-12-19T11:30:00Z",
+      "verified_by": "system-audit",
+      "citations": [
+        {
+          "source_page_id": "src-nid-application",
+          "locator": "Who Can Apply Section"
+        }
+      ]
+    },
+    {
+      "id": "claim-nid-free",
+      "category": "fees",
+      "text": "First-time NID issuance is free of charge",
+      "summary": "First NID is free",
+      "status": "verified",
+      "verified_at": "2024-12-19T11:35:00Z",
+      "verified_by": "system-audit",
+      "citations": [
+        {
+          "source_page_id": "src-nid-application",
+          "locator": "Fees Section"
+        }
+      ]
+    },
+    {
+      "id": "claim-etin-online",
+      "category": "application_steps",
+      "text": "eTIN can be obtained online through the NBR portal without visiting any office",
+      "summary": "Online eTIN registration available",
+      "status": "verified",
+      "verified_at": "2024-12-11T15:00:00Z",
+      "verified_by": "manual-review",
+      "citations": [
+        {
+          "source_page_id": "src-etin-registration",
+          "locator": "Online Application Section"
+        }
+      ]
+    },
+    {
+      "id": "claim-etin-documents",
+      "category": "required_documents",
+      "text": "Required for eTIN: NID number, mobile number, and email address",
+      "summary": "NID, mobile, email needed for eTIN",
+      "status": "unverified",
+      "citations": [
+        {
+          "source_page_id": "src-etin-registration",
+          "locator": "Requirements List"
+        }
+      ]
+    },
+    {
+      "id": "claim-passport-biometric",
+      "category": "application_steps",
+      "text": "Biometric data collection is mandatory at designated passport offices",
+      "summary": "Biometric collection required at office",
+      "status": "deprecated",
+      "deprecated_at": "2024-12-22T08:00:00Z",
+      "deprecated_reason": "New process allows some biometric collection at digital centers",
+      "citations": [
+        {
+          "source_page_id": "src-passport-fees",
+          "locator": "Application Process"
+        }
+      ]
+    }
+  ],
+  "services": [
+    {
+      "id": "svc-driving-license",
+      "name": "Driving License",
+      "agency_id": "agency-brta",
+      "description": "Application for new driving license or renewal",
+      "portal_url": "https://bsp.brta.gov.bd",
+      "claim_ids": ["claim-dl-age-requirement", "claim-dl-fee-light", "claim-dl-documents", "claim-dl-processing-time"]
+    },
+    {
+      "id": "svc-passport",
+      "name": "Passport Application",
+      "agency_id": "agency-dip",
+      "description": "Apply for new passport or renewal",
+      "portal_url": "https://epassport.gov.bd",
+      "claim_ids": ["claim-passport-fee-regular", "claim-passport-processing", "claim-passport-biometric"]
+    },
+    {
+      "id": "svc-nid",
+      "name": "National ID Card",
+      "agency_id": "agency-nid",
+      "description": "First-time NID registration or correction",
+      "portal_url": "https://services.nidw.gov.bd",
+      "claim_ids": ["claim-nid-eligibility", "claim-nid-free"]
+    },
+    {
+      "id": "svc-etin",
+      "name": "eTIN Registration",
+      "agency_id": "agency-nbr",
+      "description": "Electronic Tax Identification Number registration",
+      "portal_url": "https://secure.incometax.gov.bd/TINHome",
+      "claim_ids": ["claim-etin-online", "claim-etin-documents"]
+    }
+  ],
+  "documents": [
+    {
+      "id": "doc-nid-card",
+      "name": "National ID Card",
+      "issuing_agency_id": "agency-nid"
+    },
+    {
+      "id": "doc-passport",
+      "name": "Passport",
+      "issuing_agency_id": "agency-dip"
+    },
+    {
+      "id": "doc-driving-license",
+      "name": "Driving License",
+      "issuing_agency_id": "agency-brta"
+    },
+    {
+      "id": "doc-etin-certificate",
+      "name": "eTIN Certificate",
+      "issuing_agency_id": "agency-nbr"
+    }
+  ]
+}

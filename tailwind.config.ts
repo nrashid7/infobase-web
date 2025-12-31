@@ -57,6 +57,20 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        status: {
+          verified: "hsl(var(--status-verified))",
+          "verified-bg": "hsl(var(--status-verified-bg))",
+          unverified: "hsl(var(--status-unverified))",
+          "unverified-bg": "hsl(var(--status-unverified-bg))",
+          stale: "hsl(var(--status-stale))",
+          "stale-bg": "hsl(var(--status-stale-bg))",
+          deprecated: "hsl(var(--status-deprecated))",
+          "deprecated-bg": "hsl(var(--status-deprecated-bg))",
+          contradicted: "hsl(var(--status-contradicted))",
+          "contradicted-bg": "hsl(var(--status-contradicted-bg))",
+          partial: "hsl(var(--status-partial))",
+          "partial-bg": "hsl(var(--status-partial-bg))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -65,25 +79,27 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        "fade-in": {
+          from: { opacity: "0", transform: "translateY(10px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+        "slide-in-left": {
+          from: { opacity: "0", transform: "translateX(-20px)" },
+          to: { opacity: "1", transform: "translateX(0)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-in": "fade-in 0.3s ease-out",
+        "slide-in-left": "slide-in-left 0.3s ease-out",
       },
     },
   },
