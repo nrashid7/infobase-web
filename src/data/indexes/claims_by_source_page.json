@@ -1,0 +1,6 @@
+{
+  "src-brta-driving-license": ["claim-dl-age-requirement", "claim-dl-fee-light", "claim-dl-documents", "claim-dl-processing-time"],
+  "src-passport-fees": ["claim-passport-fee-regular", "claim-passport-processing", "claim-passport-biometric"],
+  "src-nid-application": ["claim-nid-eligibility", "claim-nid-free"],
+  "src-etin-registration": ["claim-etin-online", "claim-etin-documents"]
+}
