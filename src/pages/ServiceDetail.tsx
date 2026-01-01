@@ -1,35 +1,25 @@
 import { useParams, Link } from 'react-router-dom';
 import { Database, ExternalLink, ArrowLeft, AlertTriangle, CheckCircle } from 'lucide-react';
-import { getServiceById, getClaimsByService, getAgencyById, getClaimCategories, Claim } from '@/lib/kbStore';
+import { 
+  getServiceById, 
+  getClaimsByService, 
+  getAgencyById, 
+  NormalizedClaim,
+  CATEGORY_ORDER,
+  CATEGORY_LABELS,
+  CATEGORY_ICONS,
+  NormalizedCategory
+} from '@/lib/kbStore';
 import { StatusBadge } from '@/components/StatusBadge';
 import { ClaimCard } from '@/components/ClaimCard';
 import { WarningBanner } from '@/components/WarningBanner';
 import { Button } from '@/components/ui/button';
 
-const categoryLabels: Record<string, string> = {
-  eligibility: 'Eligibility',
-  fees: 'Fees',
-  required_documents: 'Required Documents',
-  processing_time: 'Processing Time',
-  application_steps: 'Application Steps',
-  portal_links: 'Portal Links',
-};
-
-const categoryIcons: Record<string, string> = {
-  eligibility: '👤',
-  fees: '💰',
-  required_documents: '📄',
-  processing_time: '⏱️',
-  application_steps: '📋',
-  portal_links: '🔗',
-};
-
 export default function ServiceDetail() {
   const { id } = useParams<{ id: string }>();
   const service = id ? getServiceById(id) : undefined;
   const claims = id ? getClaimsByService(id) : [];
-  const agency = service ? getAgencyById(service.agency_id) : undefined;
-  const allCategories = getClaimCategories();
+  const agency = service?.agency_id ? getAgencyById(service.agency_id) : undefined;
 
   if (!service) {
     return (
@@ -47,18 +37,34 @@ export default function ServiceDetail() {
     );
   }
 
-  // Group claims by category
-  const claimsByCategory = claims.reduce((acc, claim) => {
-    if (!acc[claim.category]) {
-      acc[claim.category] = [];
-    }
-    acc[claim.category].push(claim);
-    return acc;
-  }, {} as Record<string, Claim[]>);
+  // Group claims by normalized category
+  const claimsByCategory: Record<NormalizedCategory, NormalizedClaim[]> = {
+    eligibility: [],
+    fees: [],
+    required_documents: [],
+    processing_time: [],
+    application_steps: [],
+    portal_links: [],
+    service_info: [],
+  };
 
-  // Find missing categories
-  const presentCategories = Object.keys(claimsByCategory);
-  const missingCategories = allCategories.filter(cat => !presentCategories.includes(cat));
+  claims.forEach(claim => {
+    const cat = claim.category;
+    if (claimsByCategory[cat]) {
+      claimsByCategory[cat].push(claim);
+    } else {
+      // Fallback to service_info if somehow category is unknown
+      claimsByCategory.service_info.push(claim);
+    }
+  });
+
+  // Find categories with claims
+  const presentCategories = CATEGORY_ORDER.filter(cat => claimsByCategory[cat].length > 0);
+  
+  // Find missing categories (exclude service_info from "missing" since it's a catch-all)
+  const missingCategories = CATEGORY_ORDER.filter(
+    cat => cat !== 'service_info' && claimsByCategory[cat].length === 0
+  );
 
   // Check if any claims need warning
   const hasUnverifiedOrStale = claims.some(c => 
@@ -81,13 +87,15 @@ export default function ServiceDetail() {
         <div className="mb-8">
           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
             <Database className="w-4 h-4" />
-            <span>{agency?.short_name}</span>
+            <span>{agency?.short_name || agency?.name || 'Unknown Agency'}</span>
           </div>
           <div className="flex items-start justify-between gap-4 flex-wrap">
-            <h1 className="text-3xl font-bold text-foreground">{service.name}</h1>
+            <h1 className="text-3xl font-bold text-foreground">{service.name || 'Unnamed Service'}</h1>
             <StatusBadge status={service.status} size="md" />
           </div>
-          <p className="text-muted-foreground mt-2">{service.description}</p>
+          {service.description && (
+            <p className="text-muted-foreground mt-2">{service.description}</p>
+          )}
 
           {service.portal_url && (
             <a
@@ -128,35 +136,39 @@ export default function ServiceDetail() {
           </div>
         </div>
 
-        {/* Claims Checklist by Category */}
+        {/* Claims Checklist by Category - in defined order */}
         <div className="space-y-8">
           <h2 className="text-xl font-semibold text-foreground">Claims Checklist</h2>
 
-          {allCategories.map((category) => {
-            const categoryClaims = claimsByCategory[category] || [];
-            if (categoryClaims.length === 0) return null;
+          {claims.length === 0 ? (
+            <p className="text-muted-foreground">No claims have been recorded for this service yet.</p>
+          ) : (
+            CATEGORY_ORDER.map((category) => {
+              const categoryClaims = claimsByCategory[category];
+              if (categoryClaims.length === 0) return null;
 
-            return (
-              <div key={category} className="category-section">
-                <h3 className="text-lg font-medium text-foreground mb-4 flex items-center gap-2">
-                  <span>{categoryIcons[category]}</span>
-                  {categoryLabels[category]}
-                  <span className="text-sm font-normal text-muted-foreground">
-                    ({categoryClaims.length})
-                  </span>
-                </h3>
-                <div className="space-y-4">
-                  {categoryClaims.map((claim) => (
-                    <ClaimCard key={claim.id} claim={claim} />
-                  ))}
+              return (
+                <div key={category} className="category-section">
+                  <h3 className="text-lg font-medium text-foreground mb-4 flex items-center gap-2">
+                    <span>{CATEGORY_ICONS[category] || 'ℹ️'}</span>
+                    {CATEGORY_LABELS[category] || category}
+                    <span className="text-sm font-normal text-muted-foreground">
+                      ({categoryClaims.length})
+                    </span>
+                  </h3>
+                  <div className="space-y-4">
+                    {categoryClaims.map((claim) => (
+                      <ClaimCard key={claim.id} claim={claim} />
+                    ))}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })
+          )}
         </div>
 
         {/* What's Missing */}
-        {missingCategories.length > 0 && (
+        {missingCategories.length > 0 && claims.length > 0 && (
           <div className="mt-8 bg-muted/50 border border-border rounded-lg p-6">
             <h2 className="font-semibold text-foreground mb-3 flex items-center gap-2">
               <AlertTriangle className="w-5 h-5 text-muted-foreground" />
@@ -171,7 +183,7 @@ export default function ServiceDetail() {
                   key={category}
                   className="px-3 py-1 bg-card border border-border rounded-full text-sm text-muted-foreground"
                 >
-                  {categoryIcons[category]} {categoryLabels[category]}
+                  {CATEGORY_ICONS[category] || 'ℹ️'} {CATEGORY_LABELS[category] || category}
                 </span>
               ))}
             </div>
