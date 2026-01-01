@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ExternalLink, ChevronDown, ChevronUp } from 'lucide-react';
+import { ExternalLink, ChevronDown, ChevronUp, Quote } from 'lucide-react';
 import { NormalizedClaim, getSourcePageById } from '@/lib/kbStore';
 import { StatusBadge } from './StatusBadge';
-import { DataTransparencyModal } from './DataTransparencyModal';
+import { AuditDetailsAccordion } from './AuditDetailsAccordion';
 import { cn, formatLocator, safeRender } from '@/lib/utils';
 import { generateClaimTitle } from '@/lib/citizenLabels';
 
@@ -35,24 +35,31 @@ export function ClaimCard({ claim, showCategory = false, className }: ClaimCardP
       {/* Main content */}
       <p className="text-muted-foreground text-sm mb-4">{safeRender(claim.text)}</p>
 
-      {/* Source citations - citizen friendly */}
+      {/* Source citations - proof-like */}
       <div className="space-y-2 border-t border-border pt-3">
         {claim.citations.map((citation, idx) => {
           const sourcePage = getSourcePageById(citation.source_page_id);
           const isExpanded = expandedCitation === idx;
           const locatorText = formatLocator(citation.locator);
+          const quotedText = citation.quoted_text ? safeRender(citation.quoted_text) : null;
           
           return (
             <div key={idx} className="text-sm">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-1.5">
-                  <span className="text-muted-foreground">Source:</span>
-                  <Link
-                    to={`/sources/${citation.source_page_id}`}
-                    className="text-primary hover:underline font-medium"
-                  >
-                    {sourcePage?.domain || 'Official source'}
-                  </Link>
+                  {sourcePage?.canonical_url ? (
+                    <a
+                      href={sourcePage.canonical_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-primary hover:underline font-medium"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5" />
+                      Open official source
+                    </a>
+                  ) : (
+                    <span className="text-muted-foreground">Official source</span>
+                  )}
                 </div>
                 <button
                   onClick={() => setExpandedCitation(isExpanded ? null : idx)}
@@ -67,24 +74,24 @@ export function ClaimCard({ claim, showCategory = false, className }: ClaimCardP
                 </button>
               </div>
               
-              {/* Expanded details */}
+              {/* Expanded details with quoted text */}
               {isExpanded && (
                 <div className="mt-2 pl-4 border-l-2 border-muted space-y-2 text-sm">
                   {locatorText && (
                     <p className="text-muted-foreground">
-                      <span className="font-medium">Page section:</span> {locatorText}
+                      <span className="font-medium">Section:</span> {locatorText}
                     </p>
                   )}
-                  {sourcePage?.canonical_url && (
-                    <a
-                      href={sourcePage.canonical_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-primary hover:underline"
-                    >
-                      <ExternalLink className="w-3.5 h-3.5" />
-                      View official page
-                    </a>
+                  {quotedText && (
+                    <blockquote className="flex items-start gap-2 bg-muted/50 p-3 rounded-md italic text-muted-foreground">
+                      <Quote className="w-4 h-4 flex-shrink-0 mt-0.5 text-muted-foreground/60" />
+                      <span>"{quotedText}"</span>
+                    </blockquote>
+                  )}
+                  {sourcePage?.fetched_at && (
+                    <p className="text-xs text-muted-foreground">
+                      Last crawled: {new Date(sourcePage.fetched_at).toLocaleDateString()}
+                    </p>
                   )}
                 </div>
               )}
@@ -120,9 +127,9 @@ export function ClaimCard({ claim, showCategory = false, className }: ClaimCardP
         </div>
       )}
 
-      {/* Data transparency link (hidden for advanced users) */}
-      <div className="mt-4 pt-2 text-right">
-        <DataTransparencyModal claim={claim} />
+      {/* Audit details accordion (hidden by default) */}
+      <div className="mt-4 pt-2">
+        <AuditDetailsAccordion claim={claim} />
       </div>
     </div>
   );

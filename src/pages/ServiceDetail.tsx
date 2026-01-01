@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Database, ExternalLink, ArrowLeft, AlertTriangle, CheckCircle } from 'lucide-react';
+import { Database, ExternalLink, ArrowLeft, AlertTriangle, ChevronDown, ChevronUp } from 'lucide-react';
 import { 
   getServiceById, 
   getClaimsByService, 
@@ -8,17 +9,29 @@ import {
   CATEGORY_ORDER,
   CATEGORY_LABELS,
   CATEGORY_ICONS,
-  NormalizedCategory
+  NormalizedCategory,
+  getSourcePageById
 } from '@/lib/kbStore';
-import { StatusBadge } from '@/components/StatusBadge';
 import { ClaimCard } from '@/components/ClaimCard';
 import { WarningBanner } from '@/components/WarningBanner';
+import { ServiceStatusBanner } from '@/components/ServiceStatusBanner';
+import { VerifiedOnlyToggle } from '@/components/VerifiedOnlyToggle';
 import { Button } from '@/components/ui/button';
+import {
+  FeesTable,
+  StepsList,
+  DocumentsChecklist,
+  ProcessingTimeCallout,
+  PortalLinksButtons
+} from '@/components/ServiceGuide';
 
 export default function ServiceDetail() {
   const { id } = useParams<{ id: string }>();
+  const [showOnlyVerified, setShowOnlyVerified] = useState(false);
+  const [showAuditSection, setShowAuditSection] = useState(false);
+  
   const service = id ? getServiceById(id) : undefined;
-  const claims = id ? getClaimsByService(id) : [];
+  const allClaims = id ? getClaimsByService(id) : [];
   const agency = service?.agency_id ? getAgencyById(service.agency_id) : undefined;
 
   if (!service) {
@@ -37,6 +50,26 @@ export default function ServiceDetail() {
     );
   }
 
+  // Filter claims if verified-only is enabled
+  const claims = showOnlyVerified 
+    ? allClaims.filter(c => c.status === 'verified')
+    : allClaims;
+
+  // Get verification stats
+  const verifiedCount = allClaims.filter(c => c.status === 'verified').length;
+  const totalCount = allClaims.length;
+
+  // Get last crawled date from sources
+  const lastCrawled = allClaims.reduce((latest, claim) => {
+    claim.citations.forEach(cit => {
+      const source = getSourcePageById(cit.source_page_id);
+      if (source?.fetched_at && (!latest || source.fetched_at > latest)) {
+        latest = source.fetched_at;
+      }
+    });
+    return latest;
+  }, null as string | null);
+
   // Group claims by normalized category
   const claimsByCategory: Record<NormalizedCategory, NormalizedClaim[]> = {
     eligibility: [],
@@ -53,23 +86,41 @@ export default function ServiceDetail() {
     if (claimsByCategory[cat]) {
       claimsByCategory[cat].push(claim);
     } else {
-      // Fallback to service_info if somehow category is unknown
       claimsByCategory.service_info.push(claim);
     }
   });
 
-  // Find categories with claims
+  // Find categories with claims (for guide display)
   const presentCategories = CATEGORY_ORDER.filter(cat => claimsByCategory[cat].length > 0);
   
-  // Find missing categories (exclude service_info from "missing" since it's a catch-all)
-  const missingCategories = CATEGORY_ORDER.filter(
-    cat => cat !== 'service_info' && claimsByCategory[cat].length === 0
-  );
-
   // Check if any claims need warning
-  const hasUnverifiedOrStale = claims.some(c => 
+  const hasUnverifiedOrStale = allClaims.some(c => 
     c.status === 'unverified' || c.status === 'stale' || c.status === 'deprecated'
   );
+
+  // Render category content based on type
+  const renderCategoryContent = (category: NormalizedCategory, categoryClaims: NormalizedClaim[]) => {
+    switch (category) {
+      case 'fees':
+        return <FeesTable claims={categoryClaims} />;
+      case 'application_steps':
+        return <StepsList claims={categoryClaims} />;
+      case 'required_documents':
+        return <DocumentsChecklist claims={categoryClaims} />;
+      case 'processing_time':
+        return <ProcessingTimeCallout claims={categoryClaims} />;
+      case 'portal_links':
+        return <PortalLinksButtons claims={categoryClaims} />;
+      default:
+        return (
+          <div className="space-y-3">
+            {categoryClaims.map((claim) => (
+              <ClaimCard key={claim.id} claim={claim} />
+            ))}
+          </div>
+        );
+    }
+  };
 
   return (
     <div className="py-8 px-4">
@@ -84,15 +135,12 @@ export default function ServiceDetail() {
         </Link>
 
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-6">
           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
             <Database className="w-4 h-4" />
-            <span>{agency?.short_name || agency?.name || 'Unknown Agency'}</span>
+            <span>{agency?.short_name || agency?.name || 'Government Service'}</span>
           </div>
-          <div className="flex items-start justify-between gap-4 flex-wrap">
-            <h1 className="text-3xl font-bold text-foreground">{service.name || 'Unnamed Service'}</h1>
-            <StatusBadge status={service.status} size="md" />
-          </div>
+          <h1 className="text-3xl font-bold text-foreground">{service.name || 'Service Guide'}</h1>
           {service.description && (
             <p className="text-muted-foreground mt-2">{service.description}</p>
           )}
@@ -110,82 +158,89 @@ export default function ServiceDetail() {
           )}
         </div>
 
+        {/* Status Banner */}
+        <ServiceStatusBanner
+          status={service.status}
+          verifiedCount={verifiedCount}
+          totalCount={totalCount}
+          lastCrawled={lastCrawled}
+          className="mb-6"
+        />
+
+        {/* Verified-only toggle */}
+        <div className="flex items-center justify-between bg-card border border-border rounded-lg p-4 mb-8">
+          <span className="text-sm text-muted-foreground">Filter content</span>
+          <VerifiedOnlyToggle 
+            checked={showOnlyVerified} 
+            onCheckedChange={setShowOnlyVerified} 
+          />
+        </div>
+
         {/* Warning Banner */}
-        {hasUnverifiedOrStale && (
+        {hasUnverifiedOrStale && !showOnlyVerified && (
           <WarningBanner
             message="Some information may be incomplete or outdated. Always verify on the official portal before taking action."
             className="mb-8"
           />
         )}
 
-        {/* Information Status */}
-        <div className="bg-card border border-border rounded-lg p-4 mb-8">
-          <h2 className="font-semibold text-foreground mb-3">Information status</h2>
-          <div className="flex flex-wrap gap-4 text-sm">
-            <div className="flex items-center gap-2">
-              <CheckCircle className="w-4 h-4 text-status-verified" />
-              <span>{claims.filter(c => c.status === 'verified').length} verified</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <AlertTriangle className="w-4 h-4 text-status-unverified" />
-              <span>{claims.filter(c => c.status === 'unverified').length} pending verification</span>
-            </div>
-          </div>
-        </div>
-
-        {/* What you need to know - by Category */}
-        <div className="space-y-8">
-          <h2 className="text-xl font-semibold text-foreground">What you need to know</h2>
+        {/* Service Guide Content */}
+        <div className="space-y-10">
+          <h2 className="text-xl font-semibold text-foreground">Service Guide</h2>
 
           {claims.length === 0 ? (
-            <p className="text-muted-foreground">No claims have been recorded for this service yet.</p>
+            <div className="text-center py-8 bg-muted/30 rounded-lg">
+              <p className="text-muted-foreground">
+                {showOnlyVerified 
+                  ? 'No verified information available. Toggle off the filter to see all information.'
+                  : 'No information has been recorded for this service yet.'}
+              </p>
+            </div>
           ) : (
-            CATEGORY_ORDER.map((category) => {
+            presentCategories.map((category) => {
               const categoryClaims = claimsByCategory[category];
               if (categoryClaims.length === 0) return null;
 
               return (
-                <div key={category} className="category-section">
+                <section key={category} className="pb-8 border-b border-border last:border-0">
                   <h3 className="text-lg font-medium text-foreground mb-4 flex items-center gap-2">
                     <span>{CATEGORY_ICONS[category] || 'ℹ️'}</span>
                     {CATEGORY_LABELS[category] || category}
-                    <span className="text-sm font-normal text-muted-foreground">
-                      ({categoryClaims.length})
-                    </span>
                   </h3>
-                  <div className="space-y-4">
-                    {categoryClaims.map((claim) => (
-                      <ClaimCard key={claim.id} claim={claim} />
-                    ))}
-                  </div>
-                </div>
+                  {renderCategoryContent(category, categoryClaims)}
+                </section>
               );
             })
           )}
         </div>
 
-        {/* What's Missing */}
-        {missingCategories.length > 0 && claims.length > 0 && (
-          <div className="mt-8 bg-muted/50 border border-border rounded-lg p-6">
-            <h2 className="font-semibold text-foreground mb-3 flex items-center gap-2">
-              <AlertTriangle className="w-5 h-5 text-muted-foreground" />
-              What's Missing
-            </h2>
-            <p className="text-sm text-muted-foreground mb-4">
-              No claims have been recorded for the following categories:
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {missingCategories.map((category) => (
-                <span
-                  key={category}
-                  className="px-3 py-1 bg-card border border-border rounded-full text-sm text-muted-foreground"
-                >
-                  {CATEGORY_ICONS[category] || 'ℹ️'} {CATEGORY_LABELS[category] || category}
-                </span>
-              ))}
+        {/* Transparency / Audit Section */}
+        <div className="mt-12 pt-8 border-t border-border">
+          <button
+            onClick={() => setShowAuditSection(!showAuditSection)}
+            className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+          >
+            {showAuditSection ? (
+              <ChevronUp className="w-4 h-4" />
+            ) : (
+              <ChevronDown className="w-4 h-4" />
+            )}
+            <span className="text-sm font-medium">Transparency / Audit</span>
+          </button>
+
+          {showAuditSection && (
+            <div className="mt-6 space-y-4">
+              <p className="text-sm text-muted-foreground">
+                Complete list of all {allClaims.length} facts recorded for this service.
+              </p>
+              <div className="space-y-3">
+                {allClaims.map((claim) => (
+                  <ClaimCard key={claim.id} claim={claim} />
+                ))}
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

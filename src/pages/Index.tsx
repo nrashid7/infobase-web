@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Building2, Database, FileText, Link2, CheckCircle, AlertCircle, Clock, XCircle, ArrowRight } from 'lucide-react';
+import { Building2, Database, FileText, Link2, CheckCircle, AlertCircle, Clock, XCircle, ArrowRight, Shield } from 'lucide-react';
 import { getStats, listAgencies, listServices } from '@/lib/kbStore';
 import { GlobalSearch } from '@/components/GlobalSearch';
 import { StatsCard } from '@/components/StatsCard';
@@ -22,15 +22,15 @@ export default function Index() {
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">
             Bangladesh Government Services
           </h1>
-          <p className="text-xl text-primary font-medium mb-2">Knowledge Base</p>
+          <p className="text-xl text-primary font-medium mb-2">Your Trusted Guide</p>
           <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-            Your trusted guide to Bangladesh government services. All information is sourced directly from official government websites.
-            Always verify before taking action.
+            Find steps, fees, required documents, and processing times for government services.
+            All information is sourced directly from official government websites.
           </p>
           
           <GlobalSearch 
             className="max-w-xl mx-auto" 
-            placeholder="Search for services, claims, or sources..."
+            placeholder="Search for services (e.g., passport, visa, NID)..."
           />
         </div>
       </section>
@@ -39,15 +39,15 @@ export default function Index() {
       <section className="py-8 px-4 border-b border-border">
         <div className="container">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <StatsCard label="Agencies" value={stats.agencies} icon={Building2} />
             <StatsCard label="Services" value={stats.services} icon={Database} />
-            <StatsCard label="Claims" value={stats.claims} icon={FileText} />
-            <StatsCard label="Source Pages" value={stats.sourcepages} icon={Link2} />
+            <StatsCard label="Facts" value={stats.claims} icon={FileText} />
+            <StatsCard label="Official Sources" value={stats.sourcepages} icon={Link2} />
+            <StatsCard label="Agencies" value={stats.agencies} icon={Building2} />
           </div>
 
           {/* Status Breakdown */}
           <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-            <span className="text-sm text-muted-foreground">Claims by status:</span>
+            <span className="text-sm text-muted-foreground">Verification status:</span>
             <div className="flex flex-wrap gap-3">
               {stats.statusBreakdown.verified && (
                 <div className="flex items-center gap-1.5 text-sm">
@@ -58,19 +58,13 @@ export default function Index() {
               {stats.statusBreakdown.unverified && (
                 <div className="flex items-center gap-1.5 text-sm">
                   <AlertCircle className="w-4 h-4 text-status-unverified" />
-                  <span>{stats.statusBreakdown.unverified} unverified</span>
+                  <span>{stats.statusBreakdown.unverified} pending</span>
                 </div>
               )}
               {stats.statusBreakdown.stale && (
                 <div className="flex items-center gap-1.5 text-sm">
                   <Clock className="w-4 h-4 text-status-stale" />
-                  <span>{stats.statusBreakdown.stale} stale</span>
-                </div>
-              )}
-              {stats.statusBreakdown.deprecated && (
-                <div className="flex items-center gap-1.5 text-sm">
-                  <XCircle className="w-4 h-4 text-status-deprecated" />
-                  <span>{stats.statusBreakdown.deprecated} deprecated</span>
+                  <span>{stats.statusBreakdown.stale} may be outdated</span>
                 </div>
               )}
             </div>
@@ -167,18 +161,18 @@ export default function Index() {
               <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
                 <Link2 className="w-6 h-6 text-primary" />
               </div>
-              <h3 className="font-semibold text-foreground mb-2">Official sources</h3>
+              <h3 className="font-semibold text-foreground mb-2">Official sources only</h3>
               <p className="text-sm text-muted-foreground">
-                All information comes directly from official government websites.
+                All information comes directly from official government websites like epassport.gov.bd.
               </p>
             </div>
             <div className="text-center">
               <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
                 <FileText className="w-6 h-6 text-primary" />
               </div>
-              <h3 className="font-semibold text-foreground mb-2">Source links provided</h3>
+              <h3 className="font-semibold text-foreground mb-2">Clickable citations</h3>
               <p className="text-sm text-muted-foreground">
-                Every piece of information links back to the official page where it was found.
+                Every fact links back to the exact page and section where we found it.
               </p>
             </div>
             <div className="text-center">
@@ -187,9 +181,26 @@ export default function Index() {
               </div>
               <h3 className="font-semibold text-foreground mb-2">Verification status</h3>
               <p className="text-sm text-muted-foreground">
-                We indicate whether information has been independently verified or needs checking.
+                We clearly show whether each piece of information has been verified or needs checking.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Transparency Link */}
+      <section className="py-8 px-4 border-t border-border">
+        <div className="container max-w-4xl">
+          <div className="flex items-center justify-center gap-6 text-sm text-muted-foreground">
+            <Link to="/claims" className="flex items-center gap-2 hover:text-foreground transition-colors">
+              <Shield className="w-4 h-4" />
+              Facts & Citations (Audit)
+            </Link>
+            <span>•</span>
+            <Link to="/sources" className="flex items-center gap-2 hover:text-foreground transition-colors">
+              <Link2 className="w-4 h-4" />
+              Official Sources (Audit)
+            </Link>
           </div>
         </div>
       </section>
