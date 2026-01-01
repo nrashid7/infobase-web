@@ -1,8 +1,9 @@
+import { forwardRef } from 'react';
 import { AlertTriangle } from 'lucide-react';
 
-export function Footer() {
+export const Footer = forwardRef<HTMLElement>(function Footer(props, ref) {
   return (
-    <footer className="mt-auto border-t border-border bg-muted/30">
+    <footer ref={ref} className="mt-auto border-t border-border bg-muted/30" {...props}>
       <div className="container py-6">
         <div className="flex items-start gap-3 p-4 bg-status-stale-bg/50 rounded-lg border border-status-stale/20">
           <AlertTriangle className="w-5 h-5 text-status-stale flex-shrink-0 mt-0.5" />
@@ -20,4 +21,4 @@ export function Footer() {
       </div>
     </footer>
   );
-}
+});
