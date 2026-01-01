@@ -1,19 +1,11 @@
 import { useParams, Link } from 'react-router-dom';
 import { FileText, ArrowLeft, ExternalLink, Copy, Check, Database } from 'lucide-react';
 import { useState } from 'react';
-import { getClaimById, getSourcePageById, getServicesReferencingClaim } from '@/lib/kbStore';
+import { getClaimById, getSourcePageById, getServicesReferencingClaim, CATEGORY_LABELS } from '@/lib/kbStore';
 import { StatusBadge } from '@/components/StatusBadge';
 import { WarningBanner } from '@/components/WarningBanner';
 import { Button } from '@/components/ui/button';
-
-const categoryLabels: Record<string, string> = {
-  eligibility: 'Eligibility',
-  fees: 'Fees',
-  required_documents: 'Required Documents',
-  processing_time: 'Processing Time',
-  application_steps: 'Application Steps',
-  portal_links: 'Portal Links',
-};
+import { formatLocator, safeRender } from '@/lib/utils';
 
 export default function ClaimDetail() {
   const { id } = useParams<{ id: string }>();
@@ -61,15 +53,15 @@ export default function ClaimDetail() {
         <div className="mb-8">
           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
             <FileText className="w-4 h-4" />
-            <span>{categoryLabels[claim.category]}</span>
+            <span>{CATEGORY_LABELS[claim.category] || claim.category}</span>
           </div>
           <div className="flex items-start justify-between gap-4 flex-wrap mb-4">
             <h1 className="text-2xl font-bold text-foreground">
-              {claim.summary || claim.id}
+              {safeRender(claim.summary, claim.id)}
             </h1>
             <StatusBadge status={claim.status} size="md" />
           </div>
-          <p className="text-lg text-muted-foreground">{claim.text}</p>
+          <p className="text-lg text-muted-foreground">{safeRender(claim.text)}</p>
         </div>
 
         {/* Warning */}
@@ -131,6 +123,7 @@ export default function ClaimDetail() {
           <div className="space-y-4">
             {claim.citations.map((citation, idx) => {
               const sourcePage = getSourcePageById(citation.source_page_id);
+              const locatorText = formatLocator(citation.locator);
               return (
                 <div key={idx} className="flex items-start gap-3 p-3 bg-muted/30 rounded-lg">
                   <FileText className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-0.5" />
@@ -142,8 +135,15 @@ export default function ClaimDetail() {
                       {sourcePage?.domain || citation.source_page_id}
                       <ExternalLink className="w-3 h-3" />
                     </Link>
-                    <p className="text-sm text-muted-foreground mt-1">{citation.locator}</p>
-                    {sourcePage && (
+                    {locatorText && (
+                      <p className="text-sm text-muted-foreground mt-1">{locatorText}</p>
+                    )}
+                    {citation.quoted_text && (
+                      <p className="text-sm text-muted-foreground mt-1 italic">
+                        "{safeRender(citation.quoted_text)}"
+                      </p>
+                    )}
+                    {sourcePage?.fetched_at && (
                       <p className="text-xs text-muted-foreground mt-1">
                         Fetched: {new Date(sourcePage.fetched_at).toLocaleDateString()}
                       </p>
