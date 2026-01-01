@@ -1,7 +1,8 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Link2, Filter, Search, ArrowRight, Calendar, Hash } from 'lucide-react';
+import { Link2, Filter, Search, ArrowRight, Calendar, Shield } from 'lucide-react';
 import { listSourcePages, getClaimsBySourcePage, getUniqueDomains } from '@/lib/kbStore';
+import { VerifiedOnlyToggle } from '@/components/VerifiedOnlyToggle';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import {
@@ -17,6 +18,7 @@ export default function Sources() {
   const [domainFilter, setDomainFilter] = useState('all');
   const [hasStaleClaims, setHasStaleClaims] = useState(false);
   const [hasVerifiedClaims, setHasVerifiedClaims] = useState(false);
+  const [showOnlyVerified, setShowOnlyVerified] = useState(false);
 
   const domains = getUniqueDomains();
 
@@ -25,9 +27,9 @@ export default function Sources() {
       search: search || undefined,
       domain: domainFilter !== 'all' ? domainFilter : undefined,
       hasStaleClaims: hasStaleClaims || undefined,
-      hasVerifiedClaims: hasVerifiedClaims || undefined,
+      hasVerifiedClaims: showOnlyVerified ? true : (hasVerifiedClaims || undefined),
     });
-  }, [search, domainFilter, hasStaleClaims, hasVerifiedClaims]);
+  }, [search, domainFilter, hasStaleClaims, hasVerifiedClaims, showOnlyVerified]);
 
   return (
     <div className="py-8 px-4">
@@ -35,12 +37,21 @@ export default function Sources() {
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
-            <Link2 className="w-6 h-6 text-primary" />
-            <h1 className="text-2xl font-bold text-foreground">Official source pages</h1>
+            <Shield className="w-6 h-6 text-primary" />
+            <h1 className="text-2xl font-bold text-foreground">Official Sources</h1>
+            <span className="text-xs bg-muted px-2 py-1 rounded-full text-muted-foreground">Audit</span>
           </div>
           <p className="text-muted-foreground">
             Browse all official government pages we reference. Each source links directly to government websites.
           </p>
+        </div>
+
+        {/* Verified-only toggle */}
+        <div className="bg-card border border-border rounded-lg p-4 mb-4">
+          <VerifiedOnlyToggle
+            checked={showOnlyVerified}
+            onCheckedChange={setShowOnlyVerified}
+          />
         </div>
 
         {/* Filters */}
@@ -81,16 +92,18 @@ export default function Sources() {
                 size="sm"
                 className="flex-1"
               >
-                Has Stale
+                Has outdated
               </Button>
-              <Button
-                variant={hasVerifiedClaims ? "default" : "outline"}
-                onClick={() => setHasVerifiedClaims(!hasVerifiedClaims)}
-                size="sm"
-                className="flex-1"
-              >
-                Has Verified
-              </Button>
+              {!showOnlyVerified && (
+                <Button
+                  variant={hasVerifiedClaims ? "default" : "outline"}
+                  onClick={() => setHasVerifiedClaims(!hasVerifiedClaims)}
+                  size="sm"
+                  className="flex-1"
+                >
+                  Has verified
+                </Button>
+              )}
             </div>
           </div>
         </div>
@@ -123,20 +136,18 @@ export default function Sources() {
                       {source.canonical_url}
                     </p>
                     <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                      <span className="flex items-center gap-1">
-                        <Calendar className="w-3 h-3" />
-                        {new Date(source.fetched_at).toLocaleDateString()}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Hash className="w-3 h-3" />
-                        {source.content_hash.substring(0, 8)}...
-                      </span>
-                      <span>{claims.length} claims</span>
+                      {source.fetched_at && (
+                        <span className="flex items-center gap-1">
+                          <Calendar className="w-3 h-3" />
+                          Last crawled: {new Date(source.fetched_at).toLocaleDateString()}
+                        </span>
+                      )}
+                      <span>{claims.length} facts</span>
                       {verifiedCount > 0 && (
                         <span className="text-status-verified">{verifiedCount} verified</span>
                       )}
                       {staleCount > 0 && (
-                        <span className="text-status-stale">{staleCount} stale</span>
+                        <span className="text-status-stale">{staleCount} outdated</span>
                       )}
                     </div>
                   </div>
