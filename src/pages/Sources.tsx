@@ -51,7 +51,7 @@ export default function Sources() {
           {sources.map((source) => {
             const claims = getClaimsBySourcePage(source.id);
             return (
-              <Link key={source.id} to={`/sources/${source.id}`} className="block bg-card border border-border rounded-lg p-4 hover:shadow-md transition-all group">
+              <Link key={source.id} to={`/admin/sources/${source.id}`} className="block bg-card border border-border rounded-lg p-4 hover:shadow-md transition-all group">
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-2">

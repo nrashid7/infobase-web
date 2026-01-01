@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Database, ExternalLink, ArrowLeft, Globe, FileText, Clock, ClipboardList, DollarSign, Link2 } from 'lucide-react';
+import { Database, ExternalLink, ArrowLeft, Globe, FileText, Clock, ClipboardList, DollarSign, Link2, AlertTriangle, Users } from 'lucide-react';
 import { 
   getServiceById, 
   getClaimsByService, 
   getAgencyById, 
-  NormalizedClaim,
 } from '@/lib/kbStore';
 import { Button } from '@/components/ui/button';
 import {
@@ -76,18 +75,18 @@ export default function ServiceDetail() {
         </Link>
 
         {/* Header */}
-        <header className="mb-8">
+        <header className="mb-6">
           <p className="text-sm text-primary font-medium mb-2">
             {agency?.short_name || agency?.name || 'Government Service'}
           </p>
           <h1 className="text-3xl font-bold text-foreground mb-3">{service.name || 'Service Guide'}</h1>
           {service.description && (
-            <p className="text-muted-foreground text-lg">{service.description}</p>
+            <p className="text-muted-foreground text-lg mb-4">{service.description}</p>
           )}
 
           {/* Primary action button */}
           {service.portal_url && (
-            <Button asChild size="lg" className="mt-6">
+            <Button asChild size="lg" className="mb-4">
               <a
                 href={service.portal_url}
                 target="_blank"
@@ -100,6 +99,22 @@ export default function ServiceDetail() {
             </Button>
           )}
         </header>
+
+        {/* Disclaimer */}
+        <div className="bg-muted/50 border border-border rounded-lg p-4 mb-8 flex items-start gap-3">
+          <AlertTriangle className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-0.5" />
+          <p className="text-sm text-muted-foreground">
+            This is an unofficial guide. Always verify information on the{' '}
+            {service.portal_url ? (
+              <a href={service.portal_url} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                official portal
+              </a>
+            ) : (
+              'official government website'
+            )}{' '}
+            before taking action.
+          </p>
+        </div>
 
         {/* Application Type Selector */}
         <ApplicationTypeSelector
@@ -114,7 +129,7 @@ export default function ServiceDetail() {
           {/* For services without structured guide, show service info prominently */}
           {!hasStructuredGuide && infoClaims.length > 0 && (
             <section>
-              <h2 className="flex items-center gap-2 text-lg font-semibold text-foreground mb-4">
+              <h2 className="flex items-center gap-2 text-xl font-semibold text-foreground mb-4">
                 <FileText className="w-5 h-5 text-primary" />
                 Available services
               </h2>
@@ -137,11 +152,11 @@ export default function ServiceDetail() {
           {/* Eligibility (if present) */}
           {eligibilityClaims.length > 0 && (
             <section>
-              <h2 className="flex items-center gap-2 text-lg font-semibold text-foreground mb-4">
-                <span className="text-xl">👤</span>
+              <h2 className="flex items-center gap-2 text-xl font-semibold text-foreground mb-4">
+                <Users className="w-5 h-5 text-primary" />
                 Who can apply
               </h2>
-              <div className="bg-card border border-border rounded-lg p-4">
+              <div className="bg-card border border-border rounded-lg p-5">
                 {eligibilityClaims.map((claim, idx) => (
                   <p key={idx} className="text-foreground">{claim.text}</p>
                 ))}
@@ -152,51 +167,59 @@ export default function ServiceDetail() {
           {/* How to Apply - Steps */}
           {stepClaims.length > 0 && (
             <section>
-              <h2 className="flex items-center gap-2 text-lg font-semibold text-foreground mb-4">
+              <h2 className="flex items-center gap-2 text-xl font-semibold text-foreground mb-4">
                 <ClipboardList className="w-5 h-5 text-primary" />
                 How to apply
               </h2>
-              <StepsList claims={stepClaims} />
+              <div className="bg-card border border-border rounded-lg p-5">
+                <StepsList claims={stepClaims} />
+              </div>
             </section>
           )}
 
           {/* Fees */}
           {feeClaims.length > 0 && (
             <section>
-              <h2 className="flex items-center gap-2 text-lg font-semibold text-foreground mb-4">
+              <h2 className="flex items-center gap-2 text-xl font-semibold text-foreground mb-4">
                 <DollarSign className="w-5 h-5 text-primary" />
                 Fees
               </h2>
-              <FeesTableGuide claims={feeClaims} applicationType={applicationType} />
+              <div className="bg-card border border-border rounded-lg p-5">
+                <FeesTableGuide claims={feeClaims} applicationType={applicationType} />
+              </div>
             </section>
           )}
 
           {/* Required Documents */}
           {docClaims.length > 0 && (
             <section>
-              <h2 className="flex items-center gap-2 text-lg font-semibold text-foreground mb-4">
+              <h2 className="flex items-center gap-2 text-xl font-semibold text-foreground mb-4">
                 <FileText className="w-5 h-5 text-primary" />
                 Required documents
               </h2>
-              <DocumentsChecklistGuide claims={docClaims} />
+              <div className="bg-card border border-border rounded-lg p-5">
+                <DocumentsChecklistGuide claims={docClaims} />
+              </div>
             </section>
           )}
 
           {/* Processing Time */}
           {timeClaims.length > 0 && (
             <section>
-              <h2 className="flex items-center gap-2 text-lg font-semibold text-foreground mb-4">
+              <h2 className="flex items-center gap-2 text-xl font-semibold text-foreground mb-4">
                 <Clock className="w-5 h-5 text-primary" />
                 Processing time
               </h2>
-              <ProcessingTimeGuide claims={timeClaims} applicationType={applicationType} />
+              <div className="bg-card border border-border rounded-lg p-5">
+                <ProcessingTimeGuide claims={timeClaims} applicationType={applicationType} />
+              </div>
             </section>
           )}
 
           {/* Official Links */}
           {(linkClaims.length > 0 || service.portal_url) && (
             <section>
-              <h2 className="flex items-center gap-2 text-lg font-semibold text-foreground mb-4">
+              <h2 className="flex items-center gap-2 text-xl font-semibold text-foreground mb-4">
                 <Link2 className="w-5 h-5 text-primary" />
                 Official links
               </h2>
@@ -207,8 +230,8 @@ export default function ServiceDetail() {
           {/* General Info - only show if we have structured guide AND extra info */}
           {hasStructuredGuide && infoClaims.length > 0 && (
             <section>
-              <h2 className="flex items-center gap-2 text-lg font-semibold text-foreground mb-4">
-                <span className="text-xl">ℹ️</span>
+              <h2 className="flex items-center gap-2 text-xl font-semibold text-foreground mb-4">
+                <FileText className="w-5 h-5 text-primary" />
                 Additional information
               </h2>
               <div className="space-y-3">

@@ -1,4 +1,4 @@
-import { Home, Database, Building2 } from 'lucide-react';
+import { Home, Database, Building2, Info } from 'lucide-react';
 import { NavLink } from '@/components/NavLink';
 import {
   Sidebar,
@@ -15,6 +15,7 @@ import {
 const navItems = [
   { title: 'Home', url: '/', icon: Home },
   { title: 'Services', url: '/services', icon: Database },
+  { title: 'About', url: '/about', icon: Info },
 ];
 
 export function AppSidebar() {

@@ -21,7 +21,7 @@ export default function ClaimDetail() {
         <h2 className="text-xl font-semibold text-foreground mb-2">Information not found</h2>
         <p className="text-muted-foreground mb-4">The requested information could not be found.</p>
         <Button asChild variant="outline">
-          <Link to="/claims">
+          <Link to="/admin/claims">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Facts & Citations
           </Link>
@@ -45,7 +45,7 @@ export default function ClaimDetail() {
       <div className="container max-w-4xl">
         {/* Back link */}
         <Link
-          to="/claims"
+          to="/admin/claims"
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />

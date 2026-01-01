@@ -70,7 +70,7 @@ export default function Claims() {
 
         <div className="space-y-3">
           {claims.map((claim) => (
-            <Link key={claim.id} to={`/claims/${claim.id}`} className="block bg-card border border-border rounded-lg p-4 hover:shadow-md transition-all group">
+            <Link key={claim.id} to={`/admin/claims/${claim.id}`} className="block bg-card border border-border rounded-lg p-4 hover:shadow-md transition-all group">
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-2">
