@@ -24,8 +24,8 @@ export default function Index() {
           </h1>
           <p className="text-xl text-primary font-medium mb-2">Knowledge Base</p>
           <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-            Audit-grade government services information. Every fact is a claim with citations to official sources. 
-            Verify everything before taking action.
+            Your trusted guide to Bangladesh government services. All information is sourced directly from official government websites.
+            Always verify before taking action.
           </p>
           
           <GlobalSearch 
@@ -160,34 +160,34 @@ export default function Index() {
       <section className="py-12 px-4 bg-muted/30 border-t border-border">
         <div className="container max-w-4xl">
           <h2 className="text-2xl font-semibold text-foreground text-center mb-8">
-            How INFOBASE Works
+            How this works
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="text-center">
               <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
                 <Link2 className="w-6 h-6 text-primary" />
               </div>
-              <h3 className="font-semibold text-foreground mb-2">Source Pages</h3>
+              <h3 className="font-semibold text-foreground mb-2">Official sources</h3>
               <p className="text-sm text-muted-foreground">
-                We crawl and snapshot official government websites to capture current information.
+                All information comes directly from official government websites.
               </p>
             </div>
             <div className="text-center">
               <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
                 <FileText className="w-6 h-6 text-primary" />
               </div>
-              <h3 className="font-semibold text-foreground mb-2">Claims with Citations</h3>
+              <h3 className="font-semibold text-foreground mb-2">Source links provided</h3>
               <p className="text-sm text-muted-foreground">
-                Every fact is extracted as a claim with a citation pointing to the exact source location.
+                Every piece of information links back to the official page where it was found.
               </p>
             </div>
             <div className="text-center">
               <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
                 <CheckCircle className="w-6 h-6 text-primary" />
               </div>
-              <h3 className="font-semibold text-foreground mb-2">Verification Status</h3>
+              <h3 className="font-semibold text-foreground mb-2">Verification status</h3>
               <p className="text-sm text-muted-foreground">
-                Claims are tracked as verified, unverified, stale, or deprecated so you know what to trust.
+                We indicate whether information has been independently verified or needs checking.
               </p>
             </div>
           </div>

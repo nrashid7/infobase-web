@@ -113,14 +113,14 @@ export default function ServiceDetail() {
         {/* Warning Banner */}
         {hasUnverifiedOrStale && (
           <WarningBanner
-            message="Some claims for this service may be incomplete or outdated. See citations and verify on the official portal."
+            message="Some information may be incomplete or outdated. Always verify on the official portal before taking action."
             className="mb-8"
           />
         )}
 
-        {/* Verification Summary */}
+        {/* Information Status */}
         <div className="bg-card border border-border rounded-lg p-4 mb-8">
-          <h2 className="font-semibold text-foreground mb-3">Verification Summary</h2>
+          <h2 className="font-semibold text-foreground mb-3">Information status</h2>
           <div className="flex flex-wrap gap-4 text-sm">
             <div className="flex items-center gap-2">
               <CheckCircle className="w-4 h-4 text-status-verified" />
@@ -128,17 +128,14 @@ export default function ServiceDetail() {
             </div>
             <div className="flex items-center gap-2">
               <AlertTriangle className="w-4 h-4 text-status-unverified" />
-              <span>{claims.filter(c => c.status === 'unverified').length} unverified</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-muted-foreground">Total: {claims.length} claims</span>
+              <span>{claims.filter(c => c.status === 'unverified').length} pending verification</span>
             </div>
           </div>
         </div>
 
-        {/* Claims Checklist by Category - in defined order */}
+        {/* What you need to know - by Category */}
         <div className="space-y-8">
-          <h2 className="text-xl font-semibold text-foreground">Claims Checklist</h2>
+          <h2 className="text-xl font-semibold text-foreground">What you need to know</h2>
 
           {claims.length === 0 ? (
             <p className="text-muted-foreground">No claims have been recorded for this service yet.</p>

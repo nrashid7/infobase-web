@@ -69,10 +69,10 @@ export default function Claims() {
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
             <FileText className="w-6 h-6 text-primary" />
-            <h1 className="text-2xl font-bold text-foreground">Claims Explorer</h1>
+            <h1 className="text-2xl font-bold text-foreground">Browse all facts</h1>
           </div>
           <p className="text-muted-foreground">
-            Browse all claims across services with their verification status and citations.
+            Search all information across government services with verification status and official sources.
           </p>
         </div>
 
@@ -151,15 +151,15 @@ export default function Claims() {
         {/* No verified warning */}
         {hasNoVerified && (
           <WarningBanner
-            title="No verified facts available yet"
-            message="Browse unverified claims with citations. Always verify on the official portal."
+            title="No verified information available yet"
+            message="This information comes directly from official sources. Always verify on the official portal before taking action."
             className="mb-6"
           />
         )}
 
         {/* Results count */}
         <p className="text-sm text-muted-foreground mb-4">
-          {claims.length} claim{claims.length !== 1 ? 's' : ''} found
+          {claims.length} result{claims.length !== 1 ? 's' : ''} found
         </p>
 
         {/* Claims List */}
