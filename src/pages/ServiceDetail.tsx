@@ -52,6 +52,9 @@ export default function ServiceDetail() {
   const eligibilityClaims = allClaims.filter(c => c.category === 'eligibility');
   const infoClaims = allClaims.filter(c => c.category === 'service_info');
 
+  // Check if this service has structured guide content
+  const hasStructuredGuide = stepClaims.length > 0 || feeClaims.length > 0 || docClaims.length > 0;
+
   // Detect application types from fee claims
   const applicationTypes = detectApplicationTypes(feeClaims);
 
@@ -108,6 +111,29 @@ export default function ServiceDetail() {
         {/* Main Guide Content */}
         <div className="space-y-10">
           
+          {/* For services without structured guide, show service info prominently */}
+          {!hasStructuredGuide && infoClaims.length > 0 && (
+            <section>
+              <h2 className="flex items-center gap-2 text-lg font-semibold text-foreground mb-4">
+                <FileText className="w-5 h-5 text-primary" />
+                Available services
+              </h2>
+              <div className="space-y-3">
+                {infoClaims.map((claim, idx) => (
+                  <div 
+                    key={idx} 
+                    className="bg-card border border-border rounded-lg p-4 flex items-start gap-3"
+                  >
+                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-primary font-medium text-sm">{idx + 1}</span>
+                    </div>
+                    <p className="text-foreground">{claim.text}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
           {/* Eligibility (if present) */}
           {eligibilityClaims.length > 0 && (
             <section>
@@ -178,8 +204,8 @@ export default function ServiceDetail() {
             </section>
           )}
 
-          {/* General Info (if present) */}
-          {infoClaims.length > 0 && (
+          {/* General Info - only show if we have structured guide AND extra info */}
+          {hasStructuredGuide && infoClaims.length > 0 && (
             <section>
               <h2 className="flex items-center gap-2 text-lg font-semibold text-foreground mb-4">
                 <span className="text-xl">ℹ️</span>

@@ -115,6 +115,10 @@ const CATEGORY_MAP: Record<string, NormalizedCategory> = {
   'portal_links': 'portal_links',
   'links': 'portal_links',
   'portal': 'portal_links',
+  
+  // Service info (includes operational info)
+  'service_info': 'service_info',
+  'operational_info': 'service_info',
 };
 
 function normalizeCategory(rawCategory: string | undefined | null): NormalizedCategory {
