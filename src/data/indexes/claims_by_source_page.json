@@ -1,6 +1,29 @@
 {
-  "src-brta-driving-license": ["claim-dl-age-requirement", "claim-dl-fee-light", "claim-dl-documents", "claim-dl-processing-time"],
-  "src-passport-fees": ["claim-passport-fee-regular", "claim-passport-processing", "claim-passport-biometric"],
-  "src-nid-application": ["claim-nid-eligibility", "claim-nid-free"],
-  "src-etin-registration": ["claim-etin-online", "claim-etin-documents"]
+  "source.947176686bf0965726403b957c96cb34267fa1d8": [
+    "claim.step.svc_epassport.1",
+    "claim.step.svc_epassport.2",
+    "claim.step.svc_epassport.3",
+    "claim.step.svc_epassport.4",
+    "claim.step.svc_epassport.5"
+  ],
+  "source.3e85c919aeef3918a889d306a1c11deb23639bf9": [
+    "claim.fee.svc_epassport.regular_48page",
+    "claim.fee.svc_epassport.express_48page",
+    "claim.fee.svc_epassport.super_express_48page"
+  ],
+  "source.2b76dc5ccf95634ef088f71423ea3517a84ff511": [
+    "claim.portal.svc_nid.new_voter",
+    "claim.portal.svc_nid.duplicate_issuance",
+    "claim.portal.svc_nid.correction",
+    "claim.portal.svc_nid.migration"
+  ],
+  "source.900eaee954dee9531f26ca362419cab9579810e0": [
+    "claim.portal.svc_brta_dl.driving_license",
+    "claim.portal.svc_brta_vr.vehicle_registration",
+    "claim.portal.svc_brta_fit.fitness_renewal",
+    "claim.portal.svc_brta_tax.tax_token",
+    "claim.portal.svc_brta.bsp_login",
+    "claim.portal.svc_brta.fee_calculator"
+  ],
+  "source.3ba45a7b75e2a0a9c5e082ef75d9cb5326a11029": ["claim.portal.svc_brta.service_hours"]
 }
