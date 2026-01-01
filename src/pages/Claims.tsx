@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { FileText, Filter, Search, ArrowRight } from 'lucide-react';
-import { listClaims, listAgencies, getUniqueDomains, getClaimCategories, ClaimStatus, ClaimCategory } from '@/lib/kbStore';
+import { listClaims, listAgencies, getUniqueDomains, ClaimStatus, NormalizedCategory, CATEGORY_ORDER, CATEGORY_LABELS } from '@/lib/kbStore';
 import { StatusBadge } from '@/components/StatusBadge';
 import { WarningBanner } from '@/components/WarningBanner';
 import { Input } from '@/components/ui/input';
@@ -12,15 +12,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-
-const categoryLabels: Record<string, string> = {
-  eligibility: 'Eligibility',
-  fees: 'Fees',
-  required_documents: 'Required Documents',
-  processing_time: 'Processing Time',
-  application_steps: 'Application Steps',
-  portal_links: 'Portal Links',
-};
 
 type SortOption = 'status' | 'newest' | 'alphabetical';
 
@@ -34,14 +25,14 @@ export default function Claims() {
 
   const agencies = listAgencies();
   const domains = getUniqueDomains();
-  const categories = getClaimCategories();
+  const categories = CATEGORY_ORDER;
 
   const claims = useMemo(() => {
     let filtered = listClaims({
       search: search || undefined,
       status: statusFilter !== 'all' ? (statusFilter as ClaimStatus) : undefined,
       agency_id: agencyFilter !== 'all' ? agencyFilter : undefined,
-      category: categoryFilter !== 'all' ? (categoryFilter as ClaimCategory) : undefined,
+      category: categoryFilter !== 'all' ? (categoryFilter as NormalizedCategory) : undefined,
       domain: domainFilter !== 'all' ? domainFilter : undefined,
     });
 
@@ -124,7 +115,7 @@ export default function Claims() {
                 <SelectItem value="all">All categories</SelectItem>
                 {categories.map((cat) => (
                   <SelectItem key={cat} value={cat}>
-                    {categoryLabels[cat]}
+                    {CATEGORY_LABELS[cat]}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -183,7 +174,7 @@ export default function Claims() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-2 flex-wrap">
                     <span className="text-xs font-medium text-muted-foreground uppercase">
-                      {categoryLabels[claim.category]}
+                      {CATEGORY_LABELS[claim.category] || claim.category}
                     </span>
                     <StatusBadge status={claim.status} />
                   </div>
