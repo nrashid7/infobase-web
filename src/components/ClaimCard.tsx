@@ -4,7 +4,7 @@ import { Copy, Check, ExternalLink, FileText } from 'lucide-react';
 import { NormalizedClaim, getSourcePageById } from '@/lib/kbStore';
 import { StatusBadge } from './StatusBadge';
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
+import { cn, formatLocator } from '@/lib/utils';
 
 interface ClaimCardProps {
   claim: NormalizedClaim;
@@ -68,16 +68,6 @@ export function ClaimCard({ claim, showCategory = false, className }: ClaimCardP
         </p>
         {claim.citations.map((citation, idx) => {
           const sourcePage = getSourcePageById(citation.source_page_id);
-          // Format locator - it can be an object like {type, heading_path} or a string
-          const formatLocator = (locator: any): string => {
-            if (!locator) return '';
-            if (typeof locator === 'string') return locator;
-            if (locator.heading_path && Array.isArray(locator.heading_path)) {
-              return locator.heading_path.join(' › ');
-            }
-            if (locator.type) return locator.type;
-            return '';
-          };
           const locatorText = formatLocator(citation.locator);
           
           return (

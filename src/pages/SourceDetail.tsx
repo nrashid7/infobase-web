@@ -3,6 +3,7 @@ import { Link2, ArrowLeft, ExternalLink, Calendar, Hash, FileText, AlertTriangle
 import { getSourcePageById, getClaimsBySourcePage } from '@/lib/kbStore';
 import { StatusBadge } from '@/components/StatusBadge';
 import { Button } from '@/components/ui/button';
+import { formatLocator, safeRender } from '@/lib/utils';
 
 export default function SourceDetail() {
   const { id } = useParams<{ id: string }>();
@@ -113,16 +114,20 @@ export default function SourceDetail() {
                         <StatusBadge status={claim.status} />
                       </div>
                       <h3 className="font-medium text-foreground group-hover:text-primary transition-colors">
-                        {claim.summary || claim.id}
+                        {safeRender(claim.summary, claim.id)}
                       </h3>
                       <p className="text-sm text-muted-foreground line-clamp-2 mt-1">
-                        {claim.text}
+                        {safeRender(claim.text)}
                       </p>
-                      {claim.citations.find(c => c.source_page_id === source.id) && (
-                        <p className="text-xs text-muted-foreground mt-2">
-                          Locator: {claim.citations.find(c => c.source_page_id === source.id)?.locator}
-                        </p>
-                      )}
+                      {(() => {
+                        const cit = claim.citations.find(c => c.source_page_id === source.id);
+                        const locatorText = cit ? formatLocator(cit.locator) : '';
+                        return locatorText ? (
+                          <p className="text-xs text-muted-foreground mt-2">
+                            Locator: {locatorText}
+                          </p>
+                        ) : null;
+                      })()}
                     </div>
                   </div>
                 </Link>
