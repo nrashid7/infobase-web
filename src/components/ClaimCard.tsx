@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Copy, Check, ExternalLink, FileText } from 'lucide-react';
-import { Claim, getSourcePageById } from '@/lib/kbStore';
+import { NormalizedClaim, getSourcePageById } from '@/lib/kbStore';
 import { StatusBadge } from './StatusBadge';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 interface ClaimCardProps {
-  claim: Claim;
+  claim: NormalizedClaim;
   showCategory?: boolean;
   className?: string;
 }
