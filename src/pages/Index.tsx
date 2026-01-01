@@ -1,9 +1,7 @@
 import { Link } from 'react-router-dom';
-import { Building2, Database, FileText, Link2, CheckCircle, AlertCircle, Clock, XCircle, ArrowRight, Shield } from 'lucide-react';
+import { Building2, Database, ArrowRight, CheckCircle } from 'lucide-react';
 import { getStats, listAgencies, listServices } from '@/lib/kbStore';
 import { GlobalSearch } from '@/components/GlobalSearch';
-import { StatsCard } from '@/components/StatsCard';
-import { StatusBadge } from '@/components/StatusBadge';
 import { Button } from '@/components/ui/button';
 
 export default function Index() {
@@ -24,8 +22,8 @@ export default function Index() {
           </h1>
           <p className="text-xl text-primary font-medium mb-2">Your Trusted Guide</p>
           <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-            Find steps, fees, required documents, and processing times for government services.
-            All information is sourced directly from official government websites.
+            Find step-by-step instructions, fees, required documents, and processing times for government services.
+            All information comes from official sources.
           </p>
           
           <GlobalSearch 
@@ -38,35 +36,18 @@ export default function Index() {
       {/* Stats Row */}
       <section className="py-8 px-4 border-b border-border">
         <div className="container">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <StatsCard label="Services" value={stats.services} icon={Database} />
-            <StatsCard label="Facts" value={stats.claims} icon={FileText} />
-            <StatsCard label="Official Sources" value={stats.sourcepages} icon={Link2} />
-            <StatsCard label="Agencies" value={stats.agencies} icon={Building2} />
-          </div>
-
-          {/* Status Breakdown */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-            <span className="text-sm text-muted-foreground">Verification status:</span>
-            <div className="flex flex-wrap gap-3">
-              {stats.statusBreakdown.verified && (
-                <div className="flex items-center gap-1.5 text-sm">
-                  <CheckCircle className="w-4 h-4 text-status-verified" />
-                  <span>{stats.statusBreakdown.verified} verified</span>
-                </div>
-              )}
-              {stats.statusBreakdown.unverified && (
-                <div className="flex items-center gap-1.5 text-sm">
-                  <AlertCircle className="w-4 h-4 text-status-unverified" />
-                  <span>{stats.statusBreakdown.unverified} pending</span>
-                </div>
-              )}
-              {stats.statusBreakdown.stale && (
-                <div className="flex items-center gap-1.5 text-sm">
-                  <Clock className="w-4 h-4 text-status-stale" />
-                  <span>{stats.statusBreakdown.stale} may be outdated</span>
-                </div>
-              )}
+          <div className="flex flex-wrap items-center justify-center gap-8 text-center">
+            <div>
+              <p className="text-3xl font-bold text-foreground">{stats.services}</p>
+              <p className="text-sm text-muted-foreground">Services</p>
+            </div>
+            <div>
+              <p className="text-3xl font-bold text-foreground">{stats.agencies}</p>
+              <p className="text-sm text-muted-foreground">Agencies</p>
+            </div>
+            <div>
+              <p className="text-3xl font-bold text-foreground">{stats.sourcepages}</p>
+              <p className="text-sm text-muted-foreground">Official sources</p>
             </div>
           </div>
         </div>
@@ -109,7 +90,7 @@ export default function Index() {
               </div>
             </div>
 
-            {/* Browse by Service */}
+            {/* Popular Services */}
             <div className="bg-card border border-border rounded-xl p-6">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 bg-accent rounded-lg flex items-center justify-center">
@@ -124,18 +105,20 @@ export default function Index() {
                     to={`/services/${service.id}`}
                     className="flex items-center justify-between p-3 rounded-lg hover:bg-accent/50 transition-colors group"
                   >
-                    <div className="flex items-center gap-3">
-                      <Database className="w-4 h-4 text-muted-foreground" />
-                      <div>
-                        <p className="font-medium text-foreground group-hover:text-primary transition-colors">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <Database className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+                      <div className="min-w-0">
+                        <p className="font-medium text-foreground group-hover:text-primary transition-colors truncate">
                           {service.name}
                         </p>
-                        <p className="text-sm text-muted-foreground line-clamp-1">
-                          {service.description}
-                        </p>
+                        {service.description && (
+                          <p className="text-sm text-muted-foreground truncate">
+                            {service.description}
+                          </p>
+                        )}
                       </div>
                     </div>
-                    <StatusBadge status={service.status || 'unverified'} />
+                    <ArrowRight className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
                   </Link>
                 ))}
               </div>
@@ -159,48 +142,31 @@ export default function Index() {
           <div className="grid md:grid-cols-3 gap-6">
             <div className="text-center">
               <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <Link2 className="w-6 h-6 text-primary" />
+                <Database className="w-6 h-6 text-primary" />
               </div>
-              <h3 className="font-semibold text-foreground mb-2">Official sources only</h3>
+              <h3 className="font-semibold text-foreground mb-2">Official information</h3>
               <p className="text-sm text-muted-foreground">
-                All information comes directly from official government websites like epassport.gov.bd.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <FileText className="w-6 h-6 text-primary" />
-              </div>
-              <h3 className="font-semibold text-foreground mb-2">Clickable citations</h3>
-              <p className="text-sm text-muted-foreground">
-                Every fact links back to the exact page and section where we found it.
+                All details come directly from official government websites and portals.
               </p>
             </div>
             <div className="text-center">
               <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
                 <CheckCircle className="w-6 h-6 text-primary" />
               </div>
-              <h3 className="font-semibold text-foreground mb-2">Verification status</h3>
+              <h3 className="font-semibold text-foreground mb-2">Easy to follow</h3>
               <p className="text-sm text-muted-foreground">
-                We clearly show whether each piece of information has been verified or needs checking.
+                Step-by-step guides with fees, documents, and timelines clearly laid out.
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Transparency Link */}
-      <section className="py-8 px-4 border-t border-border">
-        <div className="container max-w-4xl">
-          <div className="flex items-center justify-center gap-6 text-sm text-muted-foreground">
-            <Link to="/claims" className="flex items-center gap-2 hover:text-foreground transition-colors">
-              <Shield className="w-4 h-4" />
-              Facts & Citations (Audit)
-            </Link>
-            <span>•</span>
-            <Link to="/sources" className="flex items-center gap-2 hover:text-foreground transition-colors">
-              <Link2 className="w-4 h-4" />
-              Official Sources (Audit)
-            </Link>
+            <div className="text-center">
+              <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <ArrowRight className="w-6 h-6 text-primary" />
+              </div>
+              <h3 className="font-semibold text-foreground mb-2">Direct links</h3>
+              <p className="text-sm text-muted-foreground">
+                Every guide includes links to official portals where you can apply.
+              </p>
+            </div>
           </div>
         </div>
       </section>

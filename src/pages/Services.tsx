@@ -1,10 +1,8 @@
 import { useState, useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { Database, Filter, Search, ArrowRight, ExternalLink } from 'lucide-react';
-import { listServices, listAgencies, getUniqueDomains, getAgencyById, ClaimStatus } from '@/lib/kbStore';
-import { StatusBadge } from '@/components/StatusBadge';
+import { Database, Search, ArrowRight, ExternalLink, Building2 } from 'lucide-react';
+import { listServices, listAgencies, getAgencyById } from '@/lib/kbStore';
 import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
 import {
   Select,
   SelectContent,
@@ -17,20 +15,15 @@ export default function Services() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [search, setSearch] = useState(searchParams.get('search') || '');
   const [agencyFilter, setAgencyFilter] = useState(searchParams.get('agency') || 'all');
-  const [statusFilter, setStatusFilter] = useState(searchParams.get('status') || 'all');
-  const [onlyVerified, setOnlyVerified] = useState(false);
 
   const agencies = listAgencies();
-  const domains = getUniqueDomains();
 
   const services = useMemo(() => {
     return listServices({
       search: search || undefined,
       agency_id: agencyFilter !== 'all' ? agencyFilter : undefined,
-      status: statusFilter !== 'all' ? (statusFilter as ClaimStatus | 'partial') : undefined,
-      onlyVerified,
     });
-  }, [search, agencyFilter, statusFilter, onlyVerified]);
+  }, [search, agencyFilter]);
 
   const updateFilter = (key: string, value: string) => {
     const newParams = new URLSearchParams(searchParams);
@@ -46,23 +39,16 @@ export default function Services() {
     <div className="py-8 px-4">
       <div className="container">
         {/* Header */}
-        <div className="mb-8">
-          <div className="flex items-center gap-3 mb-2">
-            <Database className="w-6 h-6 text-primary" />
-            <h1 className="text-2xl font-bold text-foreground">Services Directory</h1>
-          </div>
+        <header className="mb-8">
+          <h1 className="text-2xl font-bold text-foreground mb-2">Government Services</h1>
           <p className="text-muted-foreground">
-            Browse all government services with their verification status and claim details.
+            Find step-by-step guides for Bangladesh government services.
           </p>
-        </div>
+        </header>
 
-        {/* Filters */}
+        {/* Search and Filter */}
         <div className="bg-card border border-border rounded-lg p-4 mb-6">
-          <div className="flex items-center gap-2 mb-4">
-            <Filter className="w-4 h-4 text-muted-foreground" />
-            <span className="text-sm font-medium text-foreground">Filters</span>
-          </div>
-          <div className="grid md:grid-cols-4 gap-4">
+          <div className="grid md:grid-cols-2 gap-4">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input
@@ -71,7 +57,7 @@ export default function Services() {
                   setSearch(e.target.value);
                   updateFilter('search', e.target.value);
                 }}
-                placeholder="Search services..."
+                placeholder="Search services (e.g., passport, visa)..."
                 className="pl-10"
               />
             </div>
@@ -92,31 +78,6 @@ export default function Services() {
                 ))}
               </SelectContent>
             </Select>
-
-            <Select value={statusFilter} onValueChange={(v) => {
-              setStatusFilter(v);
-              updateFilter('status', v);
-            }}>
-              <SelectTrigger>
-                <SelectValue placeholder="All statuses" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All statuses</SelectItem>
-                <SelectItem value="verified">Verified</SelectItem>
-                <SelectItem value="partial">Partial</SelectItem>
-                <SelectItem value="unverified">Unverified</SelectItem>
-                <SelectItem value="stale">Stale</SelectItem>
-                <SelectItem value="deprecated">Deprecated</SelectItem>
-              </SelectContent>
-            </Select>
-
-            <Button
-              variant={onlyVerified ? "default" : "outline"}
-              onClick={() => setOnlyVerified(!onlyVerified)}
-              className="w-full"
-            >
-              Only Verified Claims
-            </Button>
           </div>
         </div>
 
@@ -133,29 +94,26 @@ export default function Services() {
               <Link
                 key={service.id}
                 to={`/services/${service.id}`}
-                className="bg-card border border-border rounded-lg p-5 hover:shadow-md hover:border-primary/30 transition-all group animate-fade-in"
+                className="bg-card border border-border rounded-lg p-5 hover:shadow-md hover:border-primary/30 transition-all group"
               >
-                <div className="flex items-start justify-between gap-3 mb-3">
-                  <div className="flex items-center gap-2">
-                    <Database className="w-4 h-4 text-muted-foreground" />
-                    <span className="text-xs font-medium text-muted-foreground uppercase">
-                      {agency?.short_name}
-                    </span>
-                  </div>
-                  <StatusBadge status={service.status || 'unverified'} />
+                <div className="flex items-center gap-2 mb-3">
+                  <Building2 className="w-4 h-4 text-muted-foreground" />
+                  <span className="text-xs font-medium text-muted-foreground uppercase">
+                    {agency?.short_name}
+                  </span>
                 </div>
 
                 <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors mb-2">
                   {service.name}
                 </h3>
-                <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
-                  {service.description}
-                </p>
+                {service.description && (
+                  <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
+                    {service.description}
+                  </p>
+                )}
 
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-muted-foreground">
-                    {service.claim_ids.length} claim{service.claim_ids.length !== 1 ? 's' : ''}
-                  </span>
+                  <span className="text-xs text-primary font-medium">View guide</span>
                   <div className="flex items-center gap-2">
                     {service.portal_url && (
                       <ExternalLink className="w-4 h-4 text-muted-foreground" />
@@ -173,7 +131,7 @@ export default function Services() {
             <Database className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
             <h3 className="font-semibold text-foreground mb-2">No services found</h3>
             <p className="text-muted-foreground">
-              Try adjusting your filters or search query.
+              Try adjusting your search or filters.
             </p>
           </div>
         )}

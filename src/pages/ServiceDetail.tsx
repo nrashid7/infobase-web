@@ -1,34 +1,27 @@
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Database, ExternalLink, ArrowLeft, AlertTriangle, ChevronDown, ChevronUp } from 'lucide-react';
+import { Database, ExternalLink, ArrowLeft, Globe, FileText, Clock, ClipboardList, DollarSign, Link2 } from 'lucide-react';
 import { 
   getServiceById, 
   getClaimsByService, 
   getAgencyById, 
   NormalizedClaim,
-  CATEGORY_ORDER,
-  CATEGORY_LABELS,
-  CATEGORY_ICONS,
-  NormalizedCategory,
-  getSourcePageById
 } from '@/lib/kbStore';
-import { ClaimCard } from '@/components/ClaimCard';
-import { WarningBanner } from '@/components/WarningBanner';
-import { ServiceStatusBanner } from '@/components/ServiceStatusBanner';
-import { VerifiedOnlyToggle } from '@/components/VerifiedOnlyToggle';
 import { Button } from '@/components/ui/button';
 import {
-  FeesTable,
-  StepsList,
-  DocumentsChecklist,
-  ProcessingTimeCallout,
-  PortalLinksButtons
+  ApplicationTypeSelector,
+  ApplicationType,
+  detectApplicationTypes,
+  StepCards,
+  FeesTableGuide,
+  DocumentsChecklistGuide,
+  ProcessingTimeGuide,
+  OfficialLinksGuide,
 } from '@/components/ServiceGuide';
 
 export default function ServiceDetail() {
   const { id } = useParams<{ id: string }>();
-  const [showOnlyVerified, setShowOnlyVerified] = useState(false);
-  const [showAuditSection, setShowAuditSection] = useState(false);
+  const [applicationType, setApplicationType] = useState<ApplicationType>('regular');
   
   const service = id ? getServiceById(id) : undefined;
   const allClaims = id ? getClaimsByService(id) : [];
@@ -50,197 +43,178 @@ export default function ServiceDetail() {
     );
   }
 
-  // Filter claims if verified-only is enabled
-  const claims = showOnlyVerified 
-    ? allClaims.filter(c => c.status === 'verified')
-    : allClaims;
+  // Group claims by category
+  const feeClaims = allClaims.filter(c => c.category === 'fees');
+  const stepClaims = allClaims.filter(c => c.category === 'application_steps');
+  const docClaims = allClaims.filter(c => c.category === 'required_documents');
+  const timeClaims = allClaims.filter(c => c.category === 'processing_time');
+  const linkClaims = allClaims.filter(c => c.category === 'portal_links');
+  const eligibilityClaims = allClaims.filter(c => c.category === 'eligibility');
+  const infoClaims = allClaims.filter(c => c.category === 'service_info');
 
-  // Get verification stats
-  const verifiedCount = allClaims.filter(c => c.status === 'verified').length;
-  const totalCount = allClaims.length;
+  // Detect application types from fee claims
+  const applicationTypes = detectApplicationTypes(feeClaims);
 
-  // Get last crawled date from sources
-  const lastCrawled = allClaims.reduce((latest, claim) => {
-    claim.citations.forEach(cit => {
-      const source = getSourcePageById(cit.source_page_id);
-      if (source?.fetched_at && (!latest || source.fetched_at > latest)) {
-        latest = source.fetched_at;
-      }
-    });
-    return latest;
-  }, null as string | null);
-
-  // Group claims by normalized category
-  const claimsByCategory: Record<NormalizedCategory, NormalizedClaim[]> = {
-    eligibility: [],
-    fees: [],
-    required_documents: [],
-    processing_time: [],
-    application_steps: [],
-    portal_links: [],
-    service_info: [],
-  };
-
-  claims.forEach(claim => {
-    const cat = claim.category;
-    if (claimsByCategory[cat]) {
-      claimsByCategory[cat].push(claim);
-    } else {
-      claimsByCategory.service_info.push(claim);
-    }
-  });
-
-  // Find categories with claims (for guide display)
-  const presentCategories = CATEGORY_ORDER.filter(cat => claimsByCategory[cat].length > 0);
-  
-  // Check if any claims need warning
-  const hasUnverifiedOrStale = allClaims.some(c => 
-    c.status === 'unverified' || c.status === 'stale' || c.status === 'deprecated'
-  );
-
-  // Render category content based on type
-  const renderCategoryContent = (category: NormalizedCategory, categoryClaims: NormalizedClaim[]) => {
-    switch (category) {
-      case 'fees':
-        return <FeesTable claims={categoryClaims} />;
-      case 'application_steps':
-        return <StepsList claims={categoryClaims} />;
-      case 'required_documents':
-        return <DocumentsChecklist claims={categoryClaims} />;
-      case 'processing_time':
-        return <ProcessingTimeCallout claims={categoryClaims} />;
-      case 'portal_links':
-        return <PortalLinksButtons claims={categoryClaims} />;
-      default:
-        return (
-          <div className="space-y-3">
-            {categoryClaims.map((claim) => (
-              <ClaimCard key={claim.id} claim={claim} />
-            ))}
-          </div>
-        );
-    }
-  };
+  // Set initial application type
+  if (applicationTypes.length > 0 && !applicationTypes.includes(applicationType)) {
+    setApplicationType(applicationTypes[0]);
+  }
 
   return (
     <div className="py-8 px-4">
-      <div className="container max-w-4xl">
+      <div className="container max-w-3xl">
         {/* Back link */}
         <Link
           to="/services"
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
-          Back to Services
+          All Services
         </Link>
 
         {/* Header */}
-        <div className="mb-6">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-            <Database className="w-4 h-4" />
-            <span>{agency?.short_name || agency?.name || 'Government Service'}</span>
-          </div>
-          <h1 className="text-3xl font-bold text-foreground">{service.name || 'Service Guide'}</h1>
+        <header className="mb-8">
+          <p className="text-sm text-primary font-medium mb-2">
+            {agency?.short_name || agency?.name || 'Government Service'}
+          </p>
+          <h1 className="text-3xl font-bold text-foreground mb-3">{service.name || 'Service Guide'}</h1>
           {service.description && (
-            <p className="text-muted-foreground mt-2">{service.description}</p>
+            <p className="text-muted-foreground text-lg">{service.description}</p>
           )}
 
+          {/* Primary action button */}
           {service.portal_url && (
-            <a
-              href={service.portal_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 mt-4 text-primary hover:underline"
-            >
-              <ExternalLink className="w-4 h-4" />
-              Visit Official Portal
-            </a>
+            <Button asChild size="lg" className="mt-6">
+              <a
+                href={service.portal_url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Globe className="w-4 h-4 mr-2" />
+                Apply on Official Portal
+                <ExternalLink className="w-4 h-4 ml-2" />
+              </a>
+            </Button>
           )}
-        </div>
+        </header>
 
-        {/* Status Banner */}
-        <ServiceStatusBanner
-          status={service.status}
-          verifiedCount={verifiedCount}
-          totalCount={totalCount}
-          lastCrawled={lastCrawled}
-          className="mb-6"
+        {/* Application Type Selector */}
+        <ApplicationTypeSelector
+          types={applicationTypes}
+          selected={applicationType}
+          onChange={setApplicationType}
         />
 
-        {/* Verified-only toggle */}
-        <div className="flex items-center justify-between bg-card border border-border rounded-lg p-4 mb-8">
-          <span className="text-sm text-muted-foreground">Filter content</span>
-          <VerifiedOnlyToggle 
-            checked={showOnlyVerified} 
-            onCheckedChange={setShowOnlyVerified} 
-          />
-        </div>
-
-        {/* Warning Banner */}
-        {hasUnverifiedOrStale && !showOnlyVerified && (
-          <WarningBanner
-            message="Some information may be incomplete or outdated. Always verify on the official portal before taking action."
-            className="mb-8"
-          />
-        )}
-
-        {/* Service Guide Content */}
+        {/* Main Guide Content */}
         <div className="space-y-10">
-          <h2 className="text-xl font-semibold text-foreground">Service Guide</h2>
-
-          {claims.length === 0 ? (
-            <div className="text-center py-8 bg-muted/30 rounded-lg">
-              <p className="text-muted-foreground">
-                {showOnlyVerified 
-                  ? 'No verified information available. Toggle off the filter to see all information.'
-                  : 'No information has been recorded for this service yet.'}
-              </p>
-            </div>
-          ) : (
-            presentCategories.map((category) => {
-              const categoryClaims = claimsByCategory[category];
-              if (categoryClaims.length === 0) return null;
-
-              return (
-                <section key={category} className="pb-8 border-b border-border last:border-0">
-                  <h3 className="text-lg font-medium text-foreground mb-4 flex items-center gap-2">
-                    <span>{CATEGORY_ICONS[category] || 'ℹ️'}</span>
-                    {CATEGORY_LABELS[category] || category}
-                  </h3>
-                  {renderCategoryContent(category, categoryClaims)}
-                </section>
-              );
-            })
-          )}
-        </div>
-
-        {/* Transparency / Audit Section */}
-        <div className="mt-12 pt-8 border-t border-border">
-          <button
-            onClick={() => setShowAuditSection(!showAuditSection)}
-            className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
-          >
-            {showAuditSection ? (
-              <ChevronUp className="w-4 h-4" />
-            ) : (
-              <ChevronDown className="w-4 h-4" />
-            )}
-            <span className="text-sm font-medium">Transparency / Audit</span>
-          </button>
-
-          {showAuditSection && (
-            <div className="mt-6 space-y-4">
-              <p className="text-sm text-muted-foreground">
-                Complete list of all {allClaims.length} facts recorded for this service.
-              </p>
-              <div className="space-y-3">
-                {allClaims.map((claim) => (
-                  <ClaimCard key={claim.id} claim={claim} />
+          
+          {/* Eligibility (if present) */}
+          {eligibilityClaims.length > 0 && (
+            <section>
+              <h2 className="flex items-center gap-2 text-lg font-semibold text-foreground mb-4">
+                <span className="text-xl">👤</span>
+                Who can apply
+              </h2>
+              <div className="bg-card border border-border rounded-lg p-4">
+                {eligibilityClaims.map((claim, idx) => (
+                  <p key={idx} className="text-foreground">{claim.text}</p>
                 ))}
               </div>
-            </div>
+            </section>
           )}
+
+          {/* How to Apply - Steps */}
+          {stepClaims.length > 0 && (
+            <section>
+              <h2 className="flex items-center gap-2 text-lg font-semibold text-foreground mb-4">
+                <ClipboardList className="w-5 h-5 text-primary" />
+                How to apply
+              </h2>
+              <StepCards claims={stepClaims} />
+            </section>
+          )}
+
+          {/* Fees */}
+          {feeClaims.length > 0 && (
+            <section>
+              <h2 className="flex items-center gap-2 text-lg font-semibold text-foreground mb-4">
+                <DollarSign className="w-5 h-5 text-primary" />
+                Fees
+              </h2>
+              <FeesTableGuide claims={feeClaims} applicationType={applicationType} />
+            </section>
+          )}
+
+          {/* Required Documents */}
+          {docClaims.length > 0 && (
+            <section>
+              <h2 className="flex items-center gap-2 text-lg font-semibold text-foreground mb-4">
+                <FileText className="w-5 h-5 text-primary" />
+                Required documents
+              </h2>
+              <DocumentsChecklistGuide claims={docClaims} />
+            </section>
+          )}
+
+          {/* Processing Time */}
+          {timeClaims.length > 0 && (
+            <section>
+              <h2 className="flex items-center gap-2 text-lg font-semibold text-foreground mb-4">
+                <Clock className="w-5 h-5 text-primary" />
+                Processing time
+              </h2>
+              <ProcessingTimeGuide claims={timeClaims} applicationType={applicationType} />
+            </section>
+          )}
+
+          {/* Official Links */}
+          {(linkClaims.length > 0 || service.portal_url) && (
+            <section>
+              <h2 className="flex items-center gap-2 text-lg font-semibold text-foreground mb-4">
+                <Link2 className="w-5 h-5 text-primary" />
+                Official links
+              </h2>
+              <OfficialLinksGuide service={service} claims={linkClaims} />
+            </section>
+          )}
+
+          {/* General Info (if present) */}
+          {infoClaims.length > 0 && (
+            <section>
+              <h2 className="flex items-center gap-2 text-lg font-semibold text-foreground mb-4">
+                <span className="text-xl">ℹ️</span>
+                Additional information
+              </h2>
+              <div className="space-y-3">
+                {infoClaims.map((claim, idx) => (
+                  <div key={idx} className="bg-card border border-border rounded-lg p-4">
+                    <p className="text-foreground">{claim.text}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
         </div>
+
+        {/* Empty state */}
+        {allClaims.length === 0 && (
+          <div className="text-center py-12 bg-muted/30 rounded-lg">
+            <Database className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+            <h3 className="font-semibold text-foreground mb-2">Information coming soon</h3>
+            <p className="text-muted-foreground">
+              We're still gathering details for this service. Check back later or visit the official portal.
+            </p>
+            {service.portal_url && (
+              <Button asChild variant="outline" className="mt-4">
+                <a href={service.portal_url} target="_blank" rel="noopener noreferrer">
+                  Visit Official Portal
+                  <ExternalLink className="w-4 h-4 ml-2" />
+                </a>
+              </Button>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
