@@ -1,11 +1,10 @@
-import { Home, Database, FileText, Link2, Building2, Shield } from 'lucide-react';
+import { Home, Database, Building2 } from 'lucide-react';
 import { NavLink } from '@/components/NavLink';
 import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -13,14 +12,9 @@ import {
   useSidebar,
 } from '@/components/ui/sidebar';
 
-const mainNavItems = [
+const navItems = [
   { title: 'Home', url: '/', icon: Home },
   { title: 'Services', url: '/services', icon: Database },
-];
-
-const transparencyNavItems = [
-  { title: 'Facts & Citations', url: '/claims', icon: FileText },
-  { title: 'Official Sources', url: '/sources', icon: Link2 },
 ];
 
 export function AppSidebar() {
@@ -44,45 +38,15 @@ export function AppSidebar() {
       </SidebarHeader>
 
       <SidebarContent>
-        {/* Main Navigation */}
         <SidebarGroup>
-          <SidebarGroupLabel>Navigation</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {mainNavItems.map((item) => (
+              {navItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild tooltip={item.title}>
                     <NavLink
                       to={item.url}
                       end={item.url === '/'}
-                      className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-sidebar-accent transition-colors"
-                      activeClassName="bg-sidebar-accent text-sidebar-primary font-medium"
-                    >
-                      <item.icon className="w-4 h-4 flex-shrink-0" />
-                      {!collapsed && <span>{item.title}</span>}
-                    </NavLink>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-
-        {/* Transparency Section */}
-        <SidebarGroup>
-          <SidebarGroupLabel>
-            <div className="flex items-center gap-2">
-              <Shield className="w-3 h-3" />
-              {!collapsed && <span>Transparency</span>}
-            </div>
-          </SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {transparencyNavItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild tooltip={item.title}>
-                    <NavLink
-                      to={item.url}
                       className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-sidebar-accent transition-colors"
                       activeClassName="bg-sidebar-accent text-sidebar-primary font-medium"
                     >

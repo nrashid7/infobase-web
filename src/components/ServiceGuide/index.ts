@@ -1,5 +1,7 @@
-export { FeesTable } from './FeesTable';
-export { StepsList } from './StepsList';
-export { DocumentsChecklist } from './DocumentsChecklist';
-export { ProcessingTimeCallout } from './ProcessingTimeCallout';
-export { PortalLinksButtons } from './PortalLinksButtons';
+export { ApplicationTypeSelector, detectApplicationTypes } from './ApplicationTypeSelector';
+export type { ApplicationType } from './ApplicationTypeSelector';
+export { StepCards } from './StepCards';
+export { FeesTableGuide } from './FeesTableGuide';
+export { DocumentsChecklistGuide } from './DocumentsChecklistGuide';
+export { ProcessingTimeGuide } from './ProcessingTimeGuide';
+export { OfficialLinksGuide } from './OfficialLinksGuide';
