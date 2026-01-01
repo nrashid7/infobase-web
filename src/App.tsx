@@ -2,11 +2,11 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { MainLayout } from "./layouts/MainLayout";
 import Index from "./pages/Index";
-import Services from "./pages/Services";
-import ServiceDetail from "./pages/ServiceDetail";
+import Guides from "./pages/Guides";
+import GuideDetail from "./pages/GuideDetail";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 
@@ -28,9 +28,13 @@ const App = () => (
           {/* Public routes */}
           <Route element={<MainLayout />}>
             <Route path="/" element={<Index />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/services/:id" element={<ServiceDetail />} />
+            <Route path="/guides" element={<Guides />} />
+            <Route path="/guides/:id" element={<GuideDetail />} />
             <Route path="/about" element={<About />} />
+            
+            {/* Redirect old /services routes to /guides */}
+            <Route path="/services" element={<Navigate to="/guides" replace />} />
+            <Route path="/services/:id" element={<Navigate to="/guides/:id" replace />} />
           </Route>
           
           {/* Admin/Verification routes - hidden from nav */}
