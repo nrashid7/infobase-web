@@ -1,22 +1,16 @@
-import { Check, ExternalLink } from 'lucide-react';
+import { Circle, ExternalLink } from 'lucide-react';
 import { NormalizedClaim, getSourcePageById } from '@/lib/kbStore';
 
 interface DocumentsChecklistGuideProps {
   claims: NormalizedClaim[];
 }
 
-interface DocumentItem {
-  name: string;
-  sourceUrl?: string;
-}
-
-function extractDocuments(claims: NormalizedClaim[]): DocumentItem[] {
-  const documents: DocumentItem[] = [];
+function extractDocuments(claims: NormalizedClaim[]): string[] {
+  const documents: string[] = [];
   const seen = new Set<string>();
   
   claims.forEach(claim => {
     const text = claim.text || '';
-    const source = claim.citations[0] ? getSourcePageById(claim.citations[0].source_page_id) : undefined;
     
     // Split by bullets, newlines, or numbered items
     const items = text.split(/(?:^|\n)\s*(?:[•\-\*\d]+[.\):]?\s*)/g)
@@ -28,21 +22,14 @@ function extractDocuments(claims: NormalizedClaim[]): DocumentItem[] {
         const normalized = item.toLowerCase();
         if (!seen.has(normalized)) {
           seen.add(normalized);
-          documents.push({
-            name: item,
-            sourceUrl: source?.canonical_url,
-          });
+          documents.push(item);
         }
       });
     } else if (text.length > 3) {
-      // Single item
       const normalized = text.toLowerCase();
       if (!seen.has(normalized)) {
         seen.add(normalized);
-        documents.push({
-          name: text,
-          sourceUrl: source?.canonical_url,
-        });
+        documents.push(text);
       }
     }
   });
@@ -53,6 +40,11 @@ function extractDocuments(claims: NormalizedClaim[]): DocumentItem[] {
 export function DocumentsChecklistGuide({ claims }: DocumentsChecklistGuideProps) {
   const documents = extractDocuments(claims);
   
+  // Get source URL from first claim
+  const sourceUrl = claims[0]?.citations[0] 
+    ? getSourcePageById(claims[0].citations[0].source_page_id)?.canonical_url 
+    : undefined;
+  
   if (documents.length === 0) {
     return (
       <p className="text-muted-foreground text-sm">
@@ -61,18 +53,13 @@ export function DocumentsChecklistGuide({ claims }: DocumentsChecklistGuideProps
     );
   }
 
-  // Get unique source for footer
-  const sourceUrl = documents.find(d => d.sourceUrl)?.sourceUrl;
-
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
       <ul className="space-y-2">
         {documents.map((doc, idx) => (
-          <li key={idx} className="flex items-start gap-3 p-3 bg-card border border-border rounded-lg">
-            <div className="flex-shrink-0 w-5 h-5 rounded border-2 border-primary/30 flex items-center justify-center mt-0.5">
-              <Check className="w-3 h-3 text-primary opacity-0" />
-            </div>
-            <span className="text-foreground text-sm">{doc.name}</span>
+          <li key={idx} className="flex items-start gap-3">
+            <Circle className="w-2 h-2 mt-2 text-primary fill-primary flex-shrink-0" />
+            <span className="text-foreground">{doc}</span>
           </li>
         ))}
       </ul>
@@ -85,7 +72,7 @@ export function DocumentsChecklistGuide({ claims }: DocumentsChecklistGuideProps
           className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
         >
           <ExternalLink className="w-3 h-3" />
-          Official source
+          Source
         </a>
       )}
     </div>

@@ -1,6 +1,5 @@
 import { ExternalLink } from 'lucide-react';
 import { NormalizedClaim, getSourcePageById } from '@/lib/kbStore';
-import { cn } from '@/lib/utils';
 
 interface StepCardsProps {
   claims: NormalizedClaim[];
@@ -8,64 +7,48 @@ interface StepCardsProps {
 
 interface Step {
   number: number;
-  title: string;
-  description: string;
+  instruction: string;
   sourceUrl?: string;
 }
 
 function extractStepsFromClaims(claims: NormalizedClaim[]): Step[] {
   const steps: Step[] = [];
-  let stepNumber = 1;
+  const seenInstructions = new Set<string>();
   
   claims.forEach(claim => {
     const text = claim.text || '';
     const source = claim.citations[0] ? getSourcePageById(claim.citations[0].source_page_id) : undefined;
     
-    // Try to split by numbered patterns
-    const numberedPattern = /(?:^|\n)\s*(?:(\d+)[.\):]|\bstep\s+(\d+)[.:\)]?)\s*/gi;
-    const parts = text.split(numberedPattern).filter(Boolean);
+    // Try to extract step number from locator heading_path
+    const locator = claim.citations[0]?.locator;
+    const headingPath = typeof locator === 'object' && locator?.heading_path 
+      ? (Array.isArray(locator.heading_path) ? locator.heading_path.join(' › ') : String(locator.heading_path))
+      : '';
     
-    if (parts.length > 2) {
-      // Has structured steps
-      for (let i = 0; i < parts.length; i++) {
-        const part = parts[i].trim();
-        if (!part || /^\d+$/.test(part)) continue;
-        
-        const sentences = part.split(/[.!?]+/).filter(s => s.trim());
-        const title = sentences[0]?.trim() || part.slice(0, 50);
-        const description = sentences.slice(1).join('. ').trim() || '';
-        
-        steps.push({
-          number: stepNumber++,
-          title: title.length > 60 ? title.slice(0, 57) + '...' : title,
-          description,
-          sourceUrl: source?.canonical_url,
-        });
-      }
-    } else {
-      // Single block - try bullet points
-      const bulletPattern = /(?:^|\n)\s*[•\-\*]\s*/;
-      const bullets = text.split(bulletPattern).filter(s => s.trim());
-      
-      if (bullets.length > 1) {
-        bullets.forEach(bullet => {
-          const trimmed = bullet.trim();
-          if (!trimmed) return;
-          
+    // Split by numbered patterns or bullet points
+    const lines = text.split(/(?:\n|(?:^|\s)(?:\d+[.\):]|[•\-\*])\s*)/g)
+      .map(s => s.trim())
+      .filter(s => s.length > 10);
+    
+    if (lines.length > 1) {
+      lines.forEach(line => {
+        const normalized = line.toLowerCase().slice(0, 50);
+        if (!seenInstructions.has(normalized)) {
+          seenInstructions.add(normalized);
           steps.push({
-            number: stepNumber++,
-            title: trimmed.length > 60 ? trimmed.slice(0, 57) + '...' : trimmed,
-            description: '',
+            number: steps.length + 1,
+            instruction: line,
             sourceUrl: source?.canonical_url,
           });
-        });
-      } else {
-        // Single claim as one step
-        const sentences = text.split(/[.!?]+/).filter(s => s.trim());
+        }
+      });
+    } else if (text.length > 10) {
+      const normalized = text.toLowerCase().slice(0, 50);
+      if (!seenInstructions.has(normalized)) {
+        seenInstructions.add(normalized);
         steps.push({
-          number: stepNumber++,
-          title: sentences[0]?.trim() || text.slice(0, 60),
-          description: sentences.slice(1).join('. ').trim(),
+          number: steps.length + 1,
+          instruction: text,
           sourceUrl: source?.canonical_url,
         });
       }
@@ -78,6 +61,9 @@ function extractStepsFromClaims(claims: NormalizedClaim[]): Step[] {
 export function StepCards({ claims }: StepCardsProps) {
   const steps = extractStepsFromClaims(claims);
   
+  // Get common source URL
+  const sourceUrl = steps.find(s => s.sourceUrl)?.sourceUrl;
+  
   if (steps.length === 0) {
     return (
       <p className="text-muted-foreground text-sm">
@@ -88,33 +74,28 @@ export function StepCards({ claims }: StepCardsProps) {
 
   return (
     <div className="space-y-4">
-      {steps.map((step) => (
-        <div
-          key={step.number}
-          className="flex gap-4 p-4 bg-card border border-border rounded-lg"
+      <ol className="space-y-3">
+        {steps.map((step) => (
+          <li key={step.number} className="flex gap-3">
+            <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 text-primary font-semibold flex items-center justify-center text-sm">
+              {step.number}
+            </span>
+            <p className="text-foreground pt-0.5">{step.instruction}</p>
+          </li>
+        ))}
+      </ol>
+      
+      {sourceUrl && (
+        <a
+          href={sourceUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
         >
-          <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-primary-foreground font-semibold flex items-center justify-center text-sm">
-            {step.number}
-          </div>
-          <div className="flex-1 min-w-0">
-            <h4 className="font-medium text-foreground">{step.title}</h4>
-            {step.description && (
-              <p className="text-sm text-muted-foreground mt-1">{step.description}</p>
-            )}
-            {step.sourceUrl && (
-              <a
-                href={step.sourceUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-primary mt-2 transition-colors"
-              >
-                <ExternalLink className="w-3 h-3" />
-                Source
-              </a>
-            )}
-          </div>
-        </div>
-      ))}
+          <ExternalLink className="w-3 h-3" />
+          Source
+        </a>
+      )}
     </div>
   );
 }
