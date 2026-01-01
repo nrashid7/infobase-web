@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Copy, Check, ExternalLink, FileText } from 'lucide-react';
+import { ExternalLink, ChevronDown, ChevronUp } from 'lucide-react';
 import { NormalizedClaim, getSourcePageById } from '@/lib/kbStore';
 import { StatusBadge } from './StatusBadge';
-import { Button } from '@/components/ui/button';
-import { cn, formatLocator } from '@/lib/utils';
+import { DataTransparencyModal } from './DataTransparencyModal';
+import { cn, formatLocator, safeRender } from '@/lib/utils';
+import { generateClaimTitle } from '@/lib/citizenLabels';
 
 interface ClaimCardProps {
   claim: NormalizedClaim;
@@ -12,118 +13,117 @@ interface ClaimCardProps {
   className?: string;
 }
 
-const categoryLabels: Record<string, string> = {
-  eligibility: 'Eligibility',
-  fees: 'Fees',
-  required_documents: 'Required Documents',
-  processing_time: 'Processing Time',
-  application_steps: 'Application Steps',
-  portal_links: 'Portal Links',
-};
-
 export function ClaimCard({ claim, showCategory = false, className }: ClaimCardProps) {
-  const [copied, setCopied] = useState(false);
+  const [expandedCitation, setExpandedCitation] = useState<number | null>(null);
 
-  const handleCopyJson = () => {
-    navigator.clipboard.writeText(JSON.stringify(claim, null, 2));
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+  const title = generateClaimTitle(claim);
 
   return (
     <div className={cn("claim-card animate-fade-in", className)}>
+      {/* Header */}
       <div className="flex items-start justify-between gap-4 mb-3">
         <div className="flex items-center gap-2 flex-wrap">
-          {showCategory && (
-            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
-              {categoryLabels[claim.category] || claim.category}
-            </span>
-          )}
           <StatusBadge status={claim.status} />
         </div>
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={handleCopyJson}
-          className="h-8 px-2 text-muted-foreground hover:text-foreground"
-        >
-          {copied ? (
-            <Check className="w-4 h-4 text-status-verified" />
-          ) : (
-            <Copy className="w-4 h-4" />
-          )}
-          <span className="ml-1 text-xs">Copy JSON</span>
-        </Button>
       </div>
 
+      {/* Human-readable title */}
       <h4 className="font-medium text-foreground mb-2">
-        {claim.summary || claim.id}
+        {title}
       </h4>
-      <p className="text-muted-foreground text-sm mb-4">{claim.text}</p>
+      
+      {/* Main content */}
+      <p className="text-muted-foreground text-sm mb-4">{safeRender(claim.text)}</p>
 
-      {/* Citations */}
-      <div className="space-y-2">
-        <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
-          Citations ({claim.citations.length})
-        </p>
+      {/* Source citations - citizen friendly */}
+      <div className="space-y-2 border-t border-border pt-3">
         {claim.citations.map((citation, idx) => {
           const sourcePage = getSourcePageById(citation.source_page_id);
+          const isExpanded = expandedCitation === idx;
           const locatorText = formatLocator(citation.locator);
           
           return (
-            <div key={idx} className="flex items-start gap-2 text-sm">
-              <FileText className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-0.5" />
-              <div>
-                <Link
-                  to={`/sources/${citation.source_page_id}`}
-                  className="citation-link font-medium"
+            <div key={idx} className="text-sm">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-muted-foreground">Source:</span>
+                  <Link
+                    to={`/sources/${citation.source_page_id}`}
+                    className="text-primary hover:underline font-medium"
+                  >
+                    {sourcePage?.domain || 'Official source'}
+                  </Link>
+                </div>
+                <button
+                  onClick={() => setExpandedCitation(isExpanded ? null : idx)}
+                  className="text-muted-foreground hover:text-foreground transition-colors p-1"
+                  aria-label={isExpanded ? "Hide details" : "Show details"}
                 >
-                  {sourcePage?.domain || citation.source_page_id}
-                  <ExternalLink className="w-3 h-3" />
-                </Link>
-                {locatorText && (
-                  <p className="text-xs text-muted-foreground mt-0.5">{locatorText}</p>
-                )}
+                  {isExpanded ? (
+                    <ChevronUp className="w-4 h-4" />
+                  ) : (
+                    <ChevronDown className="w-4 h-4" />
+                  )}
+                </button>
               </div>
+              
+              {/* Expanded details */}
+              {isExpanded && (
+                <div className="mt-2 pl-4 border-l-2 border-muted space-y-2 text-sm">
+                  {locatorText && (
+                    <p className="text-muted-foreground">
+                      <span className="font-medium">Page section:</span> {locatorText}
+                    </p>
+                  )}
+                  {sourcePage?.canonical_url && (
+                    <a
+                      href={sourcePage.canonical_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-primary hover:underline"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5" />
+                      View official page
+                    </a>
+                  )}
+                </div>
+              )}
             </div>
           );
         })}
       </div>
 
-      {/* Verification Info */}
+      {/* Verification Info - citizen friendly */}
       {claim.status === 'verified' && claim.verified_at && (
-        <div className="mt-4 pt-4 border-t border-border">
+        <div className="mt-4 pt-3 border-t border-border">
           <p className="text-xs text-muted-foreground">
             Verified on {new Date(claim.verified_at).toLocaleDateString()} 
-            {claim.verified_by && ` by ${claim.verified_by}`}
           </p>
-          {claim.verification_notes && (
-            <p className="text-xs text-muted-foreground mt-1">{claim.verification_notes}</p>
-          )}
         </div>
       )}
 
-      {/* Stale Info */}
+      {/* Stale Info - citizen friendly */}
       {claim.status === 'stale' && (
-        <div className="mt-4 pt-4 border-t border-border">
+        <div className="mt-4 pt-3 border-t border-border">
           <p className="text-xs text-status-stale">
-            Marked stale on {claim.stale_marked_at && new Date(claim.stale_marked_at).toLocaleDateString()}
-            {claim.stale_due_to_source_hash && ' (source content changed)'}
+            This information may be outdated. Please verify on the official website.
           </p>
-          {claim.previous_status && (
-            <p className="text-xs text-muted-foreground mt-1">
-              Previous status: {claim.previous_status}
-            </p>
-          )}
         </div>
       )}
 
-      {/* Deprecated Info */}
-      {claim.status === 'deprecated' && claim.deprecated_reason && (
-        <div className="mt-4 pt-4 border-t border-border">
-          <p className="text-xs text-status-deprecated">{claim.deprecated_reason}</p>
+      {/* Deprecated Info - citizen friendly */}
+      {claim.status === 'deprecated' && (
+        <div className="mt-4 pt-3 border-t border-border">
+          <p className="text-xs text-status-deprecated">
+            This information is no longer current.
+          </p>
         </div>
       )}
+
+      {/* Data transparency link (hidden for advanced users) */}
+      <div className="mt-4 pt-2 text-right">
+        <DataTransparencyModal claim={claim} />
+      </div>
     </div>
   );
 }

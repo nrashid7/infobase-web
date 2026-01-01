@@ -36,10 +36,10 @@ export default function Sources() {
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
             <Link2 className="w-6 h-6 text-primary" />
-            <h1 className="text-2xl font-bold text-foreground">Sources Directory</h1>
+            <h1 className="text-2xl font-bold text-foreground">Official source pages</h1>
           </div>
           <p className="text-muted-foreground">
-            Browse all source pages used to extract claims. Each source is a snapshot of an official government page.
+            Browse all official government pages we reference. Each source links directly to government websites.
           </p>
         </div>
 
