@@ -68,6 +68,18 @@ export function ClaimCard({ claim, showCategory = false, className }: ClaimCardP
         </p>
         {claim.citations.map((citation, idx) => {
           const sourcePage = getSourcePageById(citation.source_page_id);
+          // Format locator - it can be an object like {type, heading_path} or a string
+          const formatLocator = (locator: any): string => {
+            if (!locator) return '';
+            if (typeof locator === 'string') return locator;
+            if (locator.heading_path && Array.isArray(locator.heading_path)) {
+              return locator.heading_path.join(' › ');
+            }
+            if (locator.type) return locator.type;
+            return '';
+          };
+          const locatorText = formatLocator(citation.locator);
+          
           return (
             <div key={idx} className="flex items-start gap-2 text-sm">
               <FileText className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-0.5" />
@@ -79,7 +91,9 @@ export function ClaimCard({ claim, showCategory = false, className }: ClaimCardP
                   {sourcePage?.domain || citation.source_page_id}
                   <ExternalLink className="w-3 h-3" />
                 </Link>
-                <p className="text-xs text-muted-foreground mt-0.5">{citation.locator}</p>
+                {locatorText && (
+                  <p className="text-xs text-muted-foreground mt-0.5">{locatorText}</p>
+                )}
               </div>
             </div>
           );
