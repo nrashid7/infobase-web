@@ -1,4 +1,4 @@
-import { Home, Database, Building2, Info } from 'lucide-react';
+import { Home, BookOpen, Info } from 'lucide-react';
 import { NavLink } from '@/components/NavLink';
 import {
   Sidebar,
@@ -14,7 +14,7 @@ import {
 
 const navItems = [
   { title: 'Home', url: '/', icon: Home },
-  { title: 'Services', url: '/services', icon: Database },
+  { title: 'Guides', url: '/guides', icon: BookOpen },
   { title: 'About', url: '/about', icon: Info },
 ];
 
@@ -27,12 +27,12 @@ export function AppSidebar() {
       <SidebarHeader className="p-4 border-b border-sidebar-border">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-            <Building2 className="w-5 h-5 text-primary-foreground" />
+            <BookOpen className="w-5 h-5 text-primary-foreground" />
           </div>
           {!collapsed && (
             <div>
               <h1 className="font-semibold text-foreground">INFOBASE</h1>
-              <p className="text-xs text-muted-foreground">BD Gov Services</p>
+              <p className="text-xs text-muted-foreground">BD Gov Guides</p>
             </div>
           )}
         </div>

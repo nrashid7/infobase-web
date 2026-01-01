@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Building2, ArrowRight, CheckCircle, Shield, Clock, FileCheck } from 'lucide-react';
-import { getStats, listServices } from '@/lib/kbStore';
+import { getGuideStats, listGuides } from '@/data/guidesStore';
 import { GlobalSearch } from '@/components/GlobalSearch';
 import { Button } from '@/components/ui/button';
 
@@ -14,8 +14,8 @@ const categoryChips = [
 ];
 
 export default function Index() {
-  const stats = getStats();
-  const services = listServices();
+  const stats = getGuideStats();
+  const guides = listGuides();
 
   return (
     <div className="min-h-screen">
@@ -36,7 +36,7 @@ export default function Index() {
           
           <GlobalSearch 
             className="max-w-xl mx-auto mb-6" 
-            placeholder="Search for a service (e.g., passport, NID, visa)..."
+            placeholder="What do you want to do? (e.g., apply for passport)"
           />
 
           {/* Category Chips */}
@@ -44,7 +44,7 @@ export default function Index() {
             {categoryChips.map((chip) => (
               <Link
                 key={chip.label}
-                to={`/services?search=${chip.search}`}
+                to={`/guides?search=${chip.search}`}
                 className="px-4 py-2 bg-card border border-border rounded-full text-sm font-medium text-muted-foreground hover:text-foreground hover:border-primary/50 transition-colors"
               >
                 {chip.label}
@@ -58,16 +58,16 @@ export default function Index() {
       <section className="py-6 px-4 border-b border-border bg-muted/30">
         <div className="container">
           <div className="flex flex-wrap items-center justify-center gap-8 text-center text-sm text-muted-foreground">
-            <span><strong className="text-foreground">{stats.services}</strong> services documented</span>
+            <span><strong className="text-foreground">{stats.guides}</strong> guides available</span>
             <span>•</span>
             <span><strong className="text-foreground">{stats.agencies}</strong> government agencies</span>
             <span>•</span>
-            <span>Updated regularly</span>
+            <span><strong className="text-foreground">{stats.totalCitations}</strong> official citations</span>
           </div>
         </div>
       </section>
 
-      {/* Featured Services */}
+      {/* Featured Guides */}
       <section className="py-12 px-4">
         <div className="container max-w-4xl">
           <h2 className="text-xl font-semibold text-foreground text-center mb-8">
@@ -75,20 +75,22 @@ export default function Index() {
           </h2>
           
           <div className="grid md:grid-cols-2 gap-4 mb-8">
-            {services.slice(0, 4).map((service) => (
+            {guides.slice(0, 4).map((guide) => (
               <Link
-                key={service.id}
-                to={`/services/${service.id}`}
+                key={guide.guide_id}
+                to={`/guides/${guide.guide_id}`}
                 className="bg-card border border-border rounded-xl p-5 hover:shadow-lg hover:border-primary/30 transition-all group"
               >
+                <p className="text-xs text-muted-foreground mb-2 uppercase">
+                  {guide.agency_name}
+                </p>
                 <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors mb-2">
-                  {service.name}
+                  {guide.title}
                 </h3>
-                {service.description && (
-                  <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
-                    {service.description}
-                  </p>
-                )}
+                <p className="text-sm text-muted-foreground mb-4">
+                  {guide.step_count > 0 ? `${guide.step_count} steps` : 'Service information'}
+                  {guide.citation_count > 0 && ` • ${guide.citation_count} citations`}
+                </p>
                 <span className="text-sm text-primary font-medium inline-flex items-center gap-1">
                   View guide
                   <ArrowRight className="w-4 h-4" />
@@ -99,8 +101,8 @@ export default function Index() {
 
           <div className="text-center">
             <Button asChild variant="outline" size="lg">
-              <Link to="/services">
-                Browse All Services
+              <Link to="/guides">
+                Browse All Guides
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </Button>
