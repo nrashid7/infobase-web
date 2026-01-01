@@ -12,7 +12,7 @@ import {
   ApplicationTypeSelector,
   ApplicationType,
   detectApplicationTypes,
-  StepCards,
+  StepsList,
   FeesTableGuide,
   DocumentsChecklistGuide,
   ProcessingTimeGuide,
@@ -130,7 +130,7 @@ export default function ServiceDetail() {
                 <ClipboardList className="w-5 h-5 text-primary" />
                 How to apply
               </h2>
-              <StepCards claims={stepClaims} />
+              <StepsList claims={stepClaims} />
             </section>
           )}
 
