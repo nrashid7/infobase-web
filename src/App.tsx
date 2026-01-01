@@ -7,11 +7,14 @@ import { MainLayout } from "./layouts/MainLayout";
 import Index from "./pages/Index";
 import Services from "./pages/Services";
 import ServiceDetail from "./pages/ServiceDetail";
+import About from "./pages/About";
+import NotFound from "./pages/NotFound";
+
+// Admin/verification pages - not linked in public nav
 import Claims from "./pages/Claims";
 import ClaimDetail from "./pages/ClaimDetail";
 import Sources from "./pages/Sources";
 import SourceDetail from "./pages/SourceDetail";
-import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
@@ -22,15 +25,22 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
+          {/* Public routes */}
           <Route element={<MainLayout />}>
             <Route path="/" element={<Index />} />
             <Route path="/services" element={<Services />} />
             <Route path="/services/:id" element={<ServiceDetail />} />
-            <Route path="/claims" element={<Claims />} />
-            <Route path="/claims/:id" element={<ClaimDetail />} />
-            <Route path="/sources" element={<Sources />} />
-            <Route path="/sources/:id" element={<SourceDetail />} />
+            <Route path="/about" element={<About />} />
           </Route>
+          
+          {/* Admin/Verification routes - hidden from nav */}
+          <Route element={<MainLayout />}>
+            <Route path="/admin/claims" element={<Claims />} />
+            <Route path="/admin/claims/:id" element={<ClaimDetail />} />
+            <Route path="/admin/sources" element={<Sources />} />
+            <Route path="/admin/sources/:id" element={<SourceDetail />} />
+          </Route>
+          
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

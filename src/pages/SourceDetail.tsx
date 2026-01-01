@@ -21,7 +21,7 @@ export default function SourceDetail() {
         <h2 className="text-xl font-semibold text-foreground mb-2">Source not found</h2>
         <p className="text-muted-foreground mb-4">The requested source page could not be found.</p>
         <Button asChild variant="outline">
-          <Link to="/sources">
+          <Link to="/admin/sources">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Official Sources
           </Link>
@@ -53,7 +53,7 @@ export default function SourceDetail() {
       <div className="container max-w-4xl">
         {/* Back link */}
         <Link
-          to="/sources"
+          to="/admin/sources"
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
@@ -117,7 +117,7 @@ export default function SourceDetail() {
                 return (
                   <Link
                     key={claim.id}
-                    to={`/claims/${claim.id}`}
+                    to={`/admin/claims/${claim.id}`}
                     className="block p-4 rounded-lg border border-border hover:border-primary/30 hover:bg-accent/30 transition-all group"
                   >
                     <div className="flex items-start justify-between gap-3">

@@ -1,18 +1,26 @@
 import { Link } from 'react-router-dom';
-import { Building2, Database, ArrowRight, CheckCircle } from 'lucide-react';
-import { getStats, listAgencies, listServices } from '@/lib/kbStore';
+import { Building2, ArrowRight, CheckCircle, Shield, Clock, FileCheck } from 'lucide-react';
+import { getStats, listServices } from '@/lib/kbStore';
 import { GlobalSearch } from '@/components/GlobalSearch';
 import { Button } from '@/components/ui/button';
 
+// Category chips for quick navigation
+const categoryChips = [
+  { label: 'Passport', search: 'passport' },
+  { label: 'NID', search: 'nid' },
+  { label: 'Driving License', search: 'driving' },
+  { label: 'Birth Certificate', search: 'birth' },
+  { label: 'Visa', search: 'visa' },
+];
+
 export default function Index() {
   const stats = getStats();
-  const agencies = listAgencies();
   const services = listServices();
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary/5 via-background to-accent/10 py-16 px-4">
+      <section className="bg-gradient-to-br from-primary/5 via-background to-accent/10 py-20 px-4">
         <div className="container max-w-4xl text-center">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-primary rounded-2xl mb-6">
             <Building2 className="w-8 h-8 text-primary-foreground" />
@@ -20,115 +28,82 @@ export default function Index() {
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">
             Bangladesh Government Services
           </h1>
-          <p className="text-xl text-primary font-medium mb-2">Your Trusted Guide</p>
+          <p className="text-xl text-primary font-medium mb-3">Step-by-step guides with official citations</p>
           <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-            Find step-by-step instructions, fees, required documents, and processing times for government services.
-            All information comes from official sources.
+            Find clear instructions, fees, required documents, and processing times for government services.
+            All information is sourced from official portals.
           </p>
           
           <GlobalSearch 
-            className="max-w-xl mx-auto" 
-            placeholder="Search for services (e.g., passport, visa, NID)..."
+            className="max-w-xl mx-auto mb-6" 
+            placeholder="Search for a service (e.g., passport, NID, visa)..."
           />
-        </div>
-      </section>
 
-      {/* Stats Row */}
-      <section className="py-8 px-4 border-b border-border">
-        <div className="container">
-          <div className="flex flex-wrap items-center justify-center gap-8 text-center">
-            <div>
-              <p className="text-3xl font-bold text-foreground">{stats.services}</p>
-              <p className="text-sm text-muted-foreground">Services</p>
-            </div>
-            <div>
-              <p className="text-3xl font-bold text-foreground">{stats.agencies}</p>
-              <p className="text-sm text-muted-foreground">Agencies</p>
-            </div>
-            <div>
-              <p className="text-3xl font-bold text-foreground">{stats.sourcepages}</p>
-              <p className="text-sm text-muted-foreground">Official sources</p>
-            </div>
+          {/* Category Chips */}
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            {categoryChips.map((chip) => (
+              <Link
+                key={chip.label}
+                to={`/services?search=${chip.search}`}
+                className="px-4 py-2 bg-card border border-border rounded-full text-sm font-medium text-muted-foreground hover:text-foreground hover:border-primary/50 transition-colors"
+              >
+                {chip.label}
+              </Link>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Browse Sections */}
-      <section className="py-12 px-4">
+      {/* Simple Stats */}
+      <section className="py-6 px-4 border-b border-border bg-muted/30">
         <div className="container">
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Browse by Agency */}
-            <div className="bg-card border border-border rounded-xl p-6">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 bg-accent rounded-lg flex items-center justify-center">
-                  <Building2 className="w-5 h-5 text-accent-foreground" />
-                </div>
-                <h2 className="text-xl font-semibold text-foreground">Browse by Agency</h2>
-              </div>
-              <div className="space-y-3">
-                {agencies.map((agency) => {
-                  const agencyServices = services.filter(s => s.agency_id === agency.id);
-                  return (
-                    <Link
-                      key={agency.id}
-                      to={`/services?agency=${agency.id}`}
-                      className="flex items-center justify-between p-3 rounded-lg hover:bg-accent/50 transition-colors group"
-                    >
-                      <div>
-                        <p className="font-medium text-foreground group-hover:text-primary transition-colors">
-                          {agency.short_name}
-                        </p>
-                        <p className="text-sm text-muted-foreground">{agency.name}</p>
-                      </div>
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <span>{agencyServices.length} services</span>
-                        <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                      </div>
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
+          <div className="flex flex-wrap items-center justify-center gap-8 text-center text-sm text-muted-foreground">
+            <span><strong className="text-foreground">{stats.services}</strong> services documented</span>
+            <span>•</span>
+            <span><strong className="text-foreground">{stats.agencies}</strong> government agencies</span>
+            <span>•</span>
+            <span>Updated regularly</span>
+          </div>
+        </div>
+      </section>
 
-            {/* Popular Services */}
-            <div className="bg-card border border-border rounded-xl p-6">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 bg-accent rounded-lg flex items-center justify-center">
-                  <Database className="w-5 h-5 text-accent-foreground" />
-                </div>
-                <h2 className="text-xl font-semibold text-foreground">Popular Services</h2>
-              </div>
-              <div className="space-y-3">
-                {services.slice(0, 5).map((service) => (
-                  <Link
-                    key={service.id}
-                    to={`/services/${service.id}`}
-                    className="flex items-center justify-between p-3 rounded-lg hover:bg-accent/50 transition-colors group"
-                  >
-                    <div className="flex items-center gap-3 min-w-0">
-                      <Database className="w-4 h-4 text-muted-foreground flex-shrink-0" />
-                      <div className="min-w-0">
-                        <p className="font-medium text-foreground group-hover:text-primary transition-colors truncate">
-                          {service.name}
-                        </p>
-                        {service.description && (
-                          <p className="text-sm text-muted-foreground truncate">
-                            {service.description}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                    <ArrowRight className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
-                  </Link>
-                ))}
-              </div>
-              <Button asChild variant="outline" className="w-full mt-4">
-                <Link to="/services">
-                  View All Services
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Link>
-              </Button>
-            </div>
+      {/* Featured Services */}
+      <section className="py-12 px-4">
+        <div className="container max-w-4xl">
+          <h2 className="text-xl font-semibold text-foreground text-center mb-8">
+            Popular Service Guides
+          </h2>
+          
+          <div className="grid md:grid-cols-2 gap-4 mb-8">
+            {services.slice(0, 4).map((service) => (
+              <Link
+                key={service.id}
+                to={`/services/${service.id}`}
+                className="bg-card border border-border rounded-xl p-5 hover:shadow-lg hover:border-primary/30 transition-all group"
+              >
+                <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors mb-2">
+                  {service.name}
+                </h3>
+                {service.description && (
+                  <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
+                    {service.description}
+                  </p>
+                )}
+                <span className="text-sm text-primary font-medium inline-flex items-center gap-1">
+                  View guide
+                  <ArrowRight className="w-4 h-4" />
+                </span>
+              </Link>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Button asChild variant="outline" size="lg">
+              <Link to="/services">
+                Browse All Services
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -136,17 +111,17 @@ export default function Index() {
       {/* How it Works */}
       <section className="py-12 px-4 bg-muted/30 border-t border-border">
         <div className="container max-w-4xl">
-          <h2 className="text-2xl font-semibold text-foreground text-center mb-8">
-            How this works
+          <h2 className="text-xl font-semibold text-foreground text-center mb-8">
+            Why use INFOBASE?
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="text-center">
               <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <Database className="w-6 h-6 text-primary" />
+                <FileCheck className="w-6 h-6 text-primary" />
               </div>
-              <h3 className="font-semibold text-foreground mb-2">Official information</h3>
+              <h3 className="font-semibold text-foreground mb-2">Official sources</h3>
               <p className="text-sm text-muted-foreground">
-                All details come directly from official government websites and portals.
+                Every piece of information comes from official government websites with citations you can verify.
               </p>
             </div>
             <div className="text-center">
@@ -155,18 +130,32 @@ export default function Index() {
               </div>
               <h3 className="font-semibold text-foreground mb-2">Easy to follow</h3>
               <p className="text-sm text-muted-foreground">
-                Step-by-step guides with fees, documents, and timelines clearly laid out.
+                Clear step-by-step instructions with fees, documents, and timelines all in one place.
               </p>
             </div>
             <div className="text-center">
               <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <ArrowRight className="w-6 h-6 text-primary" />
+                <Clock className="w-6 h-6 text-primary" />
               </div>
-              <h3 className="font-semibold text-foreground mb-2">Direct links</h3>
+              <h3 className="font-semibold text-foreground mb-2">Save time</h3>
               <p className="text-sm text-muted-foreground">
-                Every guide includes links to official portals where you can apply.
+                No more hunting through multiple websites. Get all the information you need in one guide.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Disclaimer */}
+      <section className="py-8 px-4 bg-background border-t border-border">
+        <div className="container max-w-2xl text-center">
+          <div className="inline-flex items-center gap-2 text-muted-foreground text-sm">
+            <Shield className="w-4 h-4" />
+            <span>
+              This is an unofficial guide. Always verify on{' '}
+              <Link to="/about" className="text-primary hover:underline">official sources</Link>
+              {' '}before taking action.
+            </span>
           </div>
         </div>
       </section>
