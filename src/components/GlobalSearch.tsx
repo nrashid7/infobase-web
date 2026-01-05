@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Search, BookOpen, Building2 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { listGuides, type GuideIndexEntry } from '@/lib/guidesStore';
+import { useLanguage } from '@/lib/LanguageContext';
 import { cn } from '@/lib/utils';
 
 interface GlobalSearchProps {
@@ -10,11 +11,12 @@ interface GlobalSearchProps {
   placeholder?: string;
 }
 
-export function GlobalSearch({ className, placeholder = "What do you want to do?" }: GlobalSearchProps) {
+export function GlobalSearch({ className, placeholder }: GlobalSearchProps) {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<GuideIndexEntry[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const { t, language } = useLanguage();
 
   const handleSearch = useCallback((value: string) => {
     setQuery(value);
@@ -35,6 +37,8 @@ export function GlobalSearch({ className, placeholder = "What do you want to do?
     navigate(`/guides/${guide.guide_id}`);
   };
 
+  const defaultPlaceholder = language === 'bn' ? 'আপনি কী করতে চান?' : 'What do you want to do?';
+
   return (
     <div className={cn("relative", className)}>
       <div className="relative">
@@ -44,7 +48,7 @@ export function GlobalSearch({ className, placeholder = "What do you want to do?
           onChange={(e) => handleSearch(e.target.value)}
           onFocus={() => query.length >= 2 && setIsOpen(true)}
           onBlur={() => setTimeout(() => setIsOpen(false), 200)}
-          placeholder={placeholder}
+          placeholder={placeholder || defaultPlaceholder}
           className="pl-10 bg-secondary/50 border-border focus:bg-card"
         />
       </div>
@@ -68,7 +72,9 @@ export function GlobalSearch({ className, placeholder = "What do you want to do?
                 </div>
               </div>
               <span className="text-xs text-muted-foreground">
-                {guide.step_count > 0 ? `${guide.step_count} steps` : 'Info'}
+                {guide.step_count > 0 
+                  ? `${guide.step_count} ${language === 'bn' ? 'ধাপ' : 'steps'}` 
+                  : language === 'bn' ? 'তথ্য' : 'Info'}
               </span>
             </button>
           ))}
@@ -77,7 +83,9 @@ export function GlobalSearch({ className, placeholder = "What do you want to do?
 
       {isOpen && query.length >= 2 && results.length === 0 && (
         <div className="absolute top-full mt-2 w-full bg-card border border-border rounded-lg shadow-lg z-50 p-4 text-center text-muted-foreground">
-          No guides found for "{query}"
+          {language === 'bn' 
+            ? `"${query}" এর জন্য কোন গাইড পাওয়া যায়নি`
+            : `No guides found for "${query}"`}
         </div>
       )}
     </div>

@@ -1,18 +1,20 @@
 import { Globe, ExternalLink } from 'lucide-react';
 import { listOfficialSources } from '@/lib/guidesStore';
+import { useLanguage } from '@/lib/LanguageContext';
 import { Button } from '@/components/ui/button';
 
 export default function OfficialSources() {
   const sources = listOfficialSources();
+  const { t, language } = useLanguage();
 
   return (
     <div className="py-8 px-4">
       <div className="container max-w-3xl">
         {/* Header */}
         <header className="mb-8">
-          <h1 className="text-2xl font-bold text-foreground mb-2">Official Sources</h1>
+          <h1 className="text-2xl font-bold text-foreground mb-2">{t('sources.title')}</h1>
           <p className="text-muted-foreground">
-            All information in our guides is sourced from these official government websites.
+            {t('sources.subtitle')}
           </p>
         </header>
 
@@ -45,7 +47,7 @@ export default function OfficialSources() {
                         asChild
                       >
                         <a href={url} target="_blank" rel="noopener noreferrer">
-                          Visit
+                          {language === 'bn' ? 'দেখুন' : 'Visit'}
                           <ExternalLink className="w-3 h-3 ml-1" />
                         </a>
                       </Button>
@@ -60,16 +62,26 @@ export default function OfficialSources() {
         {sources.length === 0 && (
           <div className="text-center py-12 bg-muted/30 rounded-lg">
             <Globe className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-            <p className="text-muted-foreground">No official sources found.</p>
+            <p className="text-muted-foreground">
+              {language === 'bn' ? 'কোন অফিসিয়াল সোর্স পাওয়া যায়নি।' : 'No official sources found.'}
+            </p>
           </div>
         )}
 
         {/* Disclaimer */}
         <div className="mt-8 p-4 bg-muted/50 rounded-lg text-sm text-muted-foreground">
           <p>
-            <strong>Note:</strong> INFOBASE is an unofficial guide. We compile information from
-            official government websites to make it easier to understand. Always verify
-            important details on the official portals before taking action.
+            {language === 'bn' ? (
+              <>
+                <strong>নোট:</strong> INFOBASE একটি অনানুষ্ঠানিক গাইড। আমরা বোঝার সুবিধার জন্য অফিসিয়াল সরকারি ওয়েবসাইট থেকে তথ্য সংকলন করি। পদক্ষেপ নেওয়ার আগে সর্বদা অফিসিয়াল পোর্টালে গুরুত্বপূর্ণ বিবরণ যাচাই করুন।
+              </>
+            ) : (
+              <>
+                <strong>Note:</strong> INFOBASE is an unofficial guide. We compile information from
+                official government websites to make it easier to understand. Always verify
+                important details on the official portals before taking action.
+              </>
+            )}
           </p>
         </div>
       </div>

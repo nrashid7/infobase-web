@@ -28,6 +28,7 @@ import {
   type VariantFee,
   type FeeItem
 } from '@/lib/guidesStore';
+import { useLanguage } from '@/lib/LanguageContext';
 import { Button } from '@/components/ui/button';
 import {
   Collapsible,
@@ -45,17 +46,19 @@ function VariantSelector({
   selected: VariantType; 
   onChange: (v: VariantType) => void;
 }) {
+  const { t } = useLanguage();
+  
   if (variants.length <= 1) return null;
 
   const labels: Record<VariantType, { name: string; desc: string }> = {
-    regular: { name: 'Regular', desc: 'Standard processing' },
-    express: { name: 'Express', desc: 'Faster delivery' },
-    super_express: { name: 'Super Express', desc: 'Fastest option' },
+    regular: { name: t('guide.variant.regular'), desc: t('guide.variant.regular.desc') },
+    express: { name: t('guide.variant.express'), desc: t('guide.variant.express.desc') },
+    super_express: { name: t('guide.variant.super_express'), desc: t('guide.variant.super_express.desc') },
   };
 
   return (
     <div className="mb-8">
-      <h3 className="text-sm font-medium text-muted-foreground mb-3">Application Type</h3>
+      <h3 className="text-sm font-medium text-muted-foreground mb-3">{t('guide.applicationType')}</h3>
       <div className="flex flex-wrap gap-2">
         {variants.map((v) => (
           <button
@@ -79,6 +82,7 @@ function VariantSelector({
 // Citation accordion component
 function CitationAccordion({ citations }: { citations: Citation[] }) {
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useLanguage();
 
   if (!citations || citations.length === 0) return null;
 
@@ -86,7 +90,7 @@ function CitationAccordion({ citations }: { citations: Citation[] }) {
     <Collapsible open={isOpen} onOpenChange={setIsOpen}>
       <CollapsibleTrigger className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors mt-2">
         {isOpen ? <ChevronDown className="w-3 h-3" /> : <ChevronRight className="w-3 h-3" />}
-        Show sources ({citations.length})
+        {t('action.showSources')} ({citations.length})
       </CollapsibleTrigger>
       <CollapsibleContent className="mt-2 space-y-2">
         {citations.map((c, idx) => (
@@ -155,6 +159,7 @@ function DocumentsSection({ items }: { items: SectionItem[] }) {
 
 // Fees table
 function FeesSection({ fees }: { fees: (VariantFee | FeeItem)[] }) {
+  const { t, language } = useLanguage();
   const hasStructuredData = fees.some(f => 'structured_data' in f && f.structured_data);
 
   if (hasStructuredData) {
@@ -163,10 +168,10 @@ function FeesSection({ fees }: { fees: (VariantFee | FeeItem)[] }) {
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-border">
-              <th className="text-left py-2 font-medium text-muted-foreground">Type</th>
-              <th className="text-left py-2 font-medium text-muted-foreground">Pages</th>
-              <th className="text-left py-2 font-medium text-muted-foreground">Delivery</th>
-              <th className="text-right py-2 font-medium text-muted-foreground">Amount</th>
+              <th className="text-left py-2 font-medium text-muted-foreground">{t('table.type')}</th>
+              <th className="text-left py-2 font-medium text-muted-foreground">{t('table.pages')}</th>
+              <th className="text-left py-2 font-medium text-muted-foreground">{t('table.delivery')}</th>
+              <th className="text-right py-2 font-medium text-muted-foreground">{t('table.amount')}</th>
             </tr>
           </thead>
           <tbody>
@@ -180,7 +185,7 @@ function FeesSection({ fees }: { fees: (VariantFee | FeeItem)[] }) {
                   </td>
                   <td className="py-3 text-foreground">{data?.pages || '—'}</td>
                   <td className="py-3 text-foreground">
-                    {data?.delivery_days ? `${data.delivery_days} working days` : '—'}
+                    {data?.delivery_days ? `${data.delivery_days} ${t('table.workingDays')}` : '—'}
                   </td>
                   <td className="py-3 text-right font-semibold text-foreground">
                     {data?.amount_bdt ? `৳${data.amount_bdt.toLocaleString()}` : '—'}
@@ -267,6 +272,7 @@ function OfficialLinksSection({ guide }: { guide: Guide }) {
 export default function GuideDetail() {
   const { id } = useParams<{ id: string }>();
   const [selectedVariant, setSelectedVariant] = useState<VariantType>('regular');
+  const { t, language } = useLanguage();
   
   const guide = id ? getGuideById(id) : undefined;
 
@@ -274,12 +280,12 @@ export default function GuideDetail() {
     return (
       <div className="py-16 text-center">
         <BookOpen className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-        <h2 className="text-xl font-semibold text-foreground mb-2">Guide not found</h2>
-        <p className="text-muted-foreground mb-4">The requested guide could not be found.</p>
+        <h2 className="text-xl font-semibold text-foreground mb-2">{t('empty.guideNotFound')}</h2>
+        <p className="text-muted-foreground mb-4">{t('empty.guideNotFoundDesc')}</p>
         <Button asChild variant="outline">
           <Link to="/guides">
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Guides
+            {t('guide.backToGuides')}
           </Link>
         </Button>
       </div>
@@ -315,7 +321,7 @@ export default function GuideDetail() {
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
-          All Guides
+          {t('guide.backToGuides')}
         </Link>
 
         {/* Header */}
@@ -333,7 +339,7 @@ export default function GuideDetail() {
             <Button asChild size="lg" className="mb-4">
               <a href={primaryPortal} target="_blank" rel="noopener noreferrer">
                 <Globe className="w-4 h-4 mr-2" />
-                Apply on Official Portal
+                {t('guide.applyOnPortal')}
                 <ExternalLink className="w-4 h-4 ml-2" />
               </a>
             </Button>
@@ -344,15 +350,31 @@ export default function GuideDetail() {
         <div className="bg-muted/50 border border-border rounded-lg p-4 mb-8 flex items-start gap-3">
           <AlertTriangle className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-0.5" />
           <p className="text-sm text-muted-foreground">
-            This is an unofficial guide. Always verify information on the{' '}
-            {primaryPortal ? (
-              <a href={primaryPortal} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
-                official portal
-              </a>
+            {language === 'bn' ? (
+              <>
+                এটি একটি অনানুষ্ঠানিক গাইড। পদক্ষেপ নেওয়ার আগে সর্বদা{' '}
+                {primaryPortal ? (
+                  <a href={primaryPortal} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                    অফিসিয়াল পোর্টালে
+                  </a>
+                ) : (
+                  'অফিসিয়াল সরকারি ওয়েবসাইটে'
+                )}{' '}
+                তথ্য যাচাই করুন।
+              </>
             ) : (
-              'official government website'
-            )}{' '}
-            before taking action.
+              <>
+                This is an unofficial guide. Always verify information on the{' '}
+                {primaryPortal ? (
+                  <a href={primaryPortal} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                    official portal
+                  </a>
+                ) : (
+                  'official government website'
+                )}{' '}
+                before taking action.
+              </>
+            )}
           </p>
         </div>
 
@@ -371,7 +393,7 @@ export default function GuideDetail() {
             <section>
               <h2 className="flex items-center gap-2 text-xl font-semibold text-foreground mb-4">
                 <FileText className="w-5 h-5 text-primary" />
-                Available Services
+                {t('section.availableServices')}
               </h2>
               <div className="bg-card border border-border rounded-lg p-5">
                 <ServiceInfoSection items={serviceInfo} />
@@ -384,7 +406,7 @@ export default function GuideDetail() {
             <section>
               <h2 className="flex items-center gap-2 text-xl font-semibold text-foreground mb-4">
                 <Users className="w-5 h-5 text-primary" />
-                Who Can Apply
+                {t('section.whoCanApply')}
               </h2>
               <div className="bg-card border border-border rounded-lg p-5">
                 <ServiceInfoSection items={eligibility} />
@@ -397,7 +419,7 @@ export default function GuideDetail() {
             <section>
               <h2 className="flex items-center gap-2 text-xl font-semibold text-foreground mb-4">
                 <ClipboardList className="w-5 h-5 text-primary" />
-                How to Apply
+                {t('section.howToApply')}
               </h2>
               <div className="bg-card border border-border rounded-lg p-5">
                 <StepsSection steps={steps} />
@@ -410,7 +432,7 @@ export default function GuideDetail() {
             <section>
               <h2 className="flex items-center gap-2 text-xl font-semibold text-foreground mb-4">
                 <DollarSign className="w-5 h-5 text-primary" />
-                Fees
+                {t('section.fees')}
               </h2>
               <div className="bg-card border border-border rounded-lg p-5">
                 <FeesSection fees={fees} />
@@ -423,7 +445,7 @@ export default function GuideDetail() {
             <section>
               <h2 className="flex items-center gap-2 text-xl font-semibold text-foreground mb-4">
                 <FileText className="w-5 h-5 text-primary" />
-                Required Documents
+                {t('section.requiredDocuments')}
               </h2>
               <div className="bg-card border border-border rounded-lg p-5">
                 <DocumentsSection items={documents} />
@@ -436,7 +458,7 @@ export default function GuideDetail() {
             <section>
               <h2 className="flex items-center gap-2 text-xl font-semibold text-foreground mb-4">
                 <Clock className="w-5 h-5 text-primary" />
-                Processing Time
+                {t('section.processingTime')}
               </h2>
               <div className="bg-card border border-border rounded-lg p-5">
                 <ServiceInfoSection items={processingTime} />
@@ -449,7 +471,7 @@ export default function GuideDetail() {
             <section>
               <h2 className="flex items-center gap-2 text-xl font-semibold text-foreground mb-4">
                 <Link2 className="w-5 h-5 text-primary" />
-                Quick Links
+                {t('section.quickLinks')}
               </h2>
               <div className="bg-card border border-border rounded-lg p-5">
                 <ServiceInfoSection items={portalLinks} />
@@ -462,7 +484,7 @@ export default function GuideDetail() {
             <section>
               <h2 className="flex items-center gap-2 text-xl font-semibold text-foreground mb-4">
                 <Globe className="w-5 h-5 text-primary" />
-                Official Links
+                {t('section.officialLinks')}
               </h2>
               <OfficialLinksSection guide={guide} />
             </section>
@@ -473,7 +495,7 @@ export default function GuideDetail() {
             <section>
               <h2 className="flex items-center gap-2 text-xl font-semibold text-foreground mb-4">
                 <FileText className="w-5 h-5 text-primary" />
-                Additional Information
+                {t('section.additionalInfo')}
               </h2>
               <div className="bg-card border border-border rounded-lg p-5">
                 <ServiceInfoSection items={serviceInfo} />
@@ -487,14 +509,14 @@ export default function GuideDetail() {
         {!hasStructuredContent && serviceInfo.length === 0 && (
           <div className="text-center py-12 bg-muted/30 rounded-lg">
             <BookOpen className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-            <h3 className="font-semibold text-foreground mb-2">Information coming soon</h3>
+            <h3 className="font-semibold text-foreground mb-2">{t('empty.comingSoon')}</h3>
             <p className="text-muted-foreground">
-              We're still gathering details for this service. Check back later or visit the official portal.
+              {t('empty.comingSoonDesc')}
             </p>
             {primaryPortal && (
               <Button asChild variant="outline" className="mt-4">
                 <a href={primaryPortal} target="_blank" rel="noopener noreferrer">
-                  Visit Official Portal
+                  {t('action.officialPortal')}
                   <ExternalLink className="w-4 h-4 ml-2" />
                 </a>
               </Button>

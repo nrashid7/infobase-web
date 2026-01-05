@@ -1,5 +1,6 @@
 import { Home, BookOpen, Globe, Info } from 'lucide-react';
 import { NavLink } from '@/components/NavLink';
+import { useLanguage } from '@/lib/LanguageContext';
 import {
   Sidebar,
   SidebarContent,
@@ -12,16 +13,17 @@ import {
   useSidebar,
 } from '@/components/ui/sidebar';
 
-const navItems = [
-  { title: 'Home', url: '/', icon: Home },
-  { title: 'Services', url: '/guides', icon: BookOpen },
-  { title: 'Official Sources', url: '/sources', icon: Globe },
-  { title: 'About', url: '/about', icon: Info },
-];
-
 export function AppSidebar() {
   const { state } = useSidebar();
+  const { t } = useLanguage();
   const collapsed = state === 'collapsed';
+
+  const navItems = [
+    { title: t('nav.home'), url: '/', icon: Home },
+    { title: t('nav.services'), url: '/guides', icon: BookOpen },
+    { title: t('nav.sources'), url: '/sources', icon: Globe },
+    { title: t('nav.about'), url: '/about', icon: Info },
+  ];
 
   return (
     <Sidebar collapsible="icon" className="border-r border-sidebar-border">
@@ -44,7 +46,7 @@ export function AppSidebar() {
           <SidebarGroupContent>
             <SidebarMenu>
               {navItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
+                <SidebarMenuItem key={item.url}>
                   <SidebarMenuButton asChild tooltip={item.title}>
                     <NavLink
                       to={item.url}
