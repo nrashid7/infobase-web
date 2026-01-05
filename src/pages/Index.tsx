@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, FileCheck, Clock, Shield, BookOpen, CreditCard, Car, Baby, Plane, Search, MousePointerClick, Sparkles } from 'lucide-react';
-import { getGuideStats, listGuides } from '@/lib/guidesStore';
+import { getGuideStats, listGuides, getGuideById } from '@/lib/guidesStore';
 import { useLanguage } from '@/lib/LanguageContext';
 import { GlobalSearch } from '@/components/GlobalSearch';
 import { Button } from '@/components/ui/button';
+import { FaviconImage, getAgencyDomain } from '@/components/FaviconImage';
 
 // Category chips for quick navigation with icons
 const categoryChips = [
@@ -224,9 +225,20 @@ export default function Index() {
                   </span>
                 </div>
 
-                <p className="text-sm text-muted-foreground mb-3 uppercase tracking-wide font-medium">
-                  {guide.agency_name}
-                </p>
+                <div className="flex items-center gap-2 mb-3">
+                  {(() => {
+                    const fullGuide = getGuideById(guide.guide_id);
+                    const domain = getAgencyDomain(fullGuide?.official_links);
+                    return domain ? (
+                      <div className="w-6 h-6 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <FaviconImage url={`https://${domain}`} className="w-4 h-4" fallbackClassName="w-3.5 h-3.5 text-primary" />
+                      </div>
+                    ) : null;
+                  })()}
+                  <p className="text-sm text-muted-foreground uppercase tracking-wide font-medium">
+                    {guide.agency_name}
+                  </p>
+                </div>
                 <h3 className="text-foreground group-hover:text-primary transition-colors mb-4 pr-16">
                   {guide.title}
                 </h3>

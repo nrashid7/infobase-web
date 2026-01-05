@@ -1,9 +1,10 @@
 import { useState, useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { BookOpen, Search, ArrowRight, Building2 } from 'lucide-react';
-import { listGuides, listAgencies } from '@/lib/guidesStore';
+import { BookOpen, Search, ArrowRight } from 'lucide-react';
+import { listGuides, listAgencies, getGuideById } from '@/lib/guidesStore';
 import { useLanguage } from '@/lib/LanguageContext';
 import { Input } from '@/components/ui/input';
+import { FaviconImage, getAgencyDomain } from '@/components/FaviconImage';
 import {
   Select,
   SelectContent,
@@ -103,7 +104,15 @@ export default function Guides() {
             >
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <Building2 className="w-3.5 h-3.5 text-primary" />
+                  {(() => {
+                    const fullGuide = getGuideById(guide.guide_id);
+                    const domain = getAgencyDomain(fullGuide?.official_links);
+                    return domain ? (
+                      <FaviconImage url={`https://${domain}`} className="w-4 h-4" fallbackClassName="w-3.5 h-3.5 text-primary" />
+                    ) : (
+                      <BookOpen className="w-3.5 h-3.5 text-primary" />
+                    );
+                  })()}
                 </div>
                 <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide truncate">
                   {guide.agency_name}
