@@ -44,7 +44,7 @@ export function GlobalSearch({ className }: GlobalSearchProps) {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
         },
-        body: JSON.stringify({ question: aiQuestion.trim(), context }),
+        body: JSON.stringify({ question: aiQuestion.trim(), context, language }),
       });
 
       if (!resp.ok) {
