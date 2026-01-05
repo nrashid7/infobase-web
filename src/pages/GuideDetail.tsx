@@ -20,6 +20,7 @@ import {
   getVariantTypes, 
   getFeesForVariant,
   formatCitation,
+  formatLocator,
   type Guide,
   type Citation,
   type VariantType,
@@ -105,7 +106,7 @@ function CitationAccordion({ citations }: { citations: Citation[] }) {
               <ExternalLink className="w-3 h-3" />
             </a>
             {c.locator && (
-              <p className="text-muted-foreground">{c.locator}</p>
+              <p className="text-muted-foreground">{formatLocator(c.locator)}</p>
             )}
             {c.quoted_text && (
               <p className="text-muted-foreground italic">"{c.quoted_text}"</p>
