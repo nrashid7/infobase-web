@@ -11,7 +11,7 @@ serve(async (req) => {
   }
 
   try {
-    const { question, context } = await req.json();
+    const { question, context, language = 'en' } = await req.json();
     
     if (!question) {
       return new Response(
@@ -25,7 +25,13 @@ serve(async (req) => {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
+    const languageInstruction = language === 'bn' 
+      ? `IMPORTANT: The user is using Bengali. You MUST respond entirely in Bengali (বাংলা). Use Bengali script for your entire response.`
+      : `Respond in English.`;
+
     const systemPrompt = `You are a helpful assistant for INFOBASE, a knowledge base about Bangladesh government services.
+
+${languageInstruction}
 
 Your role is to answer questions about government services like:
 - e-Passport applications
