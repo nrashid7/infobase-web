@@ -18,7 +18,7 @@ export function GlobalSearch({ className }: GlobalSearchProps) {
   const [aiQuestion, setAIQuestion] = useState('');
   const [aiAnswer, setAIAnswer] = useState('');
   const [isAILoading, setIsAILoading] = useState(false);
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const { toast } = useToast();
   const aiInputRef = useRef<HTMLInputElement>(null);
 
@@ -119,9 +119,7 @@ export function GlobalSearch({ className }: GlobalSearchProps) {
     setAIAnswer('');
   };
 
-  const defaultPlaceholder = language === 'bn' ? 'আপনি কী করতে চান?' : 'What do you want to do?';
-
-  const aiPlaceholder = language === 'bn' ? 'যেকোনো কিছু জিজ্ঞাসা করুন...' : 'Ask anything...';
+  const aiPlaceholder = t('home.search.placeholder');
 
   return (
     <>
@@ -129,69 +127,85 @@ export function GlobalSearch({ className }: GlobalSearchProps) {
         {/* Main AI Search Bar */}
         <button
           onClick={() => setIsAIOpen(true)}
-          className="w-full flex items-center gap-3 px-5 py-4 bg-card border-2 border-border rounded-full shadow-lg hover:border-primary/50 hover:shadow-xl transition-all duration-200 group"
+          className="w-full flex items-center gap-3 px-5 py-4 bg-card border-2 border-border rounded-2xl shadow-soft hover:border-primary/40 hover:shadow-lg transition-all duration-200 group"
         >
-          <Sparkles className="w-5 h-5 text-primary shrink-0" />
+          <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/15 transition-colors">
+            <Sparkles className="w-4 h-4 text-primary" />
+          </div>
           <span className="flex-1 text-left text-muted-foreground text-base">
             {aiPlaceholder}
           </span>
-          <span className="text-xs text-muted-foreground/60 hidden sm:inline px-2 py-1 rounded bg-muted">
-            {language === 'bn' ? 'AI দ্বারা চালিত' : 'Powered by AI'}
+          <span className="text-xs text-muted-foreground/70 hidden sm:inline px-2.5 py-1 rounded-lg bg-muted font-medium">
+            {language === 'bn' ? 'AI' : 'AI-powered'}
           </span>
         </button>
       </div>
 
       {/* AI Modal */}
       {isAIOpen && (
-        <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4 bg-background/80 backdrop-blur-sm">
-          <div className="w-full max-w-2xl bg-card border border-border rounded-xl shadow-2xl overflow-hidden">
-            <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-muted/30">
-              <div className="flex items-center gap-2 text-primary">
-                <Sparkles className="w-5 h-5" />
-                <span className="font-medium">Ask about government services</span>
+        <div className="fixed inset-0 z-50 flex items-start justify-center pt-16 md:pt-24 px-4 bg-background/80 backdrop-blur-sm animate-fade-in">
+          <div className="w-full max-w-2xl bg-card border border-border rounded-2xl shadow-2xl overflow-hidden animate-scale-in">
+            {/* Header */}
+            <div className="flex items-center justify-between px-5 py-4 border-b border-border bg-muted/30">
+              <div className="flex items-center gap-3 text-primary">
+                <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <Sparkles className="w-4 h-4" />
+                </div>
+                <span className="font-semibold text-foreground">
+                  {language === 'bn' ? 'সরকারি সেবা সম্পর্কে জিজ্ঞাসা করুন' : 'Ask about government services'}
+                </span>
               </div>
-              <Button variant="ghost" size="icon" onClick={handleCloseAI} className="h-8 w-8">
+              <Button variant="ghost" size="icon" onClick={handleCloseAI} className="h-8 w-8 rounded-lg">
                 <X className="w-4 h-4" />
               </Button>
             </div>
 
+            {/* Input */}
             <div className="p-4 border-b border-border">
-              <div className="flex gap-2">
+              <div className="flex gap-3">
                 <Input
                   ref={aiInputRef}
                   value={aiQuestion}
                   onChange={(e) => setAIQuestion(e.target.value)}
                   onKeyDown={handleAIKeyDown}
-                  placeholder="e.g. How do I apply for an e-Passport?"
-                  className="flex-1"
+                  placeholder={aiPlaceholder}
+                  className="flex-1 h-11"
                   disabled={isAILoading}
                 />
-                <Button onClick={handleAsk} disabled={!aiQuestion.trim() || isAILoading} size="icon">
+                <Button onClick={handleAsk} disabled={!aiQuestion.trim() || isAILoading} size="icon" className="h-11 w-11">
                   {isAILoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
                 </Button>
               </div>
             </div>
 
+            {/* Response */}
             <div className={cn(
-              "p-4 max-h-[60vh] overflow-y-auto",
-              !aiAnswer && "text-center text-muted-foreground py-8"
+              "p-5 max-h-[60vh] overflow-y-auto min-h-[120px]",
+              !aiAnswer && "flex items-center justify-center text-center text-muted-foreground"
             )}>
               {aiAnswer ? (
-                <div className="prose prose-sm dark:prose-invert max-w-none whitespace-pre-wrap">
+                <div className="prose prose-sm dark:prose-invert max-w-none whitespace-pre-wrap text-foreground leading-relaxed">
                   {aiAnswer}
                 </div>
               ) : isAILoading ? (
-                <div className="flex items-center gap-2 justify-center py-4">
+                <div className="flex items-center gap-3">
                   <Loader2 className="w-5 h-5 animate-spin text-primary" />
-                  <span>Thinking...</span>
+                  <span className="text-muted-foreground">{language === 'bn' ? 'চিন্তা করছি...' : 'Thinking...'}</span>
                 </div>
               ) : (
-                <p>Ask any question about Bangladesh government services</p>
+                <p className="text-sm">
+                  {language === 'bn' 
+                    ? 'বাংলাদেশ সরকারি সেবা সম্পর্কে যেকোনো প্রশ্ন জিজ্ঞাসা করুন'
+                    : 'Ask any question about Bangladesh government services'}
+                </p>
               )}
             </div>
 
-            <div className="px-4 py-2 border-t border-border bg-muted/30 text-xs text-muted-foreground text-center">
-              AI responses may not be accurate. Always verify on official portals.
+            {/* Footer */}
+            <div className="px-5 py-3 border-t border-border bg-muted/30 text-xs text-muted-foreground text-center">
+              {language === 'bn' 
+                ? 'AI উত্তর সঠিক নাও হতে পারে। সর্বদা অফিসিয়াল পোর্টালে যাচাই করুন।'
+                : 'AI responses may not be accurate. Always verify on official portals.'}
             </div>
           </div>
         </div>

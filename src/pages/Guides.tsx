@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { BookOpen, Search, ArrowRight, ExternalLink, Building2 } from 'lucide-react';
+import { BookOpen, Search, ArrowRight, Building2 } from 'lucide-react';
 import { listGuides, listAgencies } from '@/lib/guidesStore';
 import { useLanguage } from '@/lib/LanguageContext';
 import { Input } from '@/components/ui/input';
@@ -38,33 +38,31 @@ export default function Guides() {
   };
 
   return (
-    <div className="py-8 px-4">
-      <div className="container">
+    <div className="py-10 px-4">
+      <div className="container max-w-6xl">
         {/* Header */}
-        <header className="mb-8">
-          <h1 className="text-2xl font-bold text-foreground mb-2">
-            {language === 'bn' ? 'সেবা গাইড' : 'Service Guides'}
+        <header className="mb-10 text-center md:text-left">
+          <h1 className="text-3xl font-bold text-foreground mb-3">
+            {t('guides.title')}
           </h1>
-          <p className="text-muted-foreground">
-            {language === 'bn' 
-              ? 'অফিসিয়াল সাইটেশন সহ বাংলাদেশ সরকারি সেবার জন্য ধাপে ধাপে গাইড।'
-              : 'Step-by-step guides for Bangladesh government services with official citations.'}
+          <p className="text-muted-foreground text-lg max-w-2xl">
+            {t('guides.subtitle')}
           </p>
         </header>
 
         {/* Search and Filter */}
-        <div className="bg-card border border-border rounded-lg p-4 mb-6">
+        <div className="bg-card border border-border rounded-xl p-4 md:p-5 mb-8 shadow-sm">
           <div className="grid md:grid-cols-2 gap-4">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input
                 value={search}
                 onChange={(e) => {
                   setSearch(e.target.value);
                   updateFilter('search', e.target.value);
                 }}
-                placeholder={language === 'bn' ? 'গাইড খুঁজুন (যেমন, পাসপোর্ট, ভিসা)...' : 'Search guides (e.g., passport, visa)...'}
-                className="pl-10"
+                placeholder={t('guides.searchPlaceholder')}
+                className="pl-10 h-11"
               />
             </div>
 
@@ -72,7 +70,7 @@ export default function Guides() {
               setAgencyFilter(v);
               updateFilter('agency', v);
             }}>
-              <SelectTrigger>
+              <SelectTrigger className="h-11">
                 <SelectValue placeholder={language === 'bn' ? 'সব সংস্থা' : 'All agencies'} />
               </SelectTrigger>
               <SelectContent>
@@ -88,28 +86,31 @@ export default function Guides() {
         </div>
 
         {/* Results count */}
-        <p className="text-sm text-muted-foreground mb-4">
+        <p className="text-sm text-muted-foreground mb-6">
           {language === 'bn' 
             ? `${guides.length}টি গাইড পাওয়া গেছে`
             : `${guides.length} guide${guides.length !== 1 ? 's' : ''} found`}
         </p>
 
         {/* Guides Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {guides.map((guide) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {guides.map((guide, idx) => (
             <Link
               key={guide.guide_id}
               to={`/guides/${guide.guide_id}`}
-              className="bg-card border border-border rounded-lg p-5 hover:shadow-md hover:border-primary/30 transition-all group"
+              className="modern-card p-5 group animate-fade-in"
+              style={{ animationDelay: `${idx * 0.05}s` }}
             >
               <div className="flex items-center gap-2 mb-3">
-                <Building2 className="w-4 h-4 text-muted-foreground" />
-                <span className="text-xs font-medium text-muted-foreground uppercase truncate">
+                <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <Building2 className="w-3.5 h-3.5 text-primary" />
+                </div>
+                <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide truncate">
                   {guide.agency_name}
                 </span>
               </div>
 
-              <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors mb-2">
+              <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors mb-3 leading-snug">
                 {guide.title}
               </h3>
               
@@ -124,16 +125,18 @@ export default function Guides() {
                 <span className="text-xs text-primary font-medium">
                   {t('action.viewDetails')}
                 </span>
-                <ArrowRight className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                <ArrowRight className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
               </div>
             </Link>
           ))}
         </div>
 
         {guides.length === 0 && (
-          <div className="text-center py-12">
-            <BookOpen className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-            <h3 className="font-semibold text-foreground mb-2">{t('search.noResults')}</h3>
+          <div className="text-center py-16">
+            <div className="w-16 h-16 bg-muted rounded-2xl flex items-center justify-center mx-auto mb-5">
+              <BookOpen className="w-8 h-8 text-muted-foreground" />
+            </div>
+            <h3 className="font-semibold text-foreground text-lg mb-2">{t('search.noResults')}</h3>
             <p className="text-muted-foreground">
               {language === 'bn' 
                 ? 'আপনার অনুসন্ধান বা ফিল্টার সামঞ্জস্য করে দেখুন।'
