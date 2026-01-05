@@ -5,6 +5,7 @@ import { listGuides, listAgencies, getGuideById } from '@/lib/guidesStore';
 import { useLanguage } from '@/lib/LanguageContext';
 import { Input } from '@/components/ui/input';
 import { FaviconImage, getAgencyDomain } from '@/components/FaviconImage';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 import {
   Select,
   SelectContent,
@@ -41,6 +42,12 @@ export default function Guides() {
   return (
     <div className="py-10 px-4">
       <div className="container max-w-6xl">
+        {/* Breadcrumbs */}
+        <Breadcrumbs 
+          items={[{ label: language === 'bn' ? 'গাইড' : 'Guides' }]} 
+          className="mb-6"
+        />
+        
         {/* Header */}
         <header className="mb-10 text-center md:text-left">
           <h1 className="text-3xl font-bold text-foreground mb-3">

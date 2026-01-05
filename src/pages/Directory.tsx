@@ -11,6 +11,7 @@ import { useScrapeStatus } from '@/hooks/useScrapeStatus';
 import { ScrapeStatusBadge } from '@/components/ScrapeStatusBadge';
 import { SEO, generateWebsiteJsonLd } from '@/components/SEO';
 import { DirectoryGridSkeleton } from '@/components/Skeleton';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 import {
   Select,
   SelectContent,
@@ -118,17 +119,24 @@ export default function Directory() {
           </div>
           
           <div className="relative py-20 md:py-28 px-4 md:px-6">
-            <div className="container max-w-5xl mx-auto text-center">
-              {/* Bangladesh Flag Icon */}
-              <div className="inline-flex items-center justify-center w-24 h-24 rounded-2xl bg-primary/10 mb-8 animate-fade-in">
-                <div className="w-14 h-10 rounded bg-[#006a4e] flex items-center justify-center">
-                  <div className="w-7 h-7 rounded-full bg-[#f42a41]" />
-                </div>
-              </div>
+            <div className="container max-w-5xl mx-auto">
+              {/* Breadcrumbs */}
+              <Breadcrumbs 
+                items={[{ label: language === 'bn' ? 'ডিরেক্টরি' : 'Directory' }]} 
+                className="mb-8 justify-center"
+              />
               
-              <h1 className="text-foreground mb-4 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-                {language === 'bn' ? 'সরকারি পোর্টাল সংগ্রহ' : 'Official Portal Collection'}
-              </h1>
+              <div className="text-center">
+                {/* Bangladesh Flag Icon */}
+                <div className="inline-flex items-center justify-center w-24 h-24 rounded-2xl bg-primary/10 mb-8 animate-fade-in">
+                  <div className="w-14 h-10 rounded bg-[#006a4e] flex items-center justify-center">
+                    <div className="w-7 h-7 rounded-full bg-[#f42a41]" />
+                  </div>
+                </div>
+                
+                <h1 className="text-foreground mb-4 animate-fade-in" style={{ animationDelay: '0.1s' }}>
+                  {language === 'bn' ? 'সরকারি পোর্টাল সংগ্রহ' : 'Official Portal Collection'}
+                </h1>
               
               <p className="text-xl md:text-2xl text-primary font-medium mb-6 animate-fade-in" style={{ animationDelay: '0.15s' }}>
                 {language === 'bn' ? 'সম্পূর্ণ রেফারেন্স গাইড' : 'Complete Reference Guide'}
@@ -204,6 +212,7 @@ export default function Directory() {
                   <span className="text-muted-foreground/70"> ({language === 'bn' ? 'মোট' : 'of'} {totalWebsites})</span>
                 )}
               </p>
+              </div>
             </div>
           </div>
         </div>

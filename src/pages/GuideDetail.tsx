@@ -3,7 +3,6 @@ import { useParams, Link } from 'react-router-dom';
 import { 
   BookOpen, 
   ExternalLink, 
-  ArrowLeft, 
   Globe, 
   FileText, 
   Clock, 
@@ -13,8 +12,10 @@ import {
   AlertTriangle, 
   Users,
   ChevronDown,
-  ChevronRight
+  ChevronRight,
+  ArrowLeft
 } from 'lucide-react';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { 
   getGuideById, 
   getVariantTypes, 
@@ -316,14 +317,14 @@ export default function GuideDetail() {
   return (
     <div className="py-8 px-4">
       <div className="container max-w-3xl">
-        {/* Back link */}
-        <Link
-          to="/guides"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          {t('guide.backToGuides')}
-        </Link>
+        {/* Breadcrumbs */}
+        <Breadcrumbs 
+          items={[
+            { label: language === 'bn' ? 'গাইড' : 'Guides', href: '/guides' },
+            { label: guide.title }
+          ]} 
+          className="mb-6"
+        />
 
         {/* Header */}
         <header className="mb-6">

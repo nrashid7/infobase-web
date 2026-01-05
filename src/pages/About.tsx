@@ -1,6 +1,7 @@
 import { FileText, AlertTriangle, ExternalLink, Shield, Mail, HelpCircle, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/lib/LanguageContext';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 import {
   Accordion,
   AccordionContent,
@@ -20,6 +21,12 @@ export default function About() {
   return (
     <div className="py-10 px-4">
       <div className="container max-w-3xl">
+        {/* Breadcrumbs */}
+        <Breadcrumbs 
+          items={[{ label: language === 'bn' ? 'সম্পর্কে' : 'About' }]} 
+          className="mb-6"
+        />
+        
         {/* Header */}
         <header className="mb-10 text-center">
           <h1 className="text-3xl font-bold text-foreground mb-3">{t('about.title')}</h1>
