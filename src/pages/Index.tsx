@@ -207,21 +207,13 @@ export default function Index() {
       {/* Featured Guides */}
       <section className="section-padding">
         <div className="container max-w-6xl">
-          <div className="flex items-end justify-between mb-12">
-            <div>
-              <h2 className="text-foreground mb-3">
-                {t('home.popular')}
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                {language === 'bn' ? 'সবচেয়ে বেশি দেখা সেবা গাইড' : 'Most viewed service guides'}
-              </p>
-            </div>
-            <Button asChild variant="outline" size="lg" className="hidden md:inline-flex group">
-              <Link to="/guides">
-                {language === 'bn' ? 'সব দেখুন' : 'View all'}
-                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-0.5 transition-transform" />
-              </Link>
-            </Button>
+          <div className="text-center mb-12">
+            <h2 className="text-foreground mb-3">
+              {t('home.popular')}
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              {language === 'bn' ? 'সবচেয়ে বেশি দেখা সেবা গাইড' : 'Most viewed service guides'}
+            </p>
           </div>
           
           <div className="grid md:grid-cols-2 gap-6 mb-10">
