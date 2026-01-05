@@ -77,17 +77,17 @@ export default function Directory() {
             </div>
             
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-3 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-              {language === 'bn' ? 'বাংলাদেশ সরকারি ওয়েবসাইট' : 'Bangladesh Government Websites'}
+              {language === 'bn' ? 'সরকারি পোর্টাল সংগ্রহ' : 'Official Portal Collection'}
             </h1>
             
             <p className="text-xl text-primary font-medium mb-4 animate-fade-in" style={{ animationDelay: '0.15s' }}>
-              {language === 'bn' ? 'অনানুষ্ঠানিক ডিরেক্টরি' : 'Unofficial Directory'}
+              {language === 'bn' ? 'সম্পূর্ণ রেফারেন্স গাইড' : 'Complete Reference Guide'}
             </p>
             
             <p className="text-muted-foreground mb-8 max-w-xl mx-auto animate-fade-in" style={{ animationDelay: '0.2s' }}>
               {language === 'bn' 
-                ? 'বাংলাদেশের সকল অফিসিয়াল সরকারি ওয়েবসাইট এক জায়গায় খুঁজুন।'
-                : 'Find all official government websites of Bangladesh in one place.'}
+                ? 'সরকারি মন্ত্রণালয়, সংস্থা এবং পরিষেবার সরাসরি লিংক এক জায়গায়।'
+                : 'Direct links to government ministries, agencies, and services—organized for easy access.'}
             </p>
 
             {/* Search Bar */}
@@ -96,7 +96,7 @@ export default function Directory() {
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                 <Input
                   type="text"
-                  placeholder={language === 'bn' ? 'সরকারি ওয়েবসাইট বা বিভাগ খুঁজুন...' : 'Search for government websites or categories...'}
+                  placeholder={language === 'bn' ? 'মন্ত্রণালয়, সংস্থা বা পরিষেবা খুঁজুন...' : 'Find a ministry, agency, or service...'}
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   className="pl-12 pr-4 py-6 text-base rounded-xl border-border/50 bg-background shadow-sm focus:shadow-md transition-shadow"
@@ -106,7 +106,7 @@ export default function Directory() {
 
             {/* Count */}
             <p className="text-sm text-muted-foreground animate-fade-in" style={{ animationDelay: '0.3s' }}>
-              <span className="font-semibold text-foreground">{filteredCount}</span> {language === 'bn' ? 'ওয়েবসাইট পাওয়া গেছে' : 'websites found'}
+              <span className="font-semibold text-foreground">{filteredCount}</span> {language === 'bn' ? 'টি পোর্টাল তালিকাভুক্ত' : 'portals listed'}
               {search && filteredCount !== totalWebsites && (
                 <span className="text-muted-foreground/70"> ({language === 'bn' ? 'মোট' : 'of'} {totalWebsites})</span>
               )}
