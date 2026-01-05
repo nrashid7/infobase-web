@@ -1,15 +1,32 @@
 // Typed data layer for published guides
-// Single source of truth: src/data/public_guides.json
-import guidesData from '@/data/public_guides.json';
-import indexData from '@/data/public_guides_index.json';
+// Remote-first with local fallback data loading strategy
+
+// Static imports as fallback
+import localGuidesData from '@/data/public_guides.json';
+import localIndexData from '@/data/public_guides_index.json';
+
+// Remote URLs for data
+const GUIDE_DATA_URL = 'https://raw.githubusercontent.com/nrashid7/infobase-kb/main/published/public_guides.json';
+const INDEX_DATA_URL = 'https://raw.githubusercontent.com/nrashid7/infobase-kb/main/published/public_guides_index.json';
+
+// Cache configuration
+const CACHE_TTL_MS = 15 * 60 * 1000; // 15 minutes
+const CACHE_KEY_GUIDES = 'infobase_guides_cache';
+const CACHE_KEY_INDEX = 'infobase_index_cache';
 
 // Types
+export interface Locator {
+  type?: string;
+  heading_path?: string[];
+  selector?: string;
+}
+
 export interface Citation {
   source_page_id: string;
   canonical_url: string;
   domain: string;
   page_title?: string;
-  locator: string;
+  locator: string | Locator;
   quoted_text?: string;
   retrieved_at?: string;
   language?: string;
@@ -131,39 +148,237 @@ interface IndexData {
   entries: GuideIndexEntry[];
 }
 
-// Type the imported data
-const guides = (guidesData as GuidesData).guides;
-const index = (indexData as IndexData).entries;
+interface CacheEntry<T> {
+  data: T;
+  timestamp: number;
+}
 
-// Build lookup maps
-const guideById = new Map<string, Guide>();
-guides.forEach(g => {
-  guideById.set(g.guide_id, g);
-  // Also index by service_id for backwards compat
-  guideById.set(g.service_id, g);
-});
+// State
+let guides: Guide[] = [];
+let index: GuideIndexEntry[] = [];
+let guideById: Map<string, Guide> = new Map();
+let agencies: Array<{ id: string; name: string }> = [];
+let officialDomains: Map<string, { domain: string; urls: Set<string>; titles: Set<string> }> = new Map();
+let generatedAt: string | null = null;
+let initialized = false;
+let initPromise: Promise<void> | null = null;
 
-// Extract unique agencies
-const agencies = Array.from(
-  new Map(guides.map(g => [g.agency_id, { id: g.agency_id, name: g.agency_name }])).values()
-);
+/**
+ * Format a locator for display. Handles string or object locators.
+ */
+export function formatLocator(locator: string | Locator | unknown): string {
+  if (!locator) return '';
+  
+  // String locators - use directly
+  if (typeof locator === 'string') return locator;
+  
+  // Object locators
+  if (typeof locator === 'object' && locator !== null) {
+    const loc = locator as Locator;
+    const parts: string[] = [];
+    
+    // Join heading_path with " > "
+    if (loc.heading_path && Array.isArray(loc.heading_path)) {
+      parts.push(loc.heading_path.join(' > '));
+    }
+    
+    // Add selector if present
+    if (loc.selector && typeof loc.selector === 'string') {
+      parts.push(loc.selector);
+    }
+    
+    if (parts.length > 0) {
+      return parts.join(' | ');
+    }
+    
+    // Fallback for other object shapes
+    if (loc.type && typeof loc.type === 'string') {
+      return loc.type;
+    }
+    
+    return '[structured locator]';
+  }
+  
+  return '';
+}
 
-// Extract unique official domains
-const officialDomains = new Map<string, { domain: string; urls: Set<string>; titles: Set<string> }>();
-guides.forEach(g => {
-  g.official_links?.forEach(link => {
-    try {
-      const url = new URL(link.url);
-      const domain = url.hostname;
-      if (!officialDomains.has(domain)) {
-        officialDomains.set(domain, { domain, urls: new Set(), titles: new Set() });
-      }
-      const entry = officialDomains.get(domain)!;
-      entry.urls.add(link.url);
-      if (link.label) entry.titles.add(link.label);
-    } catch {}
+/**
+ * Get from localStorage cache if valid
+ */
+function getFromCache<T>(key: string): T | null {
+  try {
+    const cached = localStorage.getItem(key);
+    if (!cached) return null;
+    
+    const entry: CacheEntry<T> = JSON.parse(cached);
+    const now = Date.now();
+    
+    if (now - entry.timestamp < CACHE_TTL_MS) {
+      return entry.data;
+    }
+    
+    // Cache expired, remove it
+    localStorage.removeItem(key);
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Save to localStorage cache
+ */
+function saveToCache<T>(key: string, data: T): void {
+  try {
+    const entry: CacheEntry<T> = {
+      data,
+      timestamp: Date.now()
+    };
+    localStorage.setItem(key, JSON.stringify(entry));
+  } catch {
+    // localStorage full or unavailable, ignore
+  }
+}
+
+/**
+ * Fetch with timeout
+ */
+async function fetchWithTimeout(url: string, timeoutMs = 5000): Promise<Response> {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+  
+  try {
+    const response = await fetch(url, { signal: controller.signal });
+    return response;
+  } finally {
+    clearTimeout(timeoutId);
+  }
+}
+
+/**
+ * Try to fetch remote data, fallback to cache, then local
+ */
+async function loadDataRemoteFirst<T>(
+  remoteUrl: string, 
+  cacheKey: string, 
+  localFallback: T
+): Promise<T> {
+  // First, try cache
+  const cached = getFromCache<T>(cacheKey);
+  
+  // Try remote fetch
+  try {
+    const response = await fetchWithTimeout(remoteUrl);
+    if (response.ok) {
+      const data = await response.json() as T;
+      saveToCache(cacheKey, data);
+      return data;
+    }
+  } catch {
+    // Remote fetch failed
+  }
+  
+  // Return cached data if available
+  if (cached) {
+    return cached;
+  }
+  
+  // Final fallback to local bundled data
+  return localFallback;
+}
+
+/**
+ * Build internal lookup structures
+ */
+function buildLookups(): void {
+  // Build guide lookup map
+  guideById = new Map<string, Guide>();
+  guides.forEach(g => {
+    guideById.set(g.guide_id, g);
+    // Also index by service_id for backwards compat
+    guideById.set(g.service_id, g);
   });
-});
+
+  // Extract unique agencies
+  const agencyMap = new Map<string, { id: string; name: string }>();
+  guides.forEach(g => {
+    if (!agencyMap.has(g.agency_id)) {
+      agencyMap.set(g.agency_id, { id: g.agency_id, name: g.agency_name });
+    }
+  });
+  agencies = Array.from(agencyMap.values());
+
+  // Extract unique official domains
+  officialDomains = new Map<string, { domain: string; urls: Set<string>; titles: Set<string> }>();
+  guides.forEach(g => {
+    g.official_links?.forEach(link => {
+      try {
+        const url = new URL(link.url);
+        const domain = url.hostname;
+        if (!officialDomains.has(domain)) {
+          officialDomains.set(domain, { domain, urls: new Set<string>(), titles: new Set<string>() });
+        }
+        const entry = officialDomains.get(domain)!;
+        entry.urls.add(link.url);
+        if (link.label) entry.titles.add(link.label);
+      } catch {
+        // Invalid URL, skip
+      }
+    });
+  });
+}
+
+/**
+ * Initialize with local data synchronously (for SSR/initial render)
+ */
+function initializeSync(): void {
+  if (initialized) return;
+  
+  guides = (localGuidesData as GuidesData).guides;
+  index = (localIndexData as IndexData).entries;
+  generatedAt = (localGuidesData as GuidesData).generated_at || null;
+  buildLookups();
+  initialized = true;
+}
+
+/**
+ * Initialize data - remote first with local fallback
+ */
+export async function initializeGuides(): Promise<void> {
+  if (initPromise) return initPromise;
+  
+  // Start with local data immediately
+  initializeSync();
+  
+  // Then try to upgrade to remote data
+  initPromise = (async () => {
+    try {
+      const [remoteGuides, remoteIndex] = await Promise.all([
+        loadDataRemoteFirst<GuidesData>(GUIDE_DATA_URL, CACHE_KEY_GUIDES, localGuidesData as GuidesData),
+        loadDataRemoteFirst<IndexData>(INDEX_DATA_URL, CACHE_KEY_INDEX, localIndexData as IndexData)
+      ]);
+      
+      guides = remoteGuides.guides;
+      index = remoteIndex.entries;
+      generatedAt = remoteGuides.generated_at || null;
+      buildLookups();
+    } catch {
+      // Keep using local data
+    }
+  })();
+  
+  return initPromise;
+}
+
+// Initialize synchronously with local data for immediate use
+initializeSync();
+
+// Start async remote fetch in background
+if (typeof window !== 'undefined') {
+  initializeGuides().catch(() => {
+    // Silent fail, we have local data
+  });
+}
 
 /**
  * List all guides with optional search and agency filtering
@@ -217,12 +432,11 @@ export function getStats(): {
   officialDomains: number;
 } {
   const totalCitations = guides.reduce((sum, g) => sum + (g.meta.total_citations || 0), 0);
-  const lastUpdated = (guidesData as GuidesData).generated_at || null;
   
   return {
     guides: guides.length,
     agencies: agencies.length,
-    lastUpdated,
+    lastUpdated: generatedAt,
     totalCitations,
     officialDomains: officialDomains.size
   };
@@ -297,6 +511,9 @@ export function getFeesForVariant(guide: Guide, variantId?: VariantType): Varian
 export function formatCitation(citation: Citation): string {
   const parts: string[] = [];
   if (citation.domain) parts.push(citation.domain);
-  if (citation.locator) parts.push(citation.locator);
+  
+  const locatorStr = formatLocator(citation.locator);
+  if (locatorStr) parts.push(locatorStr);
+  
   return parts.join(' › ') || citation.canonical_url;
 }

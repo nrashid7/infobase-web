@@ -16,10 +16,11 @@ export function safeRender(value: unknown, fallback = ''): string {
   if (typeof value === 'number' || typeof value === 'boolean') return String(value);
   if (typeof value === 'object') {
     // Handle common citation locator format
-    if ('heading_path' in value && Array.isArray((value as any).heading_path)) {
-      return (value as any).heading_path.join(' › ');
+    if ('heading_path' in value && Array.isArray((value as Record<string, unknown>).heading_path)) {
+      const hp = (value as Record<string, unknown>).heading_path as string[];
+      return hp.join(' > ');
     }
-    // Generic object fallback
+    // Generic object fallback - never render [object Object]
     return '[structured data]';
   }
   return fallback;
@@ -27,16 +28,31 @@ export function safeRender(value: unknown, fallback = ''): string {
 
 /**
  * Format a citation locator for display.
- * Handles object locators like {type, heading_path} and string locators.
+ * Handles object locators like {type, heading_path, selector} and string locators.
+ * Never renders [object Object].
  */
 export function formatLocator(locator: unknown): string {
   if (!locator) return '';
   if (typeof locator === 'string') return locator;
   if (typeof locator === 'object' && locator !== null) {
     const loc = locator as Record<string, unknown>;
+    const parts: string[] = [];
+    
+    // Join heading_path with " > "
     if (loc.heading_path && Array.isArray(loc.heading_path)) {
-      return loc.heading_path.join(' › ');
+      parts.push((loc.heading_path as string[]).join(' > '));
     }
+    
+    // Add selector if present
+    if (loc.selector && typeof loc.selector === 'string') {
+      parts.push(loc.selector);
+    }
+    
+    if (parts.length > 0) {
+      return parts.join(' | ');
+    }
+    
+    // Fallback for other object shapes
     if (typeof loc.type === 'string') return loc.type;
     return '[structured locator]';
   }
