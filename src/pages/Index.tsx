@@ -37,10 +37,7 @@ export default function Index() {
               : 'Find clear instructions, fees, required documents, and processing times for government services. All information is sourced from official portals.'}
           </p>
           
-          <GlobalSearch 
-            className="max-w-xl mx-auto mb-6" 
-            placeholder={t('home.search.placeholder')}
-          />
+          <GlobalSearch className="max-w-xl mx-auto mb-6" />
 
           {/* Category Chips */}
           <div className="flex flex-wrap items-center justify-center gap-2">
