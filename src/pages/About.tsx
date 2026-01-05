@@ -1,4 +1,5 @@
-import { FileText, AlertTriangle, ExternalLink, Shield, Mail, HelpCircle, ChevronDown } from 'lucide-react';
+import { FileText, AlertTriangle, ExternalLink, Shield, Mail, HelpCircle, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '@/lib/LanguageContext';
 import {
   Accordion,
@@ -110,49 +111,26 @@ export default function About() {
             </div>
           </section>
 
-          {/* Official Resources */}
+          {/* Official Resources - Link to Directory */}
           <section className="modern-card p-6">
             <div className="flex items-start gap-4">
               <div className="icon-container flex-shrink-0">
                 <ExternalLink className="w-5 h-5" />
               </div>
               <div>
-                <h2 className="text-lg font-semibold text-foreground mb-4">{t('about.resources.title')}</h2>
-                <ul className="space-y-3">
-                  <li>
-                    <a 
-                      href="https://www.epassport.gov.bd" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-primary hover:underline inline-flex items-center gap-1.5 text-sm font-medium"
-                    >
-                      Bangladesh e-Passport Portal
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
-                  </li>
-                  <li>
-                    <a 
-                      href="https://nidw.gov.bd" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-primary hover:underline inline-flex items-center gap-1.5 text-sm font-medium"
-                    >
-                      National ID Wing
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
-                  </li>
-                  <li>
-                    <a 
-                      href="https://brta.gov.bd" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-primary hover:underline inline-flex items-center gap-1.5 text-sm font-medium"
-                    >
-                      BRTA (Road Transport Authority)
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
-                  </li>
-                </ul>
+                <h2 className="text-lg font-semibold text-foreground mb-2">{t('about.resources.title')}</h2>
+                <p className="text-muted-foreground mb-4 text-sm">
+                  {language === 'bn' 
+                    ? 'বাংলাদেশের সকল সরকারি ওয়েবসাইটের সম্পূর্ণ তালিকা দেখুন।'
+                    : 'View the complete list of all official government websites in Bangladesh.'}
+                </p>
+                <Link 
+                  to="/directory"
+                  className="pill-button inline-flex items-center gap-2"
+                >
+                  {t('nav.directory')}
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
               </div>
             </div>
           </section>
