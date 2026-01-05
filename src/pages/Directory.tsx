@@ -3,34 +3,8 @@ import { Search, ExternalLink, Globe, Building2, Landmark, Users, Cpu, Scale, Ba
 import { useLanguage } from '@/lib/LanguageContext';
 import { Input } from '@/components/ui/input';
 import { govDirectory, getTotalWebsites } from '@/data/govDirectory';
+import { FaviconImage } from '@/components/FaviconImage';
 
-// Helper to extract domain from URL
-const getDomain = (url: string): string => {
-  try {
-    return new URL(url).hostname;
-  } catch {
-    return '';
-  }
-};
-
-// Favicon component with fallback to Globe icon
-const FaviconImage = ({ url }: { url: string }) => {
-  const [hasError, setHasError] = useState(false);
-  const domain = getDomain(url);
-  
-  if (hasError || !domain) {
-    return <Globe className="w-3.5 h-3.5 text-muted-foreground" />;
-  }
-  
-  return (
-    <img
-      src={`https://www.google.com/s2/favicons?domain=${domain}&sz=32`}
-      alt=""
-      className="w-4 h-4"
-      onError={() => setHasError(true)}
-    />
-  );
-};
 // Category icons mapping
 const categoryIcons: Record<string, React.ElementType> = {
   'core-government': Landmark,
