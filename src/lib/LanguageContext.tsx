@@ -82,7 +82,21 @@ const translations: Record<Language, Record<string, string>> = {
     'directory.subtitle': 'All official government websites of Bangladesh',
 
     // About page
-    'about.title': 'About',
+    'about.title': 'About INFOBASE',
+    'about.subtitle': 'Your trusted guide to Bangladesh government services.',
+    'about.whatIs.title': 'What is INFOBASE?',
+    'about.whatIs.desc': 'INFOBASE is a citizen-friendly guide to Bangladesh government services. We compile information from official government sources and present it in clear, step-by-step guides that are easy to follow.',
+    'about.howWeWork.title': 'How we work',
+    'about.howWeWork.item1': 'All information is sourced from official government websites and portals',
+    'about.howWeWork.item2': 'Each fact includes a link to its official source so you can verify',
+    'about.howWeWork.item3': 'We regularly update guides to reflect the latest changes',
+    'about.disclaimer.title': 'Important Disclaimer',
+    'about.disclaimer.p1': 'This website is an unofficial guide and is not affiliated with, endorsed by, or connected to any Bangladesh government agency.',
+    'about.disclaimer.p2': 'While we strive to keep information accurate and up-to-date, government policies and procedures may change without notice. Always verify information on official government websites before taking action.',
+    'about.disclaimer.p3': 'We are not responsible for any errors, omissions, or outcomes resulting from the use of information provided on this site.',
+    'about.resources.title': 'Official Resources',
+    'about.contact.title': 'Contact Us',
+    'about.contact.desc': 'Have feedback or found an error? We would love to hear from you.',
   },
   bn: {
     // Navigation
@@ -156,7 +170,21 @@ const translations: Record<Language, Record<string, string>> = {
     'directory.subtitle': 'বাংলাদেশের সকল সরকারি অফিসিয়াল ওয়েবসাইট',
 
     // About page
-    'about.title': 'সম্পর্কে',
+    'about.title': 'INFOBASE সম্পর্কে',
+    'about.subtitle': 'বাংলাদেশ সরকারি সেবার জন্য আপনার বিশ্বস্ত গাইড।',
+    'about.whatIs.title': 'INFOBASE কী?',
+    'about.whatIs.desc': 'INFOBASE হলো বাংলাদেশ সরকারি সেবার জন্য একটি নাগরিক-বান্ধব গাইড। আমরা অফিসিয়াল সরকারি সোর্স থেকে তথ্য সংগ্রহ করি এবং সেগুলো স্পষ্ট, ধাপে ধাপে গাইড আকারে উপস্থাপন করি যা সহজে অনুসরণ করা যায়।',
+    'about.howWeWork.title': 'আমরা কীভাবে কাজ করি',
+    'about.howWeWork.item1': 'সকল তথ্য অফিসিয়াল সরকারি ওয়েবসাইট এবং পোর্টাল থেকে সংগৃহীত',
+    'about.howWeWork.item2': 'প্রতিটি তথ্যে অফিসিয়াল সোর্সের লিংক রয়েছে যাতে আপনি যাচাই করতে পারেন',
+    'about.howWeWork.item3': 'আমরা নিয়মিত গাইড আপডেট করি সর্বশেষ পরিবর্তন অনুযায়ী',
+    'about.disclaimer.title': 'গুরুত্বপূর্ণ দাবিত্যাগ',
+    'about.disclaimer.p1': 'এই ওয়েবসাইটটি একটি অনানুষ্ঠানিক গাইড এবং বাংলাদেশের কোনো সরকারি সংস্থার সাথে সম্পৃক্ত, অনুমোদিত বা সংযুক্ত নয়।',
+    'about.disclaimer.p2': 'যদিও আমরা তথ্য সঠিক এবং আপ-টু-ডেট রাখার চেষ্টা করি, সরকারি নীতি এবং প্রক্রিয়া বিনা নোটিশে পরিবর্তন হতে পারে। পদক্ষেপ নেওয়ার আগে সর্বদা অফিসিয়াল সরকারি ওয়েবসাইটে তথ্য যাচাই করুন।',
+    'about.disclaimer.p3': 'এই সাইটে প্রদত্ত তথ্য ব্যবহারের ফলে কোনো ত্রুটি, বাদ পড়া বা ফলাফলের জন্য আমরা দায়ী নই।',
+    'about.resources.title': 'অফিসিয়াল রিসোর্স',
+    'about.contact.title': 'যোগাযোগ করুন',
+    'about.contact.desc': 'প্রতিক্রিয়া আছে বা কোনো ত্রুটি পেয়েছেন? আমরা আপনার কাছ থেকে শুনতে চাই।',
   },
 };
 

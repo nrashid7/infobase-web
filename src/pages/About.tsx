@@ -1,13 +1,16 @@
-import { FileText, AlertTriangle, ExternalLink, Shield } from 'lucide-react';
+import { FileText, AlertTriangle, ExternalLink, Shield, Mail } from 'lucide-react';
+import { useLanguage } from '@/lib/LanguageContext';
 
 export default function About() {
+  const { t } = useLanguage();
+
   return (
     <div className="py-8 px-4">
       <div className="container max-w-3xl">
         <header className="mb-8">
-          <h1 className="text-2xl font-bold text-foreground mb-2">About INFOBASE</h1>
+          <h1 className="text-2xl font-bold text-foreground mb-2">{t('about.title')}</h1>
           <p className="text-muted-foreground">
-            Your trusted guide to Bangladesh government services.
+            {t('about.subtitle')}
           </p>
         </header>
 
@@ -19,11 +22,9 @@ export default function About() {
                 <FileText className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <h2 className="text-lg font-semibold text-foreground mb-2">What is INFOBASE?</h2>
+                <h2 className="text-lg font-semibold text-foreground mb-2">{t('about.whatIs.title')}</h2>
                 <p className="text-muted-foreground">
-                  INFOBASE is a citizen-friendly guide to Bangladesh government services. We compile 
-                  information from official government sources and present it in clear, step-by-step 
-                  guides that are easy to follow.
+                  {t('about.whatIs.desc')}
                 </p>
               </div>
             </div>
@@ -36,19 +37,19 @@ export default function About() {
                 <Shield className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <h2 className="text-lg font-semibold text-foreground mb-2">How we work</h2>
+                <h2 className="text-lg font-semibold text-foreground mb-2">{t('about.howWeWork.title')}</h2>
                 <ul className="text-muted-foreground space-y-2">
                   <li className="flex items-start gap-2">
                     <span className="text-primary">•</span>
-                    All information is sourced from official government websites and portals
+                    {t('about.howWeWork.item1')}
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-primary">•</span>
-                    Each fact includes a link to its official source so you can verify
+                    {t('about.howWeWork.item2')}
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-primary">•</span>
-                    We regularly update guides to reflect the latest changes
+                    {t('about.howWeWork.item3')}
                   </li>
                 </ul>
               </div>
@@ -62,20 +63,16 @@ export default function About() {
                 <AlertTriangle className="w-5 h-5 text-status-stale" />
               </div>
               <div>
-                <h2 className="text-lg font-semibold text-foreground mb-2">Important Disclaimer</h2>
+                <h2 className="text-lg font-semibold text-foreground mb-2">{t('about.disclaimer.title')}</h2>
                 <div className="text-muted-foreground space-y-3">
                   <p>
-                    This website is an <strong>unofficial guide</strong> and is not affiliated with, 
-                    endorsed by, or connected to any Bangladesh government agency.
+                    {t('about.disclaimer.p1')}
                   </p>
                   <p>
-                    While we strive to keep information accurate and up-to-date, government policies 
-                    and procedures may change without notice. <strong>Always verify information on 
-                    official government websites before taking action.</strong>
+                    <strong>{t('about.disclaimer.p2')}</strong>
                   </p>
                   <p>
-                    We are not responsible for any errors, omissions, or outcomes resulting from the 
-                    use of information provided on this site.
+                    {t('about.disclaimer.p3')}
                   </p>
                 </div>
               </div>
@@ -89,7 +86,7 @@ export default function About() {
                 <ExternalLink className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <h2 className="text-lg font-semibold text-foreground mb-3">Official Resources</h2>
+                <h2 className="text-lg font-semibold text-foreground mb-3">{t('about.resources.title')}</h2>
                 <ul className="space-y-2">
                   <li>
                     <a 
@@ -125,6 +122,28 @@ export default function About() {
                     </a>
                   </li>
                 </ul>
+              </div>
+            </div>
+          </section>
+
+          {/* Contact */}
+          <section className="bg-card border border-border rounded-lg p-6">
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <Mail className="w-5 h-5 text-primary" />
+              </div>
+              <div>
+                <h2 className="text-lg font-semibold text-foreground mb-2">{t('about.contact.title')}</h2>
+                <p className="text-muted-foreground mb-3">
+                  {t('about.contact.desc')}
+                </p>
+                <a 
+                  href="mailto:hello@infobase.gov.bd"
+                  className="text-primary hover:underline inline-flex items-center gap-1"
+                >
+                  hello@infobase.gov.bd
+                  <Mail className="w-3 h-3" />
+                </a>
               </div>
             </div>
           </section>
