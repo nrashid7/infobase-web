@@ -8,7 +8,7 @@ interface LanguageContextType {
   t: (key: string) => string;
 }
 
-// UI translations
+// UI translations - improved copywriting
 const translations: Record<Language, Record<string, string>> = {
   en: {
     // Navigation
@@ -17,19 +17,28 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.directory': 'Directory',
     'nav.about': 'About',
     
-    // Home page
-    'home.title': 'Bangladesh Government Services',
-    'home.subtitle': 'Find step-by-step guides for government services',
-    'home.search.placeholder': 'What do you want to do? (passport, NID, driving license...)',
+    // Home page - improved copy
+    'home.title': 'Navigate Government Services with Confidence',
+    'home.subtitle': 'Clear, verified guides for every citizen',
+    'home.description': 'Stop guessing. Get accurate fees, documents, and step-by-step processes—all sourced from official portals and verified for accuracy.',
+    'home.search.placeholder': 'How do I apply for a passport?',
     'home.popular': 'Popular Services',
     'home.agencies': 'Government Agencies',
-    'home.viewAll': 'View All Services',
+    'home.viewAll': 'Browse All Service Guides',
     
     // Stats
     'stats.services': 'Service Guides',
     'stats.agencies': 'Agencies',
     'stats.citations': 'Verified Sources',
     'stats.domains': 'Official Domains',
+    
+    // Value propositions
+    'home.feature1.title': 'Verified Information Only',
+    'home.feature1.desc': 'Every fact links directly to its official source. No guesswork, no outdated info—just what the government actually says.',
+    'home.feature2.title': 'Skip the Confusion',
+    'home.feature2.desc': 'Complex processes broken into simple, numbered steps. Know exactly what to do before you visit any office.',
+    'home.feature3.title': 'One Search, Full Answer',
+    'home.feature3.desc': 'Fees, documents, timelines, and forms—everything you need in one place, in under 2 minutes.',
     
     // Guide page
     'guide.backToGuides': 'All Guides',
@@ -42,6 +51,7 @@ const translations: Record<Language, Record<string, string>> = {
     'guide.variant.express.desc': 'Faster delivery',
     'guide.variant.super_express': 'Super Express',
     'guide.variant.super_express.desc': 'Fastest option',
+    'guide.readTime': 'min read',
     
     // Sections
     'section.availableServices': 'Available Services',
@@ -77,6 +87,11 @@ const translations: Record<Language, Record<string, string>> = {
     'search.placeholder': 'Search services...',
     'search.noResults': 'No services found',
     
+    // Guides page
+    'guides.title': 'Service Guides',
+    'guides.subtitle': 'Step-by-step guides with official citations for Bangladesh government services.',
+    'guides.searchPlaceholder': 'Search guides (e.g., passport, visa)...',
+    
     // Sources page
     'directory.title': 'Directory',
     'directory.subtitle': 'All official government websites of Bangladesh',
@@ -97,6 +112,18 @@ const translations: Record<Language, Record<string, string>> = {
     'about.resources.title': 'Official Resources',
     'about.contact.title': 'Contact Us',
     'about.contact.desc': 'Have feedback or found an error? We would love to hear from you.',
+    'about.faq.title': 'Frequently Asked Questions',
+    'about.faq.q1': 'Is INFOBASE an official government website?',
+    'about.faq.a1': 'No. INFOBASE is an independent, unofficial guide created to help citizens navigate government services more easily.',
+    'about.faq.q2': 'Where does the information come from?',
+    'about.faq.a2': 'All information is sourced directly from official government websites. Each piece of information includes a citation linking to its official source.',
+    'about.faq.q3': 'How often is the information updated?',
+    'about.faq.a3': 'We regularly review and update our guides to reflect the latest changes. However, government policies can change at any time, so always verify on official portals.',
+    
+    // Footer
+    'footer.disclaimer.title': 'Important Disclaimer',
+    'footer.disclaimer.text': 'This is an unofficial guide. Always verify on official government portals before taking action.',
+    'footer.version': 'INFOBASE — Bangladesh Government Services Knowledge Base',
   },
   bn: {
     // Navigation
@@ -105,19 +132,28 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.directory': 'ডিরেক্টরি',
     'nav.about': 'সম্পর্কে',
     
-    // Home page
-    'home.title': 'বাংলাদেশ সরকারি সেবা',
-    'home.subtitle': 'সরকারি সেবার জন্য ধাপে ধাপে গাইড খুঁজুন',
-    'home.search.placeholder': 'আপনি কী করতে চান? (পাসপোর্ট, এনআইডি, ড্রাইভিং লাইসেন্স...)',
+    // Home page - improved copy
+    'home.title': 'সরকারি সেবায় আত্মবিশ্বাসী হোন',
+    'home.subtitle': 'প্রতিটি নাগরিকের জন্য স্পষ্ট, যাচাইকৃত গাইড',
+    'home.description': 'অনুমান করা বন্ধ করুন। সঠিক ফি, কাগজপত্র এবং ধাপে ধাপে প্রক্রিয়া পান—সব অফিসিয়াল পোর্টাল থেকে সংগৃহীত এবং যাচাইকৃত।',
+    'home.search.placeholder': 'পাসপোর্টের জন্য কীভাবে আবেদন করব?',
     'home.popular': 'জনপ্রিয় সেবা',
     'home.agencies': 'সরকারি সংস্থা',
-    'home.viewAll': 'সব সেবা দেখুন',
+    'home.viewAll': 'সব সেবা গাইড দেখুন',
     
     // Stats
     'stats.services': 'সেবা গাইড',
     'stats.agencies': 'সংস্থা',
     'stats.citations': 'যাচাইকৃত সোর্স',
     'stats.domains': 'অফিসিয়াল ডোমেইন',
+    
+    // Value propositions
+    'home.feature1.title': 'শুধুমাত্র যাচাইকৃত তথ্য',
+    'home.feature1.desc': 'প্রতিটি তথ্য সরাসরি অফিসিয়াল সোর্সের সাথে সংযুক্ত। কোন অনুমান নয়, পুরানো তথ্য নয়—শুধুমাত্র সরকার যা বলে।',
+    'home.feature2.title': 'বিভ্রান্তি এড়িয়ে যান',
+    'home.feature2.desc': 'জটিল প্রক্রিয়া সহজ, নম্বরযুক্ত ধাপে বিভক্ত। অফিসে যাওয়ার আগে জানুন ঠিক কী করতে হবে।',
+    'home.feature3.title': 'এক অনুসন্ধান, সম্পূর্ণ উত্তর',
+    'home.feature3.desc': 'ফি, কাগজপত্র, সময়সীমা এবং ফর্ম—সব কিছু এক জায়গায়, ২ মিনিটের মধ্যে।',
     
     // Guide page
     'guide.backToGuides': 'সব গাইড',
@@ -130,6 +166,7 @@ const translations: Record<Language, Record<string, string>> = {
     'guide.variant.express.desc': 'দ্রুত ডেলিভারি',
     'guide.variant.super_express': 'সুপার এক্সপ্রেস',
     'guide.variant.super_express.desc': 'সবচেয়ে দ্রুত',
+    'guide.readTime': 'মিনিট পড়া',
     
     // Sections
     'section.availableServices': 'উপলব্ধ সেবা',
@@ -165,6 +202,11 @@ const translations: Record<Language, Record<string, string>> = {
     'search.placeholder': 'সেবা খুঁজুন...',
     'search.noResults': 'কোন সেবা পাওয়া যায়নি',
     
+    // Guides page
+    'guides.title': 'সেবা গাইড',
+    'guides.subtitle': 'বাংলাদেশ সরকারি সেবার জন্য অফিসিয়াল সাইটেশন সহ ধাপে ধাপে গাইড।',
+    'guides.searchPlaceholder': 'গাইড খুঁজুন (যেমন, পাসপোর্ট, ভিসা)...',
+    
     // Sources page
     'directory.title': 'ডিরেক্টরি',
     'directory.subtitle': 'বাংলাদেশের সকল সরকারি অফিসিয়াল ওয়েবসাইট',
@@ -185,6 +227,18 @@ const translations: Record<Language, Record<string, string>> = {
     'about.resources.title': 'অফিসিয়াল রিসোর্স',
     'about.contact.title': 'যোগাযোগ করুন',
     'about.contact.desc': 'প্রতিক্রিয়া আছে বা কোনো ত্রুটি পেয়েছেন? আমরা আপনার কাছ থেকে শুনতে চাই।',
+    'about.faq.title': 'সচরাচর জিজ্ঞাসা',
+    'about.faq.q1': 'INFOBASE কি সরকারি ওয়েবসাইট?',
+    'about.faq.a1': 'না। INFOBASE একটি স্বাধীন, অনানুষ্ঠানিক গাইড যা নাগরিকদের সরকারি সেবা সহজে নেভিগেট করতে সাহায্য করার জন্য তৈরি।',
+    'about.faq.q2': 'তথ্য কোথা থেকে আসে?',
+    'about.faq.a2': 'সমস্ত তথ্য সরাসরি অফিসিয়াল সরকারি ওয়েবসাইট থেকে সংগৃহীত। প্রতিটি তথ্যে অফিসিয়াল সোর্সের সাইটেশন রয়েছে।',
+    'about.faq.q3': 'তথ্য কত ঘন ঘন আপডেট হয়?',
+    'about.faq.a3': 'আমরা নিয়মিত আমাদের গাইড পর্যালোচনা এবং আপডেট করি। তবে, সরকারি নীতি যেকোনো সময় পরিবর্তন হতে পারে, তাই সর্বদা অফিসিয়াল পোর্টালে যাচাই করুন।',
+    
+    // Footer
+    'footer.disclaimer.title': 'গুরুত্বপূর্ণ দাবিত্যাগ',
+    'footer.disclaimer.text': 'এটি একটি অনানুষ্ঠানিক গাইড। পদক্ষেপ নেওয়ার আগে সর্বদা অফিসিয়াল সরকারি পোর্টালে যাচাই করুন।',
+    'footer.version': 'INFOBASE — বাংলাদেশ সরকারি সেবা জ্ঞানভাণ্ডার',
   },
 };
 
