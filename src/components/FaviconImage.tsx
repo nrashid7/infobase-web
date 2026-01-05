@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Globe } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -11,6 +11,9 @@ const getDomain = (url: string): string => {
   }
 };
 
+// Cache for known broken favicon domains to avoid repeated 404s
+const brokenFaviconCache = new Set<string>();
+
 interface FaviconImageProps {
   url: string;
   className?: string;
@@ -19,19 +22,48 @@ interface FaviconImageProps {
 
 export function FaviconImage({ url, className, fallbackClassName }: FaviconImageProps) {
   const [hasError, setHasError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const domain = getDomain(url);
+  
+  // Check if domain is known to have broken favicon
+  useEffect(() => {
+    if (domain && brokenFaviconCache.has(domain)) {
+      setHasError(true);
+      setIsLoading(false);
+    }
+  }, [domain]);
+  
+  const handleError = () => {
+    if (domain) {
+      brokenFaviconCache.add(domain);
+    }
+    setHasError(true);
+    setIsLoading(false);
+  };
+
+  const handleLoad = () => {
+    setIsLoading(false);
+  };
   
   if (hasError || !domain) {
     return <Globe className={cn("w-4 h-4 text-muted-foreground", fallbackClassName)} />;
   }
   
   return (
-    <img
-      src={`https://www.google.com/s2/favicons?domain=${domain}&sz=32`}
-      alt=""
-      className={cn("w-4 h-4", className)}
-      onError={() => setHasError(true)}
-    />
+    <>
+      {isLoading && (
+        <Globe className={cn("w-4 h-4 text-muted-foreground", fallbackClassName)} />
+      )}
+      <img
+        src={`https://www.google.com/s2/favicons?domain=${domain}&sz=32`}
+        alt=""
+        className={cn("w-4 h-4", className, isLoading && "hidden")}
+        onError={handleError}
+        onLoad={handleLoad}
+        loading="lazy"
+        decoding="async"
+      />
+    </>
   );
 }
 
