@@ -1,17 +1,17 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, FileCheck, Clock, Shield } from 'lucide-react';
+import { ArrowRight, CheckCircle2, FileCheck, Clock, Shield, BookOpen, CreditCard, Car, Baby, Plane } from 'lucide-react';
 import { getGuideStats, listGuides } from '@/lib/guidesStore';
 import { useLanguage } from '@/lib/LanguageContext';
 import { GlobalSearch } from '@/components/GlobalSearch';
 import { Button } from '@/components/ui/button';
 
-// Category chips for quick navigation
+// Category chips for quick navigation with icons
 const categoryChips = [
-  { label: 'Passport', labelBn: 'পাসপোর্ট', search: 'passport' },
-  { label: 'NID', labelBn: 'এনআইডি', search: 'nid' },
-  { label: 'Driving License', labelBn: 'ড্রাইভিং লাইসেন্স', search: 'driving' },
-  { label: 'Birth Certificate', labelBn: 'জন্ম সনদ', search: 'birth' },
-  { label: 'Visa', labelBn: 'ভিসা', search: 'visa' },
+  { label: 'Passport', labelBn: 'পাসপোর্ট', search: 'passport', icon: BookOpen },
+  { label: 'NID', labelBn: 'এনআইডি', search: 'nid', icon: CreditCard },
+  { label: 'Driving License', labelBn: 'ড্রাইভিং লাইসেন্স', search: 'driving', icon: Car },
+  { label: 'Birth Certificate', labelBn: 'জন্ম সনদ', search: 'birth', icon: Baby },
+  { label: 'Visa', labelBn: 'ভিসা', search: 'visa', icon: Plane },
 ];
 
 export default function Index() {
@@ -71,17 +71,23 @@ export default function Index() {
             </span>
           </div>
 
-          {/* Category Chips */}
-          <div className="flex flex-wrap items-center justify-center gap-2 animate-fade-in" style={{ animationDelay: '0.4s' }}>
-            {categoryChips.map((chip) => (
-              <Link
-                key={chip.label}
-                to={`/guides?search=${chip.search}`}
-                className="pill-button"
-              >
-                {language === 'bn' ? chip.labelBn : chip.label}
-              </Link>
-            ))}
+          {/* Quick Access Categories */}
+          <div className="animate-fade-in" style={{ animationDelay: '0.4s' }}>
+            <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium mb-3 text-center">
+              {language === 'bn' ? 'জনপ্রিয় সেবা' : 'Popular Services'}
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-2">
+              {categoryChips.map((chip) => (
+                <Link
+                  key={chip.label}
+                  to={`/guides?search=${chip.search}`}
+                  className="pill-button inline-flex items-center gap-1.5"
+                >
+                  <chip.icon className="w-3.5 h-3.5" />
+                  {language === 'bn' ? chip.labelBn : chip.label}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </section>
