@@ -162,6 +162,17 @@
     @apply border-border;
   }
 
+  /* Optimize animations to prevent forced reflows */
+  .animate-fade-in,
+  .animate-fade-in-up,
+  .animate-float,
+  .animate-scale-in,
+  .animate-slide-in-left,
+  .animate-slide-up {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+  }
+
   html {
     scroll-behavior: smooth;
     font-size: 16px;
@@ -439,9 +450,13 @@
     animation: shimmer 1.5s linear infinite;
   }
 
-  /* Hero gradient orbs */
+  /* Hero gradient orbs - optimized to prevent forced reflows */
   .hero-orb {
     @apply absolute rounded-full blur-3xl opacity-40 pointer-events-none;
+    will-change: transform;
+    contain: strict;
+    backface-visibility: hidden;
+    transform: translateZ(0);
   }
 
   .hero-orb-primary {
@@ -515,10 +530,10 @@
   }
 }
 
-/* Keyframes */
+/* Keyframes - using translateZ(0) to force GPU acceleration and prevent reflows */
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  0%, 100% { transform: translateY(0px) translateZ(0); }
+  50% { transform: translateY(-10px) translateZ(0); }
 }
 
 @keyframes shimmer {
