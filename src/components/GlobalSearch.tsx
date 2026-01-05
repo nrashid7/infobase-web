@@ -235,7 +235,7 @@ export function GlobalSearch({ className }: GlobalSearchProps) {
             <AnimatedPlaceholder suggestions={quickQuestions} language={language} />
           </div>
           
-          <span className="relative text-xs text-primary/80 hidden sm:inline px-3 py-1.5 rounded-full bg-primary/10 font-medium border border-primary/20 group-hover:bg-primary/15 transition-colors">
+          <span className="relative text-xs text-primary hidden sm:inline px-3 py-1.5 rounded-full bg-primary/10 font-medium border border-primary/20 group-hover:bg-primary/15 transition-colors">
             {language === 'bn' ? '✨ AI' : '✨ AI-powered'}
           </span>
         </button>
