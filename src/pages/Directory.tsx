@@ -181,22 +181,38 @@ export default function Directory() {
         </div>
       </div>
 
-      {/* Disclaimer */}
-      <div className="py-8 px-4 border-t border-border/50">
+      {/* Footer Section */}
+      <div className="py-12 px-4 border-t border-border/50 bg-muted/20">
         <div className="container max-w-4xl mx-auto">
-          <div className="text-center text-sm text-muted-foreground">
+          {/* Action Buttons */}
+          <div className="flex flex-wrap justify-center gap-3 mb-6">
+            <a
+              href="mailto:contact@infobase.gov.bd?subject=Report%20Broken%20Link"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-border bg-background hover:bg-accent/50 text-sm font-medium text-foreground transition-colors"
+            >
+              {language === 'bn' ? 'ভাঙা লিংক রিপোর্ট করুন' : 'Report Broken Link'}
+            </a>
+            <a
+              href="mailto:contact@infobase.gov.bd?subject=Suggest%20New%20Website"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-border bg-background hover:bg-accent/50 text-sm font-medium text-foreground transition-colors"
+            >
+              {language === 'bn' ? 'নতুন ওয়েবসাইট সাজেস্ট করুন' : 'Suggest New Website'}
+            </a>
+          </div>
+
+          {/* Disclaimer */}
+          <div className="text-center text-sm text-muted-foreground max-w-2xl mx-auto mb-4">
             <p>
-              {language === 'bn' ? (
-                <>
-                  <strong className="text-foreground">নোট:</strong> INFOBASE একটি অনানুষ্ঠানিক ডিরেক্টরি। আমরা সুবিধার জন্য অফিসিয়াল সরকারি ওয়েবসাইটের লিংক সংকলন করি। পদক্ষেপ নেওয়ার আগে সর্বদা অফিসিয়াল পোর্টালে তথ্য যাচাই করুন।
-                </>
-              ) : (
-                <>
-                  <strong className="text-foreground">Note:</strong> INFOBASE is an unofficial directory. We compile links to official government websites for convenience. Always verify information on the official portals before taking action.
-                </>
-              )}
+              {language === 'bn' 
+                ? 'এটি বাংলাদেশ সরকারের ওয়েবসাইটগুলির একটি অনানুষ্ঠানিক ডিরেক্টরি। সমস্ত লিংক আপনার সুবিধার জন্য নতুন ট্যাবে খোলে। আপনি যদি কোন ভাঙা লিংক খুঁজে পান বা এই ডিরেক্টরিতে সংযোজন সুপারিশ করতে চান, অনুগ্রহ করে আমাদের জানান।'
+                : 'This is an unofficial directory of government websites of Bangladesh. All links open in a new tab for your convenience. If you find any broken links or would like to suggest additions to this directory, please let us know.'}
             </p>
           </div>
+
+          {/* Last Updated */}
+          <p className="text-center text-xs text-primary font-medium">
+            {language === 'bn' ? 'সর্বশেষ আপডেট: ২ জানুয়ারি ২০২৬' : 'Last updated: 2nd Jan 2026'}
+          </p>
         </div>
       </div>
     </div>
