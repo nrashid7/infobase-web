@@ -61,41 +61,55 @@ Deno.serve(async (req) => {
 
     // Step 1: Scrape the website with Firecrawl
     let scrapedData: { markdown?: string; branding?: Record<string, unknown> } = {};
-    try {
-      const scrapeResponse = await fetch('https://api.firecrawl.dev/v1/scrape', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${firecrawlApiKey}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          url,
-          formats: ['markdown', 'branding'],
-          onlyMainContent: true,
-          waitFor: 3000,
-        }),
-      });
+    
+    // Try with branding first, fall back to markdown-only if it fails
+    const tryFormats = [['markdown', 'branding'], ['markdown']];
+    let scrapeSuccess = false;
+    
+    for (const formats of tryFormats) {
+      try {
+        console.log(`Trying formats: ${formats.join(', ')}`);
+        const scrapeResponse = await fetch('https://api.firecrawl.dev/v1/scrape', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${firecrawlApiKey}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            url,
+            formats,
+            onlyMainContent: true,
+            waitFor: 5000,
+            timeout: 30000,
+          }),
+        });
 
-      const scrapeResult = await scrapeResponse.json();
-      
-      if (!scrapeResponse.ok || !scrapeResult.success) {
-        console.error('Firecrawl error:', scrapeResult);
-        throw new Error(scrapeResult.error || 'Failed to scrape website');
+        const scrapeResult = await scrapeResponse.json();
+        
+        if (scrapeResponse.ok && scrapeResult.success) {
+          scrapedData = scrapeResult.data || scrapeResult;
+          console.log('Scrape successful, markdown length:', scrapedData.markdown?.length || 0);
+          scrapeSuccess = true;
+          break;
+        } else {
+          console.warn(`Format ${formats.join(', ')} failed:`, scrapeResult.error);
+        }
+      } catch (scrapeError) {
+        console.warn(`Format ${formats.join(', ')} threw error:`, scrapeError);
       }
-
-      scrapedData = scrapeResult.data || scrapeResult;
-      console.log('Scrape successful, markdown length:', scrapedData.markdown?.length || 0);
-    } catch (scrapeError) {
-      console.error('Scrape failed:', scrapeError);
+    }
+    
+    if (!scrapeSuccess) {
+      console.error('All scrape attempts failed for:', url);
       
       await supabase.from('gov_site_details').update({
         scrape_status: 'failed',
-        scrape_error: scrapeError instanceof Error ? scrapeError.message : 'Scrape failed',
+        scrape_error: 'All scrape formats failed - site may be unreachable or blocking scrapers',
         last_scraped_at: new Date().toISOString(),
       }).eq('url', url);
 
       return new Response(
-        JSON.stringify({ success: false, error: 'Failed to scrape website' }),
+        JSON.stringify({ success: false, error: 'Failed to scrape website after retries' }),
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
