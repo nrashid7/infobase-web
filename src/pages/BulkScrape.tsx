@@ -143,15 +143,10 @@ export default function BulkScrape() {
     }
 
     setIsScraping(false);
-    
-    const successCount = sites.filter((_, idx) => {
-      const site = sites[idx];
-      return site.status === 'success';
-    }).length;
 
     toast({
       title: 'Bulk scrape complete',
-      description: `Successfully scraped ${successCount} of ${sites.length} sites.`
+      description: `Process finished for ${sites.length} sites.`
     });
   };
 
