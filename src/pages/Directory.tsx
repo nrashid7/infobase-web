@@ -135,7 +135,7 @@ export default function Directory() {
                 </div>
                 
                 <h1 className="text-foreground mb-4 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-                  {language === 'bn' ? 'সরকারি পোর্টাল সংগ্রহ' : 'Official Portal Collection'}
+                  {language === 'bn' ? 'বাংলাদেশ সরকারি সেবা পোর্টাল' : 'Bangladesh Government Services Directory'}
                 </h1>
               
               <p className="text-xl md:text-2xl text-primary font-medium mb-6 animate-fade-in" style={{ animationDelay: '0.15s' }}>
