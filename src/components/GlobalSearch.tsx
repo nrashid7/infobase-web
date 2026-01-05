@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { Sparkles, Send, X, Loader2 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -20,6 +20,61 @@ const quickQuestions = [
   { en: 'How to get a birth certificate?', bn: 'জন্ম সনদ কিভাবে পাব?' },
   { en: 'Driving license renewal steps?', bn: 'ড্রাইভিং লাইসেন্স নবায়ন করব কিভাবে?' },
 ];
+
+// Typing indicator component
+function TypingIndicator() {
+  return (
+    <div className="flex items-center gap-2">
+      <div className="flex gap-1">
+        <span className="w-2 h-2 rounded-full bg-primary animate-bounce [animation-delay:0ms]" />
+        <span className="w-2 h-2 rounded-full bg-primary animate-bounce [animation-delay:150ms]" />
+        <span className="w-2 h-2 rounded-full bg-primary animate-bounce [animation-delay:300ms]" />
+      </div>
+      <span className="text-sm text-muted-foreground animate-pulse">AI is thinking...</span>
+    </div>
+  );
+}
+
+// Animated suggestion rotator for the search bar
+function AnimatedPlaceholder({ suggestions, language }: { suggestions: typeof quickQuestions; language: string }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [displayText, setDisplayText] = useState('');
+  const [isTyping, setIsTyping] = useState(true);
+
+  const currentSuggestion = language === 'bn' ? suggestions[currentIndex].bn : suggestions[currentIndex].en;
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    
+    if (isTyping) {
+      if (displayText.length < currentSuggestion.length) {
+        timeout = setTimeout(() => {
+          setDisplayText(currentSuggestion.slice(0, displayText.length + 1));
+        }, 50);
+      } else {
+        timeout = setTimeout(() => setIsTyping(false), 2000);
+      }
+    } else {
+      if (displayText.length > 0) {
+        timeout = setTimeout(() => {
+          setDisplayText(displayText.slice(0, -1));
+        }, 30);
+      } else {
+        setCurrentIndex((prev) => (prev + 1) % suggestions.length);
+        setIsTyping(true);
+      }
+    }
+
+    return () => clearTimeout(timeout);
+  }, [displayText, isTyping, currentSuggestion, suggestions.length]);
+
+  return (
+    <span className="text-muted-foreground">
+      {displayText}
+      <span className="inline-block w-0.5 h-4 ml-0.5 bg-primary/60 animate-pulse" />
+    </span>
+  );
+}
 
 export function GlobalSearch({ className }: GlobalSearchProps) {
   const [isAIOpen, setIsAIOpen] = useState(false);
@@ -143,16 +198,21 @@ export function GlobalSearch({ className }: GlobalSearchProps) {
         {/* Main AI Search Bar */}
         <button
           onClick={() => setIsAIOpen(true)}
-          className="w-full flex items-center gap-3 px-5 py-4 bg-card border-2 border-border rounded-2xl shadow-soft hover:border-primary/40 hover:shadow-lg transition-all duration-200 group"
+          className="w-full flex items-center gap-3 px-5 py-4 bg-card border-2 border-border rounded-2xl shadow-soft hover:border-primary/40 hover:shadow-lg transition-all duration-300 group relative overflow-hidden"
         >
-          <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/15 transition-colors">
-            <Sparkles className="w-4 h-4 text-primary" />
+          {/* Animated gradient background on hover */}
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          
+          <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+            <Sparkles className="w-5 h-5 text-primary group-hover:animate-pulse" />
           </div>
-          <span className="flex-1 text-left text-muted-foreground text-base">
-            {aiPlaceholder}
-          </span>
-          <span className="text-xs text-muted-foreground/70 hidden sm:inline px-2.5 py-1 rounded-lg bg-muted font-medium">
-            {language === 'bn' ? 'AI' : 'AI-powered'}
+          
+          <div className="flex-1 text-left text-base overflow-hidden">
+            <AnimatedPlaceholder suggestions={quickQuestions} language={language} />
+          </div>
+          
+          <span className="relative text-xs text-primary/80 hidden sm:inline px-3 py-1.5 rounded-full bg-primary/10 font-medium border border-primary/20 group-hover:bg-primary/15 transition-colors">
+            {language === 'bn' ? '✨ AI' : '✨ AI-powered'}
           </span>
         </button>
       </div>
@@ -200,13 +260,18 @@ export function GlobalSearch({ className }: GlobalSearchProps) {
               !aiAnswer && !isAILoading && "flex flex-col items-center justify-center text-center"
             )}>
               {aiAnswer ? (
-                <div className="prose prose-sm dark:prose-invert max-w-none whitespace-pre-wrap text-foreground leading-relaxed">
+                <div className="prose prose-sm dark:prose-invert max-w-none whitespace-pre-wrap text-foreground leading-relaxed animate-fade-in">
                   {aiAnswer}
                 </div>
               ) : isAILoading ? (
-                <div className="flex items-center justify-center gap-3">
-                  <Loader2 className="w-5 h-5 animate-spin text-primary" />
-                  <span className="text-muted-foreground">{language === 'bn' ? 'চিন্তা করছি...' : 'Thinking...'}</span>
+                <div className="flex flex-col items-center justify-center gap-4 py-8">
+                  <div className="relative">
+                    <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+                      <Sparkles className="w-8 h-8 text-primary animate-pulse" />
+                    </div>
+                    <div className="absolute inset-0 rounded-full border-2 border-primary/30 border-t-primary animate-spin" />
+                  </div>
+                  <TypingIndicator />
                 </div>
               ) : (
                 <>
@@ -220,7 +285,8 @@ export function GlobalSearch({ className }: GlobalSearchProps) {
                       <button
                         key={idx}
                         onClick={() => handleQuickQuestion(language === 'bn' ? q.bn : q.en)}
-                        className="px-3 py-1.5 text-xs rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors border border-primary/20"
+                        className="px-4 py-2 text-xs rounded-full bg-gradient-to-r from-primary/10 to-primary/5 text-primary hover:from-primary/20 hover:to-primary/15 transition-all duration-300 border border-primary/20 hover:border-primary/40 hover:scale-105 hover:shadow-md animate-fade-in"
+                        style={{ animationDelay: `${idx * 100}ms` }}
                       >
                         {language === 'bn' ? q.bn : q.en}
                       </button>
