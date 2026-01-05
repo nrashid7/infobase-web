@@ -6,42 +6,49 @@ import { GlobalSearch } from '@/components/GlobalSearch';
 import { Button } from '@/components/ui/button';
 import { FaviconImage, getAgencyDomain } from '@/components/FaviconImage';
 
-// Category chips for quick navigation with icons
+// Category chips for quick navigation with icons and agency domains
 const categoryChips = [{
   label: 'Passport',
   labelBn: 'পাসপোর্ট',
   search: 'passport',
-  icon: BookOpen
+  icon: BookOpen,
+  domain: 'epassport.gov.bd'
 }, {
   label: 'NID',
   labelBn: 'এনআইডি',
   search: 'nid',
-  icon: CreditCard
+  icon: CreditCard,
+  domain: 'services.nidw.gov.bd'
 }, {
   label: 'Driving License',
   labelBn: 'ড্রাইভিং লাইসেন্স',
   search: 'driving',
-  icon: Car
+  icon: Car,
+  domain: 'brta.gov.bd'
 }, {
   label: 'Birth Certificate',
   labelBn: 'জন্ম সনদ',
   search: 'birth',
-  icon: Baby
+  icon: Baby,
+  domain: 'bdris.gov.bd'
 }, {
   label: 'Visa',
   labelBn: 'ভিসা',
   search: 'visa',
-  icon: Plane
+  icon: Plane,
+  domain: 'mofa.gov.bd'
 }, {
   label: 'TIN',
   labelBn: 'টিআইএন',
   search: 'tin',
-  icon: FileCheck
+  icon: FileCheck,
+  domain: 'nbr.gov.bd'
 }, {
   label: 'Land Records',
   labelBn: 'ভূমি রেকর্ড',
   search: 'land',
-  icon: FileCheck
+  icon: FileCheck,
+  domain: 'land.gov.bd'
 }];
 
 // How it works steps
@@ -149,7 +156,11 @@ export default function Index() {
                   className="pill-button inline-flex items-center gap-2"
                   style={{ animationDelay: `${0.5 + idx * 0.05}s` }}
                 >
-                  <chip.icon className="w-4 h-4" />
+                  <FaviconImage 
+                    url={`https://${chip.domain}`} 
+                    className="w-4 h-4" 
+                    fallbackClassName="w-4 h-4"
+                  />
                   {language === 'bn' ? chip.labelBn : chip.label}
                 </Link>
               ))}
