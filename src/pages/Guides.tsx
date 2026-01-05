@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { BookOpen, Search, ArrowRight, ExternalLink, Building2 } from 'lucide-react';
-import { listGuides, listAgencies } from '@/data/guidesStore';
+import { listGuides, listAgencies } from '@/lib/guidesStore';
 import { Input } from '@/components/ui/input';
 import {
   Select,

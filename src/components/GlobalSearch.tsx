@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, BookOpen, Building2 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
-import { listGuides, type GuideIndexEntry } from '@/data/guidesStore';
+import { listGuides, type GuideIndexEntry } from '@/lib/guidesStore';
 import { cn } from '@/lib/utils';
 
 interface GlobalSearchProps {

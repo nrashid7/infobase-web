@@ -1,4 +1,4 @@
-import { Home, BookOpen, Info } from 'lucide-react';
+import { Home, BookOpen, Globe, Info } from 'lucide-react';
 import { NavLink } from '@/components/NavLink';
 import {
   Sidebar,
@@ -14,7 +14,8 @@ import {
 
 const navItems = [
   { title: 'Home', url: '/', icon: Home },
-  { title: 'Guides', url: '/guides', icon: BookOpen },
+  { title: 'Services', url: '/guides', icon: BookOpen },
+  { title: 'Official Sources', url: '/sources', icon: Globe },
   { title: 'About', url: '/about', icon: Info },
 ];
 

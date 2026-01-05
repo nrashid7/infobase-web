@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Building2, ArrowRight, CheckCircle, Shield, Clock, FileCheck } from 'lucide-react';
-import { getGuideStats, listGuides } from '@/data/guidesStore';
+import { getGuideStats, listGuides } from '@/lib/guidesStore';
 import { GlobalSearch } from '@/components/GlobalSearch';
 import { Button } from '@/components/ui/button';
 
