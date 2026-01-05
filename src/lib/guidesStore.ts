@@ -1,13 +1,15 @@
 // Typed data layer for published guides
-// Remote-first with local fallback data loading strategy
+// Local-first with optional remote fetching via env flags
 
-// Static imports as fallback
+// Static imports as primary data source
 import localGuidesData from '@/data/public_guides.json';
 import localIndexData from '@/data/public_guides_index.json';
 
-// Remote URLs for data
-const GUIDE_DATA_URL = 'https://raw.githubusercontent.com/nrashid7/infobase-kb/main/published/public_guides.json';
-const INDEX_DATA_URL = 'https://raw.githubusercontent.com/nrashid7/infobase-kb/main/published/public_guides_index.json';
+// Remote fetching configuration (optional, controlled by env)
+// Set VITE_USE_REMOTE_GUIDES=true and VITE_GUIDE_DATA_URL to enable
+const USE_REMOTE = import.meta.env.VITE_USE_REMOTE_GUIDES === 'true';
+const GUIDE_DATA_URL = import.meta.env.VITE_GUIDE_DATA_URL || '';
+const INDEX_DATA_URL = import.meta.env.VITE_INDEX_DATA_URL || '';
 
 // Cache configuration
 const CACHE_TTL_MS = 15 * 60 * 1000; // 15 minutes
@@ -256,15 +258,24 @@ async function fetchWithTimeout(url: string, timeoutMs = 5000): Promise<Response
 }
 
 /**
- * Try to fetch remote data, fallback to cache, then local
+ * Try to fetch remote data if enabled, otherwise use local
+ * Does not block on remote - returns local immediately if remote disabled or fails
  */
-async function loadDataRemoteFirst<T>(
+async function loadDataWithOptionalRemote<T>(
   remoteUrl: string, 
   cacheKey: string, 
   localFallback: T
 ): Promise<T> {
-  // First, try cache
+  // If remote fetching is disabled or no URL, use local data
+  if (!USE_REMOTE || !remoteUrl) {
+    return localFallback;
+  }
+
+  // Check cache first
   const cached = getFromCache<T>(cacheKey);
+  if (cached) {
+    return cached;
+  }
   
   // Try remote fetch
   try {
@@ -275,15 +286,10 @@ async function loadDataRemoteFirst<T>(
       return data;
     }
   } catch {
-    // Remote fetch failed
+    // Remote fetch failed, silently fall back
   }
   
-  // Return cached data if available
-  if (cached) {
-    return cached;
-  }
-  
-  // Final fallback to local bundled data
+  // Fallback to local bundled data
   return localFallback;
 }
 
@@ -342,20 +348,26 @@ function initializeSync(): void {
 }
 
 /**
- * Initialize data - remote first with local fallback
+ * Initialize data - local-first, with optional remote upgrade
  */
 export async function initializeGuides(): Promise<void> {
   if (initPromise) return initPromise;
   
-  // Start with local data immediately
+  // Start with local data immediately (non-blocking)
   initializeSync();
   
-  // Then try to upgrade to remote data
+  // Only attempt remote fetch if enabled via env
+  if (!USE_REMOTE) {
+    initPromise = Promise.resolve();
+    return initPromise;
+  }
+  
+  // Try to upgrade to remote data in background
   initPromise = (async () => {
     try {
       const [remoteGuides, remoteIndex] = await Promise.all([
-        loadDataRemoteFirst<GuidesData>(GUIDE_DATA_URL, CACHE_KEY_GUIDES, localGuidesData as GuidesData),
-        loadDataRemoteFirst<IndexData>(INDEX_DATA_URL, CACHE_KEY_INDEX, localIndexData as IndexData)
+        loadDataWithOptionalRemote<GuidesData>(GUIDE_DATA_URL, CACHE_KEY_GUIDES, localGuidesData as GuidesData),
+        loadDataWithOptionalRemote<IndexData>(INDEX_DATA_URL, CACHE_KEY_INDEX, localIndexData as IndexData)
       ]);
       
       guides = remoteGuides.guides;
@@ -363,7 +375,7 @@ export async function initializeGuides(): Promise<void> {
       generatedAt = remoteGuides.generated_at || null;
       buildLookups();
     } catch {
-      // Keep using local data
+      // Keep using local data, already initialized
     }
   })();
   
@@ -373,8 +385,8 @@ export async function initializeGuides(): Promise<void> {
 // Initialize synchronously with local data for immediate use
 initializeSync();
 
-// Start async remote fetch in background
-if (typeof window !== 'undefined') {
+// Optionally start async remote fetch in background (only if enabled)
+if (typeof window !== 'undefined' && USE_REMOTE) {
   initializeGuides().catch(() => {
     // Silent fail, we have local data
   });

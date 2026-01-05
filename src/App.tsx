@@ -11,6 +11,7 @@ import GuideDetail from "./pages/GuideDetail";
 import OfficialSources from "./pages/OfficialSources";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
+import ServicesRedirect from "./pages/ServicesRedirect";
 
 const queryClient = new QueryClient();
 
@@ -29,9 +30,9 @@ const App = () => (
               <Route path="/sources" element={<OfficialSources />} />
               <Route path="/about" element={<About />} />
               
-              {/* Redirect old routes */}
-              <Route path="/services" element={<Navigate to="/guides" replace />} />
-              <Route path="/services/:id" element={<Navigate to="/guides/:id" replace />} />
+            {/* Redirect old routes */}
+            <Route path="/services" element={<Navigate to="/guides" replace />} />
+            <Route path="/services/:id" element={<ServicesRedirect />} />
             </Route>
             
             <Route path="*" element={<NotFound />} />
