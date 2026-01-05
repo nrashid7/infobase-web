@@ -4,6 +4,33 @@ import { useLanguage } from '@/lib/LanguageContext';
 import { Input } from '@/components/ui/input';
 import { govDirectory, getTotalWebsites } from '@/data/govDirectory';
 
+// Helper to extract domain from URL
+const getDomain = (url: string): string => {
+  try {
+    return new URL(url).hostname;
+  } catch {
+    return '';
+  }
+};
+
+// Favicon component with fallback to Globe icon
+const FaviconImage = ({ url }: { url: string }) => {
+  const [hasError, setHasError] = useState(false);
+  const domain = getDomain(url);
+  
+  if (hasError || !domain) {
+    return <Globe className="w-3.5 h-3.5 text-muted-foreground" />;
+  }
+  
+  return (
+    <img
+      src={`https://www.google.com/s2/favicons?domain=${domain}&sz=32`}
+      alt=""
+      className="w-4 h-4"
+      onError={() => setHasError(true)}
+    />
+  );
+};
 // Category icons mapping
 const categoryIcons: Record<string, React.ElementType> = {
   'core-government': Landmark,
@@ -148,7 +175,7 @@ export default function Directory() {
                           className="group flex items-center gap-3 py-2.5 px-3 -mx-3 rounded-xl hover:bg-accent/50 transition-colors"
                         >
                           <div className="w-6 h-6 rounded-lg bg-muted flex items-center justify-center flex-shrink-0">
-                            <Globe className="w-3.5 h-3.5 text-muted-foreground group-hover:text-primary transition-colors" />
+                            <FaviconImage url={link.url} />
                           </div>
                           <span className="text-base text-foreground/80 group-hover:text-primary transition-colors truncate flex-1">
                             {link.name}
