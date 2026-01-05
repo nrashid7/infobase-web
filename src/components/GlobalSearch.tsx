@@ -13,6 +13,14 @@ interface GlobalSearchProps {
   className?: string;
 }
 
+// Quick questions for common queries
+const quickQuestions = [
+  { en: 'How do I apply for a passport?', bn: 'পাসপোর্টের জন্য কিভাবে আবেদন করব?' },
+  { en: 'NID correction process?', bn: 'এনআইডি সংশোধন প্রক্রিয়া কি?' },
+  { en: 'How to get a birth certificate?', bn: 'জন্ম সনদ কিভাবে পাব?' },
+  { en: 'Driving license renewal steps?', bn: 'ড্রাইভিং লাইসেন্স নবায়ন করব কিভাবে?' },
+];
+
 export function GlobalSearch({ className }: GlobalSearchProps) {
   const [isAIOpen, setIsAIOpen] = useState(false);
   const [aiQuestion, setAIQuestion] = useState('');
@@ -119,6 +127,14 @@ export function GlobalSearch({ className }: GlobalSearchProps) {
     setAIAnswer('');
   };
 
+  const handleQuickQuestion = (question: string) => {
+    setAIQuestion(question);
+    // Auto-submit the question
+    setTimeout(() => {
+      aiInputRef.current?.focus();
+    }, 50);
+  };
+
   const aiPlaceholder = t('home.search.placeholder');
 
   return (
@@ -181,23 +197,36 @@ export function GlobalSearch({ className }: GlobalSearchProps) {
             {/* Response */}
             <div className={cn(
               "p-5 max-h-[60vh] overflow-y-auto min-h-[120px]",
-              !aiAnswer && "flex items-center justify-center text-center text-muted-foreground"
+              !aiAnswer && !isAILoading && "flex flex-col items-center justify-center text-center"
             )}>
               {aiAnswer ? (
                 <div className="prose prose-sm dark:prose-invert max-w-none whitespace-pre-wrap text-foreground leading-relaxed">
                   {aiAnswer}
                 </div>
               ) : isAILoading ? (
-                <div className="flex items-center gap-3">
+                <div className="flex items-center justify-center gap-3">
                   <Loader2 className="w-5 h-5 animate-spin text-primary" />
                   <span className="text-muted-foreground">{language === 'bn' ? 'চিন্তা করছি...' : 'Thinking...'}</span>
                 </div>
               ) : (
-                <p className="text-sm">
-                  {language === 'bn' 
-                    ? 'বাংলাদেশ সরকারি সেবা সম্পর্কে যেকোনো প্রশ্ন জিজ্ঞাসা করুন'
-                    : 'Ask any question about Bangladesh government services'}
-                </p>
+                <>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    {language === 'bn' 
+                      ? 'বাংলাদেশ সরকারি সেবা সম্পর্কে যেকোনো প্রশ্ন জিজ্ঞাসা করুন'
+                      : 'Ask any question about Bangladesh government services'}
+                  </p>
+                  <div className="flex flex-wrap justify-center gap-2">
+                    {quickQuestions.map((q, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => handleQuickQuestion(language === 'bn' ? q.bn : q.en)}
+                        className="px-3 py-1.5 text-xs rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors border border-primary/20"
+                      >
+                        {language === 'bn' ? q.bn : q.en}
+                      </button>
+                    ))}
+                  </div>
+                </>
               )}
             </div>
 
