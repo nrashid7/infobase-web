@@ -263,6 +263,34 @@
     background-clip: text;
   }
 
+  /* Animated gradient orb */
+  .hero-orb {
+    @apply absolute rounded-full blur-3xl opacity-20 pointer-events-none;
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-glow)) 100%);
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-20px) scale(1.05); }
+  }
+
+  /* Subtle pulse ring around search */
+  .search-glow {
+    @apply relative;
+  }
+  .search-glow::before {
+    content: '';
+    @apply absolute inset-0 rounded-full opacity-0 pointer-events-none;
+    background: hsl(var(--primary) / 0.15);
+    animation: pulse-ring 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse-ring {
+    0%, 100% { opacity: 0; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.02); }
+  }
+
   /* Section divider */
   .section-divider {
     @apply border-t border-border;

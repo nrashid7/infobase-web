@@ -28,16 +28,11 @@ export default function Index() {
         {/* Background gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-primary/[0.03] via-background to-background" />
         
+        {/* Floating orbs for visual interest */}
+        <div className="hero-orb w-64 h-64 -top-32 -right-32" />
+        <div className="hero-orb w-48 h-48 -bottom-24 -left-24" style={{ animationDelay: '-3s' }} />
+        
         <div className="container max-w-4xl relative">
-          {/* Time-based greeting */}
-          <div className="text-center mb-6 animate-fade-in">
-            <p className="text-sm text-muted-foreground">
-              {language === 'bn' 
-                ? `${new Date().getHours() < 12 ? 'শুভ সকাল' : new Date().getHours() < 17 ? 'শুভ অপরাহ্ন' : 'শুভ সন্ধ্যা'} 👋 আজ আপনাকে কীভাবে সাহায্য করতে পারি?`
-                : `${new Date().getHours() < 12 ? 'Good morning' : new Date().getHours() < 17 ? 'Good afternoon' : 'Good evening'} 👋 How can we help you today?`}
-            </p>
-          </div>
-
           {/* Trust badge */}
           <div className="flex justify-center mb-8 animate-fade-in">
             <div className="trust-badge">
@@ -48,8 +43,10 @@ export default function Index() {
 
           {/* Main heading */}
           <div className="text-center mb-10 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight leading-tight">
-              {t('home.title')}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 tracking-tight leading-tight">
+              <span className="text-foreground">{language === 'bn' ? 'বাংলাদেশের ' : 'Navigate '}</span>
+              <span className="gradient-text">{language === 'bn' ? 'সরকারি সেবা' : 'Bangladesh'}</span>
+              <span className="text-foreground">{language === 'bn' ? '' : ' Gov Services'}</span>
             </h1>
             <p className="text-lg md:text-xl text-primary font-medium mb-4">
               {t('home.subtitle')}
@@ -59,8 +56,8 @@ export default function Index() {
             </p>
           </div>
 
-          {/* AI Search Bar */}
-          <div className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
+          {/* AI Search Bar with glow effect */}
+          <div className="animate-fade-in search-glow" style={{ animationDelay: '0.2s' }}>
             <GlobalSearch className="max-w-xl mx-auto mb-8" />
           </div>
 
