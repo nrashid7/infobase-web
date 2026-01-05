@@ -112,9 +112,7 @@ export default function Index() {
             <p className="text-xl md:text-2xl text-primary font-medium mb-6">
               {t('home.subtitle')}
             </p>
-            <p className="text-muted-foreground max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
-              {t('home.description')}
-            </p>
+            
           </div>
 
           {/* AI Search Bar */}
