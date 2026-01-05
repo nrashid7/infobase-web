@@ -12,6 +12,8 @@ const categoryChips = [
   { label: 'Driving License', labelBn: 'ড্রাইভিং লাইসেন্স', search: 'driving', icon: Car },
   { label: 'Birth Certificate', labelBn: 'জন্ম সনদ', search: 'birth', icon: Baby },
   { label: 'Visa', labelBn: 'ভিসা', search: 'visa', icon: Plane },
+  { label: 'TIN', labelBn: 'টিআইএন', search: 'tin', icon: FileCheck },
+  { label: 'Land Records', labelBn: 'ভূমি রেকর্ড', search: 'land', icon: FileCheck },
 ];
 
 export default function Index() {
@@ -73,10 +75,10 @@ export default function Index() {
 
           {/* Quick Access Categories */}
           <div className="animate-fade-in" style={{ animationDelay: '0.4s' }}>
-            <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium mb-3 text-center">
+            <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium mb-4 text-center">
               {language === 'bn' ? 'জনপ্রিয় সেবা' : 'Popular Services'}
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-2">
+            <div className="flex flex-wrap items-center justify-center gap-2 max-w-2xl mx-auto">
               {categoryChips.map((chip) => (
                 <Link
                   key={chip.label}
@@ -87,6 +89,13 @@ export default function Index() {
                   {language === 'bn' ? chip.labelBn : chip.label}
                 </Link>
               ))}
+              <Link
+                to="/guides"
+                className="pill-button inline-flex items-center gap-1.5 bg-primary/10 hover:bg-primary/20 text-primary border-primary/20"
+              >
+                {language === 'bn' ? 'সব দেখুন' : 'View All'}
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
             </div>
           </div>
         </div>
