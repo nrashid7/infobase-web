@@ -8,7 +8,7 @@ import { MainLayout } from "./layouts/MainLayout";
 import Index from "./pages/Index";
 import Guides from "./pages/Guides";
 import GuideDetail from "./pages/GuideDetail";
-import OfficialSources from "./pages/OfficialSources";
+import Directory from "./pages/Directory";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import ServicesRedirect from "./pages/ServicesRedirect";
@@ -27,7 +27,8 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/guides" element={<Guides />} />
               <Route path="/guides/:id" element={<GuideDetail />} />
-              <Route path="/sources" element={<OfficialSources />} />
+              <Route path="/directory" element={<Directory />} />
+              <Route path="/sources" element={<Navigate to="/directory" replace />} />
               <Route path="/about" element={<About />} />
               
             {/* Redirect old routes */}
