@@ -1,10 +1,14 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, FileCheck, Clock, Shield, BookOpen, CreditCard, Car, Baby, Plane, Search, MousePointerClick, Sparkles, Zap } from 'lucide-react';
+import { ArrowRight, CheckCircle2, FileCheck, Clock, Shield, BookOpen, CreditCard, Car, Baby, Plane, Search, MousePointerClick, Sparkles, Zap, Building2, Globe } from 'lucide-react';
 import { getGuideStats, listGuides, getGuideById } from '@/lib/guidesStore';
 import { useLanguage } from '@/lib/LanguageContext';
 import { GlobalSearch } from '@/components/GlobalSearch';
 import { Button } from '@/components/ui/button';
 import { FaviconImage, getAgencyDomain } from '@/components/FaviconImage';
+import { SEO, generateWebsiteJsonLd, generateOrganizationJsonLd } from '@/components/SEO';
+import { useScrapeStatus } from '@/hooks/useScrapeStatus';
+import { govDirectory, getTotalWebsites } from '@/data/govDirectory';
+import { getSiteSlug } from '@/lib/api/govSites';
 
 // Category chips for quick navigation with icons and agency domains
 const categoryChips = [{
@@ -76,6 +80,13 @@ export default function Index() {
   const stats = getGuideStats();
   const guides = listGuides();
   const { t, language } = useLanguage();
+  const { stats: scrapeStats } = useScrapeStatus();
+  const totalWebsites = getTotalWebsites();
+  
+  // Get featured sites (first 4 from different categories with successful scrapes)
+  const featuredSites = govDirectory
+    .flatMap(cat => cat.links.slice(0, 2).map(link => ({ ...link, category: cat.name, categoryBn: cat.nameBn })))
+    .slice(0, 4);
   
   const getGreeting = () => {
     const hour = new Date().getHours();
@@ -84,8 +95,23 @@ export default function Index() {
     return language === 'bn' ? 'শুভ সন্ধ্যা' : 'Good evening';
   };
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      generateWebsiteJsonLd(),
+      generateOrganizationJsonLd(),
+    ],
+  };
+
   return (
-    <div className="min-h-screen">
+    <>
+      <SEO
+        title="INFOBASE - Bangladesh Government Services Guide"
+        description="Navigate Bangladesh government services with confidence. Clear, verified guides for passport, NID, driving license, birth certificate, visa and more."
+        jsonLd={jsonLd}
+      />
+      
+      <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative py-20 md:py-32 lg:py-40 px-4 md:px-6 overflow-hidden">
         {/* Enhanced background with gradient orbs */}
@@ -134,8 +160,12 @@ export default function Index() {
               <span className="text-muted-foreground text-base">{language === 'bn' ? 'গাইড' : 'guides'}</span>
             </div>
             <div className="stat-card group">
-              <span className="font-display font-bold text-3xl text-primary group-hover:scale-110 transition-transform">{stats.agencies}</span>
-              <span className="text-muted-foreground text-base">{language === 'bn' ? 'সংস্থা' : 'agencies'}</span>
+              <span className="font-display font-bold text-3xl text-primary group-hover:scale-110 transition-transform">{totalWebsites}</span>
+              <span className="text-muted-foreground text-base">{language === 'bn' ? 'পোর্টাল' : 'portals'}</span>
+            </div>
+            <div className="stat-card group">
+              <span className="font-display font-bold text-3xl text-primary group-hover:scale-110 transition-transform">{scrapeStats.success}</span>
+              <span className="text-muted-foreground text-base">{language === 'bn' ? 'বিস্তারিত তথ্য' : 'with details'}</span>
             </div>
             <div className="stat-card group">
               <span className="font-display font-bold text-3xl text-primary group-hover:scale-110 transition-transform">{stats.totalCitations}</span>
@@ -227,6 +257,54 @@ export default function Index() {
                 )}
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Government Portals */}
+      <section className="section-padding">
+        <div className="container max-w-6xl">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+              <Building2 className="w-4 h-4" />
+              {language === 'bn' ? 'সরকারি পোর্টাল' : 'Government Portals'}
+            </div>
+            <h2 className="text-foreground mb-4 text-balance">
+              {language === 'bn' ? 'জনপ্রিয় সরকারি সাইট' : 'Featured Government Sites'}
+            </h2>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+              {language === 'bn' ? 'সরাসরি অফিসিয়াল পোর্টালে যান' : 'Quick access to official portals'}
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+            {featuredSites.map((site, idx) => (
+              <Link
+                key={site.url}
+                to={`/directory/${getSiteSlug(site.url)}`}
+                className="modern-card p-6 group text-center"
+              >
+                <div className="w-14 h-14 rounded-xl bg-muted flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                  <FaviconImage url={site.url} className="w-8 h-8" />
+                </div>
+                <h3 className="font-semibold text-foreground mb-1 group-hover:text-primary transition-colors line-clamp-2">
+                  {site.name}
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  {language === 'bn' ? site.categoryBn : site.category}
+                </p>
+              </Link>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Button asChild variant="outline" size="lg" className="group">
+              <Link to="/directory">
+                <Globe className="w-4 h-4 mr-2" />
+                {language === 'bn' ? 'সব পোর্টাল দেখুন' : 'Browse All Portals'}
+                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-0.5 transition-transform" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -388,5 +466,6 @@ export default function Index() {
         </div>
       </section>
     </div>
+    </>
   );
 }
