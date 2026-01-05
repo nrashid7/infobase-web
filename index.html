@@ -15,8 +15,9 @@
     <link rel="dns-prefetch" href="https://t2.gstatic.com" />
     <link rel="dns-prefetch" href="https://t3.gstatic.com" />
     
-    <!-- Fonts: DM Sans for body, Space Grotesk for headings -->
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <!-- Fonts: DM Sans for body, Space Grotesk for headings - loaded async to prevent render blocking -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@500;600;700&display=swap" /></noscript>
     
     <title>INFOBASE - Bangladesh Government Services Guide</title>
     <meta name="description" content="Navigate Bangladesh government services with confidence. Clear, verified guides for passport, NID, driving license, birth certificate, visa and more." />
