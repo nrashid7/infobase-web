@@ -102,32 +102,32 @@ export default {
           to: { height: "0" },
         },
         "fade-in": {
-          from: { opacity: "0", transform: "translateY(10px)" },
-          to: { opacity: "1", transform: "translateY(0)" },
+          from: { opacity: "0", transform: "translateY(10px) translateZ(0)" },
+          to: { opacity: "1", transform: "translateY(0) translateZ(0)" },
         },
         "fade-in-up": {
-          from: { opacity: "0", transform: "translateY(20px)" },
-          to: { opacity: "1", transform: "translateY(0)" },
+          from: { opacity: "0", transform: "translateY(20px) translateZ(0)" },
+          to: { opacity: "1", transform: "translateY(0) translateZ(0)" },
         },
         "slide-in-left": {
-          from: { opacity: "0", transform: "translateX(-20px)" },
-          to: { opacity: "1", transform: "translateX(0)" },
+          from: { opacity: "0", transform: "translateX(-20px) translateZ(0)" },
+          to: { opacity: "1", transform: "translateX(0) translateZ(0)" },
         },
         "slide-up": {
-          from: { opacity: "0", transform: "translateY(8px)" },
-          to: { opacity: "1", transform: "translateY(0)" },
+          from: { opacity: "0", transform: "translateY(8px) translateZ(0)" },
+          to: { opacity: "1", transform: "translateY(0) translateZ(0)" },
         },
         "scale-in": {
-          from: { opacity: "0", transform: "scale(0.95)" },
-          to: { opacity: "1", transform: "scale(1)" },
+          from: { opacity: "0", transform: "scale(0.95) translateZ(0)" },
+          to: { opacity: "1", transform: "scale(1) translateZ(0)" },
         },
         "pulse-soft": {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.7" },
         },
         "float": {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-8px)" },
+          "0%, 100%": { transform: "translateY(0px) translateZ(0)" },
+          "50%": { transform: "translateY(-8px) translateZ(0)" },
         },
         "shimmer": {
           "0%": { backgroundPosition: "-200% 0" },
