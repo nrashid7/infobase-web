@@ -12,7 +12,7 @@ export const Footer = forwardRef<HTMLElement>(function Footer(props, ref) {
           <AlertTriangle className="w-4 h-4 text-status-stale flex-shrink-0 mt-0.5" />
           <div className="text-sm">
             <p className="font-medium text-foreground">{t('footer.disclaimer.title')}</p>
-            <p className="text-muted-foreground mt-1">
+            <p className="text-foreground/75 mt-1">
               {t('footer.disclaimer.text')}
             </p>
           </div>
