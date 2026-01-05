@@ -14,7 +14,66 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      gov_site_details: {
+        Row: {
+          category_id: string
+          contact_info: Json | null
+          created_at: string | null
+          description: string | null
+          id: string
+          last_scraped_at: string | null
+          logo_url: string | null
+          mission: string | null
+          name: string
+          office_hours: string | null
+          primary_color: string | null
+          related_links: Json | null
+          scrape_error: string | null
+          scrape_status: string | null
+          services: Json | null
+          updated_at: string | null
+          url: string
+        }
+        Insert: {
+          category_id: string
+          contact_info?: Json | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          last_scraped_at?: string | null
+          logo_url?: string | null
+          mission?: string | null
+          name: string
+          office_hours?: string | null
+          primary_color?: string | null
+          related_links?: Json | null
+          scrape_error?: string | null
+          scrape_status?: string | null
+          services?: Json | null
+          updated_at?: string | null
+          url: string
+        }
+        Update: {
+          category_id?: string
+          contact_info?: Json | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          last_scraped_at?: string | null
+          logo_url?: string | null
+          mission?: string | null
+          name?: string
+          office_hours?: string | null
+          primary_color?: string | null
+          related_links?: Json | null
+          scrape_error?: string | null
+          scrape_status?: string | null
+          services?: Json | null
+          updated_at?: string | null
+          url?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

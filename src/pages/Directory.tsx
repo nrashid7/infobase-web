@@ -1,9 +1,11 @@
 import { useState, useMemo } from 'react';
-import { Search, ExternalLink, Globe, Building2, Landmark, Users, Cpu, Scale, Banknote, GraduationCap, Heart, Leaf, Zap, Train, Wifi, MapPin, Briefcase, Users2, BarChart3, Shield, AlertTriangle, Anchor, List } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Search, ExternalLink, Globe, Building2, Landmark, Users, Cpu, Scale, Banknote, GraduationCap, Heart, Leaf, Zap, Train, Wifi, MapPin, Briefcase, Users2, BarChart3, Shield, AlertTriangle, Anchor, List, ChevronRight } from 'lucide-react';
 import { useLanguage } from '@/lib/LanguageContext';
 import { Input } from '@/components/ui/input';
 import { govDirectory, getTotalWebsites } from '@/data/govDirectory';
 import { FaviconImage } from '@/components/FaviconImage';
+import { getSiteSlug } from '@/lib/api/govSites';
 
 // Category icons mapping
 const categoryIcons: Record<string, React.ElementType> = {
@@ -141,21 +143,31 @@ export default function Directory() {
                   {/* Links List */}
                   <ul className="space-y-1">
                     {category.links.map((link) => (
-                      <li key={link.url}>
-                        <a
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group flex items-center gap-3 py-2.5 px-3 -mx-3 rounded-xl hover:bg-accent/50 transition-colors"
-                        >
-                          <div className="w-6 h-6 rounded-lg bg-muted flex items-center justify-center flex-shrink-0">
-                            <FaviconImage url={link.url} />
-                          </div>
-                          <span className="text-base text-foreground/80 group-hover:text-primary transition-colors truncate flex-1">
-                            {link.name}
-                          </span>
-                          <ExternalLink className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
-                        </a>
+                      <li key={link.url} className="group">
+                        <div className="flex items-center gap-2">
+                          <Link
+                            to={`/directory/${getSiteSlug(link.url)}`}
+                            className="flex items-center gap-3 py-2.5 px-3 -mx-3 rounded-xl hover:bg-accent/50 transition-colors flex-1 min-w-0"
+                          >
+                            <div className="w-6 h-6 rounded-lg bg-muted flex items-center justify-center flex-shrink-0">
+                              <FaviconImage url={link.url} />
+                            </div>
+                            <span className="text-base text-foreground/80 group-hover:text-primary transition-colors truncate flex-1">
+                              {link.name}
+                            </span>
+                            <ChevronRight className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
+                          </Link>
+                          <a
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-2 rounded-lg hover:bg-accent/50 transition-colors flex-shrink-0"
+                            title={language === 'bn' ? 'অফিসিয়াল সাইটে যান' : 'Visit official site'}
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <ExternalLink className="w-4 h-4 text-muted-foreground hover:text-primary transition-colors" />
+                          </a>
+                        </div>
                       </li>
                     ))}
                   </ul>

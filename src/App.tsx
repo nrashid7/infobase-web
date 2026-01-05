@@ -12,6 +12,7 @@ const Index = lazy(() => import("./pages/Index"));
 const Guides = lazy(() => import("./pages/Guides"));
 const GuideDetail = lazy(() => import("./pages/GuideDetail"));
 const Directory = lazy(() => import("./pages/Directory"));
+const SiteDetail = lazy(() => import("./pages/SiteDetail"));
 const About = lazy(() => import("./pages/About"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const ServicesRedirect = lazy(() => import("./pages/ServicesRedirect"));
@@ -39,6 +40,7 @@ const App = () => (
                 <Route path="/guides" element={<Guides />} />
                 <Route path="/guides/:id" element={<GuideDetail />} />
                 <Route path="/directory" element={<Directory />} />
+                <Route path="/directory/:slug" element={<SiteDetail />} />
                 <Route path="/sources" element={<Navigate to="/directory" replace />} />
                 <Route path="/about" element={<About />} />
                 

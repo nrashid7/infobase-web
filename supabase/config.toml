@@ -2,3 +2,6 @@ project_id = "ceqdfmzsbrntihilvnxp"
 
 [functions.ask]
 verify_jwt = false
+
+[functions.scrape-gov-site]
+verify_jwt = false
