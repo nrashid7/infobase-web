@@ -29,6 +29,15 @@ export default function Index() {
         <div className="absolute inset-0 bg-gradient-to-b from-primary/[0.03] via-background to-background" />
         
         <div className="container max-w-4xl relative">
+          {/* Time-based greeting */}
+          <div className="text-center mb-6 animate-fade-in">
+            <p className="text-sm text-muted-foreground">
+              {language === 'bn' 
+                ? `${new Date().getHours() < 12 ? 'শুভ সকাল' : new Date().getHours() < 17 ? 'শুভ অপরাহ্ন' : 'শুভ সন্ধ্যা'} 👋 আজ আপনাকে কীভাবে সাহায্য করতে পারি?`
+                : `${new Date().getHours() < 12 ? 'Good morning' : new Date().getHours() < 17 ? 'Good afternoon' : 'Good evening'} 👋 How can we help you today?`}
+            </p>
+          </div>
+
           {/* Trust badge */}
           <div className="flex justify-center mb-8 animate-fade-in">
             <div className="trust-badge">
