@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, ExternalLink, Phone, Mail, MapPin, Clock, Globe, Loader2, RefreshCw, AlertCircle, Building2, Target, ListChecks, Link2 } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Phone, Mail, MapPin, Clock, Globe, Loader2, RefreshCw, AlertCircle, Building2, Target, ListChecks, Link2, Printer } from 'lucide-react';
 import { useLanguage } from '@/lib/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -91,8 +91,32 @@ export default function SiteDetail() {
 
   const hasDetails = siteDetails?.scrape_status === 'success';
   const services = siteDetails?.services as { name: string; description: string }[] | undefined;
-  const contactInfo = siteDetails?.contact_info as { phone?: string; email?: string; address?: string; fax?: string } | undefined;
-  const relatedLinks = siteDetails?.related_links as { title: string; url: string }[] | undefined;
+  const rawContactInfo = siteDetails?.contact_info as Record<string, unknown> | undefined;
+  const relatedLinks = siteDetails?.related_links as { title: string; url?: string | null }[] | undefined;
+  
+  // Normalize contact info - handle both string and object values
+  const normalizeContactValue = (value: unknown): string | null => {
+    if (!value) return null;
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      // Handle nested objects like { general: "email1", chairman: "email2" }
+      return Object.entries(value as Record<string, string>)
+        .filter(([_, v]) => v && typeof v === 'string')
+        .map(([k, v]) => `${k.charAt(0).toUpperCase() + k.slice(1).replace(/_/g, ' ')}: ${v}`)
+        .join('\n');
+    }
+    return String(value);
+  };
+  
+  const contactInfo = rawContactInfo ? {
+    phone: normalizeContactValue(rawContactInfo.phone),
+    email: normalizeContactValue(rawContactInfo.email),
+    address: normalizeContactValue(rawContactInfo.address),
+    fax: normalizeContactValue(rawContactInfo.fax),
+  } : undefined;
+  
+  // Filter related links with valid URLs
+  const validRelatedLinks = relatedLinks?.filter(link => link.url && link.url.startsWith('http'));
   const primaryColor = siteDetails?.primary_color || '#3b82f6';
 
   // Get category name
@@ -324,7 +348,7 @@ export default function SiteDetail() {
             {/* Sidebar - 1 column */}
             <div className="space-y-6">
               {/* Contact Info */}
-              {contactInfo && (contactInfo.phone || contactInfo.email || contactInfo.address) && (
+              {contactInfo && (contactInfo.phone || contactInfo.email || contactInfo.address || contactInfo.fax) && (
                 <Card>
                   <CardHeader className="pb-3">
                     <CardTitle className="text-lg">{language === 'bn' ? 'যোগাযোগ' : 'Contact'}</CardTitle>
@@ -338,9 +362,9 @@ export default function SiteDetail() {
                         >
                           <Phone className="w-5 h-5" style={{ color: primaryColor }} />
                         </div>
-                        <div>
+                        <div className="min-w-0 flex-1">
                           <p className="text-xs text-muted-foreground mb-0.5">{language === 'bn' ? 'ফোন' : 'Phone'}</p>
-                          <p className="font-medium">{contactInfo.phone}</p>
+                          <p className="font-medium whitespace-pre-wrap break-words text-sm">{contactInfo.phone}</p>
                         </div>
                       </div>
                     )}
@@ -352,11 +376,25 @@ export default function SiteDetail() {
                         >
                           <Mail className="w-5 h-5" style={{ color: primaryColor }} />
                         </div>
-                        <div>
+                        <div className="min-w-0 flex-1">
                           <p className="text-xs text-muted-foreground mb-0.5">{language === 'bn' ? 'ইমেইল' : 'Email'}</p>
-                          <a href={`mailto:${contactInfo.email}`} className="font-medium hover:underline" style={{ color: primaryColor }}>
+                          <p className="font-medium whitespace-pre-wrap break-words text-sm" style={{ color: primaryColor }}>
                             {contactInfo.email}
-                          </a>
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                    {contactInfo.fax && (
+                      <div className="flex items-start gap-3">
+                        <div 
+                          className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+                          style={{ background: `${primaryColor}15` }}
+                        >
+                          <Printer className="w-5 h-5" style={{ color: primaryColor }} />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <p className="text-xs text-muted-foreground mb-0.5">{language === 'bn' ? 'ফ্যাক্স' : 'Fax'}</p>
+                          <p className="font-medium whitespace-pre-wrap break-words text-sm">{contactInfo.fax}</p>
                         </div>
                       </div>
                     )}
@@ -368,9 +406,9 @@ export default function SiteDetail() {
                         >
                           <MapPin className="w-5 h-5" style={{ color: primaryColor }} />
                         </div>
-                        <div>
+                        <div className="min-w-0 flex-1">
                           <p className="text-xs text-muted-foreground mb-0.5">{language === 'bn' ? 'ঠিকানা' : 'Address'}</p>
-                          <p className="font-medium">{contactInfo.address}</p>
+                          <p className="font-medium whitespace-pre-wrap break-words text-sm">{contactInfo.address}</p>
                         </div>
                       </div>
                     )}
@@ -392,14 +430,14 @@ export default function SiteDetail() {
                       >
                         <Clock className="w-5 h-5" style={{ color: primaryColor }} />
                       </div>
-                      <p className="font-medium pt-2">{siteDetails.office_hours}</p>
+                      <p className="font-medium pt-2 text-sm whitespace-pre-wrap">{siteDetails.office_hours}</p>
                     </div>
                   </CardContent>
                 </Card>
               )}
 
               {/* Related Links */}
-              {relatedLinks && relatedLinks.length > 0 && (
+              {validRelatedLinks && validRelatedLinks.length > 0 && (
                 <Card>
                   <CardHeader className="pb-3">
                     <CardTitle className="flex items-center gap-2 text-lg">
@@ -409,10 +447,10 @@ export default function SiteDetail() {
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-2">
-                      {relatedLinks.slice(0, 5).map((link, index) => (
+                      {validRelatedLinks.slice(0, 5).map((link, index) => (
                         <a
                           key={index}
-                          href={link.url}
+                          href={link.url!}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="flex items-center gap-2 p-2.5 rounded-lg hover:bg-muted transition-colors group text-sm"
