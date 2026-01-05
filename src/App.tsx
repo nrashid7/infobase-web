@@ -16,6 +16,7 @@ const SiteDetail = lazy(() => import("./pages/SiteDetail"));
 const About = lazy(() => import("./pages/About"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const ServicesRedirect = lazy(() => import("./pages/ServicesRedirect"));
+const BulkScrape = lazy(() => import("./pages/BulkScrape"));
 
 const queryClient = new QueryClient();
 
@@ -43,6 +44,7 @@ const App = () => (
                 <Route path="/directory/:slug" element={<SiteDetail />} />
                 <Route path="/sources" element={<Navigate to="/directory" replace />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/bulk-scrape" element={<BulkScrape />} />
                 
               {/* Redirect old routes */}
               <Route path="/services" element={<Navigate to="/guides" replace />} />
