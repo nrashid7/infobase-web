@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Building2, ArrowRight, CheckCircle, Shield, Clock, FileCheck } from 'lucide-react';
 import { getGuideStats, listGuides } from '@/lib/guidesStore';
 import { useLanguage } from '@/lib/LanguageContext';
+import { GlobalSearch } from '@/components/GlobalSearch';
 import { Button } from '@/components/ui/button';
 
 // Category chips for quick navigation
@@ -35,6 +36,8 @@ export default function Index() {
               ? 'সরকারি সেবার জন্য স্পষ্ট নির্দেশনা, ফি, প্রয়োজনীয় কাগজপত্র এবং প্রসেসিং সময় খুঁজুন। সমস্ত তথ্য অফিসিয়াল পোর্টাল থেকে সংগৃহীত।'
               : 'Find clear instructions, fees, required documents, and processing times for government services. All information is sourced from official portals.'}
           </p>
+
+          <GlobalSearch className="max-w-xl mx-auto mb-8" />
 
           {/* Category Chips */}
           <div className="flex flex-wrap items-center justify-center gap-2">
