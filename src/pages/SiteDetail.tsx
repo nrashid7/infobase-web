@@ -331,13 +331,19 @@ export default function SiteDetail() {
                   <CardContent>
                     <div className="grid gap-4 sm:grid-cols-2">
                       {services.map((service, index) => (
-                        <div 
-                          key={index} 
-                          className="p-4 rounded-xl bg-muted/50 hover:bg-muted transition-colors"
+                        <a 
+                          key={index}
+                          href={basicInfo.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-4 rounded-xl bg-muted/50 hover:bg-muted transition-colors group block"
                         >
-                          <h4 className="font-semibold text-foreground mb-1.5">{service.name}</h4>
+                          <div className="flex items-start justify-between gap-2 mb-1.5">
+                            <h4 className="font-semibold text-foreground">{service.name}</h4>
+                            <ExternalLink className="w-3.5 h-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 mt-1" />
+                          </div>
                           <p className="text-sm text-muted-foreground leading-relaxed">{service.description}</p>
-                        </div>
+                        </a>
                       ))}
                     </div>
                   </CardContent>
