@@ -27,7 +27,7 @@ import {
   type SectionItem,
   type VariantFee,
   type FeeItem
-} from '@/data/guidesStore';
+} from '@/lib/guidesStore';
 import { Button } from '@/components/ui/button';
 import {
   Collapsible,

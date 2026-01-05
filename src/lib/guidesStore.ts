@@ -1,6 +1,7 @@
 // Typed data layer for published guides
-import guidesData from './published/public_guides.json';
-import indexData from './published/public_guides_index.json';
+// Single source of truth: src/data/public_guides.json
+import guidesData from '@/data/public_guides.json';
+import indexData from '@/data/public_guides_index.json';
 
 // Types
 export interface Citation {
@@ -143,12 +144,31 @@ guides.forEach(g => {
 });
 
 // Extract unique agencies
-const agencies = Array.from(new Map(guides.map(g => [g.agency_id, { id: g.agency_id, name: g.agency_name }])).values());
+const agencies = Array.from(
+  new Map(guides.map(g => [g.agency_id, { id: g.agency_id, name: g.agency_name }])).values()
+);
+
+// Extract unique official domains
+const officialDomains = new Map<string, { domain: string; urls: Set<string>; titles: Set<string> }>();
+guides.forEach(g => {
+  g.official_links?.forEach(link => {
+    try {
+      const url = new URL(link.url);
+      const domain = url.hostname;
+      if (!officialDomains.has(domain)) {
+        officialDomains.set(domain, { domain, urls: new Set(), titles: new Set() });
+      }
+      const entry = officialDomains.get(domain)!;
+      entry.urls.add(link.url);
+      if (link.label) entry.titles.add(link.label);
+    } catch {}
+  });
+});
 
 /**
  * List all guides with optional search and agency filtering
  */
-export function listGuides(options?: { search?: string; agency?: string }): GuideIndexEntry[] {
+export function listGuides(options?: { search?: string; agency?: string; category?: string }): GuideIndexEntry[] {
   let results = [...index];
   
   if (options?.agency) {
@@ -163,25 +183,38 @@ export function listGuides(options?: { search?: string; agency?: string }): Guid
       g.keywords.some(k => k.toLowerCase().includes(searchLower))
     );
   }
+
+  if (options?.category) {
+    const catLower = options.category.toLowerCase();
+    results = results.filter(g =>
+      g.keywords.some(k => k.toLowerCase().includes(catLower))
+    );
+  }
   
   return results;
 }
 
 /**
- * Get a single guide by ID (accepts guide_id or service_id)
+ * Get a single guide by slug/ID (accepts guide_id or service_id)
  */
+export function getGuideBySlug(slug: string): Guide | undefined {
+  return guideById.get(slug);
+}
+
+// Alias for backwards compatibility
 export function getGuideById(id: string): Guide | undefined {
-  return guideById.get(id);
+  return getGuideBySlug(id);
 }
 
 /**
  * Get guide statistics
  */
-export function getGuideStats(): { 
+export function getStats(): { 
   guides: number; 
   agencies: number; 
   lastUpdated: string | null;
   totalCitations: number;
+  officialDomains: number;
 } {
   const totalCitations = guides.reduce((sum, g) => sum + (g.meta.total_citations || 0), 0);
   const lastUpdated = (guidesData as GuidesData).generated_at || null;
@@ -190,8 +223,14 @@ export function getGuideStats(): {
     guides: guides.length,
     agencies: agencies.length,
     lastUpdated,
-    totalCitations
+    totalCitations,
+    officialDomains: officialDomains.size
   };
+}
+
+// Alias for backwards compatibility
+export function getGuideStats() {
+  return getStats();
 }
 
 /**
@@ -199,6 +238,27 @@ export function getGuideStats(): {
  */
 export function listAgencies(): Array<{ id: string; name: string }> {
   return agencies;
+}
+
+/**
+ * List official source domains
+ */
+export function listOfficialSources(): Array<{ domain: string; urls: string[]; titles: string[] }> {
+  return Array.from(officialDomains.values()).map(d => ({
+    domain: d.domain,
+    urls: Array.from(d.urls),
+    titles: Array.from(d.titles)
+  }));
+}
+
+/**
+ * Global search returning guides only (no claims)
+ */
+export function globalSearch(query: string): { guides: GuideIndexEntry[] } {
+  if (!query || query.length < 2) {
+    return { guides: [] };
+  }
+  return { guides: listGuides({ search: query }) };
 }
 
 /**
@@ -232,7 +292,7 @@ export function getFeesForVariant(guide: Guide, variantId?: VariantType): Varian
 }
 
 /**
- * Format citation for display
+ * Format citation for display (clean, no raw objects)
  */
 export function formatCitation(citation: Citation): string {
   const parts: string[] = [];
