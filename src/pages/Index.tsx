@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, FileCheck, Clock, Shield, BookOpen, CreditCard, Car, Baby, Plane } from 'lucide-react';
+import { ArrowRight, CheckCircle2, FileCheck, Clock, Shield, BookOpen, CreditCard, Car, Baby, Plane, Search, MousePointerClick, Sparkles } from 'lucide-react';
 import { getGuideStats, listGuides } from '@/lib/guidesStore';
 import { useLanguage } from '@/lib/LanguageContext';
 import { GlobalSearch } from '@/components/GlobalSearch';
@@ -16,30 +16,62 @@ const categoryChips = [
   { label: 'Land Records', labelBn: 'ভূমি রেকর্ড', search: 'land', icon: FileCheck },
 ];
 
+// How it works steps
+const howItWorksSteps = [
+  {
+    icon: Search,
+    titleEn: 'Search or Browse',
+    titleBn: 'অনুসন্ধান করুন',
+    descEn: 'Find the service you need using AI search or browse categories',
+    descBn: 'AI সার্চ বা ক্যাটাগরি ব্রাউজ করে আপনার প্রয়োজনীয় সেবা খুঁজুন',
+  },
+  {
+    icon: FileCheck,
+    titleEn: 'Get Requirements',
+    titleBn: 'প্রয়োজনীয়তা দেখুন',
+    descEn: 'See exact documents, fees, and steps verified from official sources',
+    descBn: 'অফিসিয়াল সোর্স থেকে যাচাইকৃত কাগজপত্র, ফি এবং ধাপ দেখুন',
+  },
+  {
+    icon: MousePointerClick,
+    titleEn: 'Apply Confidently',
+    titleBn: 'আবেদন করুন',
+    descEn: 'Direct links to official portals—no middlemen, no guesswork',
+    descBn: 'অফিসিয়াল পোর্টালে সরাসরি লিংক—কোনো মধ্যস্থতাকারী নেই',
+  },
+];
+
 export default function Index() {
   const stats = getGuideStats();
   const guides = listGuides();
   const { t, language } = useLanguage();
 
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return language === 'bn' ? 'শুভ সকাল' : 'Good morning';
+    if (hour < 17) return language === 'bn' ? 'শুভ অপরাহ্ন' : 'Good afternoon';
+    return language === 'bn' ? 'শুভ সন্ধ্যা' : 'Good evening';
+  };
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative py-16 md:py-24 px-4 overflow-hidden">
-        {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/[0.03] via-background to-background" />
+        {/* Mesh gradient background */}
+        <div className="absolute inset-0 mesh-bg opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
         
         <div className="container max-w-4xl relative">
           {/* Time-based greeting */}
-          <div className="text-center mb-6 animate-fade-in">
-            <p className="text-sm text-muted-foreground">
-              {language === 'bn' 
-                ? `${new Date().getHours() < 12 ? 'শুভ সকাল' : new Date().getHours() < 17 ? 'শুভ অপরাহ্ন' : 'শুভ সন্ধ্যা'} 👋 আজ আপনাকে কীভাবে সাহায্য করতে পারি?`
-                : `${new Date().getHours() < 12 ? 'Good morning' : new Date().getHours() < 17 ? 'Good afternoon' : 'Good evening'} 👋 How can we help you today?`}
+          <div className="text-center mb-4 animate-fade-in">
+            <p className="text-sm text-muted-foreground inline-flex items-center gap-2">
+              <span className="inline-block w-2 h-2 rounded-full bg-primary animate-pulse" />
+              {getGreeting()} — {language === 'bn' ? 'আজ আপনাকে কীভাবে সাহায্য করতে পারি?' : 'How can we help you today?'}
             </p>
           </div>
 
           {/* Trust badge */}
-          <div className="flex justify-center mb-8 animate-fade-in">
+          <div className="flex justify-center mb-8 animate-fade-in" style={{ animationDelay: '0.05s' }}>
             <div className="trust-badge">
               <Shield className="w-3.5 h-3.5" />
               <span>{language === 'bn' ? 'অনানুষ্ঠানিক গাইড • যাচাইকৃত সোর্স' : 'Unofficial Guide • Verified Sources'}</span>
@@ -65,21 +97,19 @@ export default function Index() {
           </div>
 
           {/* Stats inline */}
-          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground mb-8 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-            <span className="flex items-center gap-1.5">
-              <span className="font-semibold text-foreground">{stats.guides}</span> 
-              {language === 'bn' ? 'গাইড' : 'guides'}
-            </span>
-            <span className="text-border">•</span>
-            <span className="flex items-center gap-1.5">
-              <span className="font-semibold text-foreground">{stats.agencies}</span> 
-              {language === 'bn' ? 'সংস্থা' : 'agencies'}
-            </span>
-            <span className="text-border">•</span>
-            <span className="flex items-center gap-1.5">
-              <span className="font-semibold text-foreground">{stats.totalCitations}</span> 
-              {language === 'bn' ? 'সাইটেশন' : 'citations'}
-            </span>
+          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 text-sm mb-8 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-card border border-border">
+              <span className="font-bold text-lg text-primary">{stats.guides}</span>
+              <span className="text-muted-foreground">{language === 'bn' ? 'গাইড' : 'guides'}</span>
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-card border border-border">
+              <span className="font-bold text-lg text-primary">{stats.agencies}</span>
+              <span className="text-muted-foreground">{language === 'bn' ? 'সংস্থা' : 'agencies'}</span>
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-card border border-border">
+              <span className="font-bold text-lg text-primary">{stats.totalCitations}</span>
+              <span className="text-muted-foreground">{language === 'bn' ? 'সাইটেশন' : 'citations'}</span>
+            </div>
           </div>
 
           {/* Quick Access Categories */}
@@ -110,30 +140,94 @@ export default function Index() {
         </div>
       </section>
 
+      {/* How It Works - New Section */}
+      <section className="py-16 px-4 border-y border-border bg-muted/20">
+        <div className="container max-w-5xl">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl font-bold text-foreground mb-2">
+              {language === 'bn' ? 'কিভাবে কাজ করে' : 'How It Works'}
+            </h2>
+            <p className="text-muted-foreground">
+              {language === 'bn' ? 'তিনটি সহজ ধাপে আপনার প্রয়োজনীয় তথ্য পান' : 'Get the information you need in three simple steps'}
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+            {howItWorksSteps.map((step, idx) => (
+              <div 
+                key={idx} 
+                className="relative glass-card p-6 text-center animate-fade-in group hover:border-primary/30 transition-all"
+                style={{ animationDelay: `${idx * 0.1}s` }}
+              >
+                {/* Step number */}
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                  <div className="number-badge shadow-lg">
+                    {idx + 1}
+                  </div>
+                </div>
+                
+                {/* Icon */}
+                <div className="icon-container mx-auto mt-4 mb-4 group-hover:scale-110 transition-transform">
+                  <step.icon className="w-6 h-6" />
+                </div>
+                
+                {/* Content */}
+                <h3 className="font-semibold text-foreground mb-2">
+                  {language === 'bn' ? step.titleBn : step.titleEn}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {language === 'bn' ? step.descBn : step.descEn}
+                </p>
+
+                {/* Connector line on desktop */}
+                {idx < howItWorksSteps.length - 1 && (
+                  <div className="hidden md:block absolute top-1/2 -right-4 md:-right-6 w-8 md:w-12 h-0.5 bg-border" />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Featured Guides */}
       <section className="py-16 px-4">
         <div className="container max-w-5xl">
-          <div className="text-center mb-10">
-            <h2 className="text-2xl font-bold text-foreground mb-2">
-              {t('home.popular')}
-            </h2>
-            <p className="text-muted-foreground">
-              {language === 'bn' ? 'সবচেয়ে বেশি দেখা সেবা গাইড' : 'Most viewed service guides'}
-            </p>
+          <div className="flex items-center justify-between mb-10">
+            <div>
+              <h2 className="text-2xl font-bold text-foreground mb-2">
+                {t('home.popular')}
+              </h2>
+              <p className="text-muted-foreground">
+                {language === 'bn' ? 'সবচেয়ে বেশি দেখা সেবা গাইড' : 'Most viewed service guides'}
+              </p>
+            </div>
+            <Button asChild variant="outline" size="sm" className="hidden md:inline-flex group">
+              <Link to="/guides">
+                {language === 'bn' ? 'সব দেখুন' : 'View all'}
+                <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-0.5 transition-transform" />
+              </Link>
+            </Button>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-4 mb-10">
+          <div className="grid md:grid-cols-2 gap-4 mb-8">
             {guides.slice(0, 4).map((guide, idx) => (
               <Link
                 key={guide.guide_id}
                 to={`/guides/${guide.guide_id}`}
-                className="modern-card p-6 group"
+                className="modern-card p-6 group relative overflow-hidden"
                 style={{ animationDelay: `${idx * 0.1}s` }}
               >
+                {/* Rank badge */}
+                <div className="absolute top-4 right-4">
+                  <span className="text-4xl font-bold text-muted/30 group-hover:text-primary/20 transition-colors">
+                    #{idx + 1}
+                  </span>
+                </div>
+
                 <p className="text-xs text-muted-foreground mb-2 uppercase tracking-wide font-medium">
                   {guide.agency_name}
                 </p>
-                <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors mb-3">
+                <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors mb-3 pr-12">
                   {guide.title}
                 </h3>
                 <p className="text-sm text-muted-foreground mb-4">
@@ -150,7 +244,7 @@ export default function Index() {
             ))}
           </div>
 
-          <div className="text-center">
+          <div className="text-center md:hidden">
             <Button asChild variant="outline" size="lg" className="group">
               <Link to="/guides">
                 {t('home.viewAll')}
@@ -165,6 +259,10 @@ export default function Index() {
       <section className="py-16 px-4 bg-muted/30 border-y border-border">
         <div className="container max-w-5xl">
           <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-medium mb-4">
+              <Sparkles className="w-3.5 h-3.5" />
+              {language === 'bn' ? 'কেন আমাদের বিশ্বাস করবেন' : 'Why trust us'}
+            </div>
             <h2 className="text-2xl font-bold text-foreground mb-2">
               {language === 'bn' ? 'কেন INFOBASE?' : 'Why INFOBASE?'}
             </h2>
@@ -172,8 +270,8 @@ export default function Index() {
           
           <div className="grid md:grid-cols-3 gap-6">
             {/* Feature 1 */}
-            <div className="feature-card">
-              <div className="icon-container mx-auto mb-5">
+            <div className="feature-card group">
+              <div className="icon-container mx-auto mb-5 group-hover:scale-110 transition-transform">
                 <FileCheck className="w-6 h-6" />
               </div>
               <h3 className="font-semibold text-foreground mb-3 text-lg">
@@ -185,8 +283,8 @@ export default function Index() {
             </div>
 
             {/* Feature 2 */}
-            <div className="feature-card">
-              <div className="icon-container mx-auto mb-5">
+            <div className="feature-card group">
+              <div className="icon-container mx-auto mb-5 group-hover:scale-110 transition-transform">
                 <CheckCircle2 className="w-6 h-6" />
               </div>
               <h3 className="font-semibold text-foreground mb-3 text-lg">
@@ -198,8 +296,8 @@ export default function Index() {
             </div>
 
             {/* Feature 3 */}
-            <div className="feature-card">
-              <div className="icon-container mx-auto mb-5">
+            <div className="feature-card group">
+              <div className="icon-container mx-auto mb-5 group-hover:scale-110 transition-transform">
                 <Clock className="w-6 h-6" />
               </div>
               <h3 className="font-semibold text-foreground mb-3 text-lg">

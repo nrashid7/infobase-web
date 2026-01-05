@@ -68,12 +68,16 @@
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(162 100% 21%) 0%, hsl(162 80% 30%) 100%);
     --gradient-hero: linear-gradient(180deg, hsl(162 30% 97%) 0%, hsl(0 0% 99%) 100%);
+    --gradient-mesh: radial-gradient(at 40% 20%, hsl(162 60% 95%) 0px, transparent 50%),
+                     radial-gradient(at 80% 0%, hsl(162 40% 92%) 0px, transparent 50%),
+                     radial-gradient(at 0% 50%, hsl(200 50% 95%) 0px, transparent 50%);
     
     /* Shadows */
     --shadow-sm: 0 1px 2px 0 hsl(210 11% 12% / 0.03);
     --shadow-md: 0 4px 6px -1px hsl(210 11% 12% / 0.05), 0 2px 4px -2px hsl(210 11% 12% / 0.03);
     --shadow-lg: 0 10px 15px -3px hsl(210 11% 12% / 0.06), 0 4px 6px -4px hsl(210 11% 12% / 0.04);
     --shadow-glow: 0 0 30px hsl(162 100% 21% / 0.12);
+    --shadow-elevated: 0 25px 50px -12px hsl(210 11% 12% / 0.08);
   }
 
   .dark {
@@ -133,11 +137,15 @@
 
     --gradient-primary: linear-gradient(135deg, hsl(162 70% 40%) 0%, hsl(162 70% 50%) 100%);
     --gradient-hero: linear-gradient(180deg, hsl(162 20% 12%) 0%, hsl(210 11% 8%) 100%);
+    --gradient-mesh: radial-gradient(at 40% 20%, hsl(162 50% 15%) 0px, transparent 50%),
+                     radial-gradient(at 80% 0%, hsl(162 40% 12%) 0px, transparent 50%),
+                     radial-gradient(at 0% 50%, hsl(200 40% 15%) 0px, transparent 50%);
     
     --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.15);
     --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.2), 0 2px 4px -2px hsl(0 0% 0% / 0.15);
     --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.25), 0 4px 6px -4px hsl(0 0% 0% / 0.15);
     --shadow-glow: 0 0 40px hsl(162 70% 45% / 0.2);
+    --shadow-elevated: 0 25px 50px -12px hsl(0 0% 0% / 0.25);
   }
 }
 
@@ -278,6 +286,33 @@
     @apply w-16 h-16 rounded-2xl flex items-center justify-center;
     @apply bg-primary text-primary-foreground;
   }
+
+  /* Glass card */
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-sm border border-border/60 rounded-2xl;
+    box-shadow: var(--shadow-md);
+  }
+
+  /* Number badge */
+  .number-badge {
+    @apply w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold;
+    @apply bg-primary text-primary-foreground;
+  }
+
+  /* Step connector line */
+  .step-connector {
+    @apply absolute left-4 top-10 bottom-0 w-0.5 bg-border;
+  }
+
+  /* Mesh background */
+  .mesh-bg {
+    background: var(--gradient-mesh);
+  }
+
+  /* Floating animation */
+  .float-animation {
+    animation: float 6s ease-in-out infinite;
+  }
 }
 
 @layer utilities {
@@ -317,4 +352,15 @@
   .hover-scale:hover {
     transform: scale(1.02);
   }
+}
+
+/* Keyframes */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
