@@ -59,16 +59,17 @@ Deno.serve(async (req) => {
 
     console.log('Scraping URL:', url);
 
-    // Step 1: Scrape the website with Firecrawl
+    // Step 1: Try to scrape the website with multiple methods
     let scrapedData: { markdown?: string; branding?: Record<string, unknown> } = {};
-    
-    // Try with branding first, fall back to markdown-only if it fails
-    const tryFormats = [['markdown', 'branding'], ['markdown']];
     let scrapeSuccess = false;
+    let scrapeMethod = '';
+    
+    // Method 1: Try Firecrawl with branding first, then markdown-only
+    const tryFormats = [['markdown', 'branding'], ['markdown']];
     
     for (const formats of tryFormats) {
       try {
-        console.log(`Trying formats: ${formats.join(', ')}`);
+        console.log(`[Firecrawl] Trying formats: ${formats.join(', ')}`);
         const scrapeResponse = await fetch('https://api.firecrawl.dev/v1/scrape', {
           method: 'POST',
           headers: {
@@ -88,31 +89,88 @@ Deno.serve(async (req) => {
         
         if (scrapeResponse.ok && scrapeResult.success) {
           scrapedData = scrapeResult.data || scrapeResult;
-          console.log('Scrape successful, markdown length:', scrapedData.markdown?.length || 0);
+          console.log('[Firecrawl] Scrape successful, markdown length:', scrapedData.markdown?.length || 0);
           scrapeSuccess = true;
+          scrapeMethod = 'firecrawl';
           break;
         } else {
-          console.warn(`Format ${formats.join(', ')} failed:`, scrapeResult.error);
+          console.warn(`[Firecrawl] Format ${formats.join(', ')} failed:`, scrapeResult.error);
         }
       } catch (scrapeError) {
-        console.warn(`Format ${formats.join(', ')} threw error:`, scrapeError);
+        console.warn(`[Firecrawl] Format ${formats.join(', ')} threw error:`, scrapeError);
       }
     }
     
+    // Method 2: If Firecrawl fails, use Perplexity search to gather information
     if (!scrapeSuccess) {
-      console.error('All scrape attempts failed for:', url);
+      console.log('[Perplexity] Firecrawl failed, trying Perplexity search...');
+      try {
+        const searchQuery = `${name} Bangladesh government website official information services contact`;
+        
+        const perplexitySearchResponse = await fetch('https://api.perplexity.ai/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${perplexityApiKey}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            model: 'sonar',
+            messages: [
+              { 
+                role: 'system', 
+                content: 'You are a research assistant. Provide comprehensive information about the requested government organization including their services, contact information, office hours, and mission. Be factual and detailed.' 
+              },
+              { 
+                role: 'user', 
+                content: `Research the ${name} (${url}) - a Bangladesh government website. Provide detailed information about:
+1. What this organization does (description)
+2. Their mission statement
+3. Main services they offer
+4. Contact information (phone, email, address)
+5. Office hours
+6. Related important links or departments
+
+Provide as much accurate information as possible.`
+              }
+            ],
+            search_domain_filter: [url.replace('https://', '').replace('http://', '').split('/')[0]],
+          }),
+        });
+
+        const perplexitySearchResult = await perplexitySearchResponse.json();
+        
+        if (perplexitySearchResponse.ok && perplexitySearchResult.choices?.[0]?.message?.content) {
+          const content = perplexitySearchResult.choices[0].message.content;
+          scrapedData.markdown = content;
+          scrapeSuccess = true;
+          scrapeMethod = 'perplexity';
+          console.log('[Perplexity] Search successful, content length:', content.length);
+        } else {
+          console.warn('[Perplexity] Search failed:', perplexitySearchResult.error || 'No content');
+        }
+      } catch (perplexityError) {
+        console.warn('[Perplexity] Search threw error:', perplexityError);
+      }
+    }
+    
+    // If all methods fail, save error and return
+    if (!scrapeSuccess) {
+      console.error('All scrape methods failed for:', url);
       
       await supabase.from('gov_site_details').update({
         scrape_status: 'failed',
-        scrape_error: 'All scrape formats failed - site may be unreachable or blocking scrapers',
+        scrape_error: 'All methods failed (Firecrawl + Perplexity) - site may be unreachable',
         last_scraped_at: new Date().toISOString(),
       }).eq('url', url);
 
       return new Response(
-        JSON.stringify({ success: false, error: 'Failed to scrape website after retries' }),
+        JSON.stringify({ success: false, error: 'Failed to scrape website with all available methods' }),
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
+    
+    console.log(`Scrape successful via ${scrapeMethod}`);
+    
 
     // Step 2: Use Perplexity to extract structured information
     const markdown = scrapedData.markdown || '';
