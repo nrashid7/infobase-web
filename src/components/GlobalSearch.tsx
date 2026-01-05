@@ -35,37 +35,61 @@ function TypingIndicator() {
   );
 }
 
-// Animated suggestion rotator for the search bar
+// Animated suggestion rotator for the search bar - optimized to prevent forced reflows
 function AnimatedPlaceholder({ suggestions, language }: { suggestions: typeof quickQuestions; language: string }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
   const [isTyping, setIsTyping] = useState(true);
+  const rafRef = useRef<number>(0);
+  const lastTimeRef = useRef<number>(0);
 
   const currentSuggestion = language === 'bn' ? suggestions[currentIndex].bn : suggestions[currentIndex].en;
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout;
-    
-    if (isTyping) {
-      if (displayText.length < currentSuggestion.length) {
-        timeout = setTimeout(() => {
-          setDisplayText(currentSuggestion.slice(0, displayText.length + 1));
-        }, 50);
-      } else {
-        timeout = setTimeout(() => setIsTyping(false), 2000);
-      }
-    } else {
-      if (displayText.length > 0) {
-        timeout = setTimeout(() => {
-          setDisplayText(displayText.slice(0, -1));
-        }, 30);
-      } else {
-        setCurrentIndex((prev) => (prev + 1) % suggestions.length);
-        setIsTyping(true);
-      }
-    }
+    let cancelled = false;
+    const typingSpeed = 50;
+    const deletingSpeed = 30;
+    const pauseDuration = 2000;
 
-    return () => clearTimeout(timeout);
+    const animate = (timestamp: number) => {
+      if (cancelled) return;
+
+      const elapsed = timestamp - lastTimeRef.current;
+      
+      if (isTyping) {
+        if (displayText.length < currentSuggestion.length) {
+          if (elapsed >= typingSpeed) {
+            lastTimeRef.current = timestamp;
+            setDisplayText(currentSuggestion.slice(0, displayText.length + 1));
+          }
+        } else {
+          if (elapsed >= pauseDuration) {
+            lastTimeRef.current = timestamp;
+            setIsTyping(false);
+          }
+        }
+      } else {
+        if (displayText.length > 0) {
+          if (elapsed >= deletingSpeed) {
+            lastTimeRef.current = timestamp;
+            setDisplayText(displayText.slice(0, -1));
+          }
+        } else {
+          setCurrentIndex((prev) => (prev + 1) % suggestions.length);
+          setIsTyping(true);
+          lastTimeRef.current = timestamp;
+        }
+      }
+
+      rafRef.current = requestAnimationFrame(animate);
+    };
+
+    rafRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(rafRef.current);
+    };
   }, [displayText, isTyping, currentSuggestion, suggestions.length]);
 
   return (
