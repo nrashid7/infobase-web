@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, ExternalLink, Phone, Mail, MapPin, Clock, Globe, Loader2, RefreshCw, AlertCircle, Building2, Target, ListChecks, Link2, Printer } from 'lucide-react';
+import { ExternalLink, Phone, Mail, MapPin, Clock, Globe, Loader2, RefreshCw, AlertCircle, Building2, Target, ListChecks, Link2, Printer, ArrowLeft } from 'lucide-react';
 import { useLanguage } from '@/lib/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -9,6 +9,7 @@ import { FaviconImage } from '@/components/FaviconImage';
 import { govDirectory } from '@/data/govDirectory';
 import { getSiteByUrl, scrapeSite, findSiteBySlug, GovSiteDetails } from '@/lib/api/govSites';
 import { useToast } from '@/hooks/use-toast';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 
 export default function SiteDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -143,13 +144,14 @@ export default function SiteDetail() {
         />
         
         <div className="container max-w-5xl mx-auto px-4 relative">
-          <Link 
-            to="/directory" 
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8 transition-colors group"
-          >
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            {language === 'bn' ? 'ডিরেক্টরিতে ফিরে যান' : 'Back to Directory'}
-          </Link>
+          {/* Breadcrumbs */}
+          <Breadcrumbs 
+            items={[
+              { label: language === 'bn' ? 'ডিরেক্টরি' : 'Directory', href: '/directory' },
+              { label: basicInfo.name }
+            ]} 
+            className="mb-8"
+          />
 
           <div className="flex flex-col md:flex-row items-start gap-6 md:gap-8">
             {/* Logo */}
