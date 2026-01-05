@@ -1,5 +1,6 @@
 import { SidebarTrigger } from '@/components/ui/sidebar';
 import { GlobalSearch } from './GlobalSearch';
+import { LanguageToggle } from './LanguageToggle';
 
 export function Header() {
   return (
@@ -7,6 +8,7 @@ export function Header() {
       <div className="flex items-center gap-4 px-4 h-14">
         <SidebarTrigger className="text-muted-foreground hover:text-foreground" />
         <GlobalSearch className="flex-1 max-w-xl" />
+        <LanguageToggle />
       </div>
     </header>
   );

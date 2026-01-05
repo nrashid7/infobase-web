@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { BookOpen, Search, ArrowRight, ExternalLink, Building2 } from 'lucide-react';
 import { listGuides, listAgencies } from '@/lib/guidesStore';
+import { useLanguage } from '@/lib/LanguageContext';
 import { Input } from '@/components/ui/input';
 import {
   Select,
@@ -15,6 +16,7 @@ export default function Guides() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [search, setSearch] = useState(searchParams.get('search') || '');
   const [agencyFilter, setAgencyFilter] = useState(searchParams.get('agency') || 'all');
+  const { t, language } = useLanguage();
 
   const agencies = listAgencies();
 
@@ -40,9 +42,13 @@ export default function Guides() {
       <div className="container">
         {/* Header */}
         <header className="mb-8">
-          <h1 className="text-2xl font-bold text-foreground mb-2">Service Guides</h1>
+          <h1 className="text-2xl font-bold text-foreground mb-2">
+            {language === 'bn' ? 'সেবা গাইড' : 'Service Guides'}
+          </h1>
           <p className="text-muted-foreground">
-            Step-by-step guides for Bangladesh government services with official citations.
+            {language === 'bn' 
+              ? 'অফিসিয়াল সাইটেশন সহ বাংলাদেশ সরকারি সেবার জন্য ধাপে ধাপে গাইড।'
+              : 'Step-by-step guides for Bangladesh government services with official citations.'}
           </p>
         </header>
 
@@ -57,7 +63,7 @@ export default function Guides() {
                   setSearch(e.target.value);
                   updateFilter('search', e.target.value);
                 }}
-                placeholder="Search guides (e.g., passport, visa)..."
+                placeholder={language === 'bn' ? 'গাইড খুঁজুন (যেমন, পাসপোর্ট, ভিসা)...' : 'Search guides (e.g., passport, visa)...'}
                 className="pl-10"
               />
             </div>
@@ -67,10 +73,10 @@ export default function Guides() {
               updateFilter('agency', v);
             }}>
               <SelectTrigger>
-                <SelectValue placeholder="All agencies" />
+                <SelectValue placeholder={language === 'bn' ? 'সব সংস্থা' : 'All agencies'} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All agencies</SelectItem>
+                <SelectItem value="all">{language === 'bn' ? 'সব সংস্থা' : 'All agencies'}</SelectItem>
                 {agencies.map((agency) => (
                   <SelectItem key={agency.id} value={agency.id}>
                     {agency.name}
@@ -83,7 +89,9 @@ export default function Guides() {
 
         {/* Results count */}
         <p className="text-sm text-muted-foreground mb-4">
-          {guides.length} guide{guides.length !== 1 ? 's' : ''} found
+          {language === 'bn' 
+            ? `${guides.length}টি গাইড পাওয়া গেছে`
+            : `${guides.length} guide${guides.length !== 1 ? 's' : ''} found`}
         </p>
 
         {/* Guides Grid */}
@@ -106,12 +114,16 @@ export default function Guides() {
               </h3>
               
               <p className="text-sm text-muted-foreground mb-4">
-                {guide.step_count > 0 ? `${guide.step_count} steps` : 'Service information'} 
-                {guide.citation_count > 0 && ` • ${guide.citation_count} citations`}
+                {guide.step_count > 0 
+                  ? `${guide.step_count} ${language === 'bn' ? 'ধাপ' : 'steps'}` 
+                  : language === 'bn' ? 'সেবার তথ্য' : 'Service information'} 
+                {guide.citation_count > 0 && ` • ${guide.citation_count} ${language === 'bn' ? 'সাইটেশন' : 'citations'}`}
               </p>
 
               <div className="flex items-center justify-between">
-                <span className="text-xs text-primary font-medium">View guide</span>
+                <span className="text-xs text-primary font-medium">
+                  {t('action.viewDetails')}
+                </span>
                 <ArrowRight className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
             </Link>
@@ -121,9 +133,11 @@ export default function Guides() {
         {guides.length === 0 && (
           <div className="text-center py-12">
             <BookOpen className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-            <h3 className="font-semibold text-foreground mb-2">No guides found</h3>
+            <h3 className="font-semibold text-foreground mb-2">{t('search.noResults')}</h3>
             <p className="text-muted-foreground">
-              Try adjusting your search or filters.
+              {language === 'bn' 
+                ? 'আপনার অনুসন্ধান বা ফিল্টার সামঞ্জস্য করে দেখুন।'
+                : 'Try adjusting your search or filters.'}
             </p>
           </div>
         )}
