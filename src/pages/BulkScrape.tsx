@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { govDirectory } from '@/data/govDirectory';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
@@ -24,44 +24,57 @@ export default function BulkScrape() {
   const [isScraping, setIsScraping] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Get all sites from directory
-  const allSites = govDirectory.flatMap(cat => 
+  // Get all sites from directory - memoized to avoid recreation
+  const allSites = useMemo(() => govDirectory.flatMap(cat => 
     cat.links.map(link => ({
       name: link.name,
       url: link.url,
       categoryId: cat.id,
       status: 'pending' as const
     }))
-  );
+  ), []);
 
   // Load already scraped sites from database
   useEffect(() => {
     async function loadScrapedSites() {
-      const { data, error } = await supabase
-        .from('gov_site_details')
-        .select('url, scrape_status');
-      
-      if (error) {
-        console.error('Error loading scraped sites:', error);
-        return;
-      }
+      try {
+        const { data, error } = await supabase
+          .from('gov_site_details')
+          .select('url, scrape_status');
+        
+        if (error) {
+          console.error('Error loading scraped sites:', error);
+          setIsLoading(false);
+          return;
+        }
 
-      const successUrls = new Set(
-        data
-          .filter(site => site.scrape_status === 'success')
-          .map(site => site.url)
-      );
-      
-      setScrapedUrls(successUrls);
-      
-      // Filter to only unscraped sites
-      const unscraped = allSites.filter(site => !successUrls.has(site.url));
-      setSites(unscraped);
-      setIsLoading(false);
+        const successUrls = new Set(
+          (data || [])
+            .filter(site => site.scrape_status === 'success')
+            .map(site => site.url)
+        );
+        
+        setScrapedUrls(successUrls);
+        
+        // Filter to only unscraped sites - normalize URLs for comparison
+        const unscraped = allSites.filter(site => {
+          // Check both with and without trailing slash
+          const urlWithSlash = site.url.endsWith('/') ? site.url : site.url + '/';
+          const urlWithoutSlash = site.url.endsWith('/') ? site.url.slice(0, -1) : site.url;
+          return !successUrls.has(site.url) && !successUrls.has(urlWithSlash) && !successUrls.has(urlWithoutSlash);
+        });
+        
+        console.log(`Total sites: ${allSites.length}, Already scraped: ${successUrls.size}, Remaining: ${unscraped.length}`);
+        setSites(unscraped);
+      } catch (err) {
+        console.error('Exception loading scraped sites:', err);
+      } finally {
+        setIsLoading(false);
+      }
     }
 
     loadScrapedSites();
-  }, []);
+  }, [allSites]);
 
   const scrapeSite = async (site: SiteToScrape): Promise<boolean> => {
     try {
