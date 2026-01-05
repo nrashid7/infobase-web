@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, FileCheck, Clock, Shield, BookOpen, CreditCard, Car, Baby, Plane, Search, MousePointerClick, Sparkles, Zap } from 'lucide-react';
-import { getGuideStats, listGuides } from '@/lib/guidesStore';
+import { getGuideStats, listGuides, getGuideById } from '@/lib/guidesStore';
 import { useLanguage } from '@/lib/LanguageContext';
 import { GlobalSearch } from '@/components/GlobalSearch';
 import { Button } from '@/components/ui/button';
+import { FaviconImage, getAgencyDomain } from '@/components/FaviconImage';
 
 // Category chips for quick navigation with icons
 const categoryChips = [{
@@ -232,35 +233,48 @@ export default function Index() {
           </div>
           
           <div className="grid md:grid-cols-2 gap-6 mb-10">
-            {guides.slice(0, 4).map((guide, idx) => (
-              <Link 
-                key={guide.guide_id} 
-                to={`/guides/${guide.guide_id}`} 
-                className="modern-card p-8 group relative overflow-hidden"
-              >
-                {/* Rank badge */}
-                <div className="absolute top-6 right-6">
-                  <span className="font-display text-5xl font-bold text-muted/15 group-hover:text-primary/15 transition-colors duration-300">
-                    #{idx + 1}
-                  </span>
-                </div>
+            {guides.slice(0, 4).map((guide, idx) => {
+              const fullGuide = getGuideById(guide.guide_id);
+              const agencyDomain = fullGuide ? getAgencyDomain(fullGuide.official_links) : null;
+              
+              return (
+                <Link 
+                  key={guide.guide_id} 
+                  to={`/guides/${guide.guide_id}`} 
+                  className="modern-card p-8 group relative overflow-hidden"
+                >
+                  {/* Rank badge */}
+                  <div className="absolute top-6 right-6">
+                    <span className="font-display text-5xl font-bold text-muted/15 group-hover:text-primary/15 transition-colors duration-300">
+                      #{idx + 1}
+                    </span>
+                  </div>
 
-                <p className="text-sm text-muted-foreground mb-3 uppercase tracking-wide font-medium">
-                  {guide.agency_name}
-                </p>
-                <h3 className="text-foreground group-hover:text-primary transition-colors duration-300 mb-4 pr-16">
-                  {guide.title}
-                </h3>
-                <p className="text-muted-foreground mb-6">
-                  {guide.step_count > 0 ? `${guide.step_count} ${language === 'bn' ? 'ধাপ' : 'steps'}` : language === 'bn' ? 'সেবার তথ্য' : 'Service information'}
-                  {guide.citation_count > 0 && ` • ${guide.citation_count} ${language === 'bn' ? 'সাইটেশন' : 'citations'}`}
-                </p>
-                <span className="text-base text-primary font-medium inline-flex items-center gap-2 group-hover:gap-3 transition-all duration-300">
-                  {t('action.viewDetails')}
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                </span>
-              </Link>
-            ))}
+                  <div className="flex items-center gap-2 mb-3">
+                    {agencyDomain && (
+                      <FaviconImage 
+                        url={`https://${agencyDomain}`} 
+                        className="w-4 h-4 flex-shrink-0" 
+                      />
+                    )}
+                    <p className="text-sm text-muted-foreground uppercase tracking-wide font-medium">
+                      {guide.agency_name}
+                    </p>
+                  </div>
+                  <h3 className="text-foreground group-hover:text-primary transition-colors duration-300 mb-4 pr-16">
+                    {guide.title}
+                  </h3>
+                  <p className="text-muted-foreground mb-6">
+                    {guide.step_count > 0 ? `${guide.step_count} ${language === 'bn' ? 'ধাপ' : 'steps'}` : language === 'bn' ? 'সেবার তথ্য' : 'Service information'}
+                    {guide.citation_count > 0 && ` • ${guide.citation_count} ${language === 'bn' ? 'সাইটেশন' : 'citations'}`}
+                  </p>
+                  <span className="text-base text-primary font-medium inline-flex items-center gap-2 group-hover:gap-3 transition-all duration-300">
+                    {t('action.viewDetails')}
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                  </span>
+                </Link>
+              );
+            })}
           </div>
 
           <div className="text-center md:hidden">
