@@ -369,7 +369,7 @@ export default function Index() {
               {language === 'bn' ? (
                 <>
                   এটি একটি অনানুষ্ঠানিক গাইড। পদক্ষেপ নেওয়ার আগে সর্বদা{' '}
-                  <Link to="/about" className="text-primary hover:underline font-medium">
+                  <Link to="/about" className="text-primary underline hover:no-underline font-medium">
                     অফিসিয়াল সোর্সে
                   </Link>{' '}
                   যাচাই করুন।
@@ -377,7 +377,7 @@ export default function Index() {
               ) : (
                 <>
                   This is an unofficial guide. Always verify on{' '}
-                  <Link to="/about" className="text-primary hover:underline font-medium">
+                  <Link to="/about" className="text-primary underline hover:no-underline font-medium">
                     official sources
                   </Link>{' '}
                   before taking action.
