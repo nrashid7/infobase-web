@@ -21,7 +21,7 @@ export function AppSidebar() {
   const navItems = [
     { title: t('nav.home'), url: '/', icon: Home },
     { title: t('nav.services'), url: '/guides', icon: BookOpen },
-    { title: t('nav.sources'), url: '/sources', icon: Globe },
+    { title: t('nav.directory'), url: '/directory', icon: Globe },
     { title: t('nav.about'), url: '/about', icon: Info },
   ];
 

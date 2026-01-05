@@ -14,7 +14,7 @@ const translations: Record<Language, Record<string, string>> = {
     // Navigation
     'nav.home': 'Home',
     'nav.services': 'Services',
-    'nav.sources': 'Official Sources',
+    'nav.directory': 'Directory',
     'nav.about': 'About',
     
     // Home page
@@ -78,9 +78,9 @@ const translations: Record<Language, Record<string, string>> = {
     'search.noResults': 'No services found',
     
     // Sources page
-    'sources.title': 'Official Sources',
-    'sources.subtitle': 'All information is sourced from official government websites',
-    
+    'directory.title': 'Directory',
+    'directory.subtitle': 'All official government websites of Bangladesh',
+
     // About page
     'about.title': 'About',
   },
@@ -88,7 +88,7 @@ const translations: Record<Language, Record<string, string>> = {
     // Navigation
     'nav.home': 'হোম',
     'nav.services': 'সেবাসমূহ',
-    'nav.sources': 'অফিসিয়াল সোর্স',
+    'nav.directory': 'ডিরেক্টরি',
     'nav.about': 'সম্পর্কে',
     
     // Home page
@@ -152,9 +152,9 @@ const translations: Record<Language, Record<string, string>> = {
     'search.noResults': 'কোন সেবা পাওয়া যায়নি',
     
     // Sources page
-    'sources.title': 'অফিসিয়াল সোর্স',
-    'sources.subtitle': 'সমস্ত তথ্য সরকারি অফিসিয়াল ওয়েবসাইট থেকে সংগৃহীত',
-    
+    'directory.title': 'ডিরেক্টরি',
+    'directory.subtitle': 'বাংলাদেশের সকল সরকারি অফিসিয়াল ওয়েবসাইট',
+
     // About page
     'about.title': 'সম্পর্কে',
   },
