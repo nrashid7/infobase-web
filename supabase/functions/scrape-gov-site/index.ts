@@ -138,13 +138,18 @@ Deno.serve(async (req) => {
     let scrapedData: { markdown?: string; branding?: Record<string, unknown> } = {};
     let scrapeSuccess = false;
     let scrapeMethod = '';
+    const MIN_CONTENT_LENGTH = 500; // Minimum content length to consider scrape successful
     
-    // Method 1: Try Firecrawl with branding first, then markdown-only
-    const tryFormats = [['markdown', 'branding'], ['markdown']];
+    // Method 1: Try Firecrawl with branding first, then markdown-only with longer wait
+    const tryConfigs = [
+      { formats: ['markdown', 'branding'], waitFor: 5000 },
+      { formats: ['markdown'], waitFor: 8000 },
+      { formats: ['rawHtml'], waitFor: 10000 }, // Try rawHtml as last resort
+    ];
     
-    for (const formats of tryFormats) {
+    for (const config of tryConfigs) {
       try {
-        console.log(`[Firecrawl] Trying formats: ${formats.join(', ')}`);
+        console.log(`[Firecrawl] Trying formats: ${config.formats.join(', ')} with ${config.waitFor}ms wait`);
         const scrapeResponse = await fetch('https://api.firecrawl.dev/v1/scrape', {
           method: 'POST',
           headers: {
@@ -153,35 +158,54 @@ Deno.serve(async (req) => {
           },
           body: JSON.stringify({
             url,
-            formats,
-            onlyMainContent: true,
-            waitFor: 5000,
-            timeout: 30000,
+            formats: config.formats,
+            onlyMainContent: config.formats.includes('rawHtml') ? false : true,
+            waitFor: config.waitFor,
+            timeout: 45000,
           }),
         });
 
         const scrapeResult = await scrapeResponse.json();
         
         if (scrapeResponse.ok && scrapeResult.success) {
-          scrapedData = scrapeResult.data || scrapeResult;
-          console.log('[Firecrawl] Scrape successful, markdown length:', scrapedData.markdown?.length || 0);
-          scrapeSuccess = true;
-          scrapeMethod = 'firecrawl';
-          break;
+          const data = scrapeResult.data || scrapeResult;
+          const contentLength = (data.markdown?.length || 0) + (data.rawHtml?.length || 0);
+          console.log(`[Firecrawl] Got content, length: ${contentLength}`);
+          
+          // Check if we got meaningful content
+          if (contentLength >= MIN_CONTENT_LENGTH) {
+            scrapedData = data;
+            // If we only got rawHtml, use it as markdown for extraction
+            if (!scrapedData.markdown && data.rawHtml) {
+              // Extract text from HTML using a simple regex approach
+              const htmlContent = data.rawHtml as string;
+              const textContent = htmlContent
+                .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
+                .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
+                .replace(/<[^>]+>/g, ' ')
+                .replace(/\s+/g, ' ')
+                .trim();
+              scrapedData.markdown = textContent;
+              console.log(`[Firecrawl] Extracted ${textContent.length} chars from rawHtml`);
+            }
+            scrapeSuccess = true;
+            scrapeMethod = 'firecrawl';
+            break;
+          } else {
+            console.warn(`[Firecrawl] Content too short (${contentLength}), trying next method`);
+          }
         } else {
-          console.warn(`[Firecrawl] Format ${formats.join(', ')} failed:`, scrapeResult.error);
+          console.warn(`[Firecrawl] Format ${config.formats.join(', ')} failed:`, scrapeResult.error);
         }
       } catch (scrapeError) {
-        console.warn(`[Firecrawl] Format ${formats.join(', ')} threw error:`, scrapeError);
+        console.warn(`[Firecrawl] Format ${config.formats.join(', ')} threw error:`, scrapeError);
       }
     }
     
-    // Method 2: If Firecrawl fails, use Perplexity search to gather information
-    if (!scrapeSuccess) {
-      console.log('[Perplexity] Firecrawl failed, trying Perplexity search...');
+    // Method 2: If Firecrawl fails or returns minimal content, use Perplexity search
+    if (!scrapeSuccess || (scrapedData.markdown?.length || 0) < MIN_CONTENT_LENGTH) {
+      console.log('[Perplexity] Firecrawl insufficient, using Perplexity for comprehensive research...');
       try {
-        const searchQuery = `${name} Bangladesh government website official information services contact`;
-        
         const perplexitySearchResponse = await fetch('https://api.perplexity.ai/chat/completions', {
           method: 'POST',
           headers: {
@@ -189,26 +213,37 @@ Deno.serve(async (req) => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            model: 'sonar',
+            model: 'sonar-pro',
             messages: [
               { 
                 role: 'system', 
-                content: 'You are a research assistant. Provide comprehensive information about the requested government organization including their services, contact information, office hours, and mission. Be factual and detailed.' 
+                content: 'You are a research assistant specializing in Bangladesh government organizations. Provide comprehensive, factual information. Include specific phone numbers, email addresses, and physical addresses when available. Be thorough and detailed.' 
               },
               { 
                 role: 'user', 
-                content: `Research the ${name} (${url}) - a Bangladesh government website. Provide detailed information about:
-1. What this organization does (description)
-2. Their mission statement
-3. Main services they offer
-4. Contact information (phone, email, address)
-5. Office hours
-6. Related important links or departments
+                content: `Research "${name}" - the official Bangladesh government website at ${url}. Provide detailed and accurate information about:
 
-Provide as much accurate information as possible.`
+1. **Description**: What does this organization do? What is its role in Bangladesh government? (2-3 detailed sentences)
+
+2. **Mission/Vision**: What is their stated mission or vision? Quote it if available.
+
+3. **Services** (list at least 4-6 specific services):
+   - What specific services do they provide to citizens?
+   - What processes can be done through this organization?
+
+4. **Contact Information** (be specific with real numbers/emails):
+   - Phone numbers (include country code +880)
+   - Email addresses
+   - Physical address (full address with postal code)
+   - Fax numbers if available
+
+5. **Office Hours**: What are their working hours?
+
+6. **Important Links**: What are the key subpages or related government websites?
+
+Please provide real, verifiable information. If something is not available, say "Information not found" rather than guessing.`
               }
             ],
-            search_domain_filter: [url.replace('https://', '').replace('http://', '').split('/')[0]],
           }),
         });
 
@@ -216,15 +251,21 @@ Provide as much accurate information as possible.`
         
         if (perplexitySearchResponse.ok && perplexitySearchResult.choices?.[0]?.message?.content) {
           const content = perplexitySearchResult.choices[0].message.content;
-          scrapedData.markdown = content;
+          console.log('[Perplexity] Research successful, content length:', content.length);
+          
+          // Combine with any Firecrawl data we got
+          if (scrapedData.markdown) {
+            scrapedData.markdown = content + '\n\n--- Website Content ---\n\n' + scrapedData.markdown;
+          } else {
+            scrapedData.markdown = content;
+          }
           scrapeSuccess = true;
-          scrapeMethod = 'perplexity';
-          console.log('[Perplexity] Search successful, content length:', content.length);
+          scrapeMethod = scrapeSuccess ? 'firecrawl+perplexity' : 'perplexity';
         } else {
-          console.warn('[Perplexity] Search failed:', perplexitySearchResult.error || 'No content');
+          console.warn('[Perplexity] Research failed:', perplexitySearchResult.error || 'No content');
         }
       } catch (perplexityError) {
-        console.warn('[Perplexity] Search threw error:', perplexityError);
+        console.warn('[Perplexity] Research threw error:', perplexityError);
       }
     }
     
@@ -244,7 +285,7 @@ Provide as much accurate information as possible.`
       );
     }
     
-    console.log(`Scrape successful via ${scrapeMethod}`);
+    console.log(`Scrape successful via ${scrapeMethod}, total content: ${scrapedData.markdown?.length || 0} chars`);
     
 
     // Step 2: Use Perplexity to extract structured information with improved prompt
