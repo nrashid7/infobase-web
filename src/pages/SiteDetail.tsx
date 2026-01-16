@@ -10,7 +10,7 @@ import { govDirectory } from '@/data/govDirectory';
 import { getSiteByUrl, scrapeSite, findSiteBySlug, GovSiteDetails } from '@/lib/api/govSites';
 import { useToast } from '@/hooks/use-toast';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { getCategoryBranding, isValidContactValue, isValidPhone, isValidEmail, formatPhoneDisplay, formatAddressDisplay } from '@/data/govBranding';
+import { getCategoryBranding, isValidContactValue, formatAddressDisplay } from '@/data/govBranding';
 
 // Service icon mapping based on keywords
 function getServiceIcon(serviceName: string) {
