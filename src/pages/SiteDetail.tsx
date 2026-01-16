@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ExternalLink, Phone, Mail, MapPin, Clock, Globe, Loader2, RefreshCw, AlertCircle, Building2, Target, ListChecks, Link2, Printer, ArrowLeft } from 'lucide-react';
+import { ExternalLink, Phone, Mail, MapPin, Clock, Globe, Loader2, RefreshCw, AlertCircle, Building2, Target, ListChecks, Link2, Printer, ArrowLeft, FileText, Users, CreditCard, FileCheck } from 'lucide-react';
 import { useLanguage } from '@/lib/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -10,6 +10,25 @@ import { govDirectory } from '@/data/govDirectory';
 import { getSiteByUrl, scrapeSite, findSiteBySlug, GovSiteDetails } from '@/lib/api/govSites';
 import { useToast } from '@/hooks/use-toast';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { getCategoryBranding, isValidContactValue, isValidPhone, isValidEmail, formatPhoneDisplay, formatAddressDisplay } from '@/data/govBranding';
+
+// Service icon mapping based on keywords
+function getServiceIcon(serviceName: string) {
+  const name = serviceName.toLowerCase();
+  if (name.includes('certificate') || name.includes('license') || name.includes('registration')) {
+    return FileCheck;
+  }
+  if (name.includes('payment') || name.includes('fee') || name.includes('tax') || name.includes('bill')) {
+    return CreditCard;
+  }
+  if (name.includes('application') || name.includes('form') || name.includes('document')) {
+    return FileText;
+  }
+  if (name.includes('citizen') || name.includes('public') || name.includes('people')) {
+    return Users;
+  }
+  return ListChecks;
+}
 
 export default function SiteDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -95,18 +114,19 @@ export default function SiteDetail() {
   const rawContactInfo = siteDetails?.contact_info as Record<string, unknown> | undefined;
   const relatedLinks = siteDetails?.related_links as { title: string; url?: string | null }[] | undefined;
   
-  // Normalize contact info - handle both string and object values
+  // Normalize contact info - handle both string and object values, filter invalid
   const normalizeContactValue = (value: unknown): string | null => {
     if (!value) return null;
-    if (typeof value === 'string') return value;
-    if (typeof value === 'object') {
-      // Handle nested objects like { general: "email1", chairman: "email2" }
-      return Object.entries(value as Record<string, string>)
-        .filter(([_, v]) => v && typeof v === 'string')
-        .map(([k, v]) => `${k.charAt(0).toUpperCase() + k.slice(1).replace(/_/g, ' ')}: ${v}`)
-        .join('\n');
+    if (typeof value === 'string') {
+      return isValidContactValue(value) ? value : null;
     }
-    return String(value);
+    if (typeof value === 'object') {
+      const entries = Object.entries(value as Record<string, string>)
+        .filter(([_, v]) => v && typeof v === 'string' && isValidContactValue(v))
+        .map(([k, v]) => `${k.charAt(0).toUpperCase() + k.slice(1).replace(/_/g, ' ')}: ${v}`);
+      return entries.length > 0 ? entries.join('\n') : null;
+    }
+    return null;
   };
   
   const contactInfo = rawContactInfo ? {
@@ -116,13 +136,96 @@ export default function SiteDetail() {
     fax: normalizeContactValue(rawContactInfo.fax),
   } : undefined;
   
-  // Filter related links with valid URLs
+  // Check if we have any valid contact info
+  const hasValidContact = contactInfo && (contactInfo.phone || contactInfo.email || contactInfo.address || contactInfo.fax);
+  
+  // Filter related links with valid URLs and decode for display
   const validRelatedLinks = relatedLinks?.filter(link => link.url && link.url.startsWith('http'));
-  const primaryColor = siteDetails?.primary_color || '#3b82f6';
+  
+  // Get primary color with fallback to category branding
+  const categoryBranding = getCategoryBranding(basicInfo.categoryId);
+  const primaryColor = siteDetails?.primary_color || categoryBranding.primaryColor;
 
   // Get category name
   const category = govDirectory.find(c => c.id === basicInfo.categoryId);
   const categoryName = category ? (language === 'bn' ? category.nameBn : category.name) : '';
+
+  // Helper to decode URL for display
+  const decodeUrlForDisplay = (url: string): string => {
+    try {
+      return decodeURIComponent(url);
+    } catch {
+      return url;
+    }
+  };
+
+  // Helper to create clickable phone link
+  const renderPhoneLink = (phone: string) => {
+    const phoneLines = phone.split('\n');
+    return phoneLines.map((line, idx) => {
+      // Extract phone number from line (might have label like "General: +880...")
+      const match = line.match(/(\+?\d[\d\s\-()]+)/);
+      const phoneNumber = match ? match[1].replace(/[\s\-()]/g, '') : null;
+      
+      return (
+        <span key={idx} className="block">
+          {phoneNumber ? (
+            <a 
+              href={`tel:${phoneNumber}`} 
+              className="hover:underline"
+              style={{ color: primaryColor }}
+            >
+              {line}
+            </a>
+          ) : (
+            line
+          )}
+        </span>
+      );
+    });
+  };
+
+  // Helper to create clickable email link
+  const renderEmailLink = (email: string) => {
+    const emailLines = email.split('\n');
+    return emailLines.map((line, idx) => {
+      // Extract email from line
+      const match = line.match(/([^\s:]+@[^\s]+)/);
+      const emailAddress = match ? match[1] : null;
+      
+      return (
+        <span key={idx} className="block">
+          {emailAddress ? (
+            <a 
+              href={`mailto:${emailAddress}`} 
+              className="hover:underline"
+              style={{ color: primaryColor }}
+            >
+              {line}
+            </a>
+          ) : (
+            line
+          )}
+        </span>
+      );
+    });
+  };
+
+  // Helper to create Google Maps link for address
+  const renderAddressLink = (address: string) => {
+    const encodedAddress = encodeURIComponent(address);
+    return (
+      <a 
+        href={`https://www.google.com/maps/search/?api=1&query=${encodedAddress}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hover:underline group"
+      >
+        <span className="whitespace-pre-wrap">{formatAddressDisplay(address)}</span>
+        <ExternalLink className="w-3 h-3 inline-block ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
+      </a>
+    );
+  };
 
   return (
     <div className="min-h-screen">
@@ -328,25 +431,37 @@ export default function SiteDetail() {
                     <CardTitle className="flex items-center gap-2 text-lg">
                       <ListChecks className="w-5 h-5" style={{ color: primaryColor }} />
                       {language === 'bn' ? 'সেবাসমূহ' : 'Services'}
+                      <Badge variant="secondary" className="ml-2 text-xs">
+                        {services.length}
+                      </Badge>
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="grid gap-4 sm:grid-cols-2">
-                      {services.map((service, index) => (
-                        <a 
-                          key={index}
-                          href={basicInfo.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-4 rounded-xl bg-muted/50 hover:bg-muted transition-colors group block"
-                        >
-                          <div className="flex items-start justify-between gap-2 mb-1.5">
-                            <h4 className="font-semibold text-foreground">{service.name}</h4>
-                            <ExternalLink className="w-3.5 h-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 mt-1" />
+                      {services.slice(0, 6).map((service, index) => {
+                        const ServiceIcon = getServiceIcon(service.name);
+                        return (
+                          <div 
+                            key={index}
+                            className="p-4 rounded-xl bg-muted/50 border border-border/50 hover:border-border transition-colors group"
+                          >
+                            <div className="flex items-start gap-3">
+                              <div 
+                                className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                                style={{ background: `${primaryColor}15` }}
+                              >
+                                <ServiceIcon className="w-4 h-4" style={{ color: primaryColor }} />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <h4 className="font-semibold text-foreground text-sm mb-1">{service.name}</h4>
+                                <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
+                                  {service.description}
+                                </p>
+                              </div>
+                            </div>
                           </div>
-                          <p className="text-sm text-muted-foreground leading-relaxed">{service.description}</p>
-                        </a>
-                      ))}
+                        );
+                      })}
                     </div>
                   </CardContent>
                 </Card>
@@ -356,7 +471,7 @@ export default function SiteDetail() {
             {/* Sidebar - 1 column */}
             <div className="space-y-6">
               {/* Contact Info */}
-              {contactInfo && (contactInfo.phone || contactInfo.email || contactInfo.address || contactInfo.fax) && (
+              {hasValidContact && (
                 <Card>
                   <CardHeader className="pb-3">
                     <CardTitle className="text-lg">{language === 'bn' ? 'যোগাযোগ' : 'Contact'}</CardTitle>
@@ -372,7 +487,9 @@ export default function SiteDetail() {
                         </div>
                         <div className="min-w-0 flex-1">
                           <p className="text-xs text-muted-foreground mb-0.5">{language === 'bn' ? 'ফোন' : 'Phone'}</p>
-                          <p className="font-medium whitespace-pre-wrap break-words text-sm">{contactInfo.phone}</p>
+                          <div className="font-medium text-sm">
+                            {renderPhoneLink(contactInfo.phone)}
+                          </div>
                         </div>
                       </div>
                     )}
@@ -386,9 +503,9 @@ export default function SiteDetail() {
                         </div>
                         <div className="min-w-0 flex-1">
                           <p className="text-xs text-muted-foreground mb-0.5">{language === 'bn' ? 'ইমেইল' : 'Email'}</p>
-                          <p className="font-medium whitespace-pre-wrap break-words text-sm" style={{ color: primaryColor }}>
-                            {contactInfo.email}
-                          </p>
+                          <div className="font-medium text-sm break-all">
+                            {renderEmailLink(contactInfo.email)}
+                          </div>
                         </div>
                       </div>
                     )}
@@ -416,7 +533,9 @@ export default function SiteDetail() {
                         </div>
                         <div className="min-w-0 flex-1">
                           <p className="text-xs text-muted-foreground mb-0.5">{language === 'bn' ? 'ঠিকানা' : 'Address'}</p>
-                          <p className="font-medium whitespace-pre-wrap break-words text-sm">{contactInfo.address}</p>
+                          <div className="font-medium text-sm">
+                            {renderAddressLink(contactInfo.address)}
+                          </div>
                         </div>
                       </div>
                     )}
@@ -425,7 +544,7 @@ export default function SiteDetail() {
               )}
 
               {/* Office Hours */}
-              {siteDetails.office_hours && (
+              {siteDetails.office_hours && isValidContactValue(siteDetails.office_hours) && (
                 <Card>
                   <CardHeader className="pb-3">
                     <CardTitle className="text-lg">{language === 'bn' ? 'অফিস সময়' : 'Office Hours'}</CardTitle>
@@ -461,10 +580,17 @@ export default function SiteDetail() {
                           href={link.url!}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-2 p-2.5 rounded-lg hover:bg-muted transition-colors group text-sm"
+                          className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-muted transition-colors group text-sm"
                         >
-                          <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-foreground flex-shrink-0" />
-                          <span className="truncate group-hover:text-foreground">{link.title}</span>
+                          <FaviconImage 
+                            url={link.url!} 
+                            className="w-4 h-4 flex-shrink-0" 
+                            fallbackClassName="w-4 h-4"
+                          />
+                          <span className="truncate group-hover:text-foreground flex-1">
+                            {decodeUrlForDisplay(link.title)}
+                          </span>
+                          <ExternalLink className="w-3.5 h-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
                         </a>
                       ))}
                     </div>

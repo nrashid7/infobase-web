@@ -11,6 +11,81 @@ interface ScrapeRequest {
   categoryId: string;
 }
 
+// Placeholder values to filter out from contact info
+const invalidPatterns = [
+  'not provided',
+  'not available',
+  'n/a',
+  'na',
+  'none',
+  'null',
+  'undefined',
+  'contact us',
+  'coming soon',
+  'to be updated',
+  'under construction',
+];
+
+function isValidContactValue(value: string | null | undefined): boolean {
+  if (!value) return false;
+  const normalized = value.toLowerCase().trim();
+  if (normalized.length < 3) return false;
+  if (normalized === '-' || normalized === '--' || normalized === '...') return false;
+  return !invalidPatterns.some(pattern => normalized.includes(pattern));
+}
+
+function cleanContactInfo(contactInfo: Record<string, unknown> | null): Record<string, unknown> | null {
+  if (!contactInfo) return null;
+  
+  const cleaned: Record<string, unknown> = {};
+  
+  for (const [key, value] of Object.entries(contactInfo)) {
+    if (typeof value === 'string') {
+      if (isValidContactValue(value)) {
+        cleaned[key] = value.trim();
+      }
+    } else if (typeof value === 'object' && value !== null) {
+      // Handle nested objects like { general: "email1", support: "email2" }
+      const nestedCleaned: Record<string, string> = {};
+      for (const [nestedKey, nestedValue] of Object.entries(value as Record<string, string>)) {
+        if (typeof nestedValue === 'string' && isValidContactValue(nestedValue)) {
+          nestedCleaned[nestedKey] = nestedValue.trim();
+        }
+      }
+      if (Object.keys(nestedCleaned).length > 0) {
+        cleaned[key] = nestedCleaned;
+      }
+    }
+  }
+  
+  return Object.keys(cleaned).length > 0 ? cleaned : null;
+}
+
+// Category-based fallback colors
+const categoryColors: Record<string, string> = {
+  'core-government': '#006a4e',
+  'key-ministries': '#1e3a5f',
+  'public-services': '#0284c7',
+  'e-governance': '#059669',
+  'law-judiciary': '#1e3a5f',
+  'economic-institutions': '#0f766e',
+  'education-research': '#7c3aed',
+  'health-services': '#0891b2',
+  'agriculture-environment': '#16a34a',
+  'energy-utilities': '#ea580c',
+  'transport-infrastructure': '#475569',
+  'communication-it': '#6366f1',
+  'local-government': '#0d9488',
+  'additional-ministries': '#4f46e5',
+  'social-services': '#db2777',
+  'planning-development': '#0284c7',
+  'security-defense': '#3f6212',
+  'regulatory-commissions': '#7c2d12',
+  'disaster-emergency': '#dc2626',
+  'maritime-ports': '#0369a1',
+  'administrative-directory': '#6366f1',
+};
+
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -172,17 +247,34 @@ Provide as much accurate information as possible.`
     console.log(`Scrape successful via ${scrapeMethod}`);
     
 
-    // Step 2: Use Perplexity to extract structured information
+    // Step 2: Use Perplexity to extract structured information with improved prompt
     const markdown = scrapedData.markdown || '';
-    const truncatedMarkdown = markdown.slice(0, 8000); // Limit context size
+    const truncatedMarkdown = markdown.slice(0, 8000);
 
-    const extractionPrompt = `Analyze this government website content and extract structured information. Return a JSON object with these fields:
-- description: A 2-3 sentence description of what this organization does
-- mission: Their mission statement if available
-- services: Array of {name, description} for main services offered (max 5)
-- contact_info: Object with phone, email, address, fax if found
-- office_hours: Office hours if mentioned
-- related_links: Array of {title, url} for important related links (max 5)
+    const extractionPrompt = `Analyze this Bangladesh government website content and extract structured information. Return a JSON object with these fields:
+
+CRITICAL INSTRUCTIONS:
+- Only include REAL, VERIFIED information found in the content
+- For contact_info: Include ONLY actual phone numbers (format: +880-XX-XXXXXXXX or similar), real email addresses (must contain @), and complete physical addresses
+- DO NOT include placeholder text like "Not provided", "N/A", "Contact us", etc.
+- If information is not found, use null instead of placeholder text
+- Phone numbers should be formatted consistently with country code when possible
+- Addresses should include full location details when available
+
+JSON structure:
+{
+  "description": "2-3 sentence description of what this organization does (be specific and informative)",
+  "mission": "Their mission statement if explicitly mentioned, otherwise null",
+  "services": [{"name": "Service Name", "description": "Brief description of service"}] (max 6, include only clearly defined services),
+  "contact_info": {
+    "phone": "Actual phone number(s) or null",
+    "email": "Actual email address(es) or null", 
+    "address": "Complete physical address or null",
+    "fax": "Fax number if available or null"
+  },
+  "office_hours": "Office hours if mentioned, otherwise null",
+  "related_links": [{"title": "Link Title", "url": "https://..."}] (max 5, only include valid URLs)
+}
 
 Website: ${name}
 URL: ${url}
@@ -203,7 +295,7 @@ Return ONLY valid JSON, no explanation.`;
         body: JSON.stringify({
           model: 'sonar',
           messages: [
-            { role: 'system', content: 'You are a helpful assistant that extracts structured information from website content. Always return valid JSON.' },
+            { role: 'system', content: 'You are a helpful assistant that extracts structured information from website content. Always return valid JSON. Never include placeholder text like "Not provided" or "N/A" - use null instead.' },
             { role: 'user', content: extractionPrompt }
           ],
         }),
@@ -227,15 +319,28 @@ Return ONLY valid JSON, no explanation.`;
       console.log('Extraction successful');
     } catch (extractError) {
       console.error('Extraction failed:', extractError);
-      // Continue with partial data if extraction fails
     }
 
-    // Step 3: Extract branding info
+    // Step 3: Extract and validate branding info
     const branding = scrapedData.branding as Record<string, unknown> | undefined;
     const brandingImages = branding?.images as Record<string, unknown> | undefined;
     const brandingColors = branding?.colors as Record<string, unknown> | undefined;
-    const logoUrl = (branding?.logo as string) || (brandingImages?.logo as string) || null;
-    const primaryColor = (brandingColors?.primary as string) || null;
+    
+    // Try multiple sources for logo
+    let logoUrl = (branding?.logo as string) || 
+                  (brandingImages?.logo as string) || 
+                  (brandingImages?.favicon as string) ||
+                  null;
+    
+    // Try multiple sources for primary color, with category fallback
+    let primaryColor = (brandingColors?.primary as string) || 
+                       (brandingColors?.accent as string) ||
+                       categoryColors[categoryId] ||
+                       '#006a4e'; // Default Bangladesh green
+
+    // Clean the contact info to remove placeholder values
+    const rawContactInfo = extractedInfo.contact_info as Record<string, unknown> | null;
+    const cleanedContactInfo = cleanContactInfo(rawContactInfo);
 
     // Step 4: Save to database
     const siteData = {
@@ -245,8 +350,10 @@ Return ONLY valid JSON, no explanation.`;
       description: extractedInfo.description as string || null,
       mission: extractedInfo.mission as string || null,
       services: extractedInfo.services || null,
-      contact_info: extractedInfo.contact_info || null,
-      office_hours: extractedInfo.office_hours as string || null,
+      contact_info: cleanedContactInfo,
+      office_hours: isValidContactValue(extractedInfo.office_hours as string) 
+        ? extractedInfo.office_hours as string 
+        : null,
       related_links: extractedInfo.related_links || null,
       logo_url: logoUrl,
       primary_color: primaryColor,
