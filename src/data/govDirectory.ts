@@ -312,12 +312,12 @@ export const govDirectory: DirectoryCategory[] = [
     name: 'Administrative Directory',
     nameBn: 'প্রশাসনিক তালিকা',
     links: [
-      { name: 'Ministries & Divisions (List)', url: 'https://bangladesh.gov.bd/site/view/ministry_n_directorate_list' },
-      { name: 'Directorates & Other Offices (List)', url: 'https://bangladesh.gov.bd/site/page/3c1910f1-686d-4a57-9400-0b2743241438/Directorates-and-Other-Offices' },
-      { name: 'Divisions (8)', url: 'https://bangladesh.gov.bd/site/view/division-list/List-of-Divisions' },
-      { name: 'Districts (64)', url: 'https://bangladesh.gov.bd/site/view/district-list/District-List' },
-      { name: 'Upazilas (495)', url: 'https://bangladesh.gov.bd/site/view/upazila-list/Upazilla-List' },
-      { name: 'Unions (4554)', url: 'https://bangladesh.gov.bd/site/view/union-list/Union-List' },
+      { name: 'Ministries & Divisions', url: 'https://bangladesh.gov.bd/site/view/ministry_n_directorate_list' },
+      { name: 'Directorates & Other Offices', url: 'https://bangladesh.gov.bd/site/page/3c1910f1-686d-4a57-9400-0b2743241438/Directorates-and-Other-Offices' },
+      { name: 'Divisions', url: 'https://bangladesh.gov.bd/site/view/division-list/List-of-Divisions' },
+      { name: 'Districts', url: 'https://bangladesh.gov.bd/site/view/district-list/District-List' },
+      { name: 'Upazilas', url: 'https://bangladesh.gov.bd/site/view/upazila-list/Upazilla-List' },
+      { name: 'Unions', url: 'https://bangladesh.gov.bd/site/view/union-list/Union-List' },
     ],
   },
 ];
