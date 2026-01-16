@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ExternalLink, Phone, Mail, MapPin, Clock, Globe, Loader2, RefreshCw, AlertCircle, Building2, Target, ListChecks, Link2, Printer, ArrowLeft, FileText, Users, CreditCard, FileCheck } from 'lucide-react';
+import { ExternalLink, Phone, Mail, MapPin, Clock, Globe, Loader2, AlertCircle, Building2, Target, ListChecks, Link2, ArrowLeft, FileText, Users, CreditCard, FileCheck } from 'lucide-react';
 import { useLanguage } from '@/lib/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { FaviconImage } from '@/components/FaviconImage';
 import { govDirectory } from '@/data/govDirectory';
-import { getSiteByUrl, scrapeSite, findSiteBySlug, GovSiteDetails } from '@/lib/api/govSites';
-import { useToast } from '@/hooks/use-toast';
+import { getSiteByUrl, findSiteBySlug, GovSiteDetails } from '@/lib/api/govSites';
+
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { getCategoryBranding, isValidContactValue, formatAddressDisplay } from '@/data/govBranding';
 
@@ -33,11 +33,9 @@ function getServiceIcon(serviceName: string) {
 export default function SiteDetail() {
   const { slug } = useParams<{ slug: string }>();
   const { language } = useLanguage();
-  const { toast } = useToast();
   
   const [siteDetails, setSiteDetails] = useState<GovSiteDetails | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [isScraping, setIsScraping] = useState(false);
   const [basicInfo, setBasicInfo] = useState<{ name: string; url: string; categoryId: string } | null>(null);
 
   // Find the site from the directory
@@ -62,33 +60,6 @@ export default function SiteDetail() {
     fetchDetails();
   }, [basicInfo?.url]);
 
-  const handleScrape = async () => {
-    if (!basicInfo) return;
-
-    setIsScraping(true);
-    toast({
-      title: language === 'bn' ? 'তথ্য সংগ্রহ করা হচ্ছে...' : 'Fetching information...',
-      description: language === 'bn' ? 'এতে কিছু সময় লাগতে পারে' : 'This may take a moment',
-    });
-
-    const result = await scrapeSite(basicInfo.url, basicInfo.name, basicInfo.categoryId);
-
-    if (result.success && result.data) {
-      setSiteDetails(result.data);
-      toast({
-        title: language === 'bn' ? 'সফল!' : 'Success!',
-        description: language === 'bn' ? 'তথ্য সফলভাবে সংগ্রহ করা হয়েছে' : 'Information fetched successfully',
-      });
-    } else {
-      toast({
-        title: language === 'bn' ? 'ত্রুটি' : 'Error',
-        description: result.error || (language === 'bn' ? 'তথ্য সংগ্রহ করতে ব্যর্থ' : 'Failed to fetch information'),
-        variant: 'destructive',
-      });
-    }
-
-    setIsScraping(false);
-  };
 
   if (!basicInfo) {
     return (
@@ -322,24 +293,6 @@ export default function SiteDetail() {
                 {language === 'bn' ? 'অফিসিয়াল সাইটে যান' : 'Visit Official Site'}
               </Button>
             </a>
-            <Button 
-              variant="outline" 
-              size="lg"
-              onClick={handleScrape}
-              disabled={isScraping}
-            >
-              {isScraping ? (
-                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-              ) : (
-                <RefreshCw className="w-4 h-4 mr-2" />
-              )}
-              {isScraping 
-                ? (language === 'bn' ? 'সংগ্রহ করা হচ্ছে...' : 'Fetching...') 
-                : hasDetails 
-                  ? (language === 'bn' ? 'তথ্য আপডেট করুন' : 'Refresh Info')
-                  : (language === 'bn' ? 'AI দিয়ে তথ্য সংগ্রহ করুন' : 'Fetch Info with AI')
-              }
-            </Button>
           </div>
         </div>
       </div>
@@ -360,30 +313,13 @@ export default function SiteDetail() {
                 <Building2 className="w-10 h-10" style={{ color: primaryColor }} />
               </div>
               <h3 className="text-xl font-semibold mb-3">
-                {language === 'bn' ? 'বিস্তারিত তথ্য উপলব্ধ নেই' : 'No detailed information available'}
+                {language === 'bn' ? 'বিস্তারিত তথ্য উপলব্ধ নেই' : 'No detailed information available yet'}
               </h3>
-              <p className="text-muted-foreground mb-8 max-w-md mx-auto">
+              <p className="text-muted-foreground max-w-md mx-auto">
                 {language === 'bn' 
-                  ? 'এই সাইটের বিস্তারিত তথ্য এখনো সংগ্রহ করা হয়নি। AI ব্যবহার করে স্বয়ংক্রিয়ভাবে তথ্য সংগ্রহ করুন।'
-                  : 'Detailed information for this site hasn\'t been gathered yet. Use AI to automatically fetch and organize the information.'}
+                  ? 'এই সাইটের বিস্তারিত তথ্য শীঘ্রই যোগ করা হবে। অফিসিয়াল ওয়েবসাইট দেখুন।'
+                  : 'Detailed information for this site will be added soon. Please visit the official website for now.'}
               </p>
-              <Button 
-                size="lg"
-                onClick={handleScrape} 
-                disabled={isScraping}
-                style={{ background: primaryColor }}
-                className="hover:opacity-90 text-white"
-              >
-                {isScraping ? (
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                ) : (
-                  <RefreshCw className="w-4 h-4 mr-2" />
-                )}
-                {isScraping 
-                  ? (language === 'bn' ? 'সংগ্রহ করা হচ্ছে...' : 'Fetching...') 
-                  : (language === 'bn' ? 'AI দিয়ে তথ্য সংগ্রহ করুন' : 'Fetch Info with AI')
-                }
-              </Button>
             </CardContent>
           </Card>
         ) : (
@@ -515,7 +451,7 @@ export default function SiteDetail() {
                           className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
                           style={{ background: `${primaryColor}15` }}
                         >
-                          <Printer className="w-5 h-5" style={{ color: primaryColor }} />
+                          <Phone className="w-5 h-5" style={{ color: primaryColor }} />
                         </div>
                         <div className="min-w-0 flex-1">
                           <p className="text-xs text-muted-foreground mb-0.5">{language === 'bn' ? 'ফ্যাক্স' : 'Fax'}</p>
