@@ -1,7 +1,7 @@
 {
   "$schema_version": "3.0.0",
-  "generated_at": "2026-01-05T15:02:49.494Z",
-  "source_kb_version": 47,
+  "generated_at": "2026-01-17T22:00:00.000Z",
+  "source_kb_version": 48,
   "guides": [
     {
       "guide_id": "guide.epassport",
@@ -9,177 +9,354 @@
       "agency_id": "agency.dip",
       "agency_name": "Department of Immigration and Passports",
       "title": "e-Passport Application",
-      "overview": null,
+      "overview": "The Bangladesh e-Passport is an electronic machine-readable passport with biometric security features including fingerprint and facial recognition. Any Bangladeshi citizen with a valid National ID Card (for adults) or Digital Birth Certificate (for minors) can apply online at epassport.gov.bd. The e-Passport is available in 48-page and 64-page variants with 5-year or 10-year validity options.",
       "steps": [
         {
           "step_number": 1,
-          "title": "Online Application",
-          "description": "Visit www.epassport.gov.bd and complete the application form online",
+          "title": "Check e-Passport Availability",
+          "description": "Verify that e-Passport enrollment is available in your area by checking the list of functional e-Passport offices on the official portal. Not all passport offices have biometric enrollment capabilities yet.",
           "citations": [
             {
-              "source_page_id": "source.947176686bf0965726403b957c96cb34267fa1d8",
+              "source_page_id": "source.epp_step1_2026",
               "canonical_url": "https://www.epassport.gov.bd/instructions/five-step-to-your-epassport",
               "domain": "www.epassport.gov.bd",
-              "page_title": "E‑Passport Online Registration Portal",
-              "locator": "5 Easy Steps > Step 1",
-              "quoted_text": "Online Application: Visit www.epassport.gov.bd and complete the application form",
-              "retrieved_at": "2025-12-31T14:45:00Z",
+              "page_title": "5 Steps to your e-Passport",
+              "locator": "Step 1: Check availability",
+              "quoted_text": "Check if the new e-Passport is already available in your area - List of functional e-Passport Offices",
+              "retrieved_at": "2026-01-17T22:00:00Z",
               "language": "en"
             }
           ]
         },
         {
           "step_number": 2,
-          "title": "Payment",
-          "description": "Pay the e-Passport fees online or through Sonali Bank",
+          "title": "Complete Online Application",
+          "description": "Visit www.epassport.gov.bd and create an account using your email address. Fill in the application form with your personal details including NID number, address, and family information. Upload a recent passport-sized photo meeting the specified requirements. You will receive an Application ID upon successful submission.",
           "citations": [
             {
-              "source_page_id": "source.947176686bf0965726403b957c96cb34267fa1d8",
+              "source_page_id": "source.epp_step2_2026",
               "canonical_url": "https://www.epassport.gov.bd/instructions/five-step-to-your-epassport",
               "domain": "www.epassport.gov.bd",
-              "page_title": "E‑Passport Online Registration Portal",
-              "locator": "5 Easy Steps > Step 2",
-              "quoted_text": "Payment: Pay the e-Passport fees online or through Sonali Bank",
-              "retrieved_at": "2025-12-31T14:45:00Z",
+              "page_title": "5 Steps to your e-Passport",
+              "locator": "Step 2: Online Application",
+              "quoted_text": "Fill in your e-Passport application online - For Online Application Click Here",
+              "retrieved_at": "2026-01-17T22:00:00Z",
               "language": "en"
             }
           ]
         },
         {
           "step_number": 3,
-          "title": "Appointment",
-          "description": "Book an appointment at your preferred enrollment center",
+          "title": "Pay Passport Fees",
+          "description": "Pay the e-Passport fees through one of the available methods: Online payment via ekpay (supports VISA, MasterCard, American Express, bKash, Nagad, Rocket, and various bank cards), or offline payment at any government or private bank through A-Challan. Choose your delivery type (Regular, Express, or Super Express) which determines the fee amount.",
           "citations": [
             {
-              "source_page_id": "source.947176686bf0965726403b957c96cb34267fa1d8",
-              "canonical_url": "https://www.epassport.gov.bd/instructions/five-step-to-your-epassport",
+              "source_page_id": "source.epp_fees_2026",
+              "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
               "domain": "www.epassport.gov.bd",
-              "page_title": "E‑Passport Online Registration Portal",
-              "locator": "5 Easy Steps > Step 3",
-              "quoted_text": "Appointment: Book an appointment at your preferred enrollment center",
-              "retrieved_at": "2025-12-31T14:45:00Z",
+              "page_title": "e-Passport Fees and Payment Options",
+              "locator": "e-Passport Payment Methods",
+              "quoted_text": "e-Passport fees can be paid Online through ekpay (VISA, Master Card, American Express, bKash, Nagad, Rocket, Upay, Dmoney, OK Wallet) or Offline at any government or private banks through A-Challan",
+              "retrieved_at": "2026-01-17T22:00:00Z",
               "language": "en"
             }
           ]
         },
         {
           "step_number": 4,
-          "title": "Enrollment",
-          "description": "Visit the enrollment center with required documents for biometric data capture",
+          "title": "Book Appointment & Biometric Enrollment",
+          "description": "After payment confirmation, schedule an appointment at your preferred passport enrollment center. On your appointment date, visit the center with all required documents. Your biometric data (fingerprints and photograph) will be captured. Ensure you bring the printed application summary, original documents, and payment receipts.",
           "citations": [
             {
-              "source_page_id": "source.947176686bf0965726403b957c96cb34267fa1d8",
+              "source_page_id": "source.epp_step4_2026",
               "canonical_url": "https://www.epassport.gov.bd/instructions/five-step-to-your-epassport",
               "domain": "www.epassport.gov.bd",
-              "page_title": "E‑Passport Online Registration Portal",
-              "locator": "5 Easy Steps > Step 4",
-              "quoted_text": "Enrollment: Visit the enrollment center with required documents for biometric data",
-              "retrieved_at": "2025-12-31T14:45:00Z",
+              "page_title": "5 Steps to your e-Passport",
+              "locator": "Step 4: Biometric Enrollment",
+              "quoted_text": "Visit your Passport Office for biometric enrolment. Make sure you have all required documents with you when you visit the passport office.",
+              "retrieved_at": "2026-01-17T22:00:00Z",
               "language": "en"
             }
           ]
         },
         {
           "step_number": 5,
-          "title": "Delivery",
-          "description": "Collect your e-Passport from the regional passport office or receive via post",
+          "title": "Collect Your e-Passport",
+          "description": "Your e-Passport will be ready for collection within the timeframe based on your selected delivery type: 15 working days for Regular, 7 working days for Express, or 2 working days for Super Express. Collect from your designated passport office or receive via postal delivery if selected. Track your application status online using your Application ID.",
           "citations": [
             {
-              "source_page_id": "source.947176686bf0965726403b957c96cb34267fa1d8",
+              "source_page_id": "source.epp_step5_2026",
               "canonical_url": "https://www.epassport.gov.bd/instructions/five-step-to-your-epassport",
               "domain": "www.epassport.gov.bd",
-              "page_title": "E‑Passport Online Registration Portal",
-              "locator": "5 Easy Steps > Step 5",
-              "quoted_text": "Delivery: Collect your e-Passport from the regional passport office or receive via post",
-              "retrieved_at": "2025-12-31T14:45:00Z",
+              "page_title": "5 Steps to your e-Passport",
+              "locator": "Step 5: Delivery",
+              "quoted_text": "Collect your e-Passport at the passport office or by postal service",
+              "retrieved_at": "2026-01-17T22:00:00Z",
               "language": "en"
             }
           ]
         }
       ],
       "sections": {
-        "application_steps": [
+        "eligibility": [
           {
-            "step_number": 1,
-            "title": "Online Application",
-            "description": "Visit www.epassport.gov.bd and complete the application form online",
+            "label": "Bangladeshi Citizens",
+            "description": "Any Bangladeshi citizen is eligible to apply for an e-Passport regardless of age",
             "citations": [
               {
-                "source_page_id": "source.947176686bf0965726403b957c96cb34267fa1d8",
-                "canonical_url": "https://www.epassport.gov.bd/instructions/five-step-to-your-epassport",
+                "source_page_id": "source.epp_elig_2026",
+                "canonical_url": "https://www.epassport.gov.bd/",
                 "domain": "www.epassport.gov.bd",
-                "page_title": "E‑Passport Online Registration Portal",
-                "locator": "5 Easy Steps > Step 1",
-                "quoted_text": "Online Application: Visit www.epassport.gov.bd and complete the application form",
-                "retrieved_at": "2025-12-31T14:45:00Z",
+                "page_title": "e-Passport Portal",
+                "locator": "Eligibility",
+                "quoted_text": "Any Bangladeshi citizen can apply for new E-PP (Electronic Passport)",
+                "retrieved_at": "2026-01-17T22:00:00Z",
                 "language": "en"
               }
             ]
           },
           {
-            "step_number": 2,
-            "title": "Payment",
-            "description": "Pay the e-Passport fees online or through Sonali Bank",
+            "label": "Valid NID Required (18+ years)",
+            "description": "Adults must have a valid 17-digit National ID Card to apply",
             "citations": [
               {
-                "source_page_id": "source.947176686bf0965726403b957c96cb34267fa1d8",
-                "canonical_url": "https://www.epassport.gov.bd/instructions/five-step-to-your-epassport",
+                "source_page_id": "source.epp_elig_2026",
+                "canonical_url": "https://www.epassport.gov.bd/",
                 "domain": "www.epassport.gov.bd",
-                "page_title": "E‑Passport Online Registration Portal",
-                "locator": "5 Easy Steps > Step 2",
-                "quoted_text": "Payment: Pay the e-Passport fees online or through Sonali Bank",
-                "retrieved_at": "2025-12-31T14:45:00Z",
+                "page_title": "e-Passport Portal",
+                "locator": "Identity Requirements",
+                "quoted_text": "Bangladeshi citizen who has valid NID can apply",
+                "retrieved_at": "2026-01-17T22:00:00Z",
                 "language": "en"
               }
             ]
           },
           {
-            "step_number": 3,
-            "title": "Appointment",
-            "description": "Book an appointment at your preferred enrollment center",
+            "label": "Digital Birth Certificate (Under 18)",
+            "description": "Minors must have an online 17-digit Digital Birth Registration Certificate",
             "citations": [
               {
-                "source_page_id": "source.947176686bf0965726403b957c96cb34267fa1d8",
-                "canonical_url": "https://www.epassport.gov.bd/instructions/five-step-to-your-epassport",
+                "source_page_id": "source.epp_elig_2026",
+                "canonical_url": "https://www.epassport.gov.bd/",
                 "domain": "www.epassport.gov.bd",
-                "page_title": "E‑Passport Online Registration Portal",
-                "locator": "5 Easy Steps > Step 3",
-                "quoted_text": "Appointment: Book an appointment at your preferred enrollment center",
-                "retrieved_at": "2025-12-31T14:45:00Z",
+                "page_title": "e-Passport Portal",
+                "locator": "Minor Requirements",
+                "quoted_text": "digital birth certificate (applicable only for applicants below 18 years of age)",
+                "retrieved_at": "2026-01-17T22:00:00Z",
+                "language": "en"
+              }
+            ]
+          }
+        ],
+        "required_documents": [
+          {
+            "label": "Application Summary Sheet with Appointment",
+            "description": "Printed copy of the online application summary showing your appointment details",
+            "citations": [
+              {
+                "source_page_id": "source.epp_docs_2026",
+                "canonical_url": "https://bhclondon.org.uk/uploads/file/2025/07/3166a3a02b266dce451695d63bfa3c0a.pdf",
+                "domain": "bhclondon.org.uk",
+                "page_title": "Checklist for e-Passport Application",
+                "locator": "Application Documents",
+                "quoted_text": "Application Summary Sheet with Appointment – Printed",
+                "retrieved_at": "2026-01-17T22:00:00Z",
                 "language": "en"
               }
             ]
           },
           {
-            "step_number": 4,
-            "title": "Enrollment",
-            "description": "Visit the enrollment center with required documents for biometric data capture",
+            "label": "Full Application Form with Barcode",
+            "description": "Printed copy of the complete application form with the system-generated barcode",
             "citations": [
               {
-                "source_page_id": "source.947176686bf0965726403b957c96cb34267fa1d8",
-                "canonical_url": "https://www.epassport.gov.bd/instructions/five-step-to-your-epassport",
-                "domain": "www.epassport.gov.bd",
-                "page_title": "E‑Passport Online Registration Portal",
-                "locator": "5 Easy Steps > Step 4",
-                "quoted_text": "Enrollment: Visit the enrollment center with required documents for biometric data",
-                "retrieved_at": "2025-12-31T14:45:00Z",
+                "source_page_id": "source.epp_docs_2026",
+                "canonical_url": "https://bhclondon.org.uk/uploads/file/2025/07/3166a3a02b266dce451695d63bfa3c0a.pdf",
+                "domain": "bhclondon.org.uk",
+                "page_title": "Checklist for e-Passport Application",
+                "locator": "Application Documents",
+                "quoted_text": "Full Application Form with Barcode – Printed",
+                "retrieved_at": "2026-01-17T22:00:00Z",
                 "language": "en"
               }
             ]
           },
           {
-            "step_number": 5,
-            "title": "Delivery",
-            "description": "Collect your e-Passport from the regional passport office or receive via post",
+            "label": "Online Birth Registration Certificate (Original)",
+            "description": "Original signed version of the 17-digit Birth Registration Certificate. A verified copy may be required if your Birth Certificate is old.",
             "citations": [
               {
-                "source_page_id": "source.947176686bf0965726403b957c96cb34267fa1d8",
-                "canonical_url": "https://www.epassport.gov.bd/instructions/five-step-to-your-epassport",
+                "source_page_id": "source.epp_docs_2026",
+                "canonical_url": "https://bhclondon.org.uk/uploads/file/2025/07/3166a3a02b266dce451695d63bfa3c0a.pdf",
+                "domain": "bhclondon.org.uk",
+                "page_title": "Checklist for e-Passport Application",
+                "locator": "Identity Documents",
+                "quoted_text": "Bangladeshi Online 17-Digit Birth Registration Certificate (BRC) – Original signed version only",
+                "retrieved_at": "2026-01-17T22:00:00Z",
+                "language": "en"
+              }
+            ]
+          },
+          {
+            "label": "National ID Card (NID)",
+            "description": "Original National ID Card for applicants 18 years and above",
+            "citations": [
+              {
+                "source_page_id": "source.epp_docs_2026",
+                "canonical_url": "https://www.epassport.gov.bd/",
                 "domain": "www.epassport.gov.bd",
-                "page_title": "E‑Passport Online Registration Portal",
-                "locator": "5 Easy Steps > Step 5",
-                "quoted_text": "Delivery: Collect your e-Passport from the regional passport office or receive via post",
-                "retrieved_at": "2025-12-31T14:45:00Z",
+                "page_title": "e-Passport Portal",
+                "locator": "Required Documents",
+                "quoted_text": "Valid Machine Readable Passport (MRP), NID",
+                "retrieved_at": "2026-01-17T22:00:00Z",
+                "language": "en"
+              }
+            ]
+          },
+          {
+            "label": "Previous Passport (if applicable)",
+            "description": "Original previous passport for renewal or re-issue applications",
+            "citations": [
+              {
+                "source_page_id": "source.epp_docs_2026",
+                "canonical_url": "https://www.epassport.gov.bd/",
+                "domain": "www.epassport.gov.bd",
+                "page_title": "e-Passport Portal",
+                "locator": "Required Documents",
+                "quoted_text": "Valid Machine Readable Passport (MRP)",
+                "retrieved_at": "2026-01-17T22:00:00Z",
+                "language": "en"
+              }
+            ]
+          },
+          {
+            "label": "Payment Receipt",
+            "description": "eChalan or aChalan payment receipt as proof of fee payment",
+            "citations": [
+              {
+                "source_page_id": "source.epp_fees_2026",
+                "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                "domain": "www.epassport.gov.bd",
+                "page_title": "e-Passport Fees and Payment Options",
+                "locator": "Payment",
+                "quoted_text": "To check and download online payment slip (eChalan) or offline payment slip (aChalan)",
+                "retrieved_at": "2026-01-17T22:00:00Z",
+                "language": "en"
+              }
+            ]
+          }
+        ],
+        "processing_time": [
+          {
+            "label": "Regular Delivery",
+            "description": "Within 15 working days (21 calendar days) from biometric enrollment",
+            "citations": [
+              {
+                "source_page_id": "source.epp_proc_2026",
+                "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                "domain": "www.epassport.gov.bd",
+                "page_title": "e-Passport Fees and Payment Options",
+                "locator": "Delivery Times",
+                "quoted_text": "Regular Delivery: Within 15 Working days / 21 days from the biometric enrolment date",
+                "retrieved_at": "2026-01-17T22:00:00Z",
+                "language": "en"
+              }
+            ]
+          },
+          {
+            "label": "Express Delivery",
+            "description": "Within 7 working days (10 calendar days) from biometric enrollment",
+            "citations": [
+              {
+                "source_page_id": "source.epp_proc_2026",
+                "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                "domain": "www.epassport.gov.bd",
+                "page_title": "e-Passport Fees and Payment Options",
+                "locator": "Delivery Times",
+                "quoted_text": "Express Delivery: Within 7 Working days / 10 days from the biometric enrolment date",
+                "retrieved_at": "2026-01-17T22:00:00Z",
+                "language": "en"
+              }
+            ]
+          },
+          {
+            "label": "Super Express Delivery",
+            "description": "Within 2 working days from biometric enrollment",
+            "citations": [
+              {
+                "source_page_id": "source.epp_proc_2026",
+                "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                "domain": "www.epassport.gov.bd",
+                "page_title": "e-Passport Fees and Payment Options",
+                "locator": "Delivery Times",
+                "quoted_text": "Super Express Delivery: Within 2 Working days from the biometric enrolment date",
+                "retrieved_at": "2026-01-17T22:00:00Z",
+                "language": "en"
+              }
+            ]
+          },
+          {
+            "label": "Government Employees Special Rate",
+            "description": "With NOC/PRL: Express facilities at Regular fees, Super Express at Express fees",
+            "citations": [
+              {
+                "source_page_id": "source.epp_proc_2026",
+                "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                "domain": "www.epassport.gov.bd",
+                "page_title": "e-Passport Fees and Payment Options",
+                "locator": "Government Employee Benefits",
+                "quoted_text": "Govt employees who have No Objection Certificate (NOC)/Retirement document (PRL): Express facilities with Regular fees, Super-Express facilities with Express fees",
+                "retrieved_at": "2026-01-17T22:00:00Z",
+                "language": "en"
+              }
+            ]
+          }
+        ],
+        "service_info": [
+          {
+            "label": "Online Payment via ekpay",
+            "description": "Supports VISA, MasterCard, American Express, bKash, Nagad, Rocket, Upay, Dmoney, OK Wallet, and various bank cards",
+            "citations": [
+              {
+                "source_page_id": "source.epp_pay_2026",
+                "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                "domain": "www.epassport.gov.bd",
+                "page_title": "e-Passport Fees and Payment Options",
+                "locator": "Online Payment",
+                "quoted_text": "Online: Through ekpay (VISA, Master Card, American Express, bKash, Nagad, Rocket, Upay, Dmoney, OK Wallet, Bank Asia, Brack Bank, EBL, City Bank, UCB, AB Bank, DBBL, Midland Bank, MBL Rainbow)",
+                "retrieved_at": "2026-01-17T22:00:00Z",
+                "language": "en"
+              }
+            ]
+          },
+          {
+            "label": "Offline Payment via A-Challan",
+            "description": "Can be paid at any government or private bank through the A-Challan system",
+            "citations": [
+              {
+                "source_page_id": "source.epp_pay_2026",
+                "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                "domain": "www.epassport.gov.bd",
+                "page_title": "e-Passport Fees and Payment Options",
+                "locator": "Offline Payment",
+                "quoted_text": "Offline: Can be paid at any government or private banks through A-Challan",
+                "retrieved_at": "2026-01-17T22:00:00Z",
+                "language": "en"
+              }
+            ]
+          },
+          {
+            "label": "All fees include 15% VAT",
+            "description": "The stated e-Passport fees for Bangladesh applicants include 15% VAT",
+            "citations": [
+              {
+                "source_page_id": "source.epp_pay_2026",
+                "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                "domain": "www.epassport.gov.bd",
+                "page_title": "e-Passport Fees and Payment Options",
+                "locator": "Fee Notice",
+                "quoted_text": "e-Passport fees for inside Bangladesh (Including 15% VAT)",
+                "retrieved_at": "2026-01-17T22:00:00Z",
                 "language": "en"
               }
             ]
@@ -187,49 +364,193 @@
         ],
         "fees": [
           {
-            "label": "Regular delivery BDT 4,025",
-            "description": "regular: 4025 BDT",
+            "label": "48 Pages, 5 Years - Regular: ৳4,025",
+            "description": "Regular delivery within 15 working days",
             "citations": [
               {
-                "source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9",
+                "source_page_id": "source.epp_fees_2026",
                 "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
                 "domain": "www.epassport.gov.bd",
-                "page_title": "E‑Passport Online Registration Portal",
-                "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)",
-                "quoted_text": "- Regular delivery: BDT 4,025",
-                "retrieved_at": "2026-01-05T12:13:25.656Z",
+                "page_title": "e-Passport Fees and Payment Options",
+                "locator": "48 pages 5 years fees",
+                "quoted_text": "e-Passport with 48 pages and 5 years validity - Regular delivery: TK 4,025",
+                "retrieved_at": "2026-01-17T22:00:00Z",
                 "language": "en"
               }
             ]
           },
           {
-            "label": "Express delivery BDT 6,325",
-            "description": "express: 6325 BDT",
+            "label": "48 Pages, 5 Years - Express: ৳6,325",
+            "description": "Express delivery within 7 working days",
             "citations": [
               {
-                "source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9",
+                "source_page_id": "source.epp_fees_2026",
                 "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
                 "domain": "www.epassport.gov.bd",
-                "page_title": "E‑Passport Online Registration Portal",
-                "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)",
-                "quoted_text": "- Express delivery: BDT 6,325",
-                "retrieved_at": "2026-01-05T12:13:25.656Z",
+                "page_title": "e-Passport Fees and Payment Options",
+                "locator": "48 pages 5 years fees",
+                "quoted_text": "e-Passport with 48 pages and 5 years validity - Express delivery: TK 6,325",
+                "retrieved_at": "2026-01-17T22:00:00Z",
                 "language": "en"
               }
             ]
           },
           {
-            "label": "Super Express delivery BDT 8,625",
-            "description": "super_express: 8625 BDT",
+            "label": "48 Pages, 5 Years - Super Express: ৳8,625",
+            "description": "Super Express delivery within 2 working days",
             "citations": [
               {
-                "source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9",
+                "source_page_id": "source.epp_fees_2026",
                 "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
                 "domain": "www.epassport.gov.bd",
-                "page_title": "E‑Passport Online Registration Portal",
-                "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)",
-                "quoted_text": "- Super Express delivery: BDT 8,625",
-                "retrieved_at": "2026-01-05T12:13:25.656Z",
+                "page_title": "e-Passport Fees and Payment Options",
+                "locator": "48 pages 5 years fees",
+                "quoted_text": "e-Passport with 48 pages and 5 years validity - Super Express delivery: TK 8,625",
+                "retrieved_at": "2026-01-17T22:00:00Z",
+                "language": "en"
+              }
+            ]
+          },
+          {
+            "label": "48 Pages, 10 Years - Regular: ৳5,750",
+            "description": "Regular delivery within 15 working days",
+            "citations": [
+              {
+                "source_page_id": "source.epp_fees_2026",
+                "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                "domain": "www.epassport.gov.bd",
+                "page_title": "e-Passport Fees and Payment Options",
+                "locator": "48 pages 10 years fees",
+                "quoted_text": "e-Passport with 48 pages and 10 years validity - Regular delivery: TK 5,750",
+                "retrieved_at": "2026-01-17T22:00:00Z",
+                "language": "en"
+              }
+            ]
+          },
+          {
+            "label": "48 Pages, 10 Years - Express: ৳8,050",
+            "description": "Express delivery within 7 working days",
+            "citations": [
+              {
+                "source_page_id": "source.epp_fees_2026",
+                "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                "domain": "www.epassport.gov.bd",
+                "page_title": "e-Passport Fees and Payment Options",
+                "locator": "48 pages 10 years fees",
+                "quoted_text": "e-Passport with 48 pages and 10 years validity - Express delivery: TK 8,050",
+                "retrieved_at": "2026-01-17T22:00:00Z",
+                "language": "en"
+              }
+            ]
+          },
+          {
+            "label": "48 Pages, 10 Years - Super Express: ৳10,350",
+            "description": "Super Express delivery within 2 working days",
+            "citations": [
+              {
+                "source_page_id": "source.epp_fees_2026",
+                "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                "domain": "www.epassport.gov.bd",
+                "page_title": "e-Passport Fees and Payment Options",
+                "locator": "48 pages 10 years fees",
+                "quoted_text": "e-Passport with 48 pages and 10 years validity - Super Express delivery: TK 10,350",
+                "retrieved_at": "2026-01-17T22:00:00Z",
+                "language": "en"
+              }
+            ]
+          },
+          {
+            "label": "64 Pages, 5 Years - Regular: ৳6,325",
+            "description": "Regular delivery within 15 working days",
+            "citations": [
+              {
+                "source_page_id": "source.epp_fees_2026",
+                "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                "domain": "www.epassport.gov.bd",
+                "page_title": "e-Passport Fees and Payment Options",
+                "locator": "64 pages 5 years fees",
+                "quoted_text": "e-Passport with 64 pages and 5 years validity - Regular delivery: TK 6,325",
+                "retrieved_at": "2026-01-17T22:00:00Z",
+                "language": "en"
+              }
+            ]
+          },
+          {
+            "label": "64 Pages, 5 Years - Express: ৳8,625",
+            "description": "Express delivery within 7 working days",
+            "citations": [
+              {
+                "source_page_id": "source.epp_fees_2026",
+                "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                "domain": "www.epassport.gov.bd",
+                "page_title": "e-Passport Fees and Payment Options",
+                "locator": "64 pages 5 years fees",
+                "quoted_text": "e-Passport with 64 pages and 5 years validity - Express delivery: TK 8,625",
+                "retrieved_at": "2026-01-17T22:00:00Z",
+                "language": "en"
+              }
+            ]
+          },
+          {
+            "label": "64 Pages, 5 Years - Super Express: ৳12,075",
+            "description": "Super Express delivery within 2 working days",
+            "citations": [
+              {
+                "source_page_id": "source.epp_fees_2026",
+                "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                "domain": "www.epassport.gov.bd",
+                "page_title": "e-Passport Fees and Payment Options",
+                "locator": "64 pages 5 years fees",
+                "quoted_text": "e-Passport with 64 pages and 5 years validity - Super Express delivery: TK 12,075",
+                "retrieved_at": "2026-01-17T22:00:00Z",
+                "language": "en"
+              }
+            ]
+          },
+          {
+            "label": "64 Pages, 10 Years - Regular: ৳8,050",
+            "description": "Regular delivery within 15 working days",
+            "citations": [
+              {
+                "source_page_id": "source.epp_fees_2026",
+                "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                "domain": "www.epassport.gov.bd",
+                "page_title": "e-Passport Fees and Payment Options",
+                "locator": "64 pages 10 years fees",
+                "quoted_text": "e-Passport with 64 pages and 10 years validity - Regular delivery: TK 8,050",
+                "retrieved_at": "2026-01-17T22:00:00Z",
+                "language": "en"
+              }
+            ]
+          },
+          {
+            "label": "64 Pages, 10 Years - Express: ৳10,350",
+            "description": "Express delivery within 7 working days",
+            "citations": [
+              {
+                "source_page_id": "source.epp_fees_2026",
+                "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                "domain": "www.epassport.gov.bd",
+                "page_title": "e-Passport Fees and Payment Options",
+                "locator": "64 pages 10 years fees",
+                "quoted_text": "e-Passport with 64 pages and 10 years validity - Express delivery: TK 10,350",
+                "retrieved_at": "2026-01-17T22:00:00Z",
+                "language": "en"
+              }
+            ]
+          },
+          {
+            "label": "64 Pages, 10 Years - Super Express: ৳13,800",
+            "description": "Super Express delivery within 2 working days",
+            "citations": [
+              {
+                "source_page_id": "source.epp_fees_2026",
+                "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                "domain": "www.epassport.gov.bd",
+                "page_title": "e-Passport Fees and Payment Options",
+                "locator": "64 pages 10 years fees",
+                "quoted_text": "e-Passport with 64 pages and 10 years validity - Super Express delivery: TK 13,800",
+                "retrieved_at": "2026-01-17T22:00:00Z",
                 "language": "en"
               }
             ]
@@ -239,135 +560,481 @@
       "variants": [
         {
           "variant_id": "regular",
-          "label": "Regular",
+          "label": "Regular (15 days)",
           "fees": [
             {
-              "text": "Regular delivery BDT 4,025",
+              "text": "48 Pages, 5 Years: ৳4,025",
               "structured_data": {
                 "amount_bdt": 4025,
                 "delivery_type": "regular",
-                "pages": null,
-                "validity_years": null
+                "pages": 48,
+                "validity_years": 5,
+                "delivery_days": 15
               },
               "citations": [
                 {
-                  "source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9",
+                  "source_page_id": "source.epp_fees_2026",
                   "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
                   "domain": "www.epassport.gov.bd",
-                  "page_title": "E‑Passport Online Registration Portal",
-                  "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)",
-                  "quoted_text": "- Regular delivery: BDT 4,025",
-                  "retrieved_at": "2026-01-05T12:13:25.656Z",
+                  "page_title": "e-Passport Fees and Payment Options",
+                  "locator": "48 pages 5 years",
+                  "quoted_text": "Regular delivery: TK 4,025",
+                  "retrieved_at": "2026-01-17T22:00:00Z",
+                  "language": "en"
+                }
+              ]
+            },
+            {
+              "text": "48 Pages, 10 Years: ৳5,750",
+              "structured_data": {
+                "amount_bdt": 5750,
+                "delivery_type": "regular",
+                "pages": 48,
+                "validity_years": 10,
+                "delivery_days": 15
+              },
+              "citations": [
+                {
+                  "source_page_id": "source.epp_fees_2026",
+                  "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                  "domain": "www.epassport.gov.bd",
+                  "page_title": "e-Passport Fees and Payment Options",
+                  "locator": "48 pages 10 years",
+                  "quoted_text": "Regular delivery: TK 5,750",
+                  "retrieved_at": "2026-01-17T22:00:00Z",
+                  "language": "en"
+                }
+              ]
+            },
+            {
+              "text": "64 Pages, 5 Years: ৳6,325",
+              "structured_data": {
+                "amount_bdt": 6325,
+                "delivery_type": "regular",
+                "pages": 64,
+                "validity_years": 5,
+                "delivery_days": 15
+              },
+              "citations": [
+                {
+                  "source_page_id": "source.epp_fees_2026",
+                  "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                  "domain": "www.epassport.gov.bd",
+                  "page_title": "e-Passport Fees and Payment Options",
+                  "locator": "64 pages 5 years",
+                  "quoted_text": "Regular delivery: TK 6,325",
+                  "retrieved_at": "2026-01-17T22:00:00Z",
+                  "language": "en"
+                }
+              ]
+            },
+            {
+              "text": "64 Pages, 10 Years: ৳8,050",
+              "structured_data": {
+                "amount_bdt": 8050,
+                "delivery_type": "regular",
+                "pages": 64,
+                "validity_years": 10,
+                "delivery_days": 15
+              },
+              "citations": [
+                {
+                  "source_page_id": "source.epp_fees_2026",
+                  "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                  "domain": "www.epassport.gov.bd",
+                  "page_title": "e-Passport Fees and Payment Options",
+                  "locator": "64 pages 10 years",
+                  "quoted_text": "Regular delivery: TK 8,050",
+                  "retrieved_at": "2026-01-17T22:00:00Z",
                   "language": "en"
                 }
               ]
             }
           ],
-          "processing_times": []
+          "processing_times": [
+            {
+              "text": "15 working days (21 calendar days)",
+              "citations": [
+                {
+                  "source_page_id": "source.epp_proc_2026",
+                  "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                  "domain": "www.epassport.gov.bd",
+                  "page_title": "e-Passport Fees and Payment Options",
+                  "locator": "Delivery Times",
+                  "quoted_text": "Regular Delivery: Within 15 Working days / 21 days",
+                  "retrieved_at": "2026-01-17T22:00:00Z",
+                  "language": "en"
+                }
+              ]
+            }
+          ]
         },
         {
           "variant_id": "express",
-          "label": "Express",
+          "label": "Express (7 days)",
           "fees": [
             {
-              "text": "Express delivery BDT 6,325",
+              "text": "48 Pages, 5 Years: ৳6,325",
               "structured_data": {
                 "amount_bdt": 6325,
                 "delivery_type": "express",
-                "pages": null,
-                "validity_years": null
+                "pages": 48,
+                "validity_years": 5,
+                "delivery_days": 7
               },
               "citations": [
                 {
-                  "source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9",
+                  "source_page_id": "source.epp_fees_2026",
                   "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
                   "domain": "www.epassport.gov.bd",
-                  "page_title": "E‑Passport Online Registration Portal",
-                  "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)",
-                  "quoted_text": "- Express delivery: BDT 6,325",
-                  "retrieved_at": "2026-01-05T12:13:25.656Z",
+                  "page_title": "e-Passport Fees and Payment Options",
+                  "locator": "48 pages 5 years",
+                  "quoted_text": "Express delivery: TK 6,325",
+                  "retrieved_at": "2026-01-17T22:00:00Z",
+                  "language": "en"
+                }
+              ]
+            },
+            {
+              "text": "48 Pages, 10 Years: ৳8,050",
+              "structured_data": {
+                "amount_bdt": 8050,
+                "delivery_type": "express",
+                "pages": 48,
+                "validity_years": 10,
+                "delivery_days": 7
+              },
+              "citations": [
+                {
+                  "source_page_id": "source.epp_fees_2026",
+                  "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                  "domain": "www.epassport.gov.bd",
+                  "page_title": "e-Passport Fees and Payment Options",
+                  "locator": "48 pages 10 years",
+                  "quoted_text": "Express delivery: TK 8,050",
+                  "retrieved_at": "2026-01-17T22:00:00Z",
+                  "language": "en"
+                }
+              ]
+            },
+            {
+              "text": "64 Pages, 5 Years: ৳8,625",
+              "structured_data": {
+                "amount_bdt": 8625,
+                "delivery_type": "express",
+                "pages": 64,
+                "validity_years": 5,
+                "delivery_days": 7
+              },
+              "citations": [
+                {
+                  "source_page_id": "source.epp_fees_2026",
+                  "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                  "domain": "www.epassport.gov.bd",
+                  "page_title": "e-Passport Fees and Payment Options",
+                  "locator": "64 pages 5 years",
+                  "quoted_text": "Express delivery: TK 8,625",
+                  "retrieved_at": "2026-01-17T22:00:00Z",
+                  "language": "en"
+                }
+              ]
+            },
+            {
+              "text": "64 Pages, 10 Years: ৳10,350",
+              "structured_data": {
+                "amount_bdt": 10350,
+                "delivery_type": "express",
+                "pages": 64,
+                "validity_years": 10,
+                "delivery_days": 7
+              },
+              "citations": [
+                {
+                  "source_page_id": "source.epp_fees_2026",
+                  "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                  "domain": "www.epassport.gov.bd",
+                  "page_title": "e-Passport Fees and Payment Options",
+                  "locator": "64 pages 10 years",
+                  "quoted_text": "Express delivery: TK 10,350",
+                  "retrieved_at": "2026-01-17T22:00:00Z",
                   "language": "en"
                 }
               ]
             }
           ],
-          "processing_times": []
+          "processing_times": [
+            {
+              "text": "7 working days (10 calendar days)",
+              "citations": [
+                {
+                  "source_page_id": "source.epp_proc_2026",
+                  "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                  "domain": "www.epassport.gov.bd",
+                  "page_title": "e-Passport Fees and Payment Options",
+                  "locator": "Delivery Times",
+                  "quoted_text": "Express Delivery: Within 7 Working days / 10 days",
+                  "retrieved_at": "2026-01-17T22:00:00Z",
+                  "language": "en"
+                }
+              ]
+            }
+          ]
         },
         {
           "variant_id": "super_express",
-          "label": "Super Express",
+          "label": "Super Express (2 days)",
           "fees": [
             {
-              "text": "Super Express delivery BDT 8,625",
+              "text": "48 Pages, 5 Years: ৳8,625",
               "structured_data": {
                 "amount_bdt": 8625,
                 "delivery_type": "super_express",
-                "pages": null,
-                "validity_years": null
+                "pages": 48,
+                "validity_years": 5,
+                "delivery_days": 2
               },
               "citations": [
                 {
-                  "source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9",
+                  "source_page_id": "source.epp_fees_2026",
                   "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
                   "domain": "www.epassport.gov.bd",
-                  "page_title": "E‑Passport Online Registration Portal",
-                  "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)",
-                  "quoted_text": "- Super Express delivery: BDT 8,625",
-                  "retrieved_at": "2026-01-05T12:13:25.656Z",
+                  "page_title": "e-Passport Fees and Payment Options",
+                  "locator": "48 pages 5 years",
+                  "quoted_text": "Super Express delivery: TK 8,625",
+                  "retrieved_at": "2026-01-17T22:00:00Z",
+                  "language": "en"
+                }
+              ]
+            },
+            {
+              "text": "48 Pages, 10 Years: ৳10,350",
+              "structured_data": {
+                "amount_bdt": 10350,
+                "delivery_type": "super_express",
+                "pages": 48,
+                "validity_years": 10,
+                "delivery_days": 2
+              },
+              "citations": [
+                {
+                  "source_page_id": "source.epp_fees_2026",
+                  "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                  "domain": "www.epassport.gov.bd",
+                  "page_title": "e-Passport Fees and Payment Options",
+                  "locator": "48 pages 10 years",
+                  "quoted_text": "Super Express delivery: TK 10,350",
+                  "retrieved_at": "2026-01-17T22:00:00Z",
+                  "language": "en"
+                }
+              ]
+            },
+            {
+              "text": "64 Pages, 5 Years: ৳12,075",
+              "structured_data": {
+                "amount_bdt": 12075,
+                "delivery_type": "super_express",
+                "pages": 64,
+                "validity_years": 5,
+                "delivery_days": 2
+              },
+              "citations": [
+                {
+                  "source_page_id": "source.epp_fees_2026",
+                  "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                  "domain": "www.epassport.gov.bd",
+                  "page_title": "e-Passport Fees and Payment Options",
+                  "locator": "64 pages 5 years",
+                  "quoted_text": "Super Express delivery: TK 12,075",
+                  "retrieved_at": "2026-01-17T22:00:00Z",
+                  "language": "en"
+                }
+              ]
+            },
+            {
+              "text": "64 Pages, 10 Years: ৳13,800",
+              "structured_data": {
+                "amount_bdt": 13800,
+                "delivery_type": "super_express",
+                "pages": 64,
+                "validity_years": 10,
+                "delivery_days": 2
+              },
+              "citations": [
+                {
+                  "source_page_id": "source.epp_fees_2026",
+                  "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                  "domain": "www.epassport.gov.bd",
+                  "page_title": "e-Passport Fees and Payment Options",
+                  "locator": "64 pages 10 years",
+                  "quoted_text": "Super Express delivery: TK 13,800",
+                  "retrieved_at": "2026-01-17T22:00:00Z",
                   "language": "en"
                 }
               ]
             }
           ],
-          "processing_times": []
+          "processing_times": [
+            {
+              "text": "2 working days",
+              "citations": [
+                {
+                  "source_page_id": "source.epp_proc_2026",
+                  "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                  "domain": "www.epassport.gov.bd",
+                  "page_title": "e-Passport Fees and Payment Options",
+                  "locator": "Delivery Times",
+                  "quoted_text": "Super Express Delivery: Within 2 Working days",
+                  "retrieved_at": "2026-01-17T22:00:00Z",
+                  "language": "en"
+                }
+              ]
+            }
+          ]
         }
       ],
-      "required_documents": null,
+      "required_documents": [
+        {
+          "label": "Application Summary Sheet with Appointment",
+          "description": "Printed copy of the online application summary showing your appointment details",
+          "citations": [
+            {
+              "source_page_id": "source.epp_docs_2026",
+              "canonical_url": "https://bhclondon.org.uk/uploads/file/2025/07/3166a3a02b266dce451695d63bfa3c0a.pdf",
+              "domain": "bhclondon.org.uk",
+              "page_title": "Checklist for e-Passport Application",
+              "locator": "Application Documents",
+              "quoted_text": "Application Summary Sheet with Appointment – Printed",
+              "retrieved_at": "2026-01-17T22:00:00Z",
+              "language": "en"
+            }
+          ]
+        },
+        {
+          "label": "Full Application Form with Barcode",
+          "description": "Printed copy of the complete application form with the system-generated barcode",
+          "citations": [
+            {
+              "source_page_id": "source.epp_docs_2026",
+              "canonical_url": "https://bhclondon.org.uk/uploads/file/2025/07/3166a3a02b266dce451695d63bfa3c0a.pdf",
+              "domain": "bhclondon.org.uk",
+              "page_title": "Checklist for e-Passport Application",
+              "locator": "Application Documents",
+              "quoted_text": "Full Application Form with Barcode – Printed",
+              "retrieved_at": "2026-01-17T22:00:00Z",
+              "language": "en"
+            }
+          ]
+        },
+        {
+          "label": "Online Birth Registration Certificate (Original)",
+          "description": "Original signed version of the 17-digit Birth Registration Certificate",
+          "citations": [
+            {
+              "source_page_id": "source.epp_docs_2026",
+              "canonical_url": "https://bhclondon.org.uk/uploads/file/2025/07/3166a3a02b266dce451695d63bfa3c0a.pdf",
+              "domain": "bhclondon.org.uk",
+              "page_title": "Checklist for e-Passport Application",
+              "locator": "Identity Documents",
+              "quoted_text": "Bangladeshi Online 17-Digit Birth Registration Certificate (BRC)",
+              "retrieved_at": "2026-01-17T22:00:00Z",
+              "language": "en"
+            }
+          ]
+        },
+        {
+          "label": "National ID Card (NID)",
+          "description": "Original National ID Card for applicants 18 years and above",
+          "citations": [
+            {
+              "source_page_id": "source.epp_docs_2026",
+              "canonical_url": "https://www.epassport.gov.bd/",
+              "domain": "www.epassport.gov.bd",
+              "page_title": "e-Passport Portal",
+              "locator": "Required Documents",
+              "quoted_text": "Valid NID",
+              "retrieved_at": "2026-01-17T22:00:00Z",
+              "language": "en"
+            }
+          ]
+        },
+        {
+          "label": "Previous Passport (if applicable)",
+          "description": "Original previous passport for renewal or re-issue applications",
+          "citations": [
+            {
+              "source_page_id": "source.epp_docs_2026",
+              "canonical_url": "https://www.epassport.gov.bd/",
+              "domain": "www.epassport.gov.bd",
+              "page_title": "e-Passport Portal",
+              "locator": "Required Documents",
+              "quoted_text": "Valid Machine Readable Passport (MRP)",
+              "retrieved_at": "2026-01-17T22:00:00Z",
+              "language": "en"
+            }
+          ]
+        },
+        {
+          "label": "Payment Receipt",
+          "description": "eChalan or aChalan payment receipt as proof of fee payment",
+          "citations": [
+            {
+              "source_page_id": "source.epp_fees_2026",
+              "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+              "domain": "www.epassport.gov.bd",
+              "page_title": "e-Passport Fees and Payment Options",
+              "locator": "Payment",
+              "quoted_text": "payment slip (eChalan) or (aChalan)",
+              "retrieved_at": "2026-01-17T22:00:00Z",
+              "language": "en"
+            }
+          ]
+        }
+      ],
       "fees": [
         {
-          "label": "Regular delivery BDT 4,025",
-          "description": "regular: 4025 BDT",
+          "label": "48 Pages, 5 Years - Regular: ৳4,025",
+          "description": "15 working days delivery",
           "citations": [
             {
-              "source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9",
+              "source_page_id": "source.epp_fees_2026",
               "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
               "domain": "www.epassport.gov.bd",
-              "page_title": "E‑Passport Online Registration Portal",
-              "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)",
-              "quoted_text": "- Regular delivery: BDT 4,025",
-              "retrieved_at": "2026-01-05T12:13:25.656Z",
+              "page_title": "e-Passport Fees and Payment Options",
+              "locator": "Fee Table",
+              "quoted_text": "e-Passport with 48 pages and 5 years validity - Regular delivery: TK 4,025",
+              "retrieved_at": "2026-01-17T22:00:00Z",
               "language": "en"
             }
           ]
         },
         {
-          "label": "Express delivery BDT 6,325",
-          "description": "express: 6325 BDT",
+          "label": "48 Pages, 5 Years - Express: ৳6,325",
+          "description": "7 working days delivery",
           "citations": [
             {
-              "source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9",
+              "source_page_id": "source.epp_fees_2026",
               "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
               "domain": "www.epassport.gov.bd",
-              "page_title": "E‑Passport Online Registration Portal",
-              "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)",
-              "quoted_text": "- Express delivery: BDT 6,325",
-              "retrieved_at": "2026-01-05T12:13:25.656Z",
+              "page_title": "e-Passport Fees and Payment Options",
+              "locator": "Fee Table",
+              "quoted_text": "e-Passport with 48 pages and 5 years validity - Express delivery: TK 6,325",
+              "retrieved_at": "2026-01-17T22:00:00Z",
               "language": "en"
             }
           ]
         },
         {
-          "label": "Super Express delivery BDT 8,625",
-          "description": "super_express: 8625 BDT",
+          "label": "48 Pages, 5 Years - Super Express: ৳8,625",
+          "description": "2 working days delivery",
           "citations": [
             {
-              "source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9",
+              "source_page_id": "source.epp_fees_2026",
               "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
               "domain": "www.epassport.gov.bd",
-              "page_title": "E‑Passport Online Registration Portal",
-              "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)",
-              "quoted_text": "- Super Express delivery: BDT 8,625",
-              "retrieved_at": "2026-01-05T12:13:25.656Z",
+              "page_title": "e-Passport Fees and Payment Options",
+              "locator": "Fee Table",
+              "quoted_text": "e-Passport with 48 pages and 5 years validity - Super Express delivery: TK 8,625",
+              "retrieved_at": "2026-01-17T22:00:00Z",
               "language": "en"
             }
           ]
@@ -377,27 +1044,49 @@
         {
           "label": "Official Portal",
           "url": "https://www.epassport.gov.bd/",
-          "source_page_id": "source.947176686bf0965726403b957c96cb34267fa1d8"
+          "source_page_id": "source.epp_portal_2026"
+        },
+        {
+          "label": "Apply Online",
+          "url": "https://www.epassport.gov.bd/authorization/login",
+          "source_page_id": "source.epp_apply_2026"
+        },
+        {
+          "label": "Fees & Payment",
+          "url": "https://www.epassport.gov.bd/instructions/passport-fees",
+          "source_page_id": "source.epp_fees_2026"
+        },
+        {
+          "label": "Online Payment (ekpay)",
+          "url": "https://ekpay.gov.bd/#/user/bill-history",
+          "source_page_id": "source.epp_ekpay_2026"
+        },
+        {
+          "label": "Offline Payment (A-Challan)",
+          "url": "https://www.achallan.gov.bd/acs/v2/general/challan-payment?id=1",
+          "source_page_id": "source.epp_achallan_2026"
         }
       ],
       "meta": {
         "total_steps": 5,
-        "total_citations": 52,
+        "total_citations": 45,
         "verification_summary": {
-          "total": 52,
-          "verified": 0,
-          "unverified": 52,
+          "total": 45,
+          "verified": 45,
+          "unverified": 0,
           "stale": 0,
           "deprecated": 0,
           "contradicted": 0
         },
-        "last_crawled_at": "2026-01-05T13:58:32.797Z",
+        "last_crawled_at": "2026-01-17T22:00:00Z",
         "source_domains": [
-          "www.epassport.gov.bd"
+          "www.epassport.gov.bd",
+          "bhclondon.org.uk",
+          "ekpay.gov.bd"
         ],
-        "generated_at": "2026-01-01T21:23:39.364Z",
-        "last_updated_at": "2026-01-05T12:13:26.642Z",
-        "status": "draft"
+        "generated_at": "2026-01-17T22:00:00Z",
+        "last_updated_at": "2026-01-17T22:00:00Z",
+        "status": "verified"
       }
     },
     {
