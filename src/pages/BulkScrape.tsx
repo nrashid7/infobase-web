@@ -26,6 +26,7 @@ interface SiteStatus {
   hasContact: boolean;
   hasServices: boolean;
   scrapeError?: string;
+  urlStatus?: 'checking' | 'valid' | 'invalid' | 'unknown';
 }
 
 export default function BulkScrape() {
@@ -36,6 +37,8 @@ export default function BulkScrape() {
   const [scrapingUrl, setScrapingUrl] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState('all');
+  const [isValidating, setIsValidating] = useState(false);
+  const [validationProgress, setValidationProgress] = useState(0);
 
   // Get all sites from directory with category names
   const allDirectorySites = useMemo(() => govDirectory.flatMap(cat => 
@@ -165,6 +168,61 @@ export default function BulkScrape() {
     });
   };
 
+  // Validate a single URL
+  const validateUrl = async (url: string): Promise<'valid' | 'invalid'> => {
+    try {
+      // Use a simple fetch with no-cors mode to check if the URL responds
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 8000);
+      
+      const response = await fetch(url, {
+        method: 'HEAD',
+        mode: 'no-cors',
+        signal: controller.signal,
+      });
+      
+      clearTimeout(timeoutId);
+      return 'valid';
+    } catch (error) {
+      return 'invalid';
+    }
+  };
+
+  // Validate all URLs
+  const handleValidateUrls = async () => {
+    setIsValidating(true);
+    setValidationProgress(0);
+    
+    const batchSize = 5;
+    const updatedSites = [...sites];
+    
+    for (let i = 0; i < updatedSites.length; i += batchSize) {
+      const batch = updatedSites.slice(i, i + batchSize);
+      
+      await Promise.all(batch.map(async (site, index) => {
+        const siteIndex = i + index;
+        updatedSites[siteIndex] = { ...updatedSites[siteIndex], urlStatus: 'checking' };
+        setSites([...updatedSites]);
+        
+        const status = await validateUrl(site.url);
+        updatedSites[siteIndex] = { ...updatedSites[siteIndex], urlStatus: status };
+      }));
+      
+      setValidationProgress(Math.min(100, Math.round(((i + batchSize) / updatedSites.length) * 100)));
+      setSites([...updatedSites]);
+    }
+    
+    const invalidCount = updatedSites.filter(s => s.urlStatus === 'invalid').length;
+    toast({
+      title: 'URL Validation Complete',
+      description: `Found ${invalidCount} potentially unreachable URLs out of ${updatedSites.length}`,
+      variant: invalidCount > 0 ? 'destructive' : 'default',
+    });
+    
+    setIsValidating(false);
+    setValidationProgress(100);
+  };
+
   // Filter sites based on search and tab
   const filteredSites = useMemo(() => {
     let filtered = sites;
@@ -193,6 +251,9 @@ export default function BulkScrape() {
       case 'incomplete':
         filtered = filtered.filter(s => s.dbStatus === 'success' && (!s.hasDescription || !s.hasContact));
         break;
+      case 'unreachable':
+        filtered = filtered.filter(s => s.urlStatus === 'invalid');
+        break;
     }
 
     return filtered;
@@ -208,6 +269,7 @@ export default function BulkScrape() {
     withDescription: sites.filter(s => s.hasDescription).length,
     withContact: sites.filter(s => s.hasContact).length,
     withServices: sites.filter(s => s.hasServices).length,
+    unreachable: sites.filter(s => s.urlStatus === 'invalid').length,
   }), [sites]);
 
   const formatDate = (dateStr: string) => {
@@ -299,6 +361,23 @@ export default function BulkScrape() {
           </Button>
           <Button
             variant="outline"
+            onClick={handleValidateUrls}
+            disabled={isValidating || isScraping}
+          >
+            {isValidating ? (
+              <>
+                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                Validating ({validationProgress}%)
+              </>
+            ) : (
+              <>
+                <Globe className="h-4 w-4 mr-2" />
+                Check URLs
+              </>
+            )}
+          </Button>
+          <Button
+            variant="outline"
             onClick={() => handleBulkScrape(filteredSites.filter(s => s.dbStatus !== 'success'))}
             disabled={isScraping}
           >
@@ -334,14 +413,23 @@ export default function BulkScrape() {
         </div>
       </div>
 
+      {/* Validation Progress */}
+      {isValidating && (
+        <div className="mb-6">
+          <Progress value={validationProgress} className="h-2" />
+          <p className="text-sm text-muted-foreground mt-1">Checking URL accessibility... {validationProgress}%</p>
+        </div>
+      )}
+
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-6">
-        <TabsList className="grid grid-cols-5 w-full max-w-2xl">
+        <TabsList className="grid grid-cols-6 w-full max-w-3xl">
           <TabsTrigger value="all">All ({stats.total})</TabsTrigger>
           <TabsTrigger value="not_scraped">Not Scraped ({stats.notScraped})</TabsTrigger>
           <TabsTrigger value="success">Success ({stats.success})</TabsTrigger>
           <TabsTrigger value="failed">Failed ({stats.failed})</TabsTrigger>
           <TabsTrigger value="incomplete">Incomplete ({stats.incomplete})</TabsTrigger>
+          <TabsTrigger value="unreachable" className="text-red-600">Unreachable ({stats.unreachable})</TabsTrigger>
         </TabsList>
       </Tabs>
 
@@ -417,6 +505,20 @@ export default function BulkScrape() {
                       Services
                     </Badge>
                   </div>
+
+                  {/* URL Status indicator */}
+                  {site.urlStatus === 'checking' && (
+                    <Badge variant="outline" className="text-blue-500">
+                      <Loader2 className="h-3 w-3 mr-1 animate-spin" />
+                      Checking
+                    </Badge>
+                  )}
+                  {site.urlStatus === 'invalid' && (
+                    <Badge variant="destructive" className="bg-red-700">
+                      <AlertTriangle className="h-3 w-3 mr-1" />
+                      Unreachable
+                    </Badge>
+                  )}
 
                   {/* Status badge */}
                   {site.dbStatus === 'not_scraped' && (
