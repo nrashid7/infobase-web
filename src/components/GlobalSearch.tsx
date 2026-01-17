@@ -241,10 +241,10 @@ export function GlobalSearch({ className }: GlobalSearchProps) {
         </button>
       </div>
 
-      {/* AI Modal */}
+      {/* AI Modal - rendered as overlay */}
       {isAIOpen && (
-        <div className="fixed inset-0 z-50 flex items-start justify-center pt-16 md:pt-24 px-4 bg-background/80 backdrop-blur-sm animate-fade-in">
-          <div className="w-full max-w-2xl bg-card border border-border rounded-2xl shadow-2xl overflow-hidden animate-scale-in">
+        <div className="fixed inset-0 z-[100] flex items-start justify-center pt-16 md:pt-24 px-4 bg-background/80 backdrop-blur-sm animate-fade-in" onClick={handleCloseAI}>
+          <div className="w-full max-w-2xl bg-card border border-border rounded-2xl shadow-2xl overflow-hidden animate-scale-in" onClick={(e) => e.stopPropagation()}>
             {/* Header */}
             <div className="flex items-center justify-between px-5 py-4 border-b border-border bg-muted/30">
               <div className="flex items-center gap-3 text-primary">
