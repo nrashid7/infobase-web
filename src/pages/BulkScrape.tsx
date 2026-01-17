@@ -168,54 +168,62 @@ export default function BulkScrape() {
     });
   };
 
-  // Validate a single URL
-  const validateUrl = async (url: string): Promise<'valid' | 'invalid'> => {
-    try {
-      // Use a simple fetch with no-cors mode to check if the URL responds
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 8000);
-      
-      const response = await fetch(url, {
-        method: 'HEAD',
-        mode: 'no-cors',
-        signal: controller.signal,
-      });
-      
-      clearTimeout(timeoutId);
-      return 'valid';
-    } catch (error) {
-      return 'invalid';
-    }
-  };
-
-  // Validate all URLs
+  // Validate URLs using edge function (server-side to avoid CORS)
   const handleValidateUrls = async () => {
     setIsValidating(true);
     setValidationProgress(0);
     
-    const batchSize = 5;
+    const batchSize = 10;
     const updatedSites = [...sites];
+    const allUrls = updatedSites.map(s => s.url);
     
-    for (let i = 0; i < updatedSites.length; i += batchSize) {
-      const batch = updatedSites.slice(i, i + batchSize);
+    // Mark all as checking
+    updatedSites.forEach((site, index) => {
+      updatedSites[index] = { ...site, urlStatus: 'checking' };
+    });
+    setSites([...updatedSites]);
+    
+    for (let i = 0; i < allUrls.length; i += batchSize) {
+      const batchUrls = allUrls.slice(i, i + batchSize);
       
-      await Promise.all(batch.map(async (site, index) => {
-        const siteIndex = i + index;
-        updatedSites[siteIndex] = { ...updatedSites[siteIndex], urlStatus: 'checking' };
-        setSites([...updatedSites]);
+      try {
+        const { data, error } = await supabase.functions.invoke('validate-url', {
+          body: { urls: batchUrls },
+        });
         
-        const status = await validateUrl(site.url);
-        updatedSites[siteIndex] = { ...updatedSites[siteIndex], urlStatus: status };
-      }));
+        if (error) {
+          console.error('Validation error:', error);
+          // Mark batch as unknown on error
+          batchUrls.forEach(url => {
+            const idx = updatedSites.findIndex(s => s.url === url);
+            if (idx !== -1) {
+              updatedSites[idx] = { ...updatedSites[idx], urlStatus: 'unknown' };
+            }
+          });
+        } else if (data?.results) {
+          // Update statuses from results
+          Object.entries(data.results).forEach(([url, result]: [string, any]) => {
+            const idx = updatedSites.findIndex(s => s.url === url);
+            if (idx !== -1) {
+              updatedSites[idx] = { 
+                ...updatedSites[idx], 
+                urlStatus: result.valid ? 'valid' : 'invalid' 
+              };
+            }
+          });
+        }
+      } catch (err) {
+        console.error('Exception during validation:', err);
+      }
       
-      setValidationProgress(Math.min(100, Math.round(((i + batchSize) / updatedSites.length) * 100)));
+      setValidationProgress(Math.min(100, Math.round(((i + batchSize) / allUrls.length) * 100)));
       setSites([...updatedSites]);
     }
     
     const invalidCount = updatedSites.filter(s => s.urlStatus === 'invalid').length;
     toast({
       title: 'URL Validation Complete',
-      description: `Found ${invalidCount} potentially unreachable URLs out of ${updatedSites.length}`,
+      description: `Found ${invalidCount} unreachable URLs out of ${updatedSites.length}`,
       variant: invalidCount > 0 ? 'destructive' : 'default',
     });
     
