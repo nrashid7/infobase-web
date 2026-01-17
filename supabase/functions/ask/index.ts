@@ -63,9 +63,9 @@ serve(async (req) => {
       }
     }
 
-    const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    if (!LOVABLE_API_KEY) {
-      console.error("LOVABLE_API_KEY is not configured");
+    const Z_API_KEY = Deno.env.get("Z");
+    if (!Z_API_KEY) {
+      console.error("Z API key is not configured");
       return new Response(
         JSON.stringify({ error: "Service temporarily unavailable" }),
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
@@ -96,14 +96,15 @@ Guidelines:
 
 ${validContext ? `Here is some context about available services:\n${validContext}` : ''}`;
 
-    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+    const response = await fetch("https://api.z.ai/api/paas/v4/chat/completions", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${LOVABLE_API_KEY}`,
+        Authorization: `Bearer ${Z_API_KEY}`,
         "Content-Type": "application/json",
+        "Accept-Language": "en-US,en",
       },
       body: JSON.stringify({
-        model: "google/gemini-2.5-flash",
+        model: "glm-4.7",
         messages: [
           { role: "system", content: systemPrompt },
           { role: "user", content: trimmedQuestion },
