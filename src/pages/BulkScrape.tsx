@@ -288,7 +288,7 @@ export default function BulkScrape() {
             className="pl-10"
           />
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-wrap">
           <Button
             variant="outline"
             onClick={loadSiteStatuses}
@@ -298,6 +298,7 @@ export default function BulkScrape() {
             Refresh
           </Button>
           <Button
+            variant="outline"
             onClick={() => handleBulkScrape(filteredSites.filter(s => s.dbStatus !== 'success'))}
             disabled={isScraping}
           >
@@ -309,7 +310,24 @@ export default function BulkScrape() {
             ) : (
               <>
                 <Play className="h-4 w-4 mr-2" />
-                Scrape Filtered ({filteredSites.filter(s => s.dbStatus !== 'success').length})
+                Scrape Missing ({filteredSites.filter(s => s.dbStatus !== 'success').length})
+              </>
+            )}
+          </Button>
+          <Button
+            onClick={() => handleBulkScrape(sites)}
+            disabled={isScraping}
+            className="bg-primary"
+          >
+            {isScraping ? (
+              <>
+                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                Scraping...
+              </>
+            ) : (
+              <>
+                <RefreshCw className="h-4 w-4 mr-2" />
+                Re-Scrape All ({sites.length})
               </>
             )}
           </Button>
