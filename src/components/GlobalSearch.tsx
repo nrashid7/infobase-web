@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import { Sparkles, Send, X, Loader2 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -106,9 +107,14 @@ export function GlobalSearch({ className }: GlobalSearchProps) {
   const [aiQuestion, setAIQuestion] = useState('');
   const [aiAnswer, setAIAnswer] = useState('');
   const [isAILoading, setIsAILoading] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const { language, t } = useLanguage();
   const { toast } = useToast();
   const aiInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
     if (isAIOpen && aiInputRef.current) {
@@ -243,118 +249,124 @@ export function GlobalSearch({ className }: GlobalSearchProps) {
       </div>
 
       {/* AI Modal - rendered as overlay */}
-      <AnimatePresence>
-        {isAIOpen && (
-          <motion.div 
-            className="fixed inset-0 z-[100] flex items-start justify-center pt-16 md:pt-24 px-4 bg-background/80 backdrop-blur-sm" 
-            onClick={handleCloseAI}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            <motion.div 
-              className="w-full max-w-2xl bg-card border border-border rounded-2xl shadow-2xl overflow-hidden" 
-              onClick={(e) => e.stopPropagation()}
-              initial={{ opacity: 0, scale: 0.95, y: -20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: -20 }}
-              transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
-            >
-              {/* Header */}
-              <div className="flex items-center justify-between px-5 py-4 border-b border-border bg-muted/30">
-                <div className="flex items-center gap-3 text-primary">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <Sparkles className="w-4 h-4" />
-                  </div>
-                  <span className="font-semibold text-foreground">
-                    {language === 'bn' ? 'সরকারি সেবা সম্পর্কে জিজ্ঞাসা করুন' : 'Ask about government services'}
-                  </span>
-                </div>
-                <Button variant="ghost" size="icon" onClick={handleCloseAI} className="h-8 w-8 rounded-lg">
-                  <X className="w-4 h-4" />
-                </Button>
-              </div>
-
-              {/* Input */}
-              <div className="p-4 border-b border-border">
-                <div className="flex gap-3">
-                  <Input
-                    ref={aiInputRef}
-                    value={aiQuestion}
-                    onChange={(e) => setAIQuestion(e.target.value)}
-                    onKeyDown={handleAIKeyDown}
-                    placeholder={aiPlaceholder}
-                    className="flex-1 h-11"
-                    disabled={isAILoading}
-                  />
-                  <Button onClick={handleAsk} disabled={!aiQuestion.trim() || isAILoading} size="icon" className="h-11 w-11">
-                    {isAILoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
-                  </Button>
-                </div>
-              </div>
-
-              {/* Response */}
-              <div className={cn(
-                "p-5 max-h-[60vh] overflow-y-auto min-h-[120px]",
-                !aiAnswer && !isAILoading && "flex flex-col items-center justify-center text-center"
-              )}>
-                {aiAnswer ? (
-                  <motion.div 
-                    className="prose prose-sm dark:prose-invert max-w-none whitespace-pre-wrap text-foreground leading-relaxed"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {aiAnswer}
-                  </motion.div>
-                ) : isAILoading ? (
-                  <div className="flex flex-col items-center justify-center gap-4 py-8">
-                    <div className="relative">
-                      <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
-                        <Sparkles className="w-8 h-8 text-primary animate-pulse" />
+      {isMounted &&
+        createPortal(
+          <AnimatePresence>
+            {isAIOpen && (
+              <motion.div
+                className="fixed inset-0 z-[100] flex items-start justify-center pt-16 md:pt-24 px-4 bg-background/80 backdrop-blur-sm"
+                onClick={handleCloseAI}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <motion.div
+                  className="w-full max-w-2xl bg-card border border-border rounded-2xl shadow-2xl overflow-hidden"
+                  onClick={(e) => e.stopPropagation()}
+                  initial={{ opacity: 0, scale: 0.95, y: -20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, y: -20 }}
+                  transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+                >
+                  {/* Header */}
+                  <div className="flex items-center justify-between px-5 py-4 border-b border-border bg-muted/30">
+                    <div className="flex items-center gap-3 text-primary">
+                      <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                        <Sparkles className="w-4 h-4" />
                       </div>
-                      <div className="absolute inset-0 rounded-full border-2 border-primary/30 border-t-primary animate-spin" />
+                      <span className="font-semibold text-foreground">
+                        {language === 'bn' ? 'সরকারি সেবা সম্পর্কে জিজ্ঞাসা করুন' : 'Ask about government services'}
+                      </span>
                     </div>
-                    <TypingIndicator />
+                    <Button variant="ghost" size="icon" onClick={handleCloseAI} className="h-8 w-8 rounded-lg">
+                      <X className="w-4 h-4" />
+                    </Button>
                   </div>
-                ) : (
-                  <>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      {language === 'bn' 
-                        ? 'বাংলাদেশ সরকারি সেবা সম্পর্কে যেকোনো প্রশ্ন জিজ্ঞাসা করুন'
-                        : 'Ask any question about Bangladesh government services'}
-                    </p>
-                    <div className="flex flex-wrap justify-center gap-2">
-                      {quickQuestions.map((q, idx) => (
-                        <motion.button
-                          key={idx}
-                          onClick={() => handleQuickQuestion(language === 'bn' ? q.bn : q.en)}
-                          className="px-4 py-2 text-xs rounded-full bg-gradient-to-r from-primary/10 to-primary/5 text-primary hover:from-primary/20 hover:to-primary/15 transition-all duration-300 border border-primary/20 hover:border-primary/40 hover:shadow-md"
-                          initial={{ opacity: 0, scale: 0.9 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: idx * 0.05, duration: 0.2 }}
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.98 }}
-                        >
-                          {language === 'bn' ? q.bn : q.en}
-                        </motion.button>
-                      ))}
-                    </div>
-                  </>
-                )}
-              </div>
 
-              {/* Footer */}
-              <div className="px-5 py-3 border-t border-border bg-muted/30 text-xs text-muted-foreground text-center">
-                {language === 'bn' 
-                  ? 'AI উত্তর সঠিক নাও হতে পারে। সর্বদা অফিসিয়াল পোর্টালে যাচাই করুন।'
-                  : 'AI responses may not be accurate. Always verify on official portals.'}
-              </div>
-            </motion.div>
-          </motion.div>
+                  {/* Input */}
+                  <div className="p-4 border-b border-border">
+                    <div className="flex gap-3">
+                      <Input
+                        ref={aiInputRef}
+                        value={aiQuestion}
+                        onChange={(e) => setAIQuestion(e.target.value)}
+                        onKeyDown={handleAIKeyDown}
+                        placeholder={aiPlaceholder}
+                        className="flex-1 h-11"
+                        disabled={isAILoading}
+                      />
+                      <Button onClick={handleAsk} disabled={!aiQuestion.trim() || isAILoading} size="icon" className="h-11 w-11">
+                        {isAILoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* Response */}
+                  <div
+                    className={cn(
+                      "p-5 max-h-[60vh] overflow-y-auto min-h-[120px]",
+                      !aiAnswer && !isAILoading && "flex flex-col items-center justify-center text-center"
+                    )}
+                  >
+                    {aiAnswer ? (
+                      <motion.div
+                        className="prose prose-sm dark:prose-invert max-w-none whitespace-pre-wrap text-foreground leading-relaxed"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        {aiAnswer}
+                      </motion.div>
+                    ) : isAILoading ? (
+                      <div className="flex flex-col items-center justify-center gap-4 py-8">
+                        <div className="relative">
+                          <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+                            <Sparkles className="w-8 h-8 text-primary animate-pulse" />
+                          </div>
+                          <div className="absolute inset-0 rounded-full border-2 border-primary/30 border-t-primary animate-spin" />
+                        </div>
+                        <TypingIndicator />
+                      </div>
+                    ) : (
+                      <>
+                        <p className="text-sm text-muted-foreground mb-4">
+                          {language === 'bn'
+                            ? 'বাংলাদেশ সরকারি সেবা সম্পর্কে যেকোনো প্রশ্ন জিজ্ঞাসা করুন'
+                            : 'Ask any question about Bangladesh government services'}
+                        </p>
+                        <div className="flex flex-wrap justify-center gap-2">
+                          {quickQuestions.map((q, idx) => (
+                            <motion.button
+                              key={idx}
+                              onClick={() => handleQuickQuestion(language === 'bn' ? q.bn : q.en)}
+                              className="px-4 py-2 text-xs rounded-full bg-gradient-to-r from-primary/10 to-primary/5 text-primary hover:from-primary/20 hover:to-primary/15 transition-all duration-300 border border-primary/20 hover:border-primary/40 hover:shadow-md"
+                              initial={{ opacity: 0, scale: 0.9 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ delay: idx * 0.05, duration: 0.2 }}
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.98 }}
+                            >
+                              {language === 'bn' ? q.bn : q.en}
+                            </motion.button>
+                          ))}
+                        </div>
+                      </>
+                    )}
+                  </div>
+
+                  {/* Footer */}
+                  <div className="px-5 py-3 border-t border-border bg-muted/30 text-xs text-muted-foreground text-center">
+                    {language === 'bn'
+                      ? 'AI উত্তর সঠিক নাও হতে পারে। সর্বদা অফিসিয়াল পোর্টালে যাচাই করুন।'
+                      : 'AI responses may not be accurate. Always verify on official portals.'}
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          document.body
         )}
-      </AnimatePresence>
     </>
   );
 }
