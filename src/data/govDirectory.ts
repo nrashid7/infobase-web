@@ -479,8 +479,8 @@ export const govDirectory: DirectoryCategory[] = [
       { name: 'Bangladesh Tourism Board', nameBn: 'বাংলাদেশ ট্যুরিজম বোর্ড', url: 'https://tourismboard.gov.bd/' },
       { name: 'Bangladesh Parjatan Corporation', nameBn: 'বাংলাদেশ পর্যটন কর্পোরেশন', url: 'https://www.parjatan.gov.bd/' },
       { name: 'Biman Bangladesh Airlines', nameBn: 'বিমান বাংলাদেশ এয়ারলাইনস', url: 'https://www.biman.gov.bd/' },
-      { name: 'Hotels International Limited', url: 'https://hil.gov.bd/' },
-      { name: 'Bangladesh Services Limited', url: 'https://bsl.gov.bd/' },
+      { name: 'Hotels International Limited', nameBn: 'হোটেলস ইন্টারন্যাশনাল লিমিটেড', url: 'https://hil.gov.bd/' },
+      { name: 'Bangladesh Services Limited', nameBn: 'বাংলাদেশ সার্ভিসেস লিমিটেড', url: 'https://bsl.gov.bd/' },
     ],
   },
   {
