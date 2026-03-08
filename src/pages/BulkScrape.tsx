@@ -97,7 +97,7 @@ export default function BulkScrape() {
     try {
       const { data: dbSites, error } = await supabase
         .from('gov_site_details')
-        .select('url, scrape_status, last_scraped_at, description, contact_info, services, scrape_error, scrape_method, content_quality');
+        .select('url, scrape_status, last_scraped_at, description, contact_info, services, scrape_error, content_quality');
       
       if (error) {
         console.error('Error loading site statuses:', error);
