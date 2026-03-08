@@ -347,19 +347,19 @@ export default function BulkScrape() {
                 else if (result.finalUrl) {
                   try {
                     const originalHost = new URL(url).hostname;
-                    const finalHost = new URL(result.finalUrl).hostname;
+                    const finalHost = new URL(result.finalUrl as string).hostname;
                     if (originalHost !== finalHost) {
                       // Auto-apply the redirect
                       const overrides = loadUrlOverrides();
-                      overrides[url] = result.finalUrl;
+                      overrides[url] = result.finalUrl as string;
                       saveUrlOverrides(overrides);
                       updatedSites[idx] = {
                         ...updatedSites[idx],
-                        url: result.finalUrl,
+                        url: result.finalUrl as string,
                         urlStatus: 'redirect',
                         urlError: undefined,
-                        pageTitle: result.pageTitle,
-                        finalUrl: result.finalUrl,
+                        pageTitle: result.pageTitle as string | undefined,
+                        finalUrl: result.finalUrl as string,
                       };
                       autoRedirectCount++;
                       wasAutoRedirected = true;
