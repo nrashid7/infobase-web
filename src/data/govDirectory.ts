@@ -447,7 +447,7 @@ export const govDirectory: DirectoryCategory[] = [
     links: [
       { name: 'Ministry of Railways', nameBn: 'রেলপথ মন্ত্রণালয়', url: 'https://mor.gov.bd/' },
       { name: 'Bangladesh Railway', nameBn: 'বাংলাদেশ রেলওয়ে', url: 'https://railway.gov.bd/' },
-      { name: 'Department of Railway Inspection', url: 'https://dori.gov.bd/' },
+      { name: 'Department of Railway Inspection', nameBn: 'রেলওয়ে পরিদর্শন অধিদপ্তর', url: 'https://dori.gov.bd/' },
     ],
   },
   {
