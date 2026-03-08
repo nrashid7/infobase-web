@@ -130,133 +130,11 @@ interface CrawledPage {
   markdown: string;
 }
 
-function htmlToText(html: string): string {
-  return html
-    .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, ' ')
-    .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, ' ')
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
-
-function extractTitle(html: string, fallback: string): string {
-  const match = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
-  return match?.[1]?.replace(/\s+/g, ' ').trim() || fallback;
-}
-
-async function fetchHtmlWithTimeout(
-  targetUrl: string,
-  timeoutMs: number,
-): Promise<{ html: string | null; finalUrl: string | null }> {
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
-
-  try {
-    const response = await fetch(targetUrl, {
-      method: 'GET',
-      signal: controller.signal,
-      redirect: 'follow',
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-      },
-    });
-
-    if (!response.ok) {
-      return { html: null, finalUrl: response.url || null };
-    }
-
-    return { html: await response.text(), finalUrl: response.url || targetUrl };
-  } catch {
-    return { html: null, finalUrl: null };
-  } finally {
-    clearTimeout(timeoutId);
-  }
-}
-
-function discoverRelevantLinks(html: string, pageUrl: string): string[] {
-  const keywords = ['apply', 'application', 'fee', 'charge', 'eligibility', 'faq', 'document', 'process', 'service', 'how-to', 'requirement'];
-  const seen = new Set<string>();
-  const candidates: Array<{ url: string; score: number }> = [];
-
-  for (const match of html.matchAll(/href=["']([^"'#]+)["']/gi)) {
-    const href = match[1]?.trim();
-    if (!href || href.startsWith('javascript:') || href.startsWith('mailto:') || href.startsWith('tel:')) continue;
-
-    try {
-      const resolved = new URL(href, pageUrl);
-      if (!['http:', 'https:'].includes(resolved.protocol)) continue;
-      if (resolved.hostname !== new URL(pageUrl).hostname) continue;
-
-      resolved.hash = '';
-      const normalized = resolved.toString();
-      if (seen.has(normalized) || normalized === pageUrl) continue;
-      seen.add(normalized);
-
-      const lower = normalized.toLowerCase();
-      const score = keywords.reduce((count, keyword) => count + (lower.includes(keyword) ? 1 : 0), 0);
-      if (score > 0) {
-        candidates.push({ url: normalized, score });
-      }
-    } catch {
-      // Ignore malformed href values.
-    }
-  }
-
-  return candidates
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 2)
-    .map(candidate => candidate.url);
-}
-
 async function crawlOfficialPortal(officialUrl: string, firecrawlApiKey: string): Promise<CrawledPage[]> {
   const pages: CrawledPage[] = [];
-  const seenUrls = new Set<string>();
-
-  const addPage = (page: CrawledPage) => {
-    if (!seenUrls.has(page.url) && page.markdown.length > 100) {
-      seenUrls.add(page.url);
-      pages.push(page);
-    }
-  };
-
   try {
     console.log('[Crawl] Crawling official portal:', officialUrl);
 
-    const directPage = await fetchHtmlWithTimeout(officialUrl, 15000);
-    const mainUrl = directPage.finalUrl || officialUrl;
-
-    if (directPage.html) {
-      const mainText = htmlToText(directPage.html);
-      if (mainText.length > 200) {
-        addPage({
-          url: mainUrl,
-          title: extractTitle(directPage.html, 'Official Portal'),
-          markdown: mainText,
-        });
-        console.log(`[Crawl] Main page via direct fetch: ${mainText.length} chars`);
-      }
-
-      for (const subUrl of discoverRelevantLinks(directPage.html, mainUrl)) {
-        const subPage = await fetchHtmlWithTimeout(subUrl, 12000);
-        if (!subPage.html) continue;
-
-        const subText = htmlToText(subPage.html);
-        if (subText.length > 100) {
-          addPage({
-            url: subPage.finalUrl || subUrl,
-            title: extractTitle(subPage.html, subUrl),
-            markdown: subText,
-          });
-          console.log(`[Crawl] Sub-page via direct fetch ${subUrl}: ${subText.length} chars`);
-        }
-      }
-    }
-
-    if (pages.length > 0) {
-      return pages;
-    }
-
-    console.log('[Crawl] Direct fetch insufficient, falling back to a single Firecrawl scrape');
     const scrapeResponse = await fetch('https://api.firecrawl.dev/v1/scrape', {
       method: 'POST',
       headers: { 'Authorization': `Bearer ${firecrawlApiKey}`, 'Content-Type': 'application/json' },
@@ -275,12 +153,56 @@ async function crawlOfficialPortal(officialUrl: string, firecrawlApiKey: string)
     if (scrapeResponse.ok && scrapeResult.success) {
       const data = scrapeResult.data || scrapeResult;
       if (data.markdown && data.markdown.length > 200) {
-        addPage({
+        pages.push({
           url: officialUrl,
           title: data.metadata?.title || 'Official Portal',
           markdown: data.markdown,
         });
-        console.log(`[Crawl] Main page via Firecrawl: ${data.markdown.length} chars`);
+        console.log(`[Crawl] Main page: ${data.markdown.length} chars`);
+      }
+    }
+
+    // Also try to find and scrape key sub-pages
+    const mapResponse = await fetch('https://api.firecrawl.dev/v1/map', {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${firecrawlApiKey}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url: officialUrl, search: 'apply fee document process', limit: 10 }),
+    });
+
+    const mapResult = await mapResponse.json();
+    if (mapResponse.ok && mapResult.success && Array.isArray(mapResult.links)) {
+      const keywords = ['apply', 'application', 'fee', 'charge', 'eligibility', 'faq', 'document', 'process', 'service', 'how-to', 'requirement'];
+      const subPages = mapResult.links
+        .filter((link: string) => link !== officialUrl && keywords.some(kw => link.toLowerCase().includes(kw)))
+        .slice(0, 5);
+
+      for (const subUrl of subPages) {
+        try {
+          const subResponse = await fetch('https://api.firecrawl.dev/v1/scrape', {
+            method: 'POST',
+            headers: { 'Authorization': `Bearer ${firecrawlApiKey}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              url: subUrl,
+              formats: ['markdown'],
+              onlyMainContent: true,
+              timeout: 20000,
+              location: { country: 'BD' },
+              skipTlsVerification: true,
+            }),
+          });
+          const subResult = await subResponse.json();
+          if (subResponse.ok && subResult.success) {
+            const subData = subResult.data || subResult;
+            if (subData.markdown && subData.markdown.length > 100) {
+              pages.push({
+                url: subUrl,
+                title: subData.metadata?.title || subUrl,
+                markdown: subData.markdown,
+              });
+              console.log(`[Crawl] Sub-page ${subUrl}: ${subData.markdown.length} chars`);
+            }
+          }
+        } catch { /* skip failed sub-pages */ }
       }
     }
   } catch (err) {

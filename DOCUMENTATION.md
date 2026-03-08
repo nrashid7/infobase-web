@@ -148,7 +148,6 @@
 │   │   └── public_guides_index_bn.json # Bengali guide index (lightweight)
 │   ├── hooks/
 │   │   ├── useScrapeStatus.ts    # Hook for scrape status polling
-│   │   ├── useScrapeStatusFetch.ts # Deferred scrape stats fetcher
 │   │   └── use-toast.ts          # Toast notification hook
 │   └── integrations/
 │       └── supabase/

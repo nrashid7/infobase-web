@@ -18,8 +18,10 @@ export type Database = {
         Row: {
           category_id: string
           contact_info: Json | null
+          content_quality: number | null
           created_at: string | null
           description: string | null
+          establishment_year: string | null
           id: string
           last_scraped_at: string | null
           logo_url: string | null
@@ -29,16 +31,20 @@ export type Database = {
           primary_color: string | null
           related_links: Json | null
           scrape_error: string | null
+          scrape_method: string | null
           scrape_status: string | null
           services: Json | null
+          social_media: Json | null
           updated_at: string | null
           url: string
         }
         Insert: {
           category_id: string
           contact_info?: Json | null
+          content_quality?: number | null
           created_at?: string | null
           description?: string | null
+          establishment_year?: string | null
           id?: string
           last_scraped_at?: string | null
           logo_url?: string | null
@@ -48,16 +54,20 @@ export type Database = {
           primary_color?: string | null
           related_links?: Json | null
           scrape_error?: string | null
+          scrape_method?: string | null
           scrape_status?: string | null
           services?: Json | null
+          social_media?: Json | null
           updated_at?: string | null
           url: string
         }
         Update: {
           category_id?: string
           contact_info?: Json | null
+          content_quality?: number | null
           created_at?: string | null
           description?: string | null
+          establishment_year?: string | null
           id?: string
           last_scraped_at?: string | null
           logo_url?: string | null
@@ -67,8 +77,10 @@ export type Database = {
           primary_color?: string | null
           related_links?: Json | null
           scrape_error?: string | null
+          scrape_method?: string | null
           scrape_status?: string | null
           services?: Json | null
+          social_media?: Json | null
           updated_at?: string | null
           url?: string
         }
