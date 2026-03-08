@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Preconnect to external origins for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://ceqdfmzsbrntihilvnxp.supabase.co" />
+    <link rel="preconnect" href="https://t0.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="https://ceqdfmzsbrntihilvnxp.supabase.co" />
+    <link rel="dns-prefetch" href="https://t0.gstatic.com" />
+    <link rel="dns-prefetch" href="https://t1.gstatic.com" />
+    <link rel="dns-prefetch" href="https://t2.gstatic.com" />
+    <link rel="dns-prefetch" href="https://t3.gstatic.com" />
+    
+    <!-- Fonts: DM Sans for body, Space Grotesk for headings - loaded async to prevent render blocking -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@500;600;700&display=swap" /></noscript>
+    
+    <!-- Critical inline CSS for faster first paint -->
+    <style>
+      body{margin:0;background:hsl(150,10%,99%);color:hsl(210,11%,10%);font-family:'DM Sans',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+      #initial-loader{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center}
+      #initial-loader .hero-title{font-family:'Space Grotesk',system-ui,sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);font-weight:800;line-height:1.08;letter-spacing:-0.035em;background:linear-gradient(135deg,hsl(160,100%,22%) 0%,hsl(170,80%,32%) 40%,hsl(155,70%,38%) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0 0 0.5rem}
+      #initial-loader .hero-sub{font-family:'Space Grotesk',system-ui,sans-serif;font-size:clamp(1.5rem,3vw,2.5rem);font-weight:300;color:hsl(210,10%,45%);margin:0}
+    </style>
+    
+    <title>INFOBASE - Bangladesh Government Services Guide</title>
+    <meta name="description" content="Navigate Bangladesh government services with confidence. Clear, verified guides for passport, NID, driving license, birth certificate, visa and more." />
+    <meta name="author" content="INFOBASE" />
+
+    <meta property="og:title" content="INFOBASE - Bangladesh Government Services Guide" />
+    <meta property="og:description" content="Navigate Bangladesh government services with confidence. Clear, verified guides for every citizen." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@INFOBASE" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+  </head>
+
+  <body>
+    <div id="root">
+      <!-- Pre-rendered hero shell matching React output for faster LCP -->
+      <div id="initial-loader" style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;background:hsl(150,10%,99%)">
+        <div class="hero-title">Every Government Service</div>
+        <div class="hero-sub">One Place</div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

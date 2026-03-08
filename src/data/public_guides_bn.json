@@ -1,0 +1,467 @@
+{
+  "$schema_version": "3.0.0",
+  "generated_at": "2026-01-05T15:02:49.494Z",
+  "source_kb_version": 47,
+  "guides": [
+    {
+      "guide_id": "guide.epassport",
+      "service_id": "svc.epassport",
+      "agency_id": "agency.dip",
+      "agency_name": "ইমিগ্রেশন ও পাসপোর্ট অধিদপ্তর",
+      "title": "ই-পাসপোর্ট আবেদন",
+      "overview": "ই-পাসপোর্ট হলো বাংলাদেশের বায়োমেট্রিক, মেশিন-রিডেবল ভ্রমণ দলিল যা ইমিগ্রেশন ও পাসপোর্ট অধিদপ্তর কর্তৃক জারি করা হয়। এতে ধারকের বায়োমেট্রিক তথ্য সম্বলিত একটি ইলেকট্রনিক চিপ রয়েছে। সকল বাংলাদেশী নাগরিক অফিসিয়াল পোর্টালের মাধ্যমে অনলাইনে আবেদন করতে পারেন এবং সারাদেশে মনোনীত কেন্দ্রে এনরোলমেন্ট সম্পন্ন করতে পারেন।",
+      "steps": [
+        {
+          "step_number": 1,
+          "title": "অনলাইন আবেদন",
+          "description": "www.epassport.gov.bd ভিজিট করুন এবং অনলাইনে আবেদন ফর্ম পূরণ করুন",
+          "citations": [
+            {
+              "source_page_id": "source.947176686bf0965726403b957c96cb34267fa1d8",
+              "canonical_url": "https://www.epassport.gov.bd/instructions/five-step-to-your-epassport",
+              "domain": "www.epassport.gov.bd",
+              "page_title": "E‑Passport Online Registration Portal",
+              "locator": "5 Easy Steps > Step 1",
+              "quoted_text": "Online Application: Visit www.epassport.gov.bd and complete the application form",
+              "retrieved_at": "2025-12-31T14:45:00Z",
+              "language": "en"
+            }
+          ]
+        },
+        {
+          "step_number": 2,
+          "title": "পেমেন্ট",
+          "description": "অনলাইনে বা সোনালী ব্যাংকের মাধ্যমে ই-পাসপোর্ট ফি পরিশোধ করুন",
+          "citations": [
+            {
+              "source_page_id": "source.947176686bf0965726403b957c96cb34267fa1d8",
+              "canonical_url": "https://www.epassport.gov.bd/instructions/five-step-to-your-epassport",
+              "domain": "www.epassport.gov.bd",
+              "page_title": "E‑Passport Online Registration Portal",
+              "locator": "5 Easy Steps > Step 2",
+              "quoted_text": "Payment: Pay the e-Passport fees online or through Sonali Bank",
+              "retrieved_at": "2025-12-31T14:45:00Z",
+              "language": "en"
+            }
+          ]
+        },
+        {
+          "step_number": 3,
+          "title": "অ্যাপয়েন্টমেন্ট",
+          "description": "আপনার পছন্দের এনরোলমেন্ট কেন্দ্রে অ্যাপয়েন্টমেন্ট বুক করুন",
+          "citations": [
+            {
+              "source_page_id": "source.947176686bf0965726403b957c96cb34267fa1d8",
+              "canonical_url": "https://www.epassport.gov.bd/instructions/five-step-to-your-epassport",
+              "domain": "www.epassport.gov.bd",
+              "page_title": "E‑Passport Online Registration Portal",
+              "locator": "5 Easy Steps > Step 3",
+              "quoted_text": "Appointment: Book an appointment at your preferred enrollment center",
+              "retrieved_at": "2025-12-31T14:45:00Z",
+              "language": "en"
+            }
+          ]
+        },
+        {
+          "step_number": 4,
+          "title": "এনরোলমেন্ট",
+          "description": "বায়োমেট্রিক ডেটা সংগ্রহের জন্য প্রয়োজনীয় কাগজপত্রসহ এনরোলমেন্ট কেন্দ্রে যান",
+          "citations": [
+            {
+              "source_page_id": "source.947176686bf0965726403b957c96cb34267fa1d8",
+              "canonical_url": "https://www.epassport.gov.bd/instructions/five-step-to-your-epassport",
+              "domain": "www.epassport.gov.bd",
+              "page_title": "E‑Passport Online Registration Portal",
+              "locator": "5 Easy Steps > Step 4",
+              "quoted_text": "Enrollment: Visit the enrollment center with required documents for biometric data",
+              "retrieved_at": "2025-12-31T14:45:00Z",
+              "language": "en"
+            }
+          ]
+        },
+        {
+          "step_number": 5,
+          "title": "ডেলিভারি",
+          "description": "আঞ্চলিক পাসপোর্ট অফিস থেকে ই-পাসপোর্ট সংগ্রহ করুন অথবা ডাকযোগে গ্রহণ করুন",
+          "citations": [
+            {
+              "source_page_id": "source.947176686bf0965726403b957c96cb34267fa1d8",
+              "canonical_url": "https://www.epassport.gov.bd/instructions/five-step-to-your-epassport",
+              "domain": "www.epassport.gov.bd",
+              "page_title": "E‑Passport Online Registration Portal",
+              "locator": "5 Easy Steps > Step 5",
+              "quoted_text": "Delivery: Collect your e-Passport from the regional passport office or receive via post",
+              "retrieved_at": "2025-12-31T14:45:00Z",
+              "language": "en"
+            }
+          ]
+        }
+      ],
+      "sections": {
+        "application_steps": [
+          { "step_number": 1, "title": "অনলাইন আবেদন", "description": "www.epassport.gov.bd ভিজিট করুন এবং অনলাইনে আবেদন ফর্ম পূরণ করুন", "citations": [{"source_page_id": "source.947176686bf0965726403b957c96cb34267fa1d8", "canonical_url": "https://www.epassport.gov.bd/instructions/five-step-to-your-epassport", "domain": "www.epassport.gov.bd", "page_title": "E‑Passport Online Registration Portal", "locator": "5 Easy Steps > Step 1", "quoted_text": "Online Application: Visit www.epassport.gov.bd and complete the application form", "retrieved_at": "2025-12-31T14:45:00Z", "language": "en"}] },
+          { "step_number": 2, "title": "পেমেন্ট", "description": "অনলাইনে বা সোনালী ব্যাংকের মাধ্যমে ই-পাসপোর্ট ফি পরিশোধ করুন", "citations": [{"source_page_id": "source.947176686bf0965726403b957c96cb34267fa1d8", "canonical_url": "https://www.epassport.gov.bd/instructions/five-step-to-your-epassport", "domain": "www.epassport.gov.bd", "page_title": "E‑Passport Online Registration Portal", "locator": "5 Easy Steps > Step 2", "quoted_text": "Payment: Pay the e-Passport fees online or through Sonali Bank", "retrieved_at": "2025-12-31T14:45:00Z", "language": "en"}] },
+          { "step_number": 3, "title": "অ্যাপয়েন্টমেন্ট", "description": "আপনার পছন্দের এনরোলমেন্ট কেন্দ্রে অ্যাপয়েন্টমেন্ট বুক করুন", "citations": [{"source_page_id": "source.947176686bf0965726403b957c96cb34267fa1d8", "canonical_url": "https://www.epassport.gov.bd/instructions/five-step-to-your-epassport", "domain": "www.epassport.gov.bd", "page_title": "E‑Passport Online Registration Portal", "locator": "5 Easy Steps > Step 3", "quoted_text": "Appointment: Book an appointment at your preferred enrollment center", "retrieved_at": "2025-12-31T14:45:00Z", "language": "en"}] },
+          { "step_number": 4, "title": "এনরোলমেন্ট", "description": "বায়োমেট্রিক ডেটা সংগ্রহের জন্য প্রয়োজনীয় কাগজপত্রসহ এনরোলমেন্ট কেন্দ্রে যান", "citations": [{"source_page_id": "source.947176686bf0965726403b957c96cb34267fa1d8", "canonical_url": "https://www.epassport.gov.bd/instructions/five-step-to-your-epassport", "domain": "www.epassport.gov.bd", "page_title": "E‑Passport Online Registration Portal", "locator": "5 Easy Steps > Step 4", "quoted_text": "Enrollment: Visit the enrollment center with required documents for biometric data", "retrieved_at": "2025-12-31T14:45:00Z", "language": "en"}] },
+          { "step_number": 5, "title": "ডেলিভারি", "description": "আঞ্চলিক পাসপোর্ট অফিস থেকে ই-পাসপোর্ট সংগ্রহ করুন অথবা ডাকযোগে গ্রহণ করুন", "citations": [{"source_page_id": "source.947176686bf0965726403b957c96cb34267fa1d8", "canonical_url": "https://www.epassport.gov.bd/instructions/five-step-to-your-epassport", "domain": "www.epassport.gov.bd", "page_title": "E‑Passport Online Registration Portal", "locator": "5 Easy Steps > Step 5", "quoted_text": "Delivery: Collect your e-Passport from the regional passport office or receive via post", "retrieved_at": "2025-12-31T14:45:00Z", "language": "en"}] }
+        ],
+        "fees": [
+          { "label": "সাধারণ ডেলিভারি (৪৮ পৃষ্ঠা) ৳৪,০২৫", "description": "সাধারণ ৪৮ পৃষ্ঠা: ৪০২৫ টাকা", "citations": [{"source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9", "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees", "domain": "www.epassport.gov.bd", "page_title": "E‑Passport Online Registration Portal", "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)", "quoted_text": "- Regular delivery (48 pages): BDT 4,025", "retrieved_at": "2026-01-05T12:13:25.656Z", "language": "en"}] },
+          { "label": "সাধারণ ডেলিভারি (৬৪ পৃষ্ঠা) ৳৫,৭৫০", "description": "সাধারণ ৬৪ পৃষ্ঠা: ৫৭৫০ টাকা", "citations": [{"source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9", "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees", "domain": "www.epassport.gov.bd", "page_title": "E‑Passport Online Registration Portal", "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)", "quoted_text": "- Regular delivery (64 pages): BDT 5,750", "retrieved_at": "2026-01-05T12:13:25.656Z", "language": "en"}] },
+          { "label": "এক্সপ্রেস ডেলিভারি (৪৮ পৃষ্ঠা) ৳৬,৩২৫", "description": "এক্সপ্রেস ৪৮ পৃষ্ঠা: ৬৩২৫ টাকা", "citations": [{"source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9", "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees", "domain": "www.epassport.gov.bd", "page_title": "E‑Passport Online Registration Portal", "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)", "quoted_text": "- Express delivery (48 pages): BDT 6,325", "retrieved_at": "2026-01-05T12:13:25.656Z", "language": "en"}] },
+          { "label": "এক্সপ্রেস ডেলিভারি (৬৪ পৃষ্ঠা) ৳৮,০৫০", "description": "এক্সপ্রেস ৬৪ পৃষ্ঠা: ৮০৫০ টাকা", "citations": [{"source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9", "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees", "domain": "www.epassport.gov.bd", "page_title": "E‑Passport Online Registration Portal", "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)", "quoted_text": "- Express delivery (64 pages): BDT 8,050", "retrieved_at": "2026-01-05T12:13:25.656Z", "language": "en"}] },
+          { "label": "সুপার এক্সপ্রেস ডেলিভারি (৪৮ পৃষ্ঠা) ৳৮,৬২৫", "description": "সুপার এক্সপ্রেস ৪৮ পৃষ্ঠা: ৮৬২৫ টাকা", "citations": [{"source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9", "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees", "domain": "www.epassport.gov.bd", "page_title": "E‑Passport Online Registration Portal", "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)", "quoted_text": "- Super Express delivery (48 pages): BDT 8,625", "retrieved_at": "2026-01-05T12:13:25.656Z", "language": "en"}] },
+          { "label": "সুপার এক্সপ্রেস ডেলিভারি (৬৪ পৃষ্ঠা) ৳১০,৩৫০", "description": "সুপার এক্সপ্রেস ৬৪ পৃষ্ঠা: ১০৩৫০ টাকা", "citations": [{"source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9", "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees", "domain": "www.epassport.gov.bd", "page_title": "E‑Passport Online Registration Portal", "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)", "quoted_text": "- Super Express delivery (64 pages): BDT 10,350", "retrieved_at": "2026-01-05T12:13:25.656Z", "language": "en"}] }
+        ],
+        "required_documents": [
+          { "label": "জাতীয় পরিচয়পত্র (এনআইডি)", "description": "পরিচয় যাচাইয়ের জন্য বৈধ এনআইডি কার্ড বা স্মার্ট কার্ড", "citations": [] },
+          { "label": "জন্ম নিবন্ধন সনদ", "description": "জন্ম নিবন্ধন সনদের মূল বা সত্যায়িত কপি", "citations": [] },
+          { "label": "পূর্ববর্তী পাসপোর্ট (নবায়নের জন্য)", "description": "নবায়ন বা পুনঃইস্যুর জন্য আবেদন করলে মূল পূর্ববর্তী পাসপোর্ট", "citations": [] },
+          { "label": "পাসপোর্ট সাইজ ছবি", "description": "সাদা ব্যাকগ্রাউন্ডে সাম্প্রতিক পাসপোর্ট সাইজ ছবি (এনরোলমেন্ট কেন্দ্রে তোলা হয়)", "citations": [] },
+          { "label": "নাগরিকত্ব সনদ (প্রযোজ্য হলে)", "description": "০১-০১-২০০১ এর আগে জন্মগ্রহণকারী প্রথমবার আবেদনকারী বা বিশেষ ক্ষেত্রে প্রয়োজন", "citations": [] }
+        ],
+        "processing_time": [
+          { "label": "সাধারণ ডেলিভারি: ২১ কার্যদিবস", "description": "বায়োমেট্রিক এনরোলমেন্টের পর স্ট্যান্ডার্ড প্রসেসিং সময়", "citations": [] },
+          { "label": "এক্সপ্রেস ডেলিভারি: ৭ কার্যদিবস", "description": "অতিরিক্ত ফিতে দ্রুত প্রসেসিং", "citations": [] },
+          { "label": "সুপার এক্সপ্রেস ডেলিভারি: ৩ কার্যদিবস", "description": "সবচেয়ে দ্রুত প্রসেসিং অপশন", "citations": [] }
+        ],
+        "eligibility": [
+          { "label": "বাংলাদেশী নাগরিক", "description": "বাংলাদেশের সকল নাগরিক ই-পাসপোর্টের জন্য আবেদন করতে পারবেন", "citations": [] },
+          { "label": "বয়সের শর্ত", "description": "যেকোনো বয়সের আবেদনকারী আবেদন করতে পারবেন; নাবালকদের জন্য অভিভাবকের সম্মতি ও কাগজপত্র প্রয়োজন", "citations": [] }
+        ]
+      },
+      "variants": [
+        {
+          "variant_id": "regular",
+          "label": "সাধারণ",
+          "fees": [
+            { "text": "সাধারণ ডেলিভারি (৪৮ পৃষ্ঠা) ৳৪,০২৫", "structured_data": { "amount_bdt": 4025, "delivery_type": "regular", "pages": 48, "delivery_days": 21, "validity_years": null }, "citations": [{"source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9", "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees", "domain": "www.epassport.gov.bd", "page_title": "E‑Passport Online Registration Portal", "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)", "quoted_text": "- Regular delivery (48 pages): BDT 4,025", "retrieved_at": "2026-01-05T12:13:25.656Z", "language": "en"}] },
+            { "text": "সাধারণ ডেলিভারি (৬৪ পৃষ্ঠা) ৳৫,৭৫০", "structured_data": { "amount_bdt": 5750, "delivery_type": "regular", "pages": 64, "delivery_days": 21, "validity_years": null }, "citations": [{"source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9", "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees", "domain": "www.epassport.gov.bd", "page_title": "E‑Passport Online Registration Portal", "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)", "quoted_text": "- Regular delivery (64 pages): BDT 5,750", "retrieved_at": "2026-01-05T12:13:25.656Z", "language": "en"}] }
+          ],
+          "processing_times": []
+        },
+        {
+          "variant_id": "express",
+          "label": "এক্সপ্রেস",
+          "fees": [
+            { "text": "এক্সপ্রেস ডেলিভারি (৪৮ পৃষ্ঠা) ৳৬,৩২৫", "structured_data": { "amount_bdt": 6325, "delivery_type": "express", "pages": 48, "delivery_days": 7, "validity_years": null }, "citations": [{"source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9", "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees", "domain": "www.epassport.gov.bd", "page_title": "E‑Passport Online Registration Portal", "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)", "quoted_text": "- Express delivery (48 pages): BDT 6,325", "retrieved_at": "2026-01-05T12:13:25.656Z", "language": "en"}] },
+            { "text": "এক্সপ্রেস ডেলিভারি (৬৪ পৃষ্ঠা) ৳৮,০৫০", "structured_data": { "amount_bdt": 8050, "delivery_type": "express", "pages": 64, "delivery_days": 7, "validity_years": null }, "citations": [{"source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9", "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees", "domain": "www.epassport.gov.bd", "page_title": "E‑Passport Online Registration Portal", "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)", "quoted_text": "- Express delivery (64 pages): BDT 8,050", "retrieved_at": "2026-01-05T12:13:25.656Z", "language": "en"}] }
+          ],
+          "processing_times": []
+        },
+        {
+          "variant_id": "super_express",
+          "label": "সুপার এক্সপ্রেস",
+          "fees": [
+            { "text": "সুপার এক্সপ্রেস ডেলিভারি (৪৮ পৃষ্ঠা) ৳৮,৬২৫", "structured_data": { "amount_bdt": 8625, "delivery_type": "super_express", "pages": 48, "delivery_days": 3, "validity_years": null }, "citations": [{"source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9", "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees", "domain": "www.epassport.gov.bd", "page_title": "E‑Passport Online Registration Portal", "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)", "quoted_text": "- Super Express delivery (48 pages): BDT 8,625", "retrieved_at": "2026-01-05T12:13:25.656Z", "language": "en"}] },
+            { "text": "সুপার এক্সপ্রেস ডেলিভারি (৬৪ পৃষ্ঠা) ৳১০,৩৫০", "structured_data": { "amount_bdt": 10350, "delivery_type": "super_express", "pages": 64, "delivery_days": 3, "validity_years": null }, "citations": [{"source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9", "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees", "domain": "www.epassport.gov.bd", "page_title": "E‑Passport Online Registration Portal", "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)", "quoted_text": "- Super Express delivery (64 pages): BDT 10,350", "retrieved_at": "2026-01-05T12:13:25.656Z", "language": "en"}] }
+          ],
+          "processing_times": []
+        }
+      ],
+      "required_documents": [
+        { "label": "জাতীয় পরিচয়পত্র (এনআইডি)", "description": "বৈধ এনআইডি কার্ড বা স্মার্ট কার্ড", "citations": [] },
+        { "label": "জন্ম নিবন্ধন সনদ", "description": "মূল বা সত্যায়িত কপি", "citations": [] },
+        { "label": "পূর্ববর্তী পাসপোর্ট (নবায়নের জন্য)", "description": "প্রযোজ্য হলে মূল পূর্ববর্তী পাসপোর্ট", "citations": [] },
+        { "label": "পাসপোর্ট সাইজ ছবি", "description": "এনরোলমেন্ট কেন্দ্রে তোলা হয়", "citations": [] },
+        { "label": "নাগরিকত্ব সনদ (প্রযোজ্য হলে)", "description": "বিশেষ ক্ষেত্রে প্রয়োজন", "citations": [] }
+      ],
+      "fees": [
+        { "label": "সাধারণ ডেলিভারি (৪৮ পৃষ্ঠা) ৳৪,০২৫", "description": "সাধারণ ৪৮ পৃষ্ঠা: ৪০২৫ টাকা", "citations": [{"source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9", "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees", "domain": "www.epassport.gov.bd", "page_title": "E‑Passport Online Registration Portal", "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)", "quoted_text": "- Regular delivery (48 pages): BDT 4,025", "retrieved_at": "2026-01-05T12:13:25.656Z", "language": "en"}] },
+        { "label": "সাধারণ ডেলিভারি (৬৪ পৃষ্ঠা) ৳৫,৭৫০", "description": "সাধারণ ৬৪ পৃষ্ঠা: ৫৭৫০ টাকা", "citations": [{"source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9", "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees", "domain": "www.epassport.gov.bd", "page_title": "E‑Passport Online Registration Portal", "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)", "quoted_text": "- Regular delivery (64 pages): BDT 5,750", "retrieved_at": "2026-01-05T12:13:25.656Z", "language": "en"}] },
+        { "label": "এক্সপ্রেস ডেলিভারি (৪৮ পৃষ্ঠা) ৳৬,৩২৫", "description": "এক্সপ্রেস ৪৮ পৃষ্ঠা: ৬৩২৫ টাকা", "citations": [{"source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9", "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees", "domain": "www.epassport.gov.bd", "page_title": "E‑Passport Online Registration Portal", "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)", "quoted_text": "- Express delivery (48 pages): BDT 6,325", "retrieved_at": "2026-01-05T12:13:25.656Z", "language": "en"}] },
+        { "label": "এক্সপ্রেস ডেলিভারি (৬৪ পৃষ্ঠা) ৳৮,০৫০", "description": "এক্সপ্রেস ৬৪ পৃষ্ঠা: ৮০৫০ টাকা", "citations": [{"source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9", "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees", "domain": "www.epassport.gov.bd", "page_title": "E‑Passport Online Registration Portal", "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)", "quoted_text": "- Express delivery (64 pages): BDT 8,050", "retrieved_at": "2026-01-05T12:13:25.656Z", "language": "en"}] },
+        { "label": "সুপার এক্সপ্রেস ডেলিভারি (৪৮ পৃষ্ঠা) ৳৮,৬২৫", "description": "সুপার এক্সপ্রেস ৪৮ পৃষ্ঠা: ৮৬২৫ টাকা", "citations": [{"source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9", "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees", "domain": "www.epassport.gov.bd", "page_title": "E‑Passport Online Registration Portal", "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)", "quoted_text": "- Super Express delivery (48 pages): BDT 8,625", "retrieved_at": "2026-01-05T12:13:25.656Z", "language": "en"}] },
+        { "label": "সুপার এক্সপ্রেস ডেলিভারি (৬৪ পৃষ্ঠা) ৳১০,৩৫০", "description": "সুপার এক্সপ্রেস ৬৪ পৃষ্ঠা: ১০৩৫০ টাকা", "citations": [{"source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9", "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees", "domain": "www.epassport.gov.bd", "page_title": "E‑Passport Online Registration Portal", "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)", "quoted_text": "- Super Express delivery (64 pages): BDT 10,350", "retrieved_at": "2026-01-05T12:13:25.656Z", "language": "en"}] }
+      ],
+      "official_links": [{ "label": "অফিসিয়াল পোর্টাল", "url": "https://www.epassport.gov.bd/", "source_page_id": "source.947176686bf0965726403b957c96cb34267fa1d8" }],
+      "meta": { "total_steps": 5, "total_citations": 52, "verification_summary": { "total": 52, "verified": 0, "unverified": 52, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": "2026-01-05T13:58:32.797Z", "source_domains": ["www.epassport.gov.bd"], "generated_at": "2026-01-01T21:23:39.364Z", "last_updated_at": "2026-01-05T12:13:26.642Z", "status": "draft" }
+    },
+    {
+      "guide_id": "guide.nid", "service_id": "svc.nid", "agency_id": "agency.bec",
+      "agency_name": "বাংলাদেশ নির্বাচন কমিশন - এনআইডি উইং",
+      "title": "জাতীয় পরিচয়পত্র সেবা",
+      "overview": "জাতীয় পরিচয়পত্র (এনআইডি) হলো ১৮ বছর ও তদূর্ধ্ব সকল বাংলাদেশী নাগরিকের প্রাথমিক পরিচয় দলিল। এটি ভোটার নিবন্ধন, ব্যাংক অ্যাকাউন্ট খোলা, পাসপোর্ট গ্রহণ, সিম নিবন্ধন এবং বিভিন্ন সরকারি সেবা ব্যবহারের জন্য প্রয়োজন। বায়োমেট্রিক ডেটা সম্বলিত স্মার্ট এনআইডি কার্ড এখন জারি করা হচ্ছে।",
+      "steps": [
+        { "step_number": 1, "title": "এনআইডি উইং পোর্টাল ভিজিট করুন", "description": "nidw.gov.bd-তে যান এবং উপযুক্ত সেবা নির্বাচন করুন — নতুন ভোটার নিবন্ধন, এনআইডি সংশোধন, ডুপ্লিকেট এনআইডি, বা ভোটার এলাকা স্থানান্তর।", "citations": [{"source_page_id": "source.2b76dc5ccf95634ef088f71423ea3517a84ff511", "canonical_url": "https://nidw.gov.bd/", "domain": "nidw.gov.bd", "page_title": "https://nidw.gov.bd/", "locator": "Services", "quoted_text": "New voter registration", "retrieved_at": "2025-12-31T14:45:00Z", "language": "en"}] },
+        { "step_number": 2, "title": "আবেদন ফর্ম পূরণ করুন", "description": "নাম, পিতা-মাতার তথ্য, জন্ম তারিখ, বর্তমান ও স্থায়ী ঠিকানা এবং শিক্ষাগত যোগ্যতাসহ ব্যক্তিগত তথ্য দিয়ে এনআইডি আবেদন ফর্ম পূরণ করুন।", "citations": [] },
+        { "step_number": 3, "title": "বায়োমেট্রিক ডেটা জমা দিন", "description": "আঙুলের ছাপ, আইরিস স্ক্যান এবং ছবি সহ বায়োমেট্রিক ডেটা জমা দিতে আপনার মনোনীত স্থানীয় নির্বাচন অফিসে (উপজেলা/থানা) যান। যাচাইয়ের জন্য সকল প্রয়োজনীয় মূল কাগজপত্র নিয়ে আসুন।", "citations": [] },
+        { "step_number": 4, "title": "এনআইডি কার্ড সংগ্রহ করুন", "description": "যাচাই ও প্রসেসিংয়ের পর মনোনীত অফিস থেকে এনআইডি কার্ড সংগ্রহ করুন। nidw.gov.bd-তে অনলাইনে আবেদনের অবস্থা দেখতে পারেন। স্মার্ট এনআইডি কার্ড স্থানীয় অফিসে ডেলিভারি হয়।", "citations": [] }
+      ],
+      "sections": {
+        "service_info": [
+          { "label": "এনআইডি উইং - বাংলাদেশ নির্বাচন কমিশনের মাধ্যমে নতুন ভোটার নিবন্ধন সেবা উপলব্ধ", "description": null, "citations": [{"source_page_id": "source.2b76dc5ccf95634ef088f71423ea3517a84ff511", "canonical_url": "https://nidw.gov.bd/", "domain": "nidw.gov.bd", "page_title": "https://nidw.gov.bd/", "locator": "Services > New Voter Registration", "quoted_text": "New voter registration", "retrieved_at": "2025-12-31T14:45:00Z", "language": "en"}] },
+          { "label": "হারানো বা ক্ষতিগ্রস্ত এনআইডি কার্ডের জন্য ডুপ্লিকেট এনআইডি ইস্যু সেবা উপলব্ধ", "description": null, "citations": [{"source_page_id": "source.2b76dc5ccf95634ef088f71423ea3517a84ff511", "canonical_url": "https://nidw.gov.bd/", "domain": "nidw.gov.bd", "page_title": "https://nidw.gov.bd/", "locator": "Services > Duplicate NID", "quoted_text": "Issuance of Duplicate NID", "retrieved_at": "2025-12-31T14:45:00Z", "language": "en"}] },
+          { "label": "নাম, জন্ম তারিখ এবং অন্যান্য তথ্য সংশোধনের জন্য এনআইডি সংশোধন সেবা উপলব্ধ", "description": null, "citations": [{"source_page_id": "source.2b76dc5ccf95634ef088f71423ea3517a84ff511", "canonical_url": "https://nidw.gov.bd/", "domain": "nidw.gov.bd", "page_title": "https://nidw.gov.bd/", "locator": "Services > NID Correction", "quoted_text": "Correction of NID", "retrieved_at": "2025-12-31T14:45:00Z", "language": "en"}] },
+          { "label": "ঠিকানা পরিবর্তনের জন্য ভোটার এলাকা স্থানান্তর সেবা উপলব্ধ", "description": null, "citations": [{"source_page_id": "source.2b76dc5ccf95634ef088f71423ea3517a84ff511", "canonical_url": "https://nidw.gov.bd/", "domain": "nidw.gov.bd", "page_title": "https://nidw.gov.bd/", "locator": "Services > Voter Migration", "quoted_text": "Migration of Voter Area", "retrieved_at": "2025-12-31T14:45:00Z", "language": "en"}] }
+        ],
+        "required_documents": [
+          { "label": "জন্ম নিবন্ধন সনদ", "description": "স্থানীয় রেজিস্ট্রার কর্তৃক জারিকৃত মূল জন্ম সনদ", "citations": [] },
+          { "label": "শিক্ষাগত সনদ", "description": "এসএসসি/সমমানের সনদ বা ছাত্রদের জন্য স্কুল আইডি", "citations": [] },
+          { "label": "পাসপোর্ট সাইজ ছবি", "description": "সাদা ব্যাকগ্রাউন্ডে সাম্প্রতিক রঙিন ছবি", "citations": [] },
+          { "label": "ঠিকানার প্রমাণ", "description": "বর্তমান ঠিকানার প্রমাণ হিসেবে ইউটিলিটি বিল, হোল্ডিং ট্যাক্স রসিদ, বা ভাড়া চুক্তি", "citations": [] }
+        ],
+        "fees": [
+          { "label": "নতুন এনআইডি: বিনামূল্যে", "description": "যোগ্য নাগরিকদের জন্য প্রথমবার এনআইডি কার্ড ইস্যু বিনামূল্যে", "citations": [] },
+          { "label": "ডুপ্লিকেট/প্রতিস্থাপন এনআইডি: ৳৩৪৫", "description": "হারানো, চুরি বা ক্ষতিগ্রস্ত এনআইডি কার্ড পুনঃইস্যুর জন্য ফি (ভ্যাটসহ)", "citations": [] },
+          { "label": "এনআইডি সংশোধন: ৳২৩০", "description": "বিদ্যমান এনআইডি কার্ডে তথ্য সংশোধনের জন্য ফি (ভ্যাটসহ)", "citations": [] }
+        ],
+        "processing_time": [
+          { "label": "নতুন এনআইডি: ৩০-৪৫ কার্যদিবস", "description": "নতুন ভোটার নিবন্ধনের জন্য বায়োমেট্রিক এনরোলমেন্টের পর প্রসেসিং সময়", "citations": [] },
+          { "label": "সংশোধন: ১৫-৩০ কার্যদিবস", "description": "তথ্য সংশোধন অনুরোধের প্রসেসিং সময়", "citations": [] },
+          { "label": "ডুপ্লিকেট এনআইডি: ১৫-৩০ কার্যদিবস", "description": "প্রতিস্থাপন কার্ড ইস্যুর প্রসেসিং সময়", "citations": [] }
+        ]
+      },
+      "variants": null,
+      "required_documents": [
+        { "label": "জন্ম নিবন্ধন সনদ", "description": "মূল জন্ম সনদ", "citations": [] },
+        { "label": "শিক্ষাগত সনদ", "description": "এসএসসি/সমমান বা স্কুল আইডি", "citations": [] },
+        { "label": "পাসপোর্ট সাইজ ছবি", "description": "সাম্প্রতিক রঙিন ছবি", "citations": [] },
+        { "label": "ঠিকানার প্রমাণ", "description": "ইউটিলিটি বিল বা হোল্ডিং ট্যাক্স রসিদ", "citations": [] }
+      ],
+      "fees": [
+        { "label": "নতুন এনআইডি: বিনামূল্যে", "description": "প্রথম ইস্যু বিনামূল্যে", "citations": [] },
+        { "label": "ডুপ্লিকেট/প্রতিস্থাপন: ৳৩৪৫", "description": "ভ্যাটসহ", "citations": [] },
+        { "label": "এনআইডি সংশোধন: ৳২৩০", "description": "ভ্যাটসহ", "citations": [] }
+      ],
+      "official_links": [{ "label": "অফিসিয়াল পোর্টাল", "url": "https://nidw.gov.bd/", "source_page_id": "source.2b76dc5ccf95634ef088f71423ea3517a84ff511" }],
+      "meta": { "total_steps": 4, "total_citations": 4, "verification_summary": { "total": 4, "verified": 0, "unverified": 4, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": "2026-01-05T14:24:22.361Z", "source_domains": ["nidw.gov.bd"], "generated_at": "2026-01-01T21:23:39.365Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "draft" }
+    },
+    {
+      "guide_id": "guide.brta", "service_id": "svc.brta", "agency_id": "agency.brta",
+      "agency_name": "বাংলাদেশ সড়ক পরিবহন কর্তৃপক্ষ",
+      "title": "বিআরটিএ অনলাইন সেবা",
+      "overview": "বাংলাদেশ সড়ক পরিবহন কর্তৃপক্ষ (বিআরটিএ) তার অনলাইন বিআরটিএ সার্ভিস পোর্টাল (বিএসপি) এর মাধ্যমে যানবাহন ও পরিবহন সংক্রান্ত বিভিন্ন সেবা প্রদান করে। নাগরিকরা bsp.brta.gov.bd পোর্টালের মাধ্যমে ড্রাইভিং লাইসেন্স, গাড়ি নিবন্ধন, ফিটনেস সার্টিফিকেট, ট্যাক্স টোকেন, রুট পারমিট এবং আরও অনেক কিছুর জন্য নিবন্ধন করতে পারেন।",
+      "steps": [
+        { "step_number": 1, "title": "বিএসপি অ্যাকাউন্ট তৈরি করুন", "description": "bsp.brta.gov.bd ভিজিট করুন এবং নতুন অ্যাকাউন্ট তৈরি করতে 'Registration' ক্লিক করুন। আপনার এনআইডি নম্বর, মোবাইল নম্বর এবং ইমেইল ঠিকানা দিন। মোবাইলে পাঠানো ওটিপি দিয়ে অ্যাকাউন্ট যাচাই করুন।", "citations": [{"source_page_id": "source.3ba45a7b75e2a0a9c5e082ef75d9cb5326a11029", "canonical_url": "https://bsp.brta.gov.bd/", "domain": "bsp.brta.gov.bd", "page_title": "https://bsp.brta.gov.bd/", "locator": "Service Hours", "quoted_text": "BRTA Service Portal (BSP) will be available from 8:00am to 10:00pm (Bangladesh Standard Time)", "retrieved_at": "2025-12-31T14:45:00Z", "language": "en"}] },
+        { "step_number": 2, "title": "বিএসপি পোর্টালে লগইন করুন", "description": "bsp.brta.gov.bd/login-এ আপনার নিবন্ধিত মোবাইল নম্বর ও পাসওয়ার্ড দিয়ে লগইন করুন। পোর্টালটি প্রতিদিন সকাল ৮:০০ থেকে রাত ১০:০০ পর্যন্ত (বাংলাদেশ সময়) উপলব্ধ।", "citations": [{"source_page_id": "source.900eaee954dee9531f26ca362419cab9579810e0", "canonical_url": "https://brta.gov.bd/", "domain": "brta.gov.bd", "page_title": "Bangladesh Road Transport Authority - Official Website", "locator": "বিআরটিএ সার্ভিস পোর্টাল > BSP Login", "quoted_text": "বিএসপি'র লগইন লিংক: https://bsp.brta.gov.bd/login", "retrieved_at": "2025-12-31T14:45:00Z", "language": "bn"}] },
+        { "step_number": 3, "title": "সেবা নির্বাচন করুন", "description": "বিএসপি ড্যাশবোর্ড থেকে আপনার প্রয়োজনীয় সেবা নির্বাচন করুন — ড্রাইভিং লাইসেন্স, গাড়ি নিবন্ধন, ফিটনেস সার্টিফিকেট, ট্যাক্স টোকেন, রুট পারমিট বা অন্যান্য উপলব্ধ সেবা।", "citations": [] },
+        { "step_number": 4, "title": "অনলাইনে ফি পরিশোধ করুন", "description": "পোর্টালের মাধ্যমে প্রযোজ্য সরকারি ফি অনলাইনে পরিশোধ করুন। আবেদনের আগে আপনার নির্দিষ্ট সেবার ফি জানতে bsp.brta.gov.bd/feeCalculator-এ বিআরটিএ ফি ক্যালকুলেটর ব্যবহার করুন।", "citations": [{"source_page_id": "source.900eaee954dee9531f26ca362419cab9579810e0", "canonical_url": "https://brta.gov.bd/", "domain": "brta.gov.bd", "page_title": "Bangladesh Road Transport Authority - Official Website", "locator": "অভ্যন্তরীণ ই-সেবাসমূহ > Fee Calculator", "quoted_text": "বিআরটিএ'র ফি ক্যালকুলেটর", "retrieved_at": "2025-12-31T14:45:00Z", "language": "bn"}] },
+        { "step_number": 5, "title": "অ্যাপয়েন্টমেন্ট বুক করুন ও অফিসে যান", "description": "পোর্টালের মাধ্যমে আপনার পছন্দের বিআরটিএ অফিসে অ্যাপয়েন্টমেন্ট বুক করুন। নির্ধারিত তারিখে সকল প্রয়োজনীয় মূল কাগজপত্র নিয়ে যাচাই ও প্রসেসিংয়ের জন্য অফিসে যান।", "citations": [] }
+      ],
+      "sections": {
+        "portal_links": [
+          { "label": "বিআরটিএ সার্ভিস পোর্টাল লগইন https://bsp.brta.gov.bd/login-এ উপলব্ধ", "description": null, "citations": [{"source_page_id": "source.900eaee954dee9531f26ca362419cab9579810e0", "canonical_url": "https://brta.gov.bd/", "domain": "brta.gov.bd", "page_title": "Bangladesh Road Transport Authority - Official Website", "locator": "বিআরটিএ সার্ভিস পোর্টাল > BSP Login", "quoted_text": "বিএসপি'র লগইন লিংক: https://bsp.brta.gov.bd/login", "retrieved_at": "2025-12-31T14:45:00Z", "language": "bn"}] },
+          { "label": "বিআরটিএ ফি ক্যালকুলেটর https://bsp.brta.gov.bd/feeCalculator-এ উপলব্ধ", "description": null, "citations": [{"source_page_id": "source.900eaee954dee9531f26ca362419cab9579810e0", "canonical_url": "https://brta.gov.bd/", "domain": "brta.gov.bd", "page_title": "Bangladesh Road Transport Authority - Official Website", "locator": "অভ্যন্তরীণ ই-সেবাসমূহ > Fee Calculator", "quoted_text": "বিআরটিএ'র ফি ক্যালকুলেটর", "retrieved_at": "2025-12-31T14:45:00Z", "language": "bn"}] }
+        ],
+        "service_info": [
+          { "label": "বিআরটিএ সার্ভিস পোর্টাল (বিএসপি) সকাল ৮:০০ থেকে রাত ১০:০০ পর্যন্ত (বাংলাদেশ সময়) উপলব্ধ", "description": null, "citations": [{"source_page_id": "source.3ba45a7b75e2a0a9c5e082ef75d9cb5326a11029", "canonical_url": "https://bsp.brta.gov.bd/", "domain": "bsp.brta.gov.bd", "page_title": "https://bsp.brta.gov.bd/", "locator": "Service Hours", "quoted_text": "BRTA Service Portal (BSP) will be available from 8:00am to 10:00pm (Bangladesh Standard Time)", "retrieved_at": "2025-12-31T14:45:00Z", "language": "en"}] }
+        ],
+        "required_documents": [
+          { "label": "জাতীয় পরিচয়পত্র (এনআইডি)", "description": "অ্যাকাউন্ট নিবন্ধন ও পরিচয় যাচাইয়ের জন্য বৈধ এনআইডি", "citations": [] },
+          { "label": "পাসপোর্ট সাইজ ছবি", "description": "বিভিন্ন আবেদনের জন্য সাম্প্রতিক ছবি", "citations": [] },
+          { "label": "মোবাইল নম্বর", "description": "ওটিপি যাচাই ও অ্যাকাউন্ট নিবন্ধনের জন্য সক্রিয় মোবাইল নম্বর", "citations": [] }
+        ],
+        "fees": [
+          { "label": "সেবা অনুযায়ী ভিন্ন", "description": "অনুরোধকৃত নির্দিষ্ট সেবার উপর ভিত্তি করে ফি ভিন্ন হয়। সঠিক পরিমাণের জন্য bsp.brta.gov.bd/feeCalculator-এ বিআরটিএ ফি ক্যালকুলেটর ব্যবহার করুন।", "citations": [] }
+        ]
+      },
+      "variants": null,
+      "required_documents": [
+        { "label": "জাতীয় পরিচয়পত্র (এনআইডি)", "description": "পরিচয় যাচাইয়ের জন্য", "citations": [] },
+        { "label": "পাসপোর্ট সাইজ ছবি", "description": "সাম্প্রতিক ছবি", "citations": [] },
+        { "label": "মোবাইল নম্বর", "description": "ওটিপি যাচাইয়ের জন্য", "citations": [] }
+      ],
+      "fees": [{ "label": "সেবা অনুযায়ী ভিন্ন", "description": "সঠিক পরিমাণের জন্য বিআরটিএ ফি ক্যালকুলেটর ব্যবহার করুন", "citations": [] }],
+      "official_links": [
+        { "label": "অফিসিয়াল পোর্টাল", "url": "https://brta.gov.bd/", "source_page_id": "source.900eaee954dee9531f26ca362419cab9579810e0" },
+        { "label": "অফিসিয়াল পোর্টাল", "url": "https://bsp.brta.gov.bd/", "source_page_id": "source.3ba45a7b75e2a0a9c5e082ef75d9cb5326a11029" },
+        { "label": "পোর্টাল লিংক", "url": "https://bsp.brta.gov.bd/login" },
+        { "label": "পোর্টাল লিংক", "url": "https://bsp.brta.gov.bd/feeCalculator" }
+      ],
+      "meta": { "total_steps": 5, "total_citations": 3, "verification_summary": { "total": 3, "verified": 0, "unverified": 3, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": "2026-01-05T14:39:14.667Z", "source_domains": ["brta.gov.bd", "bsp.brta.gov.bd"], "generated_at": "2026-01-01T21:23:39.366Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "draft" }
+    },
+    {
+      "guide_id": "guide.brta_driving_license", "service_id": "svc.brta_driving_license", "agency_id": "agency.brta",
+      "agency_name": "বাংলাদেশ সড়ক পরিবহন কর্তৃপক্ষ", "title": "ড্রাইভিং লাইসেন্স সেবা",
+      "overview": "বিআরটিএ বিএসপি পোর্টালের মাধ্যমে বিভিন্ন ধরনের গাড়ির জন্য ড্রাইভিং লাইসেন্স ইস্যু করে। প্রক্রিয়াটিতে প্রথমে লার্নিং লাইসেন্স নেওয়া, তারপর লিখিত ও প্রায়োগিক পরীক্ষায় অংশ নেওয়া প্রয়োজন। সফলভাবে সম্পন্ন হলে স্মার্ট কার্ড ড্রাইভিং লাইসেন্স ইস্যু করা হয়।",
+      "steps": [
+        { "step_number": 1, "title": "বিএসপি পোর্টালে আবেদন করুন", "description": "bsp.brta.gov.bd-তে লগইন করুন, সেবা মেনু থেকে 'ড্রাইভিং লাইসেন্স' নির্বাচন করুন, লাইসেন্সের ধরন (পেশাদার বা অ-পেশাদার) বেছে নিন এবং ব্যক্তিগত ও গাড়ির ক্যাটাগরি তথ্য দিয়ে আবেদন ফর্ম পূরণ করুন।", "citations": [{"source_page_id": "source.900eaee954dee9531f26ca362419cab9579810e0", "canonical_url": "https://brta.gov.bd/", "domain": "brta.gov.bd", "page_title": "Bangladesh Road Transport Authority - Official Website", "locator": "ড্রাইভিং লাইসেন্স > Driving License", "quoted_text": "ড্রাইভিং লাইসেন্সের আবেদন প্রক্রিয়া (Driving License application process)", "retrieved_at": "2025-12-31T14:45:00Z", "language": "bn"}] },
+        { "step_number": 2, "title": "ফি পরিশোধ ও লার্নিং লাইসেন্স নিন", "description": "বিএসপি পোর্টালের মাধ্যমে অনলাইনে লার্নিং লাইসেন্স ফি পরিশোধ করুন। ফি পরিশোধের পর বায়োমেট্রিক এনরোলমেন্টের জন্য বিআরটিএ অফিসে যাওয়ার অ্যাপয়েন্টমেন্ট বুক করুন।", "citations": [] },
+        { "step_number": 3, "title": "লিখিত পরীক্ষা", "description": "বাধ্যতামূলক শিক্ষার সময়কাল (লার্নিং লাইসেন্স নিয়ে ন্যূনতম ৩০ দিন) শেষে মনোনীত বিআরটিএ অফিসে ট্রাফিক নিয়ম ও সড়ক চিহ্ন সম্পর্কে লিখিত পরীক্ষায় অংশ নিন।", "citations": [] },
+        { "step_number": 4, "title": "প্রায়োগিক ড্রাইভিং পরীক্ষা", "description": "বিআরটিএ টেস্ট ট্র্যাকে প্রায়োগিক ড্রাইভিং পরীক্ষায় উত্তীর্ণ হন। পরীক্ষায় গাড়ি নিয়ন্ত্রণ, ট্রাফিক সিগন্যাল অনুসরণ এবং মৌলিক ম্যানুভার সম্পাদন করার দক্ষতা মূল্যায়ন করা হয়।", "citations": [] },
+        { "step_number": 5, "title": "স্মার্ট কার্ড লাইসেন্স সংগ্রহ করুন", "description": "উভয় পরীক্ষায় উত্তীর্ণ হলে আপনার স্মার্ট কার্ড ড্রাইভিং লাইসেন্স তৈরি করা হবে। বিআরটিএ অফিস থেকে সংগ্রহ করুন বা এসএমএসে ডেলিভারি বিজ্ঞপ্তি পান।", "citations": [] }
+      ],
+      "sections": {
+        "service_info": [{ "label": "নতুন লাইসেন্স, নবায়ন এবং ডুপ্লিকেট লাইসেন্সসহ বিআরটিএর মাধ্যমে ড্রাইভিং লাইসেন্স সেবা উপলব্ধ", "description": null, "citations": [{"source_page_id": "source.900eaee954dee9531f26ca362419cab9579810e0", "canonical_url": "https://brta.gov.bd/", "domain": "brta.gov.bd", "page_title": "Bangladesh Road Transport Authority - Official Website", "locator": "ড্রাইভিং লাইসেন্স > Driving License", "quoted_text": "ড্রাইভিং লাইসেন্সের আবেদন প্রক্রিয়া (Driving License application process)", "retrieved_at": "2025-12-31T14:45:00Z", "language": "bn"}] }],
+        "required_documents": [
+          { "label": "জাতীয় পরিচয়পত্র (এনআইডি)", "description": "পরিচয় যাচাইয়ের জন্য বৈধ এনআইডি", "citations": [] },
+          { "label": "পাসপোর্ট সাইজ ছবি", "description": "সাদা ব্যাকগ্রাউন্ডে সাম্প্রতিক রঙিন ছবি", "citations": [] },
+          { "label": "মেডিকেল সার্টিফিকেট", "description": "নিবন্ধিত চিকিৎসকের (এমবিবিএস) ফিটনেস সার্টিফিকেট", "citations": [] },
+          { "label": "লার্নিং লাইসেন্স (পূর্ণ লাইসেন্সের জন্য)", "description": "ন্যূনতম ৩০ দিন আগে ইস্যু করা বৈধ লার্নিং লাইসেন্স", "citations": [] },
+          { "label": "শিক্ষাগত সনদ", "description": "পেশাদার লাইসেন্সের জন্য ন্যূনতম অষ্টম শ্রেণি পাসের সনদ", "citations": [] }
+        ],
+        "fees": [
+          { "label": "লার্নিং লাইসেন্স: ৳৬০০", "description": "লার্নিং লাইসেন্স আবেদনের সরকারি ফি", "citations": [] },
+          { "label": "ড্রাইভিং লাইসেন্স (অ-পেশাদার): ৳১,০০০", "description": "অ-পেশাদার ড্রাইভিং লাইসেন্সের ফি", "citations": [] },
+          { "label": "ড্রাইভিং লাইসেন্স (পেশাদার): ৳১,০০০", "description": "পেশাদার ড্রাইভিং লাইসেন্সের ফি", "citations": [] },
+          { "label": "স্মার্ট কার্ড ফি: ৳১,১০০", "description": "স্মার্ট কার্ড ড্রাইভিং লাইসেন্সের অতিরিক্ত ফি", "citations": [] }
+        ],
+        "processing_time": [
+          { "label": "লার্নিং লাইসেন্স: ৭ কার্যদিবস", "description": "বায়োমেট্রিক এনরোলমেন্ট ও ফি পরিশোধের পর", "citations": [] },
+          { "label": "পূর্ণ ড্রাইভিং লাইসেন্স: ১৫-৩০ কার্যদিবস", "description": "লিখিত ও প্রায়োগিক উভয় পরীক্ষায় উত্তীর্ণ হওয়ার পর", "citations": [] }
+        ]
+      },
+      "variants": null,
+      "required_documents": [
+        { "label": "এনআইডি কার্ড", "description": "পরিচয় যাচাইয়ের জন্য", "citations": [] },
+        { "label": "ছবি", "description": "পাসপোর্ট সাইজ, সাদা ব্যাকগ্রাউন্ড", "citations": [] },
+        { "label": "মেডিকেল সার্টিফিকেট", "description": "নিবন্ধিত এমবিবিএস ডাক্তারের কাছ থেকে", "citations": [] },
+        { "label": "লার্নিং লাইসেন্স", "description": "পূর্ণ লাইসেন্স আবেদনকারীদের জন্য", "citations": [] }
+      ],
+      "fees": [
+        { "label": "লার্নিং লাইসেন্স: ৳৬০০", "description": "সরকারি ফি", "citations": [] },
+        { "label": "ড্রাইভিং লাইসেন্স: ৳১,০০০", "description": "পেশাদার বা অ-পেশাদার", "citations": [] },
+        { "label": "স্মার্ট কার্ড: ৳১,১০০", "description": "কার্ড ইস্যু ফি", "citations": [] }
+      ],
+      "official_links": [{ "label": "অফিসিয়াল পোর্টাল", "url": "https://bsp.brta.gov.bd/", "source_page_id": "source.3ba45a7b75e2a0a9c5e082ef75d9cb5326a11029" }],
+      "meta": { "total_steps": 5, "total_citations": 1, "verification_summary": { "total": 1, "verified": 0, "unverified": 1, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": "2025-12-31T14:45:00.000Z", "source_domains": ["brta.gov.bd"], "generated_at": "2026-01-01T21:23:39.366Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "draft" }
+    },
+    {
+      "guide_id": "guide.brta_vehicle_registration", "service_id": "svc.brta_vehicle_registration", "agency_id": "agency.brta",
+      "agency_name": "বাংলাদেশ সড়ক পরিবহন কর্তৃপক্ষ", "title": "গাড়ি নিবন্ধন সেবা",
+      "overview": "বাংলাদেশে চলাচলকারী সকল মোটরযান অবশ্যই বিআরটিএতে নিবন্ধিত হতে হবে। নিবন্ধন প্রক্রিয়া বিএসপি পোর্টালের মাধ্যমে পরিচালিত হয় এবং এতে কাগজপত্র যাচাই, ফি পরিশোধ, গাড়ি পরিদর্শন এবং নম্বর প্লেটসহ নিবন্ধন সনদ ইস্যু অন্তর্ভুক্ত।",
+      "steps": [
+        { "step_number": 1, "title": "বিএসপি পোর্টালে আবেদন করুন", "description": "bsp.brta.gov.bd-তে লগইন করুন, সেবা মেনু থেকে 'গাড়ি নিবন্ধন' নির্বাচন করুন এবং গাড়ির মেক, মডেল, চেসিস নম্বর, ইঞ্জিন নম্বর ও সিসি সহ তথ্য দিয়ে আবেদন ফর্ম পূরণ করুন।", "citations": [{"source_page_id": "source.900eaee954dee9531f26ca362419cab9579810e0", "canonical_url": "https://brta.gov.bd/", "domain": "brta.gov.bd", "page_title": "Bangladesh Road Transport Authority - Official Website", "locator": "মোটরযান নিবন্ধন সংক্রান্ত > Vehicle Registration", "quoted_text": "নতুন মোটরযান নিবন্ধন (New Motor Vehicle Registration)", "retrieved_at": "2025-12-31T14:45:00Z", "language": "bn"}] },
+        { "step_number": 2, "title": "কাগজপত্র জমা ও ফি পরিশোধ করুন", "description": "ক্রয় চালান, কাস্টমস ক্লিয়ারেন্স কাগজপত্র, বীমা এবং মালিকের এনআইডি/টিআইএনসহ প্রয়োজনীয় কাগজপত্র আপলোড করুন। গাড়ির ধরন ও ইঞ্জিন সিসি অনুযায়ী পোর্টালের মাধ্যমে নিবন্ধন ফি পরিশোধ করুন।", "citations": [] },
+        { "step_number": 3, "title": "গাড়ি পরিদর্শন", "description": "নির্ধারিত তারিখে মনোনীত বিআরটিএ পরিদর্শন কেন্দ্রে গাড়ি নিয়ে আসুন। নিরাপত্তা ও নির্গমন মানদণ্ডের সাথে সামঞ্জস্য যাচাই করা হবে।", "citations": [] },
+        { "step_number": 4, "title": "নিবন্ধন সনদ সংগ্রহ করুন", "description": "সফল পরিদর্শন ও যাচাইয়ের পর নিবন্ধন সনদ ও নম্বর প্লেট ইস্যু করা হবে। বিআরটিএ অফিস থেকে সংগ্রহ করুন বা ডেলিভারি বিজ্ঞপ্তি পান।", "citations": [] }
+      ],
+      "sections": {
+        "service_info": [{ "label": "নতুন গাড়ি, রিকন্ডিশন্ড গাড়ি এবং নিলাম ক্রয়ের জন্য মোটরযান নিবন্ধন সেবা উপলব্ধ", "description": null, "citations": [{"source_page_id": "source.900eaee954dee9531f26ca362419cab9579810e0", "canonical_url": "https://brta.gov.bd/", "domain": "brta.gov.bd", "page_title": "Bangladesh Road Transport Authority - Official Website", "locator": "মোটরযান নিবন্ধন সংক্রান্ত > Vehicle Registration", "quoted_text": "নতুন মোটরযান নিবন্ধন (New Motor Vehicle Registration)", "retrieved_at": "2025-12-31T14:45:00Z", "language": "bn"}] }],
+        "required_documents": [
+          { "label": "ক্রয় চালান / এলসি কাগজপত্র", "description": "ডিলারের মূল চালান বা আমদানিকৃত গাড়ির লেটার অব ক্রেডিট", "citations": [] },
+          { "label": "কাস্টমস ক্লিয়ারেন্স সার্টিফিকেট", "description": "আমদানিকৃত ও রিকন্ডিশন্ড গাড়ির জন্য — বিল অব এন্ট্রি ও শুল্ক পরিশোধ রসিদ", "citations": [] },
+          { "label": "গাড়ির বীমা", "description": "বৈধ তৃতীয়-পক্ষ বা সমন্বিত বীমা পলিসি", "citations": [] },
+          { "label": "মালিকের এনআইডি কার্ড", "description": "গাড়ির মালিকের জাতীয় পরিচয়পত্র", "citations": [] },
+          { "label": "মালিকের ই-টিআইএন সার্টিফিকেট", "description": "মালিকের কর শনাক্তকরণ নম্বর সনদ", "citations": [] }
+        ],
+        "fees": [{ "label": "গাড়ির ধরন ও সিসি অনুযায়ী ভিন্ন", "description": "নিবন্ধন ফি গাড়ির ক্যাটাগরি (মোটরসাইকেল, গাড়ি, বাস, ট্রাক) ও ইঞ্জিন ক্ষমতার উপর নির্ভর করে। সঠিক পরিমাণের জন্য বিআরটিএ ফি ক্যালকুলেটর ব্যবহার করুন।", "citations": [] }],
+        "processing_time": [{ "label": "৭-১৫ কার্যদিবস", "description": "সফল কাগজপত্র যাচাই ও গাড়ি পরিদর্শনের পর", "citations": [] }]
+      },
+      "variants": null,
+      "required_documents": [
+        { "label": "ক্রয় চালান / এলসি কাগজপত্র", "description": "মূল ডিলার চালান বা এলসি", "citations": [] },
+        { "label": "কাস্টমস ক্লিয়ারেন্স", "description": "আমদানিকৃত গাড়ির জন্য", "citations": [] },
+        { "label": "বীমা", "description": "বৈধ গাড়ির বীমা", "citations": [] },
+        { "label": "মালিকের এনআইডি ও ই-টিআইএন", "description": "পরিচয় ও কর সংক্রান্ত কাগজপত্র", "citations": [] }
+      ],
+      "fees": [{ "label": "গাড়ির ধরন ও সিসি অনুযায়ী ভিন্ন", "description": "বিআরটিএ ফি ক্যালকুলেটর ব্যবহার করুন", "citations": [] }],
+      "official_links": [{ "label": "অফিসিয়াল পোর্টাল", "url": "https://bsp.brta.gov.bd/", "source_page_id": "source.3ba45a7b75e2a0a9c5e082ef75d9cb5326a11029" }],
+      "meta": { "total_steps": 4, "total_citations": 1, "verification_summary": { "total": 1, "verified": 0, "unverified": 1, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": "2025-12-31T14:45:00.000Z", "source_domains": ["brta.gov.bd"], "generated_at": "2026-01-01T21:23:39.366Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "draft" }
+    },
+    { "guide_id": "guide.brta_fitness", "service_id": "svc.brta_fitness", "agency_id": "agency.brta", "agency_name": "বাংলাদেশ সড়ক পরিবহন কর্তৃপক্ষ", "title": "গাড়ির ফিটনেস সার্টিফিকেট", "overview": "গাড়ির ফিটনেস সার্টিফিকেট একটি বাধ্যতামূলক দলিল যা প্রমাণ করে যে একটি মোটরযান বিআরটিএ নির্ধারিত নিরাপত্তা ও সড়কযোগ্যতার মানদণ্ড পূরণ করে। সকল নিবন্ধিত যানবাহনকে পর্যায়ক্রমে ফিটনেস সার্টিফিকেট নেওয়া ও নবায়ন করতে হবে।", "steps": [
+        { "step_number": 1, "title": "বিএসপি পোর্টালে আবেদন করুন", "description": "bsp.brta.gov.bd-তে লগইন করুন, সেবা মেনু থেকে 'ফিটনেস সার্টিফিকেট' নির্বাচন করুন, আপনার গাড়ির নিবন্ধন নম্বর দিন এবং নতুন ইস্যু বা নবায়নের জন্য আবেদন জমা দিন।", "citations": [{"source_page_id": "source.900eaee954dee9531f26ca362419cab9579810e0", "canonical_url": "https://brta.gov.bd/", "domain": "brta.gov.bd", "page_title": "Bangladesh Road Transport Authority - Official Website", "locator": "মোটরযানের কাগজপত্র নবায়ন > Fitness Renewal", "quoted_text": "ফিটনেস নবায়ন (Fitness Renewal)", "retrieved_at": "2025-12-31T14:45:00Z", "language": "bn"}] },
+        { "step_number": 2, "title": "ফি পরিশোধ করুন", "description": "বিএসপি পোর্টালের মাধ্যমে ফিটনেস সার্টিফিকেট ফি অনলাইনে পরিশোধ করুন। গাড়ির ধরন ও ক্যাটাগরি অনুযায়ী ফি ভিন্ন হয়।", "citations": [] },
+        { "step_number": 3, "title": "গাড়ি পরিদর্শন", "description": "নির্ধারিত তারিখে মনোনীত বিআরটিএ পরিদর্শন কেন্দ্রে আপনার গাড়ি নিয়ে যান। ব্রেক, লাইট, নির্গমন, স্টিয়ারিং, টায়ার ও সামগ্রিক সড়কযোগ্যতা পরীক্ষা করা হবে। উত্তীর্ণ হলে ফিটনেস সার্টিফিকেট ইস্যু করা হবে।", "citations": [] }
+      ],
+      "sections": { "service_info": [{ "label": "অনলাইন অ্যাপয়েন্টমেন্ট সিস্টেমের মাধ্যমে গাড়ির ফিটনেস সার্টিফিকেট নবায়ন সেবা উপলব্ধ", "description": null, "citations": [{"source_page_id": "source.900eaee954dee9531f26ca362419cab9579810e0", "canonical_url": "https://brta.gov.bd/", "domain": "brta.gov.bd", "page_title": "Bangladesh Road Transport Authority - Official Website", "locator": "মোটরযানের কাগজপত্র নবায়ন > Fitness Renewal", "quoted_text": "ফিটনেস নবায়ন (Fitness Renewal)", "retrieved_at": "2025-12-31T14:45:00Z", "language": "bn"}] }], "required_documents": [{ "label": "গাড়ি নিবন্ধন সনদ", "description": "বর্তমান বৈধ নিবন্ধন সনদ (ব্লু বুক)", "citations": [] }, { "label": "গাড়ির বীমা", "description": "বৈধ ও হালনাগাদ গাড়ির বীমা পলিসি", "citations": [] }, { "label": "পূর্ববর্তী ফিটনেস সার্টিফিকেট", "description": "সর্বশেষ ইস্যুকৃত ফিটনেস সার্টিফিকেট (নবায়নের জন্য)", "citations": [] }, { "label": "ট্যাক্স টোকেন", "description": "গাড়ির বর্তমান বৈধ ট্যাক্স টোকেন", "citations": [] }], "fees": [{ "label": "গাড়ির ধরন অনুযায়ী ভিন্ন", "description": "ফিটনেস সার্টিফিকেট ফি গাড়ির ক্যাটাগরির উপর নির্ভর করে। সঠিক পরিমাণের জন্য বিআরটিএ ফি ক্যালকুলেটর ব্যবহার করুন।", "citations": [] }], "processing_time": [{ "label": "একই দিন থেকে ৩ কার্যদিবস", "description": "সফল পরিদর্শনের দিনই সাধারণত ফিটনেস সার্টিফিকেট ইস্যু করা হয়, বা ৩ কার্যদিবসের মধ্যে", "citations": [] }] },
+      "variants": null, "required_documents": [{ "label": "নিবন্ধন সনদ", "description": "ব্লু বুক", "citations": [] }, { "label": "বীমা", "description": "বৈধ গাড়ির বীমা", "citations": [] }, { "label": "পূর্ববর্তী ফিটনেস সার্টিফিকেট", "description": "নবায়নের জন্য", "citations": [] }, { "label": "ট্যাক্স টোকেন", "description": "বর্তমান বৈধ টোকেন", "citations": [] }], "fees": [{ "label": "গাড়ির ধরন অনুযায়ী ভিন্ন", "description": "বিআরটিএ ফি ক্যালকুলেটর ব্যবহার করুন", "citations": [] }],
+      "official_links": [{ "label": "অফিসিয়াল পোর্টাল", "url": "https://bsp.brta.gov.bd/", "source_page_id": "source.3ba45a7b75e2a0a9c5e082ef75d9cb5326a11029" }],
+      "meta": { "total_steps": 3, "total_citations": 1, "verification_summary": { "total": 1, "verified": 0, "unverified": 1, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": "2025-12-31T14:45:00.000Z", "source_domains": ["brta.gov.bd"], "generated_at": "2026-01-01T21:23:39.366Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "draft" }
+    },
+    { "guide_id": "guide.brta_tax_token", "service_id": "svc.brta_tax_token", "agency_id": "agency.brta", "agency_name": "বাংলাদেশ সড়ক পরিবহন কর্তৃপক্ষ", "title": "গাড়ির ট্যাক্স টোকেন", "overview": "গাড়ির ট্যাক্স টোকেন হলো বাংলাদেশে সকল নিবন্ধিত মোটরযানের জন্য প্রয়োজনীয় বার্ষিক সড়ক কর পরিশোধ সনদ। এটি প্রতি বছর নবায়ন করতে হয় এবং গাড়ির ফিটনেস সার্টিফিকেট নবায়নের জন্য প্রয়োজন।", "steps": [
+        { "step_number": 1, "title": "বিএসপি পোর্টালে আবেদন করুন", "description": "bsp.brta.gov.bd-তে লগইন করুন, সেবা মেনু থেকে 'ট্যাক্স টোকেন' নির্বাচন করুন এবং ট্যাক্স টোকেন আবেদন বা নবায়ন শুরু করতে আপনার গাড়ির নিবন্ধন নম্বর দিন।", "citations": [{"source_page_id": "source.900eaee954dee9531f26ca362419cab9579810e0", "canonical_url": "https://brta.gov.bd/", "domain": "brta.gov.bd", "page_title": "Bangladesh Road Transport Authority - Official Website", "locator": "মোটরযানের কাগজপত্র নবায়ন > Tax Token", "quoted_text": "ট্যাক্স টোকেন নবায়ন (Tax Token Renewal)", "retrieved_at": "2025-12-31T14:45:00Z", "language": "bn"}] },
+        { "step_number": 2, "title": "সড়ক কর পরিশোধ করুন", "description": "বিএসপি পোর্টালের মাধ্যমে অনলাইনে বার্ষিক সড়ক কর ফি পরিশোধ করুন। গাড়ির ধরন, ইঞ্জিন সিসি ও আসন সংখ্যার উপর ভিত্তি করে পরিমাণ ভিন্ন হয়।", "citations": [] },
+        { "step_number": 3, "title": "ট্যাক্স টোকেন ডাউনলোড করুন", "description": "সফল পেমেন্টের পর বিএসপি পোর্টাল থেকে ডিজিটাল ট্যাক্স টোকেন সনদ ডাউনলোড ও প্রিন্ট করুন। সড়ক কর পরিশোধের প্রমাণ হিসেবে সর্বদা টোকেনটি গাড়িতে রাখুন।", "citations": [] }
+      ],
+      "sections": { "service_info": [{ "label": "গাড়ির সড়ক করের জন্য ট্যাক্স টোকেন নবায়ন সেবা উপলব্ধ", "description": null, "citations": [{"source_page_id": "source.900eaee954dee9531f26ca362419cab9579810e0", "canonical_url": "https://brta.gov.bd/", "domain": "brta.gov.bd", "page_title": "Bangladesh Road Transport Authority - Official Website", "locator": "মোটরযানের কাগজপত্র নবায়ন > Tax Token", "quoted_text": "ট্যাক্স টোকেন নবায়ন (Tax Token Renewal)", "retrieved_at": "2025-12-31T14:45:00Z", "language": "bn"}] }], "required_documents": [{ "label": "গাড়ি নিবন্ধন সনদ", "description": "বর্তমান বৈধ নিবন্ধন সনদ (ব্লু বুক)", "citations": [] }, { "label": "ফিটনেস সার্টিফিকেট", "description": "গাড়ির বৈধ ফিটনেস সার্টিফিকেট", "citations": [] }, { "label": "গাড়ির বীমা", "description": "বৈধ ও হালনাগাদ বীমা পলিসি", "citations": [] }], "fees": [{ "label": "গাড়ির সিসি/ধরন অনুযায়ী ভিন্ন", "description": "বার্ষিক সড়ক করের পরিমাণ ইঞ্জিন ক্ষমতা, গাড়ির ধরন ও আসন সংখ্যার উপর নির্ভর করে। সঠিক পরিমাণের জন্য বিআরটিএ ফি ক্যালকুলেটর ব্যবহার করুন।", "citations": [] }], "processing_time": [{ "label": "তাৎক্ষণিক থেকে ৩ কার্যদিবস", "description": "পেমেন্টের পরপরই সাধারণত ডিজিটাল ট্যাক্স টোকেন ডাউনলোডের জন্য উপলব্ধ, বা ৩ কার্যদিবসের মধ্যে", "citations": [] }] },
+      "variants": null, "required_documents": [{ "label": "নিবন্ধন সনদ", "description": "ব্লু বুক", "citations": [] }, { "label": "ফিটনেস সার্টিফিকেট", "description": "বৈধ ফিটনেস সার্টিফিকেট", "citations": [] }, { "label": "বীমা", "description": "বৈধ গাড়ির বীমা", "citations": [] }], "fees": [{ "label": "গাড়ির সিসি/ধরন অনুযায়ী ভিন্ন", "description": "বিআরটিএ ফি ক্যালকুলেটর ব্যবহার করুন", "citations": [] }],
+      "official_links": [{ "label": "অফিসিয়াল পোর্টাল", "url": "https://bsp.brta.gov.bd/", "source_page_id": "source.3ba45a7b75e2a0a9c5e082ef75d9cb5326a11029" }],
+      "meta": { "total_steps": 3, "total_citations": 1, "verification_summary": { "total": 1, "verified": 0, "unverified": 1, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": "2025-12-31T14:45:00.000Z", "source_domains": ["brta.gov.bd"], "generated_at": "2026-01-01T21:23:39.366Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "draft" }
+    },
+    { "guide_id": "guide.etin", "service_id": "svc.etin", "agency_id": "agency.nbr", "agency_name": "জাতীয় রাজস্ব বোর্ড", "title": "ই-টিআইএন নিবন্ধন", "overview": "জাতীয় রাজস্ব বোর্ডের অনলাইন পোর্টালের মাধ্যমে ইলেকট্রনিক করদাতা শনাক্তকরণ নম্বর (ই-টিআইএন) এর জন্য নিবন্ধন করুন। আয়কর রিটার্ন দাখিল, ব্যাংক অ্যাকাউন্ট খোলা এবং বাংলাদেশে অনেক আর্থিক লেনদেনের জন্য ই-টিআইএন প্রয়োজন।", "steps": [
+        { "step_number": 1, "title": "ই-টিআইএন পোর্টাল ভিজিট করুন", "description": "এনবিআর ই-টিআইএন নিবন্ধন পোর্টাল secure.incometax.gov.bd-তে যান এবং প্রক্রিয়া শুরু করতে 'Registration' ক্লিক করুন।", "citations": [] },
+        { "step_number": 2, "title": "এনআইডি দিয়ে নিবন্ধন করুন", "description": "আপনার জাতীয় পরিচয়পত্র (এনআইডি) নম্বর, জন্ম তারিখ দিন এবং ক্যাপচা যাচাই সম্পন্ন করুন। সিস্টেম এনআইডি ডাটাবেস থেকে আপনার ব্যক্তিগত তথ্য সংগ্রহ করবে।", "citations": [] },
+        { "step_number": 3, "title": "আবেদন ফর্ম পূরণ করুন", "description": "ব্যক্তিগত তথ্য, ঠিকানা, আয়ের উৎসের তথ্য দিয়ে নিবন্ধন ফর্ম পূরণ করুন এবং পাসপোর্ট সাইজ ছবি আপলোড করুন। যাচাইয়ের জন্য মোবাইল নম্বর ও ইমেইল দিন।", "citations": [] },
+        { "step_number": 4, "title": "ই-টিআইএন সার্টিফিকেট পান", "description": "সফলভাবে জমা দেওয়ার পর আপনার ১২-সংখ্যার ই-টিআইএন তৎক্ষণাৎ তৈরি হবে। আপনার রেকর্ডের জন্য ই-টিআইএন সার্টিফিকেট ডাউনলোড ও প্রিন্ট করুন।", "citations": [] }
+      ],
+      "sections": { "required_documents": [{ "label": "জাতীয় পরিচয়পত্র (এনআইডি)", "description": "পরিচয় যাচাইয়ের জন্য বৈধ এনআইডি নম্বর প্রয়োজন", "citations": [] }, { "label": "মোবাইল ফোন নম্বর", "description": "ওটিপি যাচাইয়ের জন্য সক্রিয় মোবাইল নম্বর", "citations": [] }, { "label": "পাসপোর্ট সাইজ ছবি", "description": "ডিজিটাল ফরম্যাটে (JPEG/PNG) সাম্প্রতিক ছবি", "citations": [] }, { "label": "ইমেইল ঠিকানা", "description": "অ্যাকাউন্ট যাচাই ও চিঠিপত্রের জন্য বৈধ ইমেইল", "citations": [] }], "fees": [{ "label": "বিনামূল্যে", "description": "অনলাইন পোর্টালের মাধ্যমে ই-টিআইএন নিবন্ধন সম্পূর্ণ বিনামূল্যে", "citations": [] }], "processing_time": [{ "label": "তাৎক্ষণিক", "description": "সফল নিবন্ধনের পরপরই ই-টিআইএন সার্টিফিকেট তৈরি হয়", "citations": [] }] },
+      "variants": [], "required_documents": null, "fees": [],
+      "official_links": [{ "label": "এনবিআর ই-টিআইএন পোর্টাল", "url": "https://secure.incometax.gov.bd/TINHome" }],
+      "meta": { "total_steps": 4, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": ["secure.incometax.gov.bd"], "generated_at": "2026-01-05T15:02:49.494Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "draft" }
+    },
+    { "guide_id": "guide.birth_registration", "service_id": "svc.birth_registration", "agency_id": "agency.org", "agency_name": "রেজিস্ট্রার জেনারেলের কার্যালয়", "title": "জন্ম নিবন্ধন", "overview": "বাংলাদেশের অনলাইন জন্ম ও মৃত্যু নিবন্ধন সিস্টেম (বিডিআরআইএস) এর মাধ্যমে জন্ম নিবন্ধন করুন এবং জন্ম সনদ পান। স্কুলে ভর্তি, পাসপোর্ট আবেদন এবং অন্যান্য সরকারি সেবার জন্য জন্ম নিবন্ধন বাধ্যতামূলক।", "steps": [
+        { "step_number": 1, "title": "বিডিআরআইএস পোর্টাল ভিজিট করুন", "description": "bdris.gov.bd-তে যান এবং প্রক্রিয়া শুরু করতে 'অনলাইন জন্ম নিবন্ধন আবেদন'-এ ক্লিক করুন। আপনি স্থানীয় ইউনিয়ন পরিষদ, পৌরসভা বা সিটি কর্পোরেশন অফিসের মাধ্যমেও আবেদন করতে পারেন।", "citations": [] },
+        { "step_number": 2, "title": "আবেদন ফর্ম পূরণ করুন", "description": "শিশুর নাম, জন্ম তারিখ ও স্থান, পিতা-মাতার নাম ও এনআইডি নম্বর, স্থায়ী ও বর্তমান ঠিকানাসহ জন্ম নিবন্ধন ফর্ম পূরণ করুন।", "citations": [] },
+        { "step_number": 3, "title": "সহায়ক কাগজপত্র জমা দিন", "description": "স্থানীয় রেজিস্ট্রার অফিসে (ইউনিয়ন পরিষদ, পৌরসভা বা সিটি কর্পোরেশন) প্রয়োজনীয় কাগজপত্রসহ আবেদন জমা দিন।", "citations": [] },
+        { "step_number": 4, "title": "যাচাই", "description": "স্থানীয় রেজিস্ট্রার জমাকৃত তথ্য যাচাই করেন। ৪৫ দিনের মধ্যে জন্মের ক্ষেত্রে যাচাই সাধারণত সহজ। বিলম্বিত নিবন্ধনে অতিরিক্ত কাগজপত্র প্রয়োজন হতে পারে।", "citations": [] },
+        { "step_number": 5, "title": "সনদ সংগ্রহ করুন", "description": "অনুমোদনের পর রেজিস্ট্রার অফিস থেকে জন্ম সনদ সংগ্রহ করুন বা নিবন্ধন নম্বর ব্যবহার করে bdris.gov.bd থেকে অনলাইনে ডাউনলোড করুন।", "citations": [] }
+      ],
+      "sections": { "required_documents": [{ "label": "হাসপাতাল/ক্লিনিকের জন্ম সনদ", "description": "যে হাসপাতাল বা ক্লিনিকে জন্ম হয়েছে সেখানকার সনদ, বা ধাত্রী/সেবিকার ঘোষণা", "citations": [] }, { "label": "পিতা-মাতার জাতীয় পরিচয়পত্র (এনআইডি)", "description": "উভয় পিতা-মাতার এনআইডি কার্ড", "citations": [] }, { "label": "ইপিআই/টিকা কার্ড", "description": "পাওয়া গেলে শিশুর টিকা কার্ড", "citations": [] }, { "label": "পিতা-মাতার জন্ম সনদ", "description": "উভয় পিতা-মাতার জন্ম সনদ (পাওয়া গেলে)", "citations": [] }], "fees": [{ "label": "জন্মের ৪৫ দিনের মধ্যে: বিনামূল্যে", "description": "জন্মের ৪৫ দিনের মধ্যে নিবন্ধনে কোনো ফি নেই", "citations": [] }, { "label": "৪৫ দিনের পর: ৳৫০", "description": "৪৫ দিনের পর কিন্তু ৫ বছরের মধ্যে নিবন্ধনে বিলম্ব ফি ৳৫০", "citations": [] }, { "label": "৫ বছরের পর: ৳১০০", "description": "৫ বছরের পর নিবন্ধনে বিলম্ব ফি ৳১০০", "citations": [] }], "processing_time": [{ "label": "৪৫ দিনের মধ্যে: ৩-৭ কার্যদিবস", "description": "সময়মতো নিবন্ধনের জন্য স্ট্যান্ডার্ড প্রসেসিং", "citations": [] }, { "label": "বিলম্বিত নিবন্ধন: ৭-৩০ কার্যদিবস", "description": "বিলম্বিত নিবন্ধনের জন্য অতিরিক্ত যাচাই সময়", "citations": [] }] },
+      "variants": [], "required_documents": null, "fees": [],
+      "official_links": [{ "label": "অনলাইন জন্ম নিবন্ধন (বিডিআরআইএস)", "url": "https://bdris.gov.bd/" }],
+      "meta": { "total_steps": 5, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": ["bdris.gov.bd"], "generated_at": "2026-01-05T15:02:49.494Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "draft" }
+    },
+    { "guide_id": "guide.police_clearance", "service_id": "svc.police_clearance", "agency_id": "agency.police", "agency_name": "বাংলাদেশ পুলিশ", "title": "পুলিশ ক্লিয়ারেন্স সার্টিফিকেট", "overview": "ভিসা আবেদন, ইমিগ্রেশন, বিদেশে চাকরি এবং অন্যান্য উদ্দেশ্যে প্রয়োজনীয় পুলিশ ক্লিয়ারেন্স সার্টিফিকেট (পিসিসি) এর জন্য আবেদন করুন। পিসিসি নিশ্চিত করে যে আবেদনকারীর বাংলাদেশে কোনো অপরাধমূলক রেকর্ড নেই।", "steps": [
+        { "step_number": 1, "title": "পিসিসি পোর্টালে অ্যাকাউন্ট তৈরি করুন", "description": "pcc.police.gov.bd ভিজিট করুন এবং আপনার ইমেইল ও মোবাইল নম্বর ব্যবহার করে অ্যাকাউন্ট তৈরি করুন। মোবাইলে পাঠানো ওটিপি দিয়ে অ্যাকাউন্ট যাচাই করুন।", "citations": [] },
+        { "step_number": 2, "title": "আবেদন ফর্ম পূরণ করুন", "description": "লগইন করুন এবং ব্যক্তিগত তথ্য, পাসপোর্ট তথ্য, পিসিসির উদ্দেশ্য এবং গন্তব্য দেশ দিয়ে পিসিসি আবেদন ফর্ম পূরণ করুন। পাসপোর্ট কপি ও ছবিসহ প্রয়োজনীয় কাগজপত্র আপলোড করুন।", "citations": [] },
+        { "step_number": 3, "title": "ফি পরিশোধ করুন", "description": "মোবাইল ব্যাংকিং (বিকাশ, নগদ), ইন্টারনেট ব্যাংকিং বা কার্ড পেমেন্ট ব্যবহার করে পোর্টালের মাধ্যমে অনলাইনে আবেদন ফি পরিশোধ করুন। সাধারণ প্রসেসিংয়ে ৳৫০০ বা জরুরি প্রসেসিংয়ে ৳২,০০০।", "citations": [] },
+        { "step_number": 4, "title": "বায়োমেট্রিক এনরোলমেন্ট", "description": "বায়োমেট্রিক ডেটা সংগ্রহের (আঙুলের ছাপ ও ছবি) জন্য মনোনীত থানা বা পিসিসি কেন্দ্রে যান। আপনার মূল পাসপোর্ট ও এনআইডি নিয়ে আসুন।", "citations": [] },
+        { "step_number": 5, "title": "পিসিসি সংগ্রহ করুন", "description": "পটভূমি যাচাইয়ের পর ইস্যুকারী অফিস থেকে আপনার পিসিসি সংগ্রহ করুন। সাধারণ প্রসেসিংয়ে ৭-১৫ কার্যদিবস; জরুরি প্রসেসিংয়ে ৩-৫ কার্যদিবস লাগে।", "citations": [] }
+      ],
+      "sections": { "required_documents": [{ "label": "বৈধ পাসপোর্ট", "description": "ন্যূনতম ৬ মাস মেয়াদ সম্পন্ন মূল পাসপোর্ট", "citations": [] }, { "label": "জাতীয় পরিচয়পত্র (এনআইডি)", "description": "পরিচয় যাচাইয়ের জন্য মূল এনআইডি কার্ড", "citations": [] }, { "label": "পাসপোর্ট সাইজ ছবি", "description": "সাদা ব্যাকগ্রাউন্ডে সাম্প্রতিক পাসপোর্ট সাইজ ছবি", "citations": [] }, { "label": "পাসপোর্ট কপি", "description": "আপলোডের জন্য পাসপোর্ট বায়ো-ডেটা পৃষ্ঠার স্ক্যান কপি", "citations": [] }], "fees": [{ "label": "সাধারণ প্রসেসিং: ৳৫০০", "description": "৭-১৫ কার্যদিবস ডেলিভারিসহ স্ট্যান্ডার্ড প্রসেসিং ফি", "citations": [] }, { "label": "জরুরি প্রসেসিং: ৳২,০০০", "description": "৩-৫ কার্যদিবস ডেলিভারিসহ দ্রুত প্রসেসিং ফি", "citations": [] }], "processing_time": [{ "label": "সাধারণ: ৭-১৫ কার্যদিবস", "description": "বায়োমেট্রিক এনরোলমেন্টের পর স্ট্যান্ডার্ড প্রসেসিং সময়", "citations": [] }, { "label": "জরুরি: ৩-৫ কার্যদিবস", "description": "দ্রুত প্রসেসিং সময়", "citations": [] }] },
+      "variants": [], "required_documents": null, "fees": [],
+      "official_links": [{ "label": "পুলিশ ক্লিয়ারেন্স পোর্টাল", "url": "https://pcc.police.gov.bd/" }],
+      "meta": { "total_steps": 5, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": ["pcc.police.gov.bd"], "generated_at": "2026-01-05T15:02:49.494Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "draft" }
+    },
+    { "guide_id": "guide.trade_license", "service_id": "svc.trade_license", "agency_id": "agency.city_corp", "agency_name": "সিটি কর্পোরেশন / পৌরসভা", "title": "ট্রেড লাইসেন্স", "overview": "স্থানীয় সিটি কর্পোরেশন বা পৌরসভা থেকে আপনার ব্যবসার জন্য ট্রেড লাইসেন্স নিন বা নবায়ন করুন। বাংলাদেশে পরিচালিত সকল ব্যবসার জন্য ট্রেড লাইসেন্স বাধ্যতামূলক।", "steps": [
+        { "step_number": 1, "title": "আবেদন ফর্ম সংগ্রহ করুন", "description": "আপনার স্থানীয় সিটি কর্পোরেশন, পৌরসভা বা ইউনিয়ন পরিষদ অফিস থেকে ট্রেড লাইসেন্স আবেদন ফর্ম সংগ্রহ করুন। কিছু সিটি কর্পোরেশন তাদের পোর্টালের মাধ্যমে অনলাইন আবেদনের সুবিধাও দেয়।", "citations": [] },
+        { "step_number": 2, "title": "কাগজপত্রসহ আবেদন জমা দিন", "description": "আবেদন ফর্ম পূরণ করুন এবং এনআইডি, টিআইএন সনদ, ছবি, ভাড়া চুক্তি বা মালিকানার প্রমাণ এবং ট্রেড অ্যাসোসিয়েশন সদস্যপদ সনদসহ সকল প্রয়োজনীয় কাগজপত্র জমা দিন।", "citations": [] },
+        { "step_number": 3, "title": "পরিদর্শন ও যাচাই", "description": "স্থানীয় কর্তৃপক্ষ আবেদনে প্রদত্ত তথ্য যাচাই করতে আপনার ব্যবসা প্রতিষ্ঠানে পরিদর্শন করতে পারে।", "citations": [] },
+        { "step_number": 4, "title": "ফি পরিশোধ ও লাইসেন্স সংগ্রহ করুন", "description": "প্রযোজ্য ট্রেড লাইসেন্স ফি (ব্যবসার ধরন, আকার ও অবস্থান অনুযায়ী ভিন্ন) পরিশোধ করুন এবং আপনার ট্রেড লাইসেন্স সংগ্রহ করুন। লাইসেন্স সাধারণত এক বছরের জন্য বৈধ এবং প্রতি বছর নবায়ন করতে হয়।", "citations": [] }
+      ],
+      "sections": { "required_documents": [{ "label": "জাতীয় পরিচয়পত্র (এনআইডি)", "description": "ব্যবসার মালিক/আবেদনকারীর এনআইডি কার্ড", "citations": [] }, { "label": "ই-টিআইএন সনদ", "description": "এনবিআর থেকে কর শনাক্তকরণ নম্বর সনদ", "citations": [] }, { "label": "পাসপোর্ট সাইজ ছবি", "description": "আবেদনকারীর সাম্প্রতিক ছবি", "citations": [] }, { "label": "ভাড়া চুক্তি বা মালিকানার প্রমাণ", "description": "ব্যবসা প্রতিষ্ঠানের প্রমাণ - ভাড়া চুক্তি বা সম্পত্তি মালিকানার কাগজপত্র", "citations": [] }, { "label": "ট্রেড অ্যাসোসিয়েশন সদস্যপদ", "description": "প্রাসঙ্গিক ট্রেড/ব্যবসা সমিতির সদস্যপদ সনদ", "citations": [] }, { "label": "পূর্ববর্তী ট্রেড লাইসেন্স (নবায়নের জন্য)", "description": "নবায়নের ক্ষেত্রে গত বছরের ট্রেড লাইসেন্সের কপি", "citations": [] }], "fees": [{ "label": "ব্যবসার ধরন অনুযায়ী ভিন্ন", "description": "ট্রেড লাইসেন্স ফি ব্যবসার ধরন, আকার ও অবস্থানের উপর নির্ভর করে। সঠিক ফির জন্য আপনার স্থানীয় সিটি কর্পোরেশনে যোগাযোগ করুন।", "citations": [] }, { "label": "বার্ষিক নবায়ন প্রয়োজন", "description": "ট্রেড লাইসেন্স প্রতি বছর নবায়ন করতে হয়, সাধারণত ৩০ জুনের মধ্যে", "citations": [] }] },
+      "variants": [], "required_documents": null, "fees": [], "official_links": [],
+      "meta": { "total_steps": 4, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-01-05T15:02:49.494Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "draft" }
+    },
+    { "guide_id": "guide.rjsc", "service_id": "svc.rjsc", "agency_id": "agency.rjsc", "agency_name": "জয়েন্ট স্টক কোম্পানি ও ফার্ম রেজিস্ট্রার (আরজেএসসি)", "title": "কোম্পানি নিবন্ধন", "overview": "অনলাইন পোর্টালের মাধ্যমে জয়েন্ট স্টক কোম্পানি ও ফার্ম রেজিস্ট্রার (আরজেএসসি) এ নতুন কোম্পানি বা ফার্ম নিবন্ধন করুন। লিমিটেড কোম্পানি, অংশীদারী প্রতিষ্ঠান এবং ট্রেড সংগঠনের জন্য কোম্পানি নিবন্ধন প্রয়োজন।", "steps": [
+        { "step_number": 1, "title": "নাম অনুমোদন", "description": "আরজেএসসি অনলাইন পোর্টালের (roc.portal.gov.bd) মাধ্যমে নাম অনুমোদনের জন্য আবেদন করুন। সর্বোচ্চ ৩টি প্রস্তাবিত কোম্পানি নাম জমা দিন। রেজিস্ট্রার ২-৩ কার্যদিবসের মধ্যে একটি নাম অনুমোদন করবেন।", "citations": [] },
+        { "step_number": 2, "title": "এমওএ ও এওএ প্রস্তুত করুন", "description": "অনুমোদিত কোম্পানি নামে মেমোরেন্ডাম অব অ্যাসোসিয়েশন (এমওএ) ও আর্টিকেলস অব অ্যাসোসিয়েশন (এওএ) প্রস্তুত করুন। এই দলিলগুলো কোম্পানির উদ্দেশ্য, মূলধন কাঠামো ও অভ্যন্তরীণ নিয়ম নির্ধারণ করে।", "citations": [] },
+        { "step_number": 3, "title": "অনলাইন আবেদন জমা দিন", "description": "আরজেএসসি পোর্টালে অনলাইন নিবন্ধন ফর্ম পূরণ করুন। এমওএ, এওএ, ফর্ম XII (নিবন্ধিত অফিসের ঠিকানা), পরিচালকদের তথ্য এবং শেয়ারহোল্ডারদের বিবরণসহ সকল প্রয়োজনীয় কাগজপত্র আপলোড করুন।", "citations": [] },
+        { "step_number": 4, "title": "নিবন্ধন ফি পরিশোধ করুন", "description": "অনলাইনে নিবন্ধন ফি পরিশোধ করুন। কোম্পানির অনুমোদিত মূলধনের উপর ভিত্তি করে ফি ভিন্ন হয়। অতিরিক্ত স্ট্যাম্প ডিউটি ও ফাইলিং ফি প্রযোজ্য হতে পারে।", "citations": [] },
+        { "step_number": 5, "title": "ইনকর্পোরেশন সার্টিফিকেট সংগ্রহ করুন", "description": "যাচাই ও অনুমোদনের পর ইনকর্পোরেশন সার্টিফিকেট ইস্যু করা হয়। পোর্টাল থেকে ডাউনলোড করুন বা আরজেএসসি অফিস থেকে সংগ্রহ করুন।", "citations": [] }
+      ],
+      "sections": { "required_documents": [{ "label": "পরিচালকদের এনআইডি কার্ড", "description": "সকল প্রস্তাবিত পরিচালকের জাতীয় পরিচয়পত্র", "citations": [] }, { "label": "মেমোরেন্ডাম অব অ্যাসোসিয়েশন (এমওএ)", "description": "কোম্পানির উদ্দেশ্য ও অনুমোদিত মূলধন নির্ধারণকারী দলিল", "citations": [] }, { "label": "আর্টিকেলস অব অ্যাসোসিয়েশন (এওএ)", "description": "কোম্পানির অভ্যন্তরীণ নিয়ম ও বিধান নির্ধারণকারী দলিল", "citations": [] }, { "label": "ফর্ম XII", "description": "নিবন্ধিত অফিসের ঠিকানার ঘোষণা", "citations": [] }, { "label": "নিবন্ধিত অফিসের প্রমাণ", "description": "নিবন্ধিত অফিসের ঠিকানার ভাড়া চুক্তি বা মালিকানার প্রমাণ", "citations": [] }, { "label": "পরিচালকদের ছবি", "description": "সকল পরিচালকের পাসপোর্ট সাইজ ছবি", "citations": [] }, { "label": "ব্যাংক সনদ", "description": "পরিশোধিত মূলধন জমার ব্যাংক সনদ", "citations": [] }], "fees": [{ "label": "অনুমোদিত মূলধন অনুযায়ী ভিন্ন", "description": "অনুমোদিত মূলধনের পরিমাণের উপর নিবন্ধন ফি নির্ভর করে। নাম অনুমোদন ফি ৳৫০০।", "citations": [] }, { "label": "স্ট্যাম্প ডিউটি", "description": "অনুমোদিত মূলধনের উপর ভিত্তি করে অতিরিক্ত স্ট্যাম্প ডিউটি প্রযোজ্য", "citations": [] }], "processing_time": [{ "label": "নাম অনুমোদন: ২-৩ কার্যদিবস", "description": "জমা দেওয়ার পর নাম অনুমোদনের সময়", "citations": [] }, { "label": "নিবন্ধন: ৭-১৪ কার্যদিবস", "description": "কাগজপত্র জমার পর সম্পূর্ণ নিবন্ধনের সময়", "citations": [] }] },
+      "variants": [], "required_documents": null, "fees": [],
+      "official_links": [{ "label": "আরজেএসসি পোর্টাল", "url": "https://roc.portal.gov.bd/" }],
+      "meta": { "total_steps": 5, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": ["roc.portal.gov.bd"], "generated_at": "2026-01-05T15:02:49.494Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "draft" }
+    },
+    { "guide_id": "guide.eporcha", "service_id": "svc.eporcha", "agency_id": "agency.mol", "agency_name": "ভূমি মন্ত্রণালয়", "title": "ই-পর্চা / ভূমি রেকর্ড", "overview": "ই-পর্চা ডিজিটাল ভূমি রেকর্ড সিস্টেমের মাধ্যমে ভূমি রেকর্ড (পর্চা/খতিয়ান) অ্যাক্সেস ও ডাউনলোড করুন। আপনি অনলাইনে আরএস, এসএ, সিটি জরিপ এবং বিএস/বিআরএস রেকর্ড অনুসন্ধান করতে পারেন।", "steps": [
+        { "step_number": 1, "title": "ই-পর্চা পোর্টাল ভিজিট করুন", "description": "eporcha.gov.bd-তে যান এবং আপনি যে ধরনের ভূমি রেকর্ড অনুসন্ধান করতে চান তা নির্বাচন করুন: আরএস পর্চা, এসএ পর্চা, সিটি জরিপ পর্চা, বা বিএস/বিআরএস পর্চা।", "citations": [] },
+        { "step_number": 2, "title": "অবস্থানের তথ্য দিয়ে অনুসন্ধান করুন", "description": "অনুসন্ধানের মানদণ্ড দিন: বিভাগ, জেলা, উপজেলা, মৌজা এবং খতিয়ান নম্বর বা দাগ নম্বর। কিছু রেকর্ড ধরনে মালিকের নাম দিয়েও অনুসন্ধান করতে পারেন।", "citations": [] },
+        { "step_number": 3, "title": "রেকর্ড দেখুন ও ডাউনলোড করুন", "description": "স্ক্রিনে ভূমি রেকর্ডের বিবরণ দেখুন। আপনার রেকর্ডের জন্য পর্চা ডাউনলোড বা প্রিন্ট করতে পারেন। অনলাইন রেকর্ড রেফারেন্স হিসেবে কাজ করে; সত্যায়িত কপি স্থানীয় ভূমি অফিস থেকে নিতে হবে।", "citations": [] }
+      ],
+      "sections": { "required_documents": [{ "label": "মৌজার নাম", "description": "জমিটি যে মৌজায় (রাজস্ব গ্রাম) অবস্থিত তার নাম", "citations": [] }, { "label": "জেএল নম্বর", "description": "মৌজার জুরিসডিকশন লিস্ট (জেএল) নম্বর", "citations": [] }, { "label": "খতিয়ান নম্বর", "description": "রেকর্ড অব রাইটস (খতিয়ান) নম্বর, যদি জানা থাকে", "citations": [] }, { "label": "দাগ/প্লট নম্বর", "description": "জমির প্লট নম্বর, যদি জানা থাকে", "citations": [] }], "fees": [{ "label": "অনলাইন অনুসন্ধান বিনামূল্যে", "description": "eporcha.gov.bd-তে ভূমি রেকর্ড অনুসন্ধান ও দেখা বিনামূল্যে", "citations": [] }, { "label": "সত্যায়িত কপি: ফি প্রযোজ্য", "description": "ভূমি অফিস থেকে সত্যায়িত কপি নিতে প্রযোজ্য সরকারি ফি পরিশোধ করতে হবে", "citations": [] }] },
+      "variants": [], "required_documents": null, "fees": [],
+      "official_links": [{ "label": "ই-পর্চা পোর্টাল", "url": "https://eporcha.gov.bd/" }],
+      "meta": { "total_steps": 3, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": ["eporcha.gov.bd"], "generated_at": "2026-01-05T15:02:49.494Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "draft" }
+    },
+    { "guide_id": "guide.land_mutation", "service_id": "svc.land_mutation", "agency_id": "agency.mol", "agency_name": "ভূমি মন্ত্রণালয়", "title": "ভূমি মিউটেশন / নামজারি", "overview": "ভূমি মালিকানা রেকর্ড হস্তান্তরের জন্য ভূমি মিউটেশন (নামজারি) আবেদন করুন।", "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [], "official_links": [], "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-01-05T15:02:49.494Z", "last_updated_at": "2026-01-05T15:02:49.494Z", "status": "coming_soon" } },
+    { "guide_id": "guide.marriage_registration", "service_id": "svc.marriage_registration", "agency_id": "agency.org", "agency_name": "রেজিস্ট্রার জেনারেলের কার্যালয়", "title": "বিবাহ নিবন্ধন", "overview": "বিবাহ নিবন্ধন করুন এবং বিবাহ সনদ পান।", "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [], "official_links": [], "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-01-05T15:02:49.494Z", "last_updated_at": "2026-01-05T15:02:49.494Z", "status": "coming_soon" } },
+    { "guide_id": "guide.death_registration", "service_id": "svc.death_registration", "agency_id": "agency.org", "agency_name": "রেজিস্ট্রার জেনারেলের কার্যালয়", "title": "মৃত্যু নিবন্ধন", "overview": "মৃত্যু নিবন্ধন করুন এবং মৃত্যু সনদ পান।", "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [], "official_links": [], "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-01-05T15:02:49.494Z", "last_updated_at": "2026-01-05T15:02:49.494Z", "status": "coming_soon" } },
+    { "guide_id": "guide.income_tax_return", "service_id": "svc.income_tax_return", "agency_id": "agency.nbr", "agency_name": "জাতীয় রাজস্ব বোর্ড", "title": "আয়কর রিটার্ন দাখিল", "overview": "এনবিআর ই-রিটার্ন সিস্টেমের মাধ্যমে অনলাইনে বার্ষিক আয়কর রিটার্ন দাখিল করুন।", "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [], "official_links": [{ "label": "ই-রিটার্ন পোর্টাল", "url": "https://etaxnbr.gov.bd/" }], "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": ["etaxnbr.gov.bd"], "generated_at": "2026-01-05T15:02:49.494Z", "last_updated_at": "2026-01-05T15:02:49.494Z", "status": "coming_soon" } },
+    { "guide_id": "guide.education_board_cert", "service_id": "svc.education_board_cert", "agency_id": "agency.edu_board", "agency_name": "শিক্ষা বোর্ড বাংলাদেশ", "title": "শিক্ষা বোর্ড সার্টিফিকেট যাচাই", "overview": "শিক্ষা বোর্ডের মাধ্যমে এসএসসি/এইচএসসি সার্টিফিকেট ও মার্কশিটের সত্যায়িত কপি যাচাই ও সংগ্রহ করুন।", "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [], "official_links": [{ "label": "শিক্ষা বোর্ড পোর্টাল", "url": "https://www.educationboard.gov.bd/" }], "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": ["www.educationboard.gov.bd"], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" } },
+    { "guide_id": "guide.railway_eticket", "service_id": "svc.railway_eticket", "agency_id": "agency.br", "agency_name": "বাংলাদেশ রেলওয়ে", "title": "রেলওয়ে ই-টিকেট", "overview": "বাংলাদেশ রেলওয়ে ই-টিকেটিং সিস্টেমের মাধ্যমে অনলাইনে ট্রেনের টিকেট কিনুন।", "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [], "official_links": [{ "label": "রেলওয়ে ই-টিকেটিং", "url": "https://eticket.railway.gov.bd/" }], "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": ["eticket.railway.gov.bd"], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" } },
+    { "guide_id": "guide.electricity_connection", "service_id": "svc.electricity_connection", "agency_id": "agency.bpdb", "agency_name": "বাংলাদেশ বিদ্যুৎ উন্নয়ন বোর্ড / ডিপিডিসি / ডেসকো", "title": "বিদ্যুৎ সংযোগ", "overview": "বিদ্যুৎ বিতরণ কোম্পানির মাধ্যমে নতুন বিদ্যুৎ সংযোগের জন্য আবেদন করুন বা বিদ্যমান সংযোগ পরিচালনা করুন।", "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [], "official_links": [], "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" } },
+    { "guide_id": "guide.gas_connection", "service_id": "svc.gas_connection", "agency_id": "agency.gas", "agency_name": "তিতাস গ্যাস / বাখরাবাদ গ্যাস", "title": "গ্যাস সংযোগ", "overview": "আবাসিক বা বাণিজ্যিক ব্যবহারের জন্য নতুন গ্যাস সংযোগের জন্য আবেদন করুন।", "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [], "official_links": [], "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" } },
+    { "guide_id": "guide.wasa_connection", "service_id": "svc.wasa_connection", "agency_id": "agency.wasa", "agency_name": "ওয়াসা (পানি সরবরাহ ও পয়ঃনিষ্কাশন কর্তৃপক্ষ)", "title": "পানি / ওয়াসা সংযোগ", "overview": "ওয়াসার মাধ্যমে নতুন পানি সরবরাহ ও পয়ঃনিষ্কাশন সংযোগের জন্য আবেদন করুন।", "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [], "official_links": [], "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" } },
+    { "guide_id": "guide.vat_registration", "service_id": "svc.vat_registration", "agency_id": "agency.nbr", "agency_name": "জাতীয় রাজস্ব বোর্ড", "title": "ভ্যাট নিবন্ধন", "overview": "এনবিআর অনলাইন ভ্যাট সিস্টেমের মাধ্যমে মূল্য সংযোজন কর (ভ্যাট) এর জন্য নিবন্ধন করুন।", "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [], "official_links": [{ "label": "ভ্যাট অনলাইন পোর্টাল", "url": "https://vat.gov.bd/" }], "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": ["vat.gov.bd"], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" } },
+    { "guide_id": "guide.import_registration", "service_id": "svc.import_registration", "agency_id": "agency.ccie", "agency_name": "আমদানি ও রপ্তানি প্রধান নিয়ন্ত্রক (সিসিআই অ্যান্ড ই)", "title": "আমদানি নিবন্ধন সার্টিফিকেট (আইআরসি)", "overview": "বাংলাদেশে পণ্য আমদানির জন্য প্রয়োজনীয় আমদানি নিবন্ধন সার্টিফিকেট নিন।", "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [], "official_links": [], "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" } },
+    { "guide_id": "guide.export_registration", "service_id": "svc.export_registration", "agency_id": "agency.ccie", "agency_name": "আমদানি ও রপ্তানি প্রধান নিয়ন্ত্রক (সিসিআই অ্যান্ড ই)", "title": "রপ্তানি নিবন্ধন সার্টিফিকেট (ইআরসি)", "overview": "বাংলাদেশ থেকে পণ্য রপ্তানির জন্য প্রয়োজনীয় রপ্তানি নিবন্ধন সার্টিফিকেট নিন।", "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [], "official_links": [], "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" } },
+    { "guide_id": "guide.fire_license", "service_id": "svc.fire_license", "agency_id": "agency.fscd", "agency_name": "ফায়ার সার্ভিস ও সিভিল ডিফেন্স", "title": "ফায়ার লাইসেন্স / অগ্নি নিরাপত্তা সনদ", "overview": "বাণিজ্যিক ও শিল্প প্রতিষ্ঠানের জন্য প্রয়োজনীয় অগ্নি নিরাপত্তা সনদ নিন।", "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [], "official_links": [], "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" } },
+    { "guide_id": "guide.environment_clearance", "service_id": "svc.environment_clearance", "agency_id": "agency.doe", "agency_name": "পরিবেশ অধিদপ্তর (ডিওই)", "title": "পরিবেশ ছাড়পত্র", "overview": "শিল্প ও উন্নয়ন প্রকল্পের জন্য প্রয়োজনীয় পরিবেশ ছাড়পত্র নিন।", "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [], "official_links": [], "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" } },
+    { "guide_id": "guide.bida_investment", "service_id": "svc.bida_investment", "agency_id": "agency.bida", "agency_name": "বাংলাদেশ বিনিয়োগ উন্নয়ন কর্তৃপক্ষ (বিডা)", "title": "বিডা বিনিয়োগ নিবন্ধন", "overview": "বিডা ওয়ান স্টপ সার্ভিসের মাধ্যমে বিদেশী বা যৌথ বিনিয়োগ নিবন্ধন করুন।", "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [], "official_links": [{ "label": "বিডা ওএসএস পোর্টাল", "url": "https://bidaquickserv.org/" }], "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": ["bidaquickserv.org"], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" } },
+    { "guide_id": "guide.patent_trademark", "service_id": "svc.patent_trademark", "agency_id": "agency.dpdt", "agency_name": "পেটেন্ট, ডিজাইন ও ট্রেডমার্ক অধিদপ্তর (ডিপিডিটি)", "title": "পেটেন্ট / ট্রেডমার্ক নিবন্ধন", "overview": "আপনার মেধাসত্ত্ব সুরক্ষার জন্য পেটেন্ট, ট্রেডমার্ক বা শিল্প নকশা নিবন্ধন করুন।", "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [], "official_links": [], "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" } },
+    { "guide_id": "guide.hajj_registration", "service_id": "svc.hajj_registration", "agency_id": "agency.mora", "agency_name": "ধর্ম বিষয়ক মন্ত্রণালয়", "title": "হজ্জ নিবন্ধন", "overview": "সরকারি হজ্জ ব্যবস্থাপনা সিস্টেমের মাধ্যমে হজ্জ তীর্থযাত্রার জন্য নিবন্ধন করুন।", "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [], "official_links": [], "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" } },
+    { "guide_id": "guide.land_dev_tax", "service_id": "svc.land_dev_tax", "agency_id": "agency.mol", "agency_name": "ভূমি মন্ত্রণালয়", "title": "ভূমি উন্নয়ন কর পরিশোধ", "overview": "আপনার জমির জন্য বার্ষিক ভূমি উন্নয়ন কর (খাজনা) পরিশোধ করুন।", "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [], "official_links": [], "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" } },
+    { "guide_id": "guide.non_encumbrance", "service_id": "svc.non_encumbrance", "agency_id": "agency.sub_reg", "agency_name": "সাব-রেজিস্ট্রার অফিস", "title": "নন-এনকাম্ব্রেন্স সার্টিফিকেট", "overview": "সম্পত্তি আইনি দায়মুক্ত কিনা যাচাই করতে নন-এনকাম্ব্রেন্স সার্টিফিকেট নিন।", "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [], "official_links": [], "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" } },
+    { "guide_id": "guide.succession_cert", "service_id": "svc.succession_cert", "agency_id": "agency.court", "agency_name": "জেলা আদালত", "title": "উত্তরাধিকার সনদ", "overview": "উত্তরাধিকার ও সম্পত্তি হস্তান্তরের উদ্দেশ্যে আদালত থেকে উত্তরাধিকার সনদ নিন।", "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [], "official_links": [], "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" } },
+    { "guide_id": "guide.citizenship_cert", "service_id": "svc.citizenship_cert", "agency_id": "agency.dc", "agency_name": "জেলা প্রশাসকের কার্যালয়", "title": "নাগরিকত্ব সনদ", "overview": "জেলা প্রশাসকের কার্যালয় থেকে নাগরিকত্ব সনদ নিন।", "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [], "official_links": [], "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" } },
+    { "guide_id": "guide.btcl", "service_id": "svc.btcl", "agency_id": "agency.btcl", "agency_name": "বাংলাদেশ টেলিকমিউনিকেশন কোম্পানি লিমিটেড (বিটিসিএল)", "title": "বিটিসিএল টেলিফোন / ইন্টারনেট সেবা", "overview": "বিটিসিএল থেকে টেলিফোন বা ইন্টারনেট সেবার জন্য আবেদন করুন।", "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [], "official_links": [{ "label": "বিটিসিএল পোর্টাল", "url": "https://www.btcl.gov.bd/" }], "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": ["www.btcl.gov.bd"], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" } },
+    { "guide_id": "guide.postal_ems", "service_id": "svc.postal_ems", "agency_id": "agency.postal", "agency_name": "বাংলাদেশ ডাকঘর", "title": "ডাক সেবা / ইএমএস", "overview": "ইএমএস, রেজিস্টার্ড মেইল ও মানি অর্ডারসহ ডাক ও এক্সপ্রেস মেইল সেবা ব্যবহার করুন।", "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [], "official_links": [{ "label": "বাংলাদেশ ডাকঘর", "url": "https://www.bangladeshpost.gov.bd/" }], "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": ["www.bangladeshpost.gov.bd"], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" } },
+    { "guide_id": "guide.bb_complaints", "service_id": "svc.bb_complaints", "agency_id": "agency.bb", "agency_name": "বাংলাদেশ ব্যাংক", "title": "বাংলাদেশ ব্যাংক অভিযোগ", "overview": "বাংলাদেশ ব্যাংকের মাধ্যমে ব্যাংকিং সেবা ও আর্থিক জালিয়াতি সংক্রান্ত অভিযোগ দায়ের করুন।", "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [], "official_links": [{ "label": "বাংলাদেশ ব্যাংক", "url": "https://www.bb.org.bd/" }], "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": ["www.bb.org.bd"], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" } },
+    { "guide_id": "guide.social_safety_net", "service_id": "svc.social_safety_net", "agency_id": "agency.mosw", "agency_name": "সমাজকল্যাণ মন্ত্রণালয়", "title": "সামাজিক নিরাপত্তা বেষ্টনী কর্মসূচি", "overview": "বয়স্ক ভাতা, বিধবা ভাতা ও প্রতিবন্ধী সুবিধাসহ সরকারি সামাজিক নিরাপত্তা বেষ্টনী কর্মসূচিতে প্রবেশ করুন।", "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [], "official_links": [], "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" } },
+    { "guide_id": "guide.disability_id", "service_id": "svc.disability_id", "agency_id": "agency.swid", "agency_name": "সমাজসেবা অধিদপ্তর", "title": "প্রতিবন্ধী পরিচয়পত্র", "overview": "সরকারি সুবিধা ও সেবা পাওয়ার জন্য প্রতিবন্ধী পরিচয়পত্রের জন্য আবেদন করুন।", "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [], "official_links": [], "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" } }
+  ]
+}

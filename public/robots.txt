@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /bulk-scrape
+
+Sitemap: https://infobase.lovable.app/sitemap.xml
