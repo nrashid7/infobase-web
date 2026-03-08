@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 export function Header() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
@@ -27,7 +27,7 @@ export function Header() {
           </div>
           <div className="hidden sm:block">
             <h1 className="text-sm font-medium tracking-wide text-foreground leading-none">INFOBASE</h1>
-            <p className="text-[10px] text-muted-foreground">BD Gov Guides</p>
+            <p className="text-[10px] text-muted-foreground">{language === 'bn' ? 'সরকারি সেবা গাইড' : 'BD Gov Guides'}</p>
           </div>
         </NavLink>
 
@@ -68,7 +68,7 @@ export function Header() {
                   </div>
                   <div>
                     <h1 className="text-sm font-medium tracking-wide text-foreground leading-none">INFOBASE</h1>
-                    <p className="text-[10px] text-muted-foreground">BD Gov Guides</p>
+                    <p className="text-[10px] text-muted-foreground">{language === 'bn' ? 'সরকারি সেবা গাইড' : 'BD Gov Guides'}</p>
                   </div>
                 </div>
               </div>

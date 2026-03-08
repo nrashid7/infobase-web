@@ -59,7 +59,9 @@ const App = () => (
               <Route path="/services/:id" element={<ServicesRedirect />} />
               </Route>
               
-              <Route path="*" element={<NotFound />} />
+              <Route element={<MainLayout />}>
+                <Route path="*" element={<NotFound />} />
+              </Route>
             </Routes>
           </Suspense>
         </BrowserRouter>

@@ -20,10 +20,10 @@ function getSiteSlug(url: string): string {
 
 // Inline featured sites to avoid importing the entire 887-line govDirectory on the homepage
 const FEATURED_SITES = [
-  { name: "President's Office (Bangabhaban)", url: 'https://bangabhaban.gov.bd/', category: 'Core Government', categoryBn: 'মূল সরকার' },
-  { name: "Chief Adviser's Office", url: 'https://cao.gov.bd/', category: 'Core Government', categoryBn: 'মূল সরকার' },
-  { name: 'Ministry of Finance', url: 'https://mof.gov.bd/', category: 'Ministry of Finance', categoryBn: 'অর্থ মন্ত্রণালয়' },
-  { name: 'Finance Division', url: 'https://fid.gov.bd/', category: 'Ministry of Finance', categoryBn: 'অর্থ মন্ত্রণালয়' },
+  { name: "President's Office (Bangabhaban)", nameBn: 'রাষ্ট্রপতির কার্যালয় (বঙ্গভবন)', url: 'https://bangabhaban.gov.bd/', category: 'Core Government', categoryBn: 'মূল সরকার' },
+  { name: "Chief Adviser's Office", nameBn: 'প্রধান উপদেষ্টার কার্যালয়', url: 'https://cao.gov.bd/', category: 'Core Government', categoryBn: 'মূল সরকার' },
+  { name: 'Ministry of Finance', nameBn: 'অর্থ মন্ত্রণালয়', url: 'https://mof.gov.bd/', category: 'Ministry of Finance', categoryBn: 'অর্থ মন্ত্রণালয়' },
+  { name: 'Finance Division', nameBn: 'অর্থ বিভাগ', url: 'https://fid.gov.bd/', category: 'Ministry of Finance', categoryBn: 'অর্থ মন্ত্রণালয়' },
 ];
 
 // Category chips for quick navigation with icons and agency domains
@@ -395,7 +395,7 @@ export default function Index() {
                     <FaviconImage url={site.url} className="w-8 h-8" />
                   </div>
                   <h3 className="font-semibold text-foreground mb-1 group-hover:text-primary transition-colors line-clamp-2">
-                    {site.name}
+                    {language === 'bn' && site.nameBn ? site.nameBn : site.name}
                   </h3>
                   <p className="text-sm text-muted-foreground">
                     {language === 'bn' ? site.categoryBn : site.category}

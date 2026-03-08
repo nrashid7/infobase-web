@@ -314,13 +314,13 @@ export default function Directory() {
             {/* Action Buttons */}
             <div className="flex flex-wrap justify-center gap-4 mb-8">
               <a
-                href="mailto:contact@infobase.gov.bd?subject=Report%20Broken%20Link"
+                href="mailto:contact@infobase.lovable.app?subject=Report%20Broken%20Link"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border bg-background hover:bg-accent/50 text-base font-medium text-foreground transition-colors"
               >
                 {language === 'bn' ? 'ভাঙা লিংক রিপোর্ট করুন' : 'Report Broken Link'}
               </a>
               <a
-                href="mailto:contact@infobase.gov.bd?subject=Suggest%20New%20Website"
+                href="mailto:contact@infobase.lovable.app?subject=Suggest%20New%20Website"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border bg-background hover:bg-accent/50 text-base font-medium text-foreground transition-colors"
               >
                 {language === 'bn' ? 'নতুন ওয়েবসাইট সাজেস্ট করুন' : 'Suggest New Website'}

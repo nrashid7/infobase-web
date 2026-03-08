@@ -154,10 +154,10 @@ export default function About() {
                   {t('about.contact.desc')}
                 </p>
                 <a 
-                  href="mailto:hello@infobase.gov.bd"
+                  href="mailto:hello@infobase.lovable.app"
                   className="text-primary hover:underline inline-flex items-center gap-1.5 text-sm font-medium"
                 >
-                  hello@infobase.gov.bd
+                  hello@infobase.lovable.app
                   <Mail className="w-3 h-3" />
                 </a>
               </div>

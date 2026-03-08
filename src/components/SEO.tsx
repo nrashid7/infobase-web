@@ -38,6 +38,9 @@ export function SEO({
     updateMeta('og:description', description, true);
     updateMeta('og:type', ogType, true);
     updateMeta('og:image', ogImage, true);
+    updateMeta('og:site_name', 'INFOBASE', true);
+    if (canonical) updateMeta('og:url', canonical, true);
+    updateMeta('twitter:card', 'summary_large_image');
     updateMeta('twitter:title', title);
     updateMeta('twitter:description', description);
     updateMeta('twitter:image', ogImage);
