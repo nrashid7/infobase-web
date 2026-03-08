@@ -20,10 +20,10 @@ function getSiteSlug(url: string): string {
 
 // Inline featured sites to avoid importing the entire 887-line govDirectory on the homepage
 const FEATURED_SITES = [
-  { name: "President's Office (Bangabhaban)", url: 'https://bangabhaban.gov.bd/', category: 'Core Government', categoryBn: 'মূল সরকার' },
-  { name: "Chief Adviser's Office", url: 'https://cao.gov.bd/', category: 'Core Government', categoryBn: 'মূল সরকার' },
-  { name: 'Ministry of Finance', url: 'https://mof.gov.bd/', category: 'Ministry of Finance', categoryBn: 'অর্থ মন্ত্রণালয়' },
-  { name: 'Finance Division', url: 'https://fid.gov.bd/', category: 'Ministry of Finance', categoryBn: 'অর্থ মন্ত্রণালয়' },
+  { name: "President's Office (Bangabhaban)", nameBn: 'রাষ্ট্রপতির কার্যালয় (বঙ্গভবন)', url: 'https://bangabhaban.gov.bd/', category: 'Core Government', categoryBn: 'মূল সরকার' },
+  { name: "Chief Adviser's Office", nameBn: 'প্রধান উপদেষ্টার কার্যালয়', url: 'https://cao.gov.bd/', category: 'Core Government', categoryBn: 'মূল সরকার' },
+  { name: 'Ministry of Finance', nameBn: 'অর্থ মন্ত্রণালয়', url: 'https://mof.gov.bd/', category: 'Ministry of Finance', categoryBn: 'অর্থ মন্ত্রণালয়' },
+  { name: 'Finance Division', nameBn: 'অর্থ বিভাগ', url: 'https://fid.gov.bd/', category: 'Ministry of Finance', categoryBn: 'অর্থ মন্ত্রণালয়' },
 ];
 
 // Category chips for quick navigation with icons and agency domains
