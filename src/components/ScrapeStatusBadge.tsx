@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 import { useLanguage } from '@/lib/LanguageContext';
 
 interface ScrapeStatusBadgeProps {
-  status: 'success' | 'pending' | 'failed' | null;
+  status: 'success' | 'pending' | 'failed' | 'incomplete' | null;
   size?: 'sm' | 'md';
   showLabel?: boolean;
 }
