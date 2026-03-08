@@ -97,7 +97,7 @@ export default function BulkScrape() {
     try {
       const { data: dbSites, error } = await supabase
         .from('gov_site_details')
-        .select('url, scrape_status, last_scraped_at, description, contact_info, services, scrape_error, scrape_method, content_quality');
+        .select('url, scrape_status, last_scraped_at, description, contact_info, services, scrape_error, content_quality');
       
       if (error) {
         console.error('Error loading site statuses:', error);
@@ -123,8 +123,8 @@ export default function BulkScrape() {
           hasContact: !!(dbEntry?.contact_info && Object.keys(dbEntry.contact_info as object).length > 0),
           hasServices: !!(dbEntry?.services && Array.isArray(dbEntry.services) && (dbEntry.services as unknown[]).length > 0),
           scrapeError: dbEntry?.scrape_error || undefined,
-          scrapeMethod: (dbEntry as Record<string, unknown>)?.scrape_method as string | undefined,
-          contentQuality: (dbEntry as Record<string, unknown>)?.content_quality as number | undefined,
+          scrapeMethod: undefined,
+          contentQuality: dbEntry?.content_quality as number | undefined,
           urlStatus: validation?.urlStatus,
           urlError: validation?.urlError,
           pageTitle: validation?.pageTitle,
@@ -347,19 +347,19 @@ export default function BulkScrape() {
                 else if (result.finalUrl) {
                   try {
                     const originalHost = new URL(url).hostname;
-                    const finalHost = new URL(result.finalUrl).hostname;
+                    const finalHost = new URL(result.finalUrl as string).hostname;
                     if (originalHost !== finalHost) {
                       // Auto-apply the redirect
                       const overrides = loadUrlOverrides();
-                      overrides[url] = result.finalUrl;
+                      overrides[url] = result.finalUrl as string;
                       saveUrlOverrides(overrides);
                       updatedSites[idx] = {
                         ...updatedSites[idx],
-                        url: result.finalUrl,
+                        url: result.finalUrl as string,
                         urlStatus: 'redirect',
                         urlError: undefined,
-                        pageTitle: result.pageTitle,
-                        finalUrl: result.finalUrl,
+                        pageTitle: result.pageTitle as string | undefined,
+                        finalUrl: result.finalUrl as string,
                       };
                       autoRedirectCount++;
                       wasAutoRedirected = true;
@@ -371,9 +371,9 @@ export default function BulkScrape() {
                   updatedSites[idx] = { 
                     ...updatedSites[idx], 
                     urlStatus: status,
-                    urlError: result.error,
-                    pageTitle: result.pageTitle,
-                    finalUrl: result.finalUrl,
+                    urlError: result.error as string | undefined,
+                    pageTitle: result.pageTitle as string | undefined,
+                    finalUrl: result.finalUrl as string | undefined,
                   };
                 }
               }

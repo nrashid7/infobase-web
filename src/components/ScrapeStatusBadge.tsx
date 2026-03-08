@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 import { useLanguage } from '@/lib/LanguageContext';
 
 interface ScrapeStatusBadgeProps {
-  status: 'success' | 'pending' | 'failed' | null;
+  status: 'success' | 'pending' | 'failed' | 'incomplete' | null;
   size?: 'sm' | 'md';
   showLabel?: boolean;
 }
@@ -16,6 +16,11 @@ export function ScrapeStatusBadge({ status, size = 'sm', showLabel = false }: Sc
       icon: CheckCircle,
       label: language === 'bn' ? 'তথ্য আছে' : 'Info available',
       className: 'text-status-verified bg-status-verified-bg',
+    },
+    incomplete: {
+      icon: Clock,
+      label: language === 'bn' ? 'আংশিক' : 'Incomplete',
+      className: 'text-amber-600 bg-amber-50 dark:text-amber-400 dark:bg-amber-950/30',
     },
     pending: {
       icon: Clock,
