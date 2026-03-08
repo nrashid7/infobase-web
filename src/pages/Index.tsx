@@ -395,7 +395,7 @@ export default function Index() {
                     <FaviconImage url={site.url} className="w-8 h-8" />
                   </div>
                   <h3 className="font-semibold text-foreground mb-1 group-hover:text-primary transition-colors line-clamp-2">
-                    {site.name}
+                    {language === 'bn' && site.nameBn ? site.nameBn : site.name}
                   </h3>
                   <p className="text-sm text-muted-foreground">
                     {language === 'bn' ? site.categoryBn : site.category}
