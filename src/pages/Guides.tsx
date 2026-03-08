@@ -42,6 +42,13 @@ export default function Guides() {
   };
 
   return (
+    <>
+      <SEO
+        title={language === 'bn' ? 'সেবা গাইড | INFOBASE' : 'Service Guides | INFOBASE'}
+        description={language === 'bn'
+          ? 'বাংলাদেশ সরকারি সেবার বিস্তারিত গাইড — পাসপোর্ট, NID, ড্রাইভিং লাইসেন্স এবং আরও অনেক কিছু।'
+          : 'Detailed guides for Bangladesh government services — passport, NID, driving license and more.'}
+      />
     <div className="py-10 px-4">
       <div className="container max-w-6xl">
         {/* Breadcrumbs */}
