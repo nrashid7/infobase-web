@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { FaviconImage, getAgencyDomain } from '@/components/FaviconImage';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { SEO } from '@/components/SEO';
 import {
   Select,
   SelectContent,
