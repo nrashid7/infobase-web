@@ -17,6 +17,11 @@ export function ScrapeStatusBadge({ status, size = 'sm', showLabel = false }: Sc
       label: language === 'bn' ? 'তথ্য আছে' : 'Info available',
       className: 'text-status-verified bg-status-verified-bg',
     },
+    incomplete: {
+      icon: Clock,
+      label: language === 'bn' ? 'আংশিক' : 'Incomplete',
+      className: 'text-amber-600 bg-amber-50 dark:text-amber-400 dark:bg-amber-950/30',
+    },
     pending: {
       icon: Clock,
       label: language === 'bn' ? 'অপেক্ষমাণ' : 'Pending',

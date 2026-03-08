@@ -371,9 +371,9 @@ export default function BulkScrape() {
                   updatedSites[idx] = { 
                     ...updatedSites[idx], 
                     urlStatus: status,
-                    urlError: result.error,
-                    pageTitle: result.pageTitle,
-                    finalUrl: result.finalUrl,
+                    urlError: result.error as string | undefined,
+                    pageTitle: result.pageTitle as string | undefined,
+                    finalUrl: result.finalUrl as string | undefined,
                   };
                 }
               }
