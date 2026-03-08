@@ -828,6 +828,14 @@ export default function BulkScrape() {
                   {site.scrapeMethod && (
                     <Badge variant="outline" className="text-xs text-muted-foreground" title={`Quality: ${Math.round((site.contentQuality || 0) * 100)}%`}>
                       {site.scrapeMethod === 'firecrawl_extract' ? 'Extract'
+                        : site.scrapeMethod === 'firecrawl_json' ? 'FC JSON'
+                        : site.scrapeMethod === 'firecrawl_json+gemini' ? 'FC+Gem'
+                        : site.scrapeMethod === 'firecrawl_markdown+gemini' ? 'FC MD+Gem'
+                        : site.scrapeMethod === 'firecrawl_json_partial' ? 'FC Partial'
+                        : site.scrapeMethod === 'direct_fetch+gemini' ? 'Direct+Gem'
+                        : site.scrapeMethod === 'http_fallback+gemini' ? 'HTTP+Gem'
+                        : site.scrapeMethod === 'google_cache+gemini' ? 'Cache+Gem'
+                        : site.scrapeMethod === 'wayback_archive+gemini' ? 'Wayback+Gem'
                         : site.scrapeMethod === 'firecrawl+perplexity' ? 'FC+PPX'
                         : site.scrapeMethod === 'perplexity_only' ? 'PPX'
                         : site.scrapeMethod === 'firecrawl_scrape' ? 'Scrape'

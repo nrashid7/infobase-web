@@ -108,119 +108,119 @@ const EXTRACTION_SCHEMA = {
   },
 };
 
-async function discoverPages(url: string, firecrawlApiKey: string): Promise<string[]> {
-  const urls = [url];
-  try {
-    console.log('[Map] Discovering pages on', url);
-    const response = await fetch('https://api.firecrawl.dev/v1/map', {
-      method: 'POST',
-      headers: { 'Authorization': `Bearer ${firecrawlApiKey}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ url, search: 'contact about services mission', limit: 15 }),
-    });
-    const result = await response.json();
-
-    if (response.ok && result.success && Array.isArray(result.links) && result.links.length > 0) {
-      const relevant = ['contact', 'about', 'service', 'mission', 'vision', 'office', 'info'];
-      const scored = result.links
-        .filter((link: string) => link !== url)
-        .map((link: string) => {
-          const lower = link.toLowerCase();
-          const matchCount = relevant.filter(kw => lower.includes(kw)).length;
-          return { link, score: matchCount };
-        })
-        .sort((a: { score: number }, b: { score: number }) => b.score - a.score);
-
-      const topLinks = scored.slice(0, 4).map((s: { link: string }) => s.link);
-      urls.push(...topLinks);
-      console.log(`[Map] Found ${result.links.length} URLs, selected ${topLinks.length} relevant pages`);
-    } else {
-      console.warn('[Map] No links returned or request failed');
-    }
-  } catch (err) {
-    console.warn('[Map] Error:', err);
-  }
-  return urls;
+function isEmptyExtractionValue(value: unknown): boolean {
+  if (value == null) return true;
+  if (typeof value === 'string') return value.trim().length === 0;
+  if (Array.isArray(value)) return value.length === 0;
+  if (typeof value === 'object') return Object.keys(value as Record<string, unknown>).length === 0;
+  return false;
 }
 
-async function extractWithFirecrawl(
-  urls: string[], name: string, url: string, firecrawlApiKey: string
-): Promise<{ data: Record<string, unknown> | null; branding: Record<string, unknown> | null }> {
+function hasMeaningfulExtractedContent(info: Record<string, unknown> | null | undefined): boolean {
+  if (!info) return false;
+  return !!info.description || (Array.isArray(info.services) && info.services.length > 0);
+}
+
+function mergeExtractedInfo(
+  preferred: Record<string, unknown> | null | undefined,
+  fallback: Record<string, unknown> | null | undefined,
+): Record<string, unknown> {
+  const merged: Record<string, unknown> = { ...(fallback ?? {}) };
+
+  for (const [key, value] of Object.entries(preferred ?? {})) {
+    if (!isEmptyExtractionValue(value) || !(key in merged)) {
+      merged[key] = value;
+    }
+  }
+
+  return merged;
+}
+
+function buildExtractionPrompt(name: string, url: string): string {
+  return `Extract comprehensive information about "${name}", a Bangladesh government organization at ${url}. ` +
+    `Find their description, mission, services they provide to citizens, contact details (phone with +880 code, email, full address, fax), ` +
+    `office hours, important links, establishment year, and social media profiles. ` +
+    `Only include real, verified information. Use null for anything not found.`;
+}
+
+async function scrapeWithFirecrawl(
+  url: string, name: string, firecrawlApiKey: string
+): Promise<{ data: Record<string, unknown> | null; markdown: string | null; branding: Record<string, unknown> | null }> {
+  let partialData: Record<string, unknown> | null = null;
+  let brandingData: Record<string, unknown> | null = null;
+
   try {
-    console.log(`[Extract] Extracting structured data from ${urls.length} URL(s)`);
-    const response = await fetch('https://api.firecrawl.dev/v1/extract', {
+    console.log('[Scrape] Trying low-credit JSON extraction');
+    const jsonResponse = await fetch('https://api.firecrawl.dev/v1/scrape', {
       method: 'POST',
       headers: { 'Authorization': `Bearer ${firecrawlApiKey}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        urls,
-        prompt: `Extract comprehensive information about "${name}", a Bangladesh government organization at ${url}. ` +
-          `Find their description, mission, services they provide to citizens, contact details (phone with +880 code, email, full address, fax), ` +
-          `office hours, important links, establishment year, and social media profiles. ` +
-          `Only include real, verified information. Use null for anything not found.`,
-        schema: EXTRACTION_SCHEMA,
-        enableWebSearch: true,
+        url,
+        formats: ['json', 'branding'],
+        jsonOptions: {
+          prompt: buildExtractionPrompt(name, url),
+          schema: EXTRACTION_SCHEMA,
+        },
+        onlyMainContent: true,
+        waitFor: 5000,
+        timeout: 30000,
+        location: { country: 'BD', languages: ['bn', 'en'] },
+        skipTlsVerification: true,
+      }),
+    });
+
+    const jsonResult = await jsonResponse.json();
+    if (jsonResponse.ok && jsonResult.success) {
+      const data = jsonResult.data || jsonResult;
+      const extractedData = (data.json || null) as Record<string, unknown> | null;
+      brandingData = data.branding || null;
+
+      if (extractedData) {
+        partialData = extractedData;
+        if (hasMeaningfulExtractedContent(extractedData)) {
+          console.log('[Scrape] JSON extraction returned meaningful content');
+          return { data: extractedData, markdown: null, branding: brandingData };
+        }
+      }
+    } else {
+      console.warn('[Scrape] JSON extraction failed:', jsonResult.error || 'No data returned');
+    }
+  } catch (err) {
+    console.warn('[Scrape] JSON extraction error:', err);
+  }
+
+  try {
+    console.log('[Scrape] Falling back to single markdown scrape');
+    const response = await fetch('https://api.firecrawl.dev/v1/scrape', {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${firecrawlApiKey}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        url,
+        formats: ['markdown'],
+        onlyMainContent: true,
+        waitFor: 8000,
+        timeout: 30000,
+        location: { country: 'BD', languages: ['bn', 'en'] },
+        skipTlsVerification: true,
       }),
     });
 
     const result = await response.json();
-    if (response.ok && result.success && result.data) {
-      console.log('[Extract] Extraction successful');
-      return { data: result.data, branding: null };
-    }
-    console.warn('[Extract] Failed:', result.error || 'No data returned');
-  } catch (err) {
-    console.warn('[Extract] Error:', err);
-  }
-  return { data: null, branding: null };
-}
-
-async function scrapeWithFirecrawl(
-  url: string, firecrawlApiKey: string
-): Promise<{ markdown: string | null; branding: Record<string, unknown> | null }> {
-  const configs = [
-    { formats: ['markdown', 'branding'], waitFor: 5000 },
-    { formats: ['markdown'], waitFor: 8000 },
-    { formats: ['rawHtml'], waitFor: 10000 },
-  ];
-
-  for (const config of configs) {
-    try {
-      console.log(`[Scrape] Trying formats: ${config.formats.join(', ')}`);
-      const response = await fetch('https://api.firecrawl.dev/v1/scrape', {
-        method: 'POST',
-        headers: { 'Authorization': `Bearer ${firecrawlApiKey}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          url,
-          formats: config.formats,
-          onlyMainContent: !config.formats.includes('rawHtml'),
-          waitFor: config.waitFor,
-          timeout: 45000,
-          location: { country: 'BD', languages: ['bn', 'en'] },
-          skipTlsVerification: true,
-        }),
-      });
-
-      const result = await response.json();
-      if (response.ok && result.success) {
-        const data = result.data || result;
-        let markdown = data.markdown || '';
-        if (!markdown && data.rawHtml) {
-          markdown = (data.rawHtml as string)
-            .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
-            .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
-            .replace(/<[^>]+>/g, ' ')
-            .replace(/\s+/g, ' ')
-            .trim();
-        }
-        if (markdown.length >= 300) {
-          console.log(`[Scrape] Got ${markdown.length} chars`);
-          return { markdown, branding: data.branding || null };
-        }
+    if (response.ok && result.success) {
+      const data = result.data || result;
+      const markdown = typeof data.markdown === 'string' ? data.markdown.trim() : '';
+      if (markdown.length >= 300) {
+        console.log(`[Scrape] Markdown fallback got ${markdown.length} chars`);
+        return { data: partialData, markdown, branding: brandingData || data.branding || null };
       }
-    } catch (err) {
-      console.warn(`[Scrape] Error with ${config.formats.join(', ')}:`, err);
+    } else {
+      console.warn('[Scrape] Markdown fallback failed:', result.error || 'No data returned');
     }
+  } catch (err) {
+    console.warn('[Scrape] Markdown fallback error:', err);
   }
-  return { markdown: null, branding: null };
+
+  return { data: partialData, markdown: null, branding: brandingData };
 }
 
 function htmlToText(html: string): string {
@@ -415,42 +415,46 @@ Deno.serve(async (req) => {
     let scrapeMethod = '';
     let brandingData: Record<string, unknown> | null = null;
 
-    // ── Strategy 1: Map + Extract (best quality) ──────────────────────
-    const discoveredUrls = await discoverPages(url, firecrawlApiKey);
-    const extractResult = await extractWithFirecrawl(discoveredUrls, name, url, firecrawlApiKey);
+    // ── Strategy 1: Free direct fetch + Gemini extraction ───────────────────────
+    const directFetchResult = await directFetchWithFallback(url);
+    const directFetchText = directFetchResult.text;
 
-    if (extractResult.data) {
-      extractedInfo = extractResult.data;
-      scrapeMethod = 'firecrawl_extract';
-      brandingData = extractResult.branding;
+    if (directFetchText && lovableApiKey) {
+      console.log('[Primary] Direct fetch succeeded, extracting with Gemini');
+      extractedInfo = await extractStructuredWithGemini(directFetchText, name, url, lovableApiKey);
+      if (hasMeaningfulExtractedContent(extractedInfo) && directFetchResult.method) {
+        scrapeMethod = `${directFetchResult.method}+gemini`;
+      }
     }
 
-    // ── Strategy 2: Scrape + direct fetch + Gemini extraction (fallback) ────────
-    const hasExtractContent = !!extractedInfo.description ||
-      (Array.isArray(extractedInfo.services) && extractedInfo.services.length > 0);
+    // ── Strategy 2: Single Firecrawl scrape + Gemini fallback ───────────────────
+    if (!hasMeaningfulExtractedContent(extractedInfo)) {
+      console.log('[Fallback] Direct fetch insufficient, trying single Firecrawl scrape...');
 
-    if (!hasExtractContent) {
-      console.log('[Fallback] Extract insufficient, trying scrape + direct fetch + Gemini...');
-
-      const scrapeResult = await scrapeWithFirecrawl(url, firecrawlApiKey);
+      const scrapeResult = await scrapeWithFirecrawl(url, name, firecrawlApiKey);
       brandingData = scrapeResult.branding || brandingData;
 
-      const directFetchResult = await directFetchWithFallback(url);
-      const directFetchText = directFetchResult.text;
-      const combinedText = [scrapeResult.markdown, directFetchText].filter(Boolean).join('\n\n--- Website Content ---\n\n');
+      if (hasMeaningfulExtractedContent(scrapeResult.data)) {
+        extractedInfo = mergeExtractedInfo(scrapeResult.data, extractedInfo);
+        scrapeMethod = 'firecrawl_json';
+      } else if (scrapeResult.markdown && lovableApiKey) {
+        const combinedText = [directFetchText, scrapeResult.markdown]
+          .filter((value): value is string => Boolean(value))
+          .join('\n\n--- Website Content ---\n\n');
 
-      if (combinedText.length > 100 && lovableApiKey) {
-        extractedInfo = await extractStructuredWithGemini(combinedText, name, url, lovableApiKey);
-        const hasScrapeContent = !!scrapeResult.markdown;
-        if (hasScrapeContent && directFetchText && directFetchResult.method) {
-          scrapeMethod = `firecrawl+${directFetchResult.method}+gemini`;
-        } else if (hasScrapeContent) {
-          scrapeMethod = 'firecrawl+gemini';
-        } else if (directFetchText && directFetchResult.method) {
-          scrapeMethod = `${directFetchResult.method}+gemini`;
+        const geminiInfo = await extractStructuredWithGemini(combinedText, name, url, lovableApiKey);
+        extractedInfo = mergeExtractedInfo(geminiInfo, scrapeResult.data || extractedInfo);
+
+        if (hasMeaningfulExtractedContent(extractedInfo)) {
+          scrapeMethod = scrapeResult.data ? 'firecrawl_json+gemini' : 'firecrawl_markdown+gemini';
+        } else if (scrapeResult.data) {
+          scrapeMethod = 'firecrawl_json_partial';
         } else {
-          scrapeMethod = 'gemini_only';
+          scrapeMethod = 'failed';
         }
+      } else if (scrapeResult.data) {
+        extractedInfo = mergeExtractedInfo(scrapeResult.data, extractedInfo);
+        scrapeMethod = 'firecrawl_json_partial';
       } else if (!lovableApiKey) {
         scrapeMethod = 'failed';
         console.warn('[Fallback] LOVABLE_API_KEY is missing, cannot run Gemini extraction');
@@ -460,7 +464,7 @@ Deno.serve(async (req) => {
     }
 
     // ── Branding ─────────────────────────────────────────────────────
-    // If we don't have branding from extract, try a quick scrape for it
+    // If we don't have branding from the low-credit scrape path, try a quick scrape for it.
     if (!brandingData) {
       try {
         const brandResponse = await fetch('https://api.firecrawl.dev/v1/scrape', {
