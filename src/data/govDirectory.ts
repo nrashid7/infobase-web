@@ -430,14 +430,14 @@ export const govDirectory: DirectoryCategory[] = [
     nameBn: 'সড়ক পরিবহন ও সেতু মন্ত্রণালয়',
     links: [
       { name: 'Ministry of Road Transport and Bridges', nameBn: 'সড়ক পরিবহন ও মহাসড়ক বিভাগ', url: 'https://rthd.gov.bd/' },
-      { name: 'Road Transport and Highways Division', url: 'https://rthd.gov.bd/' },
-      { name: 'Bridges Division', url: 'https://bridges.gov.bd/' },
+      { name: 'Road Transport and Highways Division', nameBn: 'সড়ক পরিবহন ও মহাসড়ক বিভাগ', url: 'https://rthd.gov.bd/' },
+      { name: 'Bridges Division', nameBn: 'সেতু বিভাগ', url: 'https://bridges.gov.bd/' },
       { name: 'Roads and Highways Department (RHD)', nameBn: 'সড়ক ও জনপথ অধিদপ্তর (আরএইচডি)', url: 'https://rhd.gov.bd/' },
       { name: 'Bangladesh Road Transport Authority (BRTA)', nameBn: 'বাংলাদেশ সড়ক পরিবহন কর্তৃপক্ষ (বিআরটিএ)', url: 'https://brta.gov.bd/' },
       { name: 'Bangladesh Road Transport Corporation', nameBn: 'বাংলাদেশ সড়ক পরিবহন কর্পোরেশন (বিআরটিসি)', url: 'https://brtc.gov.bd/' },
-      { name: 'Bangladesh Bridge Authority', url: 'https://bridgeauthority.gov.bd/' },
+      { name: 'Bangladesh Bridge Authority', nameBn: 'বাংলাদেশ সেতু কর্তৃপক্ষ', url: 'https://bridgeauthority.gov.bd/' },
       { name: 'Dhaka Transport Coordination Authority (DTCA)', nameBn: 'ঢাকা পরিবহন সমন্বয় কর্তৃপক্ষ (ডিটিসিএ)', url: 'https://dtca.gov.bd/' },
-      { name: 'Dhaka Mass Transit Company (DMTCL)', url: 'https://dmtcl.gov.bd/' },
+      { name: 'Dhaka Mass Transit Company (DMTCL)', nameBn: 'ঢাকা ম্যাস ট্রানজিট কোম্পানি (ডিএমটিসিএল)', url: 'https://dmtcl.gov.bd/' },
     ],
   },
   {
