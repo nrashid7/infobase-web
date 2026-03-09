@@ -13,7 +13,7 @@ export function SEO({
   title = 'INFOBASE - Bangladesh Government Services Guide',
   description = 'Navigate Bangladesh government services with confidence. Clear, verified guides for passport, NID, driving license, birth certificate, visa and more.',
   canonical,
-  ogImage = 'https://lovable.dev/opengraph-image-p98pqg.png',
+  ogImage = '/og-image.png',
   ogType = 'website',
   jsonLd,
 }: SEOProps) {
