@@ -361,8 +361,8 @@ export function setGuidesLanguage(lang: 'en' | 'bn'): void {
   localGuidesData = lang === 'bn' ? localGuidesData_bn : localGuidesData_en;
   localIndexData = lang === 'bn' ? localIndexData_bn : localIndexData_en;
   
-  guides = (localGuidesData as unknown as GuidesData).guides;
-  index = (localIndexData as unknown as IndexData).entries;
+  guides = (localGuidesData as any).guides;
+  index = (localIndexData as any).entries;
   generatedAt = (localGuidesData as unknown as GuidesData).generated_at || null;
   buildLookups();
 }
