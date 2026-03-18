@@ -8,8 +8,10 @@ import localGuidesData_bn from '@/data/public_guides_bn.json';
 import localIndexData_bn from '@/data/public_guides_index_bn.json';
 
 // Active language dataset references
-let localGuidesData = localGuidesData_en;
-let localIndexData = localIndexData_en;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let localGuidesData: any = localGuidesData_en;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let localIndexData: any = localIndexData_en;
 
 // Remote fetching configuration (optional, controlled by env)
 // Set VITE_USE_REMOTE_GUIDES=true and VITE_GUIDE_DATA_URL to enable
@@ -361,8 +363,8 @@ export function setGuidesLanguage(lang: 'en' | 'bn'): void {
   localGuidesData = lang === 'bn' ? localGuidesData_bn : localGuidesData_en;
   localIndexData = lang === 'bn' ? localIndexData_bn : localIndexData_en;
   
-  guides = (localGuidesData as unknown as GuidesData).guides;
-  index = (localIndexData as unknown as IndexData).entries;
+  guides = (localGuidesData as any).guides;
+  index = (localIndexData as any).entries;
   generatedAt = (localGuidesData as unknown as GuidesData).generated_at || null;
   buildLookups();
 }
