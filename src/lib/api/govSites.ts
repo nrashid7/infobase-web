@@ -1,4 +1,15 @@
-import { supabase } from '@/integrations/supabase/client';
+// Lazy import to avoid crash when env vars are missing during stale builds
+let _supabase: ReturnType<typeof import('@/integrations/supabase/client')['supabase']> | null = null;
+
+function getSupabase() {
+  if (!_supabase) {
+    // Dynamic require at call time, not module load time
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { supabase } = require('@/integrations/supabase/client') as typeof import('@/integrations/supabase/client');
+    _supabase = supabase;
+  }
+  return _supabase;
+}
 
 export interface GovSiteService {
   name: string;
