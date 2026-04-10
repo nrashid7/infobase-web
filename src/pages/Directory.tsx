@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { govDirectory, getTotalWebsites } from '@/data/govDirectory';
 import { FaviconImage } from '@/components/FaviconImage';
-import { getSiteSlug } from '@/lib/api/govSites';
+import { getSiteSlug } from '@/lib/api/govSiteUtils';
 import { useScrapeStatus } from '@/hooks/useScrapeStatus';
 import { ScrapeStatusBadge } from '@/components/ScrapeStatusBadge';
 import { SEO, generateWebsiteJsonLd } from '@/components/SEO';

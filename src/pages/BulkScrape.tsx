@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Link } from 'react-router-dom';
-import { getSiteSlug } from '@/lib/api/govSites';
+import { getSiteSlug } from '@/lib/api/govSiteUtils';
 
 const VALIDATION_STORAGE_KEY = 'bulkScrape_validationResults';
 const URL_OVERRIDES_KEY = 'bulkScrape_urlOverrides';
