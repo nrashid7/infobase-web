@@ -7,7 +7,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { FaviconImage } from '@/components/FaviconImage';
 import { govDirectory } from '@/data/govDirectory';
-import { getSiteByUrl, findSiteBySlug, GovSiteDetails } from '@/lib/api/govSites';
+import { getSiteByUrl, GovSiteDetails } from '@/lib/api/govSites';
+import { findSiteBySlug } from '@/lib/api/govSiteUtils';
 
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { getCategoryBranding, isValidContactValue, formatAddressDisplay } from '@/data/govBranding';

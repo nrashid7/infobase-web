@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { listGuides } from '@/lib/guidesStore';
 import { govDirectory } from '@/data/govDirectory';
-import { getSiteSlug } from '@/lib/api/govSites';
+import { getSiteSlug } from '@/lib/api/govSiteUtils';
 import { useLanguage } from '@/lib/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
