@@ -1,17 +1,34 @@
 
 
-## Deploy Updated Edge Functions
+# Sync Codebase from Knowledge-base Repository
 
-All four edge functions are registered in `config.toml` and their code is present. To ensure the deployed versions match the latest codebase from the Cursor push, I will redeploy all four:
+## Summary
+The `nrashid7/Knowledge-base` repo (infobase-web folder) contains the original, more complete version of the project from Cursor. The primary gap is the **data files** — the KB repo has all 39 guides while the current Lovable project only has 7 in the English data files. The source code (pages, components, lib) is structurally identical between the two repos, with the Lovable version actually having improvements (bug fixes for the `supabaseUrl` crash, SEO additions, Bengali name translations in featured sites).
 
-1. **`scrape-gov-site`** — Multi-strategy scraper (Firecrawl extract → scrape + direct fetch + Gemini fallback). 582 lines. Uses `Deno.serve`, Firecrawl API, Lovable AI gateway, Supabase service role client.
+## What will change
 
-2. **`research-guide`** — Guide researcher with auth verification, Firecrawl portal crawling, and Gemini synthesis. 554 lines. Requires authenticated user (checks via `supabase.auth.getUser`).
+### 1. Replace English data files (39 guides instead of 7)
+- **`src/data/public_guides.json`** — download the full 39-guide version from the KB repo
+- **`src/data/public_guides_index.json`** — download the full 39-entry index from the KB repo
 
-3. **`ask`** — AI Q&A with streaming, bilingual support (EN/BN), input validation. 159 lines. Uses Lovable AI gateway with `gemini-2.5-flash`.
+### 2. Keep Lovable-specific improvements (no changes needed)
+These files were improved in Lovable and should NOT be overwritten:
+- `src/lib/api/govSiteUtils.ts` — fixes the `supabaseUrl` crash by decoupling utilities
+- `src/lib/guidesStore.ts` — has the `any` type fix for EN/BN dataset switching
+- `src/pages/Index.tsx` — has Bengali name translations in FEATURED_SITES and additional sections
+- `src/pages/Guides.tsx` — has SEO component addition
+- `src/components/SEO.tsx` — has custom OG image
+- `index.html` — has custom OG meta tags
 
-4. **`validate-url`** — URL validator with content matching, SSL fallback, HTTP fallback, concurrent checking. Uses `serve` from std.
+### 3. Verify Bengali data files are in sync
+Check that `public_guides_bn.json` and `public_guides_index_bn.json` already match (they appear to have all 39 guides already).
 
-### Action
-Deploy all four functions in one step. No code changes needed — just triggering deployment.
+## Technical Details
+- The data files will be fetched from `raw.githubusercontent.com/nrashid7/Knowledge-base/main/infobase-web/src/data/`
+- The JSON files are large but static — they'll be downloaded and written directly
+- No code logic changes are needed; the existing `guidesStore.ts` will automatically pick up the expanded dataset
+- Build will be verified after replacement
+
+## Risk
+Low — only replacing data JSON files with known-good versions from the source repo. All code files are preserved with their Lovable improvements.
 
