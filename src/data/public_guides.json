@@ -9,7 +9,7 @@
       "agency_id": "agency.dip",
       "agency_name": "Department of Immigration and Passports",
       "title": "e-Passport Application",
-      "overview": null,
+      "overview": "The e-Passport is Bangladesh's biometric, machine-readable travel document issued by the Department of Immigration and Passports. It contains an electronic chip with the holder's biometric data. All Bangladeshi citizens can apply online through the official portal and complete enrollment at designated centers across the country.",
       "steps": [
         {
           "step_number": 1,
@@ -187,8 +187,8 @@
         ],
         "fees": [
           {
-            "label": "Regular delivery BDT 4,025",
-            "description": "regular: 4025 BDT",
+            "label": "Regular delivery (48 pages) BDT 4,025",
+            "description": "regular 48 pages: 4025 BDT",
             "citations": [
               {
                 "source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9",
@@ -196,15 +196,15 @@
                 "domain": "www.epassport.gov.bd",
                 "page_title": "E‑Passport Online Registration Portal",
                 "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)",
-                "quoted_text": "- Regular delivery: BDT 4,025",
+                "quoted_text": "- Regular delivery (48 pages): BDT 4,025",
                 "retrieved_at": "2026-01-05T12:13:25.656Z",
                 "language": "en"
               }
             ]
           },
           {
-            "label": "Express delivery BDT 6,325",
-            "description": "express: 6325 BDT",
+            "label": "Regular delivery (64 pages) BDT 5,750",
+            "description": "regular 64 pages: 5750 BDT",
             "citations": [
               {
                 "source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9",
@@ -212,15 +212,15 @@
                 "domain": "www.epassport.gov.bd",
                 "page_title": "E‑Passport Online Registration Portal",
                 "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)",
-                "quoted_text": "- Express delivery: BDT 6,325",
+                "quoted_text": "- Regular delivery (64 pages): BDT 5,750",
                 "retrieved_at": "2026-01-05T12:13:25.656Z",
                 "language": "en"
               }
             ]
           },
           {
-            "label": "Super Express delivery BDT 8,625",
-            "description": "super_express: 8625 BDT",
+            "label": "Express delivery (48 pages) BDT 6,325",
+            "description": "express 48 pages: 6325 BDT",
             "citations": [
               {
                 "source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9",
@@ -228,12 +228,76 @@
                 "domain": "www.epassport.gov.bd",
                 "page_title": "E‑Passport Online Registration Portal",
                 "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)",
-                "quoted_text": "- Super Express delivery: BDT 8,625",
+                "quoted_text": "- Express delivery (48 pages): BDT 6,325",
+                "retrieved_at": "2026-01-05T12:13:25.656Z",
+                "language": "en"
+              }
+            ]
+          },
+          {
+            "label": "Express delivery (64 pages) BDT 8,050",
+            "description": "express 64 pages: 8050 BDT",
+            "citations": [
+              {
+                "source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9",
+                "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                "domain": "www.epassport.gov.bd",
+                "page_title": "E‑Passport Online Registration Portal",
+                "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)",
+                "quoted_text": "- Express delivery (64 pages): BDT 8,050",
+                "retrieved_at": "2026-01-05T12:13:25.656Z",
+                "language": "en"
+              }
+            ]
+          },
+          {
+            "label": "Super Express delivery (48 pages) BDT 8,625",
+            "description": "super_express 48 pages: 8625 BDT",
+            "citations": [
+              {
+                "source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9",
+                "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                "domain": "www.epassport.gov.bd",
+                "page_title": "E‑Passport Online Registration Portal",
+                "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)",
+                "quoted_text": "- Super Express delivery (48 pages): BDT 8,625",
+                "retrieved_at": "2026-01-05T12:13:25.656Z",
+                "language": "en"
+              }
+            ]
+          },
+          {
+            "label": "Super Express delivery (64 pages) BDT 10,350",
+            "description": "super_express 64 pages: 10350 BDT",
+            "citations": [
+              {
+                "source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9",
+                "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                "domain": "www.epassport.gov.bd",
+                "page_title": "E‑Passport Online Registration Portal",
+                "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)",
+                "quoted_text": "- Super Express delivery (64 pages): BDT 10,350",
                 "retrieved_at": "2026-01-05T12:13:25.656Z",
                 "language": "en"
               }
             ]
           }
+        ],
+        "required_documents": [
+          { "label": "National ID (NID) Card", "description": "Valid NID card or Smart Card for identity verification", "citations": [] },
+          { "label": "Birth Certificate", "description": "Original or certified copy of birth registration certificate", "citations": [] },
+          { "label": "Previous Passport (for renewal)", "description": "Original previous passport if applying for renewal or re-issue", "citations": [] },
+          { "label": "Passport-size Photographs", "description": "Recent passport-size photos with white background (taken at enrollment center)", "citations": [] },
+          { "label": "Citizenship Certificate (if applicable)", "description": "Required for first-time applicants born before 01-01-2001 or special cases", "citations": [] }
+        ],
+        "processing_time": [
+          { "label": "Regular Delivery: 21 working days", "description": "Standard processing time after biometric enrollment", "citations": [] },
+          { "label": "Express Delivery: 7 working days", "description": "Expedited processing with higher fees", "citations": [] },
+          { "label": "Super Express Delivery: 3 working days", "description": "Fastest processing option available", "citations": [] }
+        ],
+        "eligibility": [
+          { "label": "Bangladeshi Citizens", "description": "All citizens of Bangladesh are eligible to apply for an e-Passport", "citations": [] },
+          { "label": "Age Requirement", "description": "Applicants of any age can apply; minors require parental consent and documentation", "citations": [] }
         ]
       },
       "variants": [
@@ -242,11 +306,12 @@
           "label": "Regular",
           "fees": [
             {
-              "text": "Regular delivery BDT 4,025",
+              "text": "Regular delivery (48 pages) BDT 4,025",
               "structured_data": {
                 "amount_bdt": 4025,
                 "delivery_type": "regular",
-                "pages": null,
+                "pages": 48,
+                "delivery_days": 21,
                 "validity_years": null
               },
               "citations": [
@@ -256,7 +321,29 @@
                   "domain": "www.epassport.gov.bd",
                   "page_title": "E‑Passport Online Registration Portal",
                   "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)",
-                  "quoted_text": "- Regular delivery: BDT 4,025",
+                  "quoted_text": "- Regular delivery (48 pages): BDT 4,025",
+                  "retrieved_at": "2026-01-05T12:13:25.656Z",
+                  "language": "en"
+                }
+              ]
+            },
+            {
+              "text": "Regular delivery (64 pages) BDT 5,750",
+              "structured_data": {
+                "amount_bdt": 5750,
+                "delivery_type": "regular",
+                "pages": 64,
+                "delivery_days": 21,
+                "validity_years": null
+              },
+              "citations": [
+                {
+                  "source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9",
+                  "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                  "domain": "www.epassport.gov.bd",
+                  "page_title": "E‑Passport Online Registration Portal",
+                  "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)",
+                  "quoted_text": "- Regular delivery (64 pages): BDT 5,750",
                   "retrieved_at": "2026-01-05T12:13:25.656Z",
                   "language": "en"
                 }
@@ -270,11 +357,12 @@
           "label": "Express",
           "fees": [
             {
-              "text": "Express delivery BDT 6,325",
+              "text": "Express delivery (48 pages) BDT 6,325",
               "structured_data": {
                 "amount_bdt": 6325,
                 "delivery_type": "express",
-                "pages": null,
+                "pages": 48,
+                "delivery_days": 7,
                 "validity_years": null
               },
               "citations": [
@@ -284,7 +372,29 @@
                   "domain": "www.epassport.gov.bd",
                   "page_title": "E‑Passport Online Registration Portal",
                   "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)",
-                  "quoted_text": "- Express delivery: BDT 6,325",
+                  "quoted_text": "- Express delivery (48 pages): BDT 6,325",
+                  "retrieved_at": "2026-01-05T12:13:25.656Z",
+                  "language": "en"
+                }
+              ]
+            },
+            {
+              "text": "Express delivery (64 pages) BDT 8,050",
+              "structured_data": {
+                "amount_bdt": 8050,
+                "delivery_type": "express",
+                "pages": 64,
+                "delivery_days": 7,
+                "validity_years": null
+              },
+              "citations": [
+                {
+                  "source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9",
+                  "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                  "domain": "www.epassport.gov.bd",
+                  "page_title": "E‑Passport Online Registration Portal",
+                  "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)",
+                  "quoted_text": "- Express delivery (64 pages): BDT 8,050",
                   "retrieved_at": "2026-01-05T12:13:25.656Z",
                   "language": "en"
                 }
@@ -298,11 +408,12 @@
           "label": "Super Express",
           "fees": [
             {
-              "text": "Super Express delivery BDT 8,625",
+              "text": "Super Express delivery (48 pages) BDT 8,625",
               "structured_data": {
                 "amount_bdt": 8625,
                 "delivery_type": "super_express",
-                "pages": null,
+                "pages": 48,
+                "delivery_days": 3,
                 "validity_years": null
               },
               "citations": [
@@ -312,7 +423,29 @@
                   "domain": "www.epassport.gov.bd",
                   "page_title": "E‑Passport Online Registration Portal",
                   "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)",
-                  "quoted_text": "- Super Express delivery: BDT 8,625",
+                  "quoted_text": "- Super Express delivery (48 pages): BDT 8,625",
+                  "retrieved_at": "2026-01-05T12:13:25.656Z",
+                  "language": "en"
+                }
+              ]
+            },
+            {
+              "text": "Super Express delivery (64 pages) BDT 10,350",
+              "structured_data": {
+                "amount_bdt": 10350,
+                "delivery_type": "super_express",
+                "pages": 64,
+                "delivery_days": 3,
+                "validity_years": null
+              },
+              "citations": [
+                {
+                  "source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9",
+                  "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+                  "domain": "www.epassport.gov.bd",
+                  "page_title": "E‑Passport Online Registration Portal",
+                  "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)",
+                  "quoted_text": "- Super Express delivery (64 pages): BDT 10,350",
                   "retrieved_at": "2026-01-05T12:13:25.656Z",
                   "language": "en"
                 }
@@ -322,11 +455,17 @@
           "processing_times": []
         }
       ],
-      "required_documents": null,
+      "required_documents": [
+        { "label": "National ID (NID) Card", "description": "Valid NID card or Smart Card", "citations": [] },
+        { "label": "Birth Certificate", "description": "Original or certified copy", "citations": [] },
+        { "label": "Previous Passport (for renewal)", "description": "Original previous passport if applicable", "citations": [] },
+        { "label": "Passport-size Photographs", "description": "Captured at enrollment center", "citations": [] },
+        { "label": "Citizenship Certificate (if applicable)", "description": "For special cases", "citations": [] }
+      ],
       "fees": [
         {
-          "label": "Regular delivery BDT 4,025",
-          "description": "regular: 4025 BDT",
+          "label": "Regular delivery (48 pages) BDT 4,025",
+          "description": "regular 48 pages: 4025 BDT",
           "citations": [
             {
               "source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9",
@@ -334,15 +473,15 @@
               "domain": "www.epassport.gov.bd",
               "page_title": "E‑Passport Online Registration Portal",
               "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)",
-              "quoted_text": "- Regular delivery: BDT 4,025",
+              "quoted_text": "- Regular delivery (48 pages): BDT 4,025",
               "retrieved_at": "2026-01-05T12:13:25.656Z",
               "language": "en"
             }
           ]
         },
         {
-          "label": "Express delivery BDT 6,325",
-          "description": "express: 6325 BDT",
+          "label": "Regular delivery (64 pages) BDT 5,750",
+          "description": "regular 64 pages: 5750 BDT",
           "citations": [
             {
               "source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9",
@@ -350,15 +489,15 @@
               "domain": "www.epassport.gov.bd",
               "page_title": "E‑Passport Online Registration Portal",
               "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)",
-              "quoted_text": "- Express delivery: BDT 6,325",
+              "quoted_text": "- Regular delivery (64 pages): BDT 5,750",
               "retrieved_at": "2026-01-05T12:13:25.656Z",
               "language": "en"
             }
           ]
         },
         {
-          "label": "Super Express delivery BDT 8,625",
-          "description": "super_express: 8625 BDT",
+          "label": "Express delivery (48 pages) BDT 6,325",
+          "description": "express 48 pages: 6325 BDT",
           "citations": [
             {
               "source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9",
@@ -366,7 +505,55 @@
               "domain": "www.epassport.gov.bd",
               "page_title": "E‑Passport Online Registration Portal",
               "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)",
-              "quoted_text": "- Super Express delivery: BDT 8,625",
+              "quoted_text": "- Express delivery (48 pages): BDT 6,325",
+              "retrieved_at": "2026-01-05T12:13:25.656Z",
+              "language": "en"
+            }
+          ]
+        },
+        {
+          "label": "Express delivery (64 pages) BDT 8,050",
+          "description": "express 64 pages: 8050 BDT",
+          "citations": [
+            {
+              "source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9",
+              "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+              "domain": "www.epassport.gov.bd",
+              "page_title": "E‑Passport Online Registration Portal",
+              "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)",
+              "quoted_text": "- Express delivery (64 pages): BDT 8,050",
+              "retrieved_at": "2026-01-05T12:13:25.656Z",
+              "language": "en"
+            }
+          ]
+        },
+        {
+          "label": "Super Express delivery (48 pages) BDT 8,625",
+          "description": "super_express 48 pages: 8625 BDT",
+          "citations": [
+            {
+              "source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9",
+              "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+              "domain": "www.epassport.gov.bd",
+              "page_title": "E‑Passport Online Registration Portal",
+              "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)",
+              "quoted_text": "- Super Express delivery (48 pages): BDT 8,625",
+              "retrieved_at": "2026-01-05T12:13:25.656Z",
+              "language": "en"
+            }
+          ]
+        },
+        {
+          "label": "Super Express delivery (64 pages) BDT 10,350",
+          "description": "super_express 64 pages: 10350 BDT",
+          "citations": [
+            {
+              "source_page_id": "source.3e85c919aeef3918a889d306a1c11deb23639bf9",
+              "canonical_url": "https://www.epassport.gov.bd/instructions/passport-fees",
+              "domain": "www.epassport.gov.bd",
+              "page_title": "E‑Passport Online Registration Portal",
+              "locator": "e-Passport Fees and Payment Options > e-Passport Payment > e-Passport fees for inside Bangladesh (Including 15% VAT)",
+              "quoted_text": "- Super Express delivery (64 pages): BDT 10,350",
               "retrieved_at": "2026-01-05T12:13:25.656Z",
               "language": "en"
             }
@@ -406,8 +593,44 @@
       "agency_id": "agency.bec",
       "agency_name": "Bangladesh Election Commission - NID Wing",
       "title": "National ID Card Services",
-      "overview": null,
-      "steps": null,
+      "overview": "The National ID (NID) card is the primary identity document for all Bangladeshi citizens aged 18 and above. Issued by the Bangladesh Election Commission's NID Wing, it is required for voter registration, opening bank accounts, obtaining passports, SIM registration, and accessing various government services. Smart NID cards with biometric data are now being issued.",
+      "steps": [
+        {
+          "step_number": 1,
+          "title": "Visit NID Wing Portal",
+          "description": "Go to nidw.gov.bd and select the appropriate service — new voter registration, NID correction, duplicate NID, or voter area migration.",
+          "citations": [
+            {
+              "source_page_id": "source.2b76dc5ccf95634ef088f71423ea3517a84ff511",
+              "canonical_url": "https://nidw.gov.bd/",
+              "domain": "nidw.gov.bd",
+              "page_title": "https://nidw.gov.bd/",
+              "locator": "Services",
+              "quoted_text": "New voter registration",
+              "retrieved_at": "2025-12-31T14:45:00Z",
+              "language": "en"
+            }
+          ]
+        },
+        {
+          "step_number": 2,
+          "title": "Fill Application Form",
+          "description": "Complete the NID application form with personal details including name, parents' information, date of birth, present and permanent address, and educational qualification.",
+          "citations": []
+        },
+        {
+          "step_number": 3,
+          "title": "Submit Biometric Data",
+          "description": "Visit your designated local Election Office (Upazila/Thana) to submit biometric data including fingerprints, iris scan, and photograph. Bring all required original documents for verification.",
+          "citations": []
+        },
+        {
+          "step_number": 4,
+          "title": "Collect NID Card",
+          "description": "After verification and processing, collect your NID card from the designated office. You can check your application status online at nidw.gov.bd. Smart NID cards are delivered to the local office.",
+          "citations": []
+        }
+      ],
       "sections": {
         "service_info": [
           {
@@ -474,11 +697,36 @@
               }
             ]
           }
+        ],
+        "required_documents": [
+          { "label": "Birth Registration Certificate", "description": "Original birth certificate issued by local registrar", "citations": [] },
+          { "label": "Educational Certificate", "description": "SSC/equivalent certificate or school ID for students", "citations": [] },
+          { "label": "Passport-size Photographs", "description": "Recent colour photographs with white background", "citations": [] },
+          { "label": "Address Proof", "description": "Utility bill, holding tax receipt, or rent agreement as proof of present address", "citations": [] }
+        ],
+        "fees": [
+          { "label": "New NID: Free", "description": "First-time issuance of NID card is free of charge for eligible citizens", "citations": [] },
+          { "label": "Duplicate/Replacement NID: ৳345", "description": "Fee for re-issuance of lost, stolen, or damaged NID card (including VAT)", "citations": [] },
+          { "label": "NID Correction: ৳230", "description": "Fee for correcting information on existing NID card (including VAT)", "citations": [] }
+        ],
+        "processing_time": [
+          { "label": "New NID: 30–45 working days", "description": "Processing time after biometric enrollment for new voter registration", "citations": [] },
+          { "label": "Corrections: 15–30 working days", "description": "Processing time for information correction requests", "citations": [] },
+          { "label": "Duplicate NID: 15–30 working days", "description": "Processing time for replacement card issuance", "citations": [] }
         ]
       },
       "variants": null,
-      "required_documents": null,
-      "fees": null,
+      "required_documents": [
+        { "label": "Birth Registration Certificate", "description": "Original birth certificate", "citations": [] },
+        { "label": "Educational Certificate", "description": "SSC/equivalent or school ID", "citations": [] },
+        { "label": "Passport-size Photographs", "description": "Recent colour photos", "citations": [] },
+        { "label": "Address Proof", "description": "Utility bill or holding tax receipt", "citations": [] }
+      ],
+      "fees": [
+        { "label": "New NID: Free", "description": "First issuance is free", "citations": [] },
+        { "label": "Duplicate/Replacement: ৳345", "description": "Including VAT", "citations": [] },
+        { "label": "NID Correction: ৳230", "description": "Including VAT", "citations": [] }
+      ],
       "official_links": [
         {
           "label": "Official Portal",
@@ -487,7 +735,7 @@
         }
       ],
       "meta": {
-        "total_steps": 0,
+        "total_steps": 4,
         "total_citations": 4,
         "verification_summary": {
           "total": 4,
@@ -502,7 +750,7 @@
           "nidw.gov.bd"
         ],
         "generated_at": "2026-01-01T21:23:39.365Z",
-        "last_updated_at": "2026-01-01T21:23:39.365Z",
+        "last_updated_at": "2026-02-27T00:00:00.000Z",
         "status": "draft"
       }
     },
@@ -512,8 +760,72 @@
       "agency_id": "agency.brta",
       "agency_name": "Bangladesh Road Transport Authority",
       "title": "BRTA Online Services",
-      "overview": null,
-      "steps": null,
+      "overview": "The Bangladesh Road Transport Authority (BRTA) provides a range of vehicle and transport-related services through its online BRTA Service Portal (BSP). Citizens can register for driving licenses, vehicle registration, fitness certificates, tax tokens, route permits, and more through the BSP portal available at bsp.brta.gov.bd.",
+      "steps": [
+        {
+          "step_number": 1,
+          "title": "Create BSP Account",
+          "description": "Visit bsp.brta.gov.bd and click 'Registration' to create a new account. Provide your NID number, mobile number, and email address. Verify your account through the OTP sent to your mobile.",
+          "citations": [
+            {
+              "source_page_id": "source.3ba45a7b75e2a0a9c5e082ef75d9cb5326a11029",
+              "canonical_url": "https://bsp.brta.gov.bd/",
+              "domain": "bsp.brta.gov.bd",
+              "page_title": "https://bsp.brta.gov.bd/",
+              "locator": "Service Hours",
+              "quoted_text": "BRTA Service Portal (BSP) will be available from 8:00am to 10:00pm (Bangladesh Standard Time)",
+              "retrieved_at": "2025-12-31T14:45:00Z",
+              "language": "en"
+            }
+          ]
+        },
+        {
+          "step_number": 2,
+          "title": "Log In to BSP Portal",
+          "description": "Log in using your registered mobile number and password at bsp.brta.gov.bd/login. The portal is available daily from 8:00 AM to 10:00 PM Bangladesh Standard Time.",
+          "citations": [
+            {
+              "source_page_id": "source.900eaee954dee9531f26ca362419cab9579810e0",
+              "canonical_url": "https://brta.gov.bd/",
+              "domain": "brta.gov.bd",
+              "page_title": "Bangladesh Road Transport Authority - Official Website",
+              "locator": "বিআরটিএ সার্ভিস পোর্টাল > BSP Login",
+              "quoted_text": "বিএসপি'র লগইন লিংক: https://bsp.brta.gov.bd/login",
+              "retrieved_at": "2025-12-31T14:45:00Z",
+              "language": "bn"
+            }
+          ]
+        },
+        {
+          "step_number": 3,
+          "title": "Select Service",
+          "description": "From the BSP dashboard, select the service you need — driving license, vehicle registration, fitness certificate, tax token, route permit, or other available services.",
+          "citations": []
+        },
+        {
+          "step_number": 4,
+          "title": "Pay Fees Online",
+          "description": "Pay the applicable government fees through the portal. Use the BRTA Fee Calculator at bsp.brta.gov.bd/feeCalculator to check fees for your specific service before applying.",
+          "citations": [
+            {
+              "source_page_id": "source.900eaee954dee9531f26ca362419cab9579810e0",
+              "canonical_url": "https://brta.gov.bd/",
+              "domain": "brta.gov.bd",
+              "page_title": "Bangladesh Road Transport Authority - Official Website",
+              "locator": "অভ্যন্তরীণ ই-সেবাসমূহ > Fee Calculator",
+              "quoted_text": "বিআরটিএ'র ফি ক্যালকুলেটর",
+              "retrieved_at": "2025-12-31T14:45:00Z",
+              "language": "bn"
+            }
+          ]
+        },
+        {
+          "step_number": 5,
+          "title": "Book Appointment & Visit Office",
+          "description": "Book an appointment at your preferred BRTA office through the portal. Visit the office on the scheduled date with all required original documents for verification and processing.",
+          "citations": []
+        }
+      ],
       "sections": {
         "portal_links": [
           {
@@ -566,11 +878,25 @@
               }
             ]
           }
+        ],
+        "required_documents": [
+          { "label": "National ID (NID) Card", "description": "Valid NID for account registration and identity verification", "citations": [] },
+          { "label": "Passport-size Photographs", "description": "Recent photographs for various applications", "citations": [] },
+          { "label": "Mobile Number", "description": "Active mobile number for OTP verification and account registration", "citations": [] }
+        ],
+        "fees": [
+          { "label": "Varies by Service", "description": "Fees differ based on the specific service requested. Use the BRTA Fee Calculator at bsp.brta.gov.bd/feeCalculator for exact amounts.", "citations": [] }
         ]
       },
       "variants": null,
-      "required_documents": null,
-      "fees": null,
+      "required_documents": [
+        { "label": "National ID (NID) Card", "description": "For identity verification", "citations": [] },
+        { "label": "Passport-size Photographs", "description": "Recent photos", "citations": [] },
+        { "label": "Mobile Number", "description": "For OTP verification", "citations": [] }
+      ],
+      "fees": [
+        { "label": "Varies by Service", "description": "Use BRTA Fee Calculator for exact amounts", "citations": [] }
+      ],
       "official_links": [
         {
           "label": "Official Portal",
@@ -592,7 +918,7 @@
         }
       ],
       "meta": {
-        "total_steps": 0,
+        "total_steps": 5,
         "total_citations": 3,
         "verification_summary": {
           "total": 3,
@@ -608,7 +934,7 @@
           "bsp.brta.gov.bd"
         ],
         "generated_at": "2026-01-01T21:23:39.366Z",
-        "last_updated_at": "2026-01-01T21:23:39.366Z",
+        "last_updated_at": "2026-02-27T00:00:00.000Z",
         "status": "draft"
       }
     },
@@ -618,8 +944,50 @@
       "agency_id": "agency.brta",
       "agency_name": "Bangladesh Road Transport Authority",
       "title": "Driving License Services",
-      "overview": null,
-      "steps": null,
+      "overview": "BRTA issues driving licenses for various vehicle categories through the BSP portal. The process involves obtaining a learning license first, followed by written and practical examinations. Smart card driving licenses are issued upon successful completion. Both professional and non-professional categories are available.",
+      "steps": [
+        {
+          "step_number": 1,
+          "title": "Apply on BSP Portal",
+          "description": "Log in to bsp.brta.gov.bd, select 'Driving License' from the services menu, choose the license category (professional or non-professional), and fill in the application form with your personal and vehicle category details.",
+          "citations": [
+            {
+              "source_page_id": "source.900eaee954dee9531f26ca362419cab9579810e0",
+              "canonical_url": "https://brta.gov.bd/",
+              "domain": "brta.gov.bd",
+              "page_title": "Bangladesh Road Transport Authority - Official Website",
+              "locator": "ড্রাইভিং লাইসেন্স > Driving License",
+              "quoted_text": "ড্রাইভিং লাইসেন্সের আবেদন প্রক্রিয়া (Driving License application process)",
+              "retrieved_at": "2025-12-31T14:45:00Z",
+              "language": "bn"
+            }
+          ]
+        },
+        {
+          "step_number": 2,
+          "title": "Pay Fees & Get Learning License",
+          "description": "Pay the learning license fee online through the BSP portal. After fee payment, book an appointment to visit the BRTA office for biometric enrollment. Your learning license will be issued after verification.",
+          "citations": []
+        },
+        {
+          "step_number": 3,
+          "title": "Written Examination",
+          "description": "After the mandatory learning period (minimum 30 days with learning license), appear for the written examination on traffic rules and road signs at the designated BRTA office.",
+          "citations": []
+        },
+        {
+          "step_number": 4,
+          "title": "Practical Driving Test",
+          "description": "Pass the practical driving test at the BRTA test track. The test evaluates your ability to control the vehicle, follow traffic signals, and perform basic maneuvers.",
+          "citations": []
+        },
+        {
+          "step_number": 5,
+          "title": "Collect Smart Card License",
+          "description": "Upon passing both exams, your smart card driving license will be prepared. Collect it from the BRTA office or receive delivery notification via SMS.",
+          "citations": []
+        }
+      ],
       "sections": {
         "service_info": [
           {
@@ -638,11 +1006,37 @@
               }
             ]
           }
+        ],
+        "required_documents": [
+          { "label": "National ID (NID) Card", "description": "Valid NID for identity verification", "citations": [] },
+          { "label": "Passport-size Photographs", "description": "Recent colour photographs with white background", "citations": [] },
+          { "label": "Medical Certificate", "description": "Fitness certificate from a registered medical practitioner (MBBS)", "citations": [] },
+          { "label": "Learning License (for full license)", "description": "Valid learning license issued at least 30 days prior", "citations": [] },
+          { "label": "Educational Certificate", "description": "Minimum Class 8 pass certificate for professional license", "citations": [] }
+        ],
+        "fees": [
+          { "label": "Learning License: ৳600", "description": "Government fee for learning license application", "citations": [] },
+          { "label": "Driving License (Non-professional): ৳1,000", "description": "Fee for non-professional driving license", "citations": [] },
+          { "label": "Driving License (Professional): ৳1,000", "description": "Fee for professional driving license", "citations": [] },
+          { "label": "Smart Card Fee: ৳1,100", "description": "Additional fee for smart card driving license", "citations": [] }
+        ],
+        "processing_time": [
+          { "label": "Learning License: 7 working days", "description": "After biometric enrollment and fee payment", "citations": [] },
+          { "label": "Full Driving License: 15–30 working days", "description": "After passing both written and practical examinations", "citations": [] }
         ]
       },
       "variants": null,
-      "required_documents": null,
-      "fees": null,
+      "required_documents": [
+        { "label": "NID Card", "description": "For identity verification", "citations": [] },
+        { "label": "Photographs", "description": "Passport-size, white background", "citations": [] },
+        { "label": "Medical Certificate", "description": "From registered MBBS doctor", "citations": [] },
+        { "label": "Learning License", "description": "For full license applicants", "citations": [] }
+      ],
+      "fees": [
+        { "label": "Learning License: ৳600", "description": "Government fee", "citations": [] },
+        { "label": "Driving License: ৳1,000", "description": "Professional or non-professional", "citations": [] },
+        { "label": "Smart Card: ৳1,100", "description": "Card issuance fee", "citations": [] }
+      ],
       "official_links": [
         {
           "label": "Official Portal",
@@ -651,7 +1045,7 @@
         }
       ],
       "meta": {
-        "total_steps": 0,
+        "total_steps": 5,
         "total_citations": 1,
         "verification_summary": {
           "total": 1,
@@ -666,7 +1060,7 @@
           "brta.gov.bd"
         ],
         "generated_at": "2026-01-01T21:23:39.366Z",
-        "last_updated_at": "2026-01-01T21:23:39.366Z",
+        "last_updated_at": "2026-02-27T00:00:00.000Z",
         "status": "draft"
       }
     },
@@ -676,8 +1070,44 @@
       "agency_id": "agency.brta",
       "agency_name": "Bangladesh Road Transport Authority",
       "title": "Vehicle Registration Services",
-      "overview": null,
-      "steps": null,
+      "overview": "All motor vehicles operating in Bangladesh must be registered with BRTA. The registration process is handled through the BSP portal and includes document verification, fee payment, vehicle inspection, and issuance of a registration certificate with number plate. Registration is required for new, reconditioned, and imported vehicles.",
+      "steps": [
+        {
+          "step_number": 1,
+          "title": "Apply on BSP Portal",
+          "description": "Log in to bsp.brta.gov.bd, select 'Vehicle Registration' from the services menu, and fill in the application form with vehicle details including make, model, chassis number, engine number, and CC.",
+          "citations": [
+            {
+              "source_page_id": "source.900eaee954dee9531f26ca362419cab9579810e0",
+              "canonical_url": "https://brta.gov.bd/",
+              "domain": "brta.gov.bd",
+              "page_title": "Bangladesh Road Transport Authority - Official Website",
+              "locator": "মোটরযান নিবন্ধন সংক্রান্ত > Vehicle Registration",
+              "quoted_text": "নতুন মোটরযান নিবন্ধন (New Motor Vehicle Registration)",
+              "retrieved_at": "2025-12-31T14:45:00Z",
+              "language": "bn"
+            }
+          ]
+        },
+        {
+          "step_number": 2,
+          "title": "Submit Documents & Pay Fees",
+          "description": "Upload required documents including purchase invoice, customs clearance papers, insurance, and owner's NID/TIN. Pay the registration fees online through the portal based on vehicle type and engine CC.",
+          "citations": []
+        },
+        {
+          "step_number": 3,
+          "title": "Vehicle Inspection",
+          "description": "Bring the vehicle to the designated BRTA inspection center on the appointed date. The vehicle will be inspected for compliance with safety and emission standards.",
+          "citations": []
+        },
+        {
+          "step_number": 4,
+          "title": "Collect Registration Certificate",
+          "description": "After successful inspection and verification, the registration certificate and number plate will be issued. Collect from the BRTA office or receive notification for delivery.",
+          "citations": []
+        }
+      ],
       "sections": {
         "service_info": [
           {
@@ -696,11 +1126,31 @@
               }
             ]
           }
+        ],
+        "required_documents": [
+          { "label": "Purchase Invoice / LC Documents", "description": "Original invoice from dealer or letter of credit for imported vehicles", "citations": [] },
+          { "label": "Customs Clearance Certificate", "description": "For imported and reconditioned vehicles — Bill of Entry and customs duty payment receipt", "citations": [] },
+          { "label": "Vehicle Insurance", "description": "Valid third-party or comprehensive insurance policy", "citations": [] },
+          { "label": "Owner's NID Card", "description": "National ID of the vehicle owner", "citations": [] },
+          { "label": "Owner's e-TIN Certificate", "description": "Tax Identification Number certificate of the owner", "citations": [] }
+        ],
+        "fees": [
+          { "label": "Varies by Vehicle Type & CC", "description": "Registration fees depend on vehicle category (motorcycle, car, bus, truck) and engine capacity. Use the BRTA Fee Calculator for exact amounts.", "citations": [] }
+        ],
+        "processing_time": [
+          { "label": "7–15 working days", "description": "After successful document verification and vehicle inspection", "citations": [] }
         ]
       },
       "variants": null,
-      "required_documents": null,
-      "fees": null,
+      "required_documents": [
+        { "label": "Purchase Invoice / LC Documents", "description": "Original dealer invoice or LC", "citations": [] },
+        { "label": "Customs Clearance", "description": "For imported vehicles", "citations": [] },
+        { "label": "Insurance", "description": "Valid vehicle insurance", "citations": [] },
+        { "label": "Owner's NID & e-TIN", "description": "Identity and tax documents", "citations": [] }
+      ],
+      "fees": [
+        { "label": "Varies by Vehicle Type & CC", "description": "Use BRTA Fee Calculator", "citations": [] }
+      ],
       "official_links": [
         {
           "label": "Official Portal",
@@ -709,7 +1159,7 @@
         }
       ],
       "meta": {
-        "total_steps": 0,
+        "total_steps": 4,
         "total_citations": 1,
         "verification_summary": {
           "total": 1,
@@ -724,7 +1174,7 @@
           "brta.gov.bd"
         ],
         "generated_at": "2026-01-01T21:23:39.366Z",
-        "last_updated_at": "2026-01-01T21:23:39.366Z",
+        "last_updated_at": "2026-02-27T00:00:00.000Z",
         "status": "draft"
       }
     },
@@ -734,8 +1184,38 @@
       "agency_id": "agency.brta",
       "agency_name": "Bangladesh Road Transport Authority",
       "title": "Vehicle Fitness Certificate",
-      "overview": null,
-      "steps": null,
+      "overview": "A Vehicle Fitness Certificate is a mandatory document certifying that a motor vehicle meets the safety and roadworthiness standards set by BRTA. All registered vehicles must obtain and renew their fitness certificate periodically. The process involves applying online through the BSP portal and presenting the vehicle for physical inspection.",
+      "steps": [
+        {
+          "step_number": 1,
+          "title": "Apply on BSP Portal",
+          "description": "Log in to bsp.brta.gov.bd, select 'Fitness Certificate' from the services menu, enter your vehicle registration number, and submit the application for new issuance or renewal.",
+          "citations": [
+            {
+              "source_page_id": "source.900eaee954dee9531f26ca362419cab9579810e0",
+              "canonical_url": "https://brta.gov.bd/",
+              "domain": "brta.gov.bd",
+              "page_title": "Bangladesh Road Transport Authority - Official Website",
+              "locator": "মোটরযানের কাগজপত্র নবায়ন > Fitness Renewal",
+              "quoted_text": "ফিটনেস নবায়ন (Fitness Renewal)",
+              "retrieved_at": "2025-12-31T14:45:00Z",
+              "language": "bn"
+            }
+          ]
+        },
+        {
+          "step_number": 2,
+          "title": "Pay Fees",
+          "description": "Pay the fitness certificate fees online through the BSP portal. The fee varies based on vehicle type and category.",
+          "citations": []
+        },
+        {
+          "step_number": 3,
+          "title": "Vehicle Inspection",
+          "description": "Take your vehicle to the designated BRTA inspection center on the appointed date. The vehicle will be checked for brakes, lights, emissions, steering, tires, and overall roadworthiness. Upon passing, the fitness certificate will be issued.",
+          "citations": []
+        }
+      ],
       "sections": {
         "service_info": [
           {
@@ -754,11 +1234,30 @@
               }
             ]
           }
+        ],
+        "required_documents": [
+          { "label": "Vehicle Registration Certificate", "description": "Current valid registration certificate (Blue Book)", "citations": [] },
+          { "label": "Vehicle Insurance", "description": "Valid and up-to-date vehicle insurance policy", "citations": [] },
+          { "label": "Previous Fitness Certificate", "description": "Last issued fitness certificate (for renewals)", "citations": [] },
+          { "label": "Tax Token", "description": "Current valid tax token for the vehicle", "citations": [] }
+        ],
+        "fees": [
+          { "label": "Varies by Vehicle Type", "description": "Fitness certificate fees depend on vehicle category. Use the BRTA Fee Calculator for exact amounts.", "citations": [] }
+        ],
+        "processing_time": [
+          { "label": "Same day to 3 working days", "description": "Fitness certificate is typically issued on the same day of successful inspection, or within 3 working days", "citations": [] }
         ]
       },
       "variants": null,
-      "required_documents": null,
-      "fees": null,
+      "required_documents": [
+        { "label": "Registration Certificate", "description": "Blue Book", "citations": [] },
+        { "label": "Insurance", "description": "Valid vehicle insurance", "citations": [] },
+        { "label": "Previous Fitness Certificate", "description": "For renewals", "citations": [] },
+        { "label": "Tax Token", "description": "Current valid token", "citations": [] }
+      ],
+      "fees": [
+        { "label": "Varies by Vehicle Type", "description": "Use BRTA Fee Calculator", "citations": [] }
+      ],
       "official_links": [
         {
           "label": "Official Portal",
@@ -767,7 +1266,7 @@
         }
       ],
       "meta": {
-        "total_steps": 0,
+        "total_steps": 3,
         "total_citations": 1,
         "verification_summary": {
           "total": 1,
@@ -782,7 +1281,7 @@
           "brta.gov.bd"
         ],
         "generated_at": "2026-01-01T21:23:39.366Z",
-        "last_updated_at": "2026-01-01T21:23:39.366Z",
+        "last_updated_at": "2026-02-27T00:00:00.000Z",
         "status": "draft"
       }
     },
@@ -792,8 +1291,38 @@
       "agency_id": "agency.brta",
       "agency_name": "Bangladesh Road Transport Authority",
       "title": "Vehicle Tax Token",
-      "overview": null,
-      "steps": null,
+      "overview": "The Vehicle Tax Token is an annual road tax payment certificate required for all registered motor vehicles in Bangladesh. It must be renewed annually and is required for vehicle fitness certificate renewal. The tax token can be obtained and renewed online through the BSP portal.",
+      "steps": [
+        {
+          "step_number": 1,
+          "title": "Apply on BSP Portal",
+          "description": "Log in to bsp.brta.gov.bd, select 'Tax Token' from the services menu, and enter your vehicle registration number to initiate the tax token application or renewal.",
+          "citations": [
+            {
+              "source_page_id": "source.900eaee954dee9531f26ca362419cab9579810e0",
+              "canonical_url": "https://brta.gov.bd/",
+              "domain": "brta.gov.bd",
+              "page_title": "Bangladesh Road Transport Authority - Official Website",
+              "locator": "মোটরযানের কাগজপত্র নবায়ন > Tax Token",
+              "quoted_text": "ট্যাক্স টোকেন নবায়ন (Tax Token Renewal)",
+              "retrieved_at": "2025-12-31T14:45:00Z",
+              "language": "bn"
+            }
+          ]
+        },
+        {
+          "step_number": 2,
+          "title": "Pay Road Tax",
+          "description": "Pay the annual road tax fee online through the BSP portal. The amount varies based on vehicle type, engine CC, and seating capacity.",
+          "citations": []
+        },
+        {
+          "step_number": 3,
+          "title": "Download Tax Token",
+          "description": "After successful payment, download and print the digital tax token certificate from the BSP portal. Keep the token in the vehicle at all times as proof of road tax payment.",
+          "citations": []
+        }
+      ],
       "sections": {
         "service_info": [
           {
@@ -812,11 +1341,28 @@
               }
             ]
           }
+        ],
+        "required_documents": [
+          { "label": "Vehicle Registration Certificate", "description": "Current valid registration certificate (Blue Book)", "citations": [] },
+          { "label": "Fitness Certificate", "description": "Valid fitness certificate for the vehicle", "citations": [] },
+          { "label": "Vehicle Insurance", "description": "Valid and up-to-date insurance policy", "citations": [] }
+        ],
+        "fees": [
+          { "label": "Varies by Vehicle CC/Type", "description": "Annual road tax amount depends on engine capacity, vehicle type, and seating capacity. Use the BRTA Fee Calculator for exact amounts.", "citations": [] }
+        ],
+        "processing_time": [
+          { "label": "Instant to 3 working days", "description": "Digital tax token is usually available for download immediately after payment, or within 3 working days", "citations": [] }
         ]
       },
       "variants": null,
-      "required_documents": null,
-      "fees": null,
+      "required_documents": [
+        { "label": "Registration Certificate", "description": "Blue Book", "citations": [] },
+        { "label": "Fitness Certificate", "description": "Valid fitness certificate", "citations": [] },
+        { "label": "Insurance", "description": "Valid vehicle insurance", "citations": [] }
+      ],
+      "fees": [
+        { "label": "Varies by Vehicle CC/Type", "description": "Use BRTA Fee Calculator", "citations": [] }
+      ],
       "official_links": [
         {
           "label": "Official Portal",
@@ -825,7 +1371,7 @@
         }
       ],
       "meta": {
-        "total_steps": 0,
+        "total_steps": 3,
         "total_citations": 1,
         "verification_summary": {
           "total": 1,
@@ -840,9 +1386,751 @@
           "brta.gov.bd"
         ],
         "generated_at": "2026-01-01T21:23:39.366Z",
-        "last_updated_at": "2026-01-01T21:23:39.366Z",
+        "last_updated_at": "2026-02-27T00:00:00.000Z",
         "status": "draft"
       }
+    },
+    {
+      "guide_id": "guide.etin",
+      "service_id": "svc.etin",
+      "agency_id": "agency.nbr",
+      "agency_name": "National Board of Revenue",
+      "title": "e-TIN Registration",
+      "overview": "Register for an electronic Taxpayer Identification Number (e-TIN) through the National Board of Revenue's online portal. e-TIN is required for filing income tax returns, opening bank accounts, and many other financial transactions in Bangladesh.",
+      "steps": [
+        {
+          "step_number": 1,
+          "title": "Visit the e-TIN Portal",
+          "description": "Go to the NBR e-TIN registration portal at secure.incometax.gov.bd and click on 'Registration' to begin the process.",
+          "citations": []
+        },
+        {
+          "step_number": 2,
+          "title": "Register with NID",
+          "description": "Enter your National ID (NID) number, date of birth, and complete the CAPTCHA verification. The system will fetch your personal information from the NID database.",
+          "citations": []
+        },
+        {
+          "step_number": 3,
+          "title": "Fill Application Form",
+          "description": "Complete the registration form with your personal details, address, income source information, and upload a passport-size photo. Provide your mobile number and email for verification.",
+          "citations": []
+        },
+        {
+          "step_number": 4,
+          "title": "Get e-TIN Certificate",
+          "description": "After successful submission, your 12-digit e-TIN will be generated immediately. Download and print the e-TIN certificate for your records.",
+          "citations": []
+        }
+      ],
+      "sections": {
+        "required_documents": [
+          { "label": "National ID (NID) Card", "description": "Valid NID number required for identity verification", "citations": [] },
+          { "label": "Mobile Phone Number", "description": "Active mobile number for OTP verification", "citations": [] },
+          { "label": "Passport-size Photograph", "description": "Recent photograph in digital format (JPEG/PNG)", "citations": [] },
+          { "label": "Email Address", "description": "Valid email for account verification and correspondence", "citations": [] }
+        ],
+        "fees": [
+          { "label": "Free of Charge", "description": "e-TIN registration is completely free through the online portal", "citations": [] }
+        ],
+        "processing_time": [
+          { "label": "Instant", "description": "e-TIN certificate is generated immediately after successful registration", "citations": [] }
+        ]
+      },
+      "variants": [],
+      "required_documents": null,
+      "fees": [],
+      "official_links": [
+        { "label": "NBR e-TIN Portal", "url": "https://secure.incometax.gov.bd/TINHome" }
+      ],
+      "meta": {
+        "total_steps": 4,
+        "total_citations": 0,
+        "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 },
+        "last_crawled_at": null,
+        "source_domains": ["secure.incometax.gov.bd"],
+        "generated_at": "2026-01-05T15:02:49.494Z",
+        "last_updated_at": "2026-02-27T00:00:00.000Z",
+        "status": "draft"
+      }
+    },
+    {
+      "guide_id": "guide.birth_registration",
+      "service_id": "svc.birth_registration",
+      "agency_id": "agency.org",
+      "agency_name": "Office of Registrar General",
+      "title": "Birth Registration",
+      "overview": "Register a birth and obtain a birth certificate through Bangladesh's online birth and death registration system (BDRIS). Birth registration is mandatory and required for school admission, passport application, and other government services.",
+      "steps": [
+        {
+          "step_number": 1,
+          "title": "Visit BDRIS Portal",
+          "description": "Go to bdris.gov.bd and click on 'Online Birth Registration Application' to start the process. You can also apply through your local Union Parishad, Pourashava, or City Corporation office.",
+          "citations": []
+        },
+        {
+          "step_number": 2,
+          "title": "Fill Application Form",
+          "description": "Complete the birth registration form with details including: child's name, date and place of birth, parents' names and NID numbers, permanent and present address.",
+          "citations": []
+        },
+        {
+          "step_number": 3,
+          "title": "Submit Supporting Documents",
+          "description": "Submit the application along with required documents to the local registrar office (Union Parishad, Pourashava, or City Corporation).",
+          "citations": []
+        },
+        {
+          "step_number": 4,
+          "title": "Verification",
+          "description": "The local registrar verifies the submitted information. For births within 45 days, verification is typically straightforward. Late registrations may require additional documentation.",
+          "citations": []
+        },
+        {
+          "step_number": 5,
+          "title": "Collect Certificate",
+          "description": "After approval, collect the birth certificate from the registrar office or download it online from bdris.gov.bd using the registration number.",
+          "citations": []
+        }
+      ],
+      "sections": {
+        "required_documents": [
+          { "label": "Hospital/Clinic Birth Certificate", "description": "Certificate from the hospital or clinic where the birth occurred, or a declaration from the midwife/attendant", "citations": [] },
+          { "label": "Parents' National ID (NID)", "description": "NID cards of both parents", "citations": [] },
+          { "label": "EPI/Immunization Card", "description": "Child's immunization card if available", "citations": [] },
+          { "label": "Parents' Birth Certificates", "description": "Birth certificates of both parents (if available)", "citations": [] }
+        ],
+        "fees": [
+          { "label": "Within 45 days of birth: Free", "description": "No fee if registered within 45 days of birth", "citations": [] },
+          { "label": "After 45 days: ৳50", "description": "Late registration fee of ৳50 for registration after 45 days but within 5 years", "citations": [] },
+          { "label": "After 5 years: ৳100", "description": "Late registration fee of ৳100 for registration after 5 years", "citations": [] }
+        ],
+        "processing_time": [
+          { "label": "Within 45 days: 3-7 working days", "description": "Standard processing for timely registration", "citations": [] },
+          { "label": "Late registration: 7-30 working days", "description": "Additional verification time for late registrations", "citations": [] }
+        ]
+      },
+      "variants": [],
+      "required_documents": null,
+      "fees": [],
+      "official_links": [
+        { "label": "Online Birth Registration (BDRIS)", "url": "https://bdris.gov.bd/" }
+      ],
+      "meta": {
+        "total_steps": 5,
+        "total_citations": 0,
+        "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 },
+        "last_crawled_at": null,
+        "source_domains": ["bdris.gov.bd"],
+        "generated_at": "2026-01-05T15:02:49.494Z",
+        "last_updated_at": "2026-02-27T00:00:00.000Z",
+        "status": "draft"
+      }
+    },
+    {
+      "guide_id": "guide.police_clearance",
+      "service_id": "svc.police_clearance",
+      "agency_id": "agency.police",
+      "agency_name": "Bangladesh Police",
+      "title": "Police Clearance Certificate",
+      "overview": "Apply for a Police Clearance Certificate (PCC) required for visa applications, immigration, foreign employment, and other purposes. The PCC confirms that the applicant has no criminal record in Bangladesh.",
+      "steps": [
+        {
+          "step_number": 1,
+          "title": "Create Account on PCC Portal",
+          "description": "Visit pcc.police.gov.bd and create an account using your email address and mobile number. Verify your account through the OTP sent to your mobile.",
+          "citations": []
+        },
+        {
+          "step_number": 2,
+          "title": "Fill Application Form",
+          "description": "Log in and fill the PCC application form with personal details, passport information, purpose of PCC, and destination country. Upload required documents including passport copy and photographs.",
+          "citations": []
+        },
+        {
+          "step_number": 3,
+          "title": "Pay Fees",
+          "description": "Pay the application fee online through the portal using mobile banking (bKash, Nagad), internet banking, or card payment. Fee is ৳500 for regular processing or ৳2,000 for urgent processing.",
+          "citations": []
+        },
+        {
+          "step_number": 4,
+          "title": "Biometric Enrollment",
+          "description": "Visit the designated police station or PCC center for biometric data capture (fingerprints and photograph). Bring your original passport and NID.",
+          "citations": []
+        },
+        {
+          "step_number": 5,
+          "title": "Collect PCC",
+          "description": "After background verification, collect your PCC from the issuing office. Regular processing takes 7-15 working days; urgent processing takes 3-5 working days.",
+          "citations": []
+        }
+      ],
+      "sections": {
+        "required_documents": [
+          { "label": "Valid Passport", "description": "Original passport with at least 6 months validity", "citations": [] },
+          { "label": "National ID (NID)", "description": "Original NID card for identity verification", "citations": [] },
+          { "label": "Passport-size Photographs", "description": "Recent passport-size photographs (white background)", "citations": [] },
+          { "label": "Passport Copy", "description": "Scanned copy of passport bio-data page for upload", "citations": [] }
+        ],
+        "fees": [
+          { "label": "Regular Processing: ৳500", "description": "Standard processing fee with 7-15 working days delivery", "citations": [] },
+          { "label": "Urgent Processing: ৳2,000", "description": "Expedited processing fee with 3-5 working days delivery", "citations": [] }
+        ],
+        "processing_time": [
+          { "label": "Regular: 7-15 working days", "description": "Standard processing timeline after biometric enrollment", "citations": [] },
+          { "label": "Urgent: 3-5 working days", "description": "Expedited processing timeline", "citations": [] }
+        ]
+      },
+      "variants": [],
+      "required_documents": null,
+      "fees": [],
+      "official_links": [
+        { "label": "Police Clearance Portal", "url": "https://pcc.police.gov.bd/" }
+      ],
+      "meta": {
+        "total_steps": 5,
+        "total_citations": 0,
+        "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 },
+        "last_crawled_at": null,
+        "source_domains": ["pcc.police.gov.bd"],
+        "generated_at": "2026-01-05T15:02:49.494Z",
+        "last_updated_at": "2026-02-27T00:00:00.000Z",
+        "status": "draft"
+      }
+    },
+    {
+      "guide_id": "guide.trade_license",
+      "service_id": "svc.trade_license",
+      "agency_id": "agency.city_corp",
+      "agency_name": "City Corporation / Municipality",
+      "title": "Trade License",
+      "overview": "Obtain or renew a trade license for your business from the local City Corporation or Municipality. A trade license is mandatory for all businesses operating in Bangladesh.",
+      "steps": [
+        {
+          "step_number": 1,
+          "title": "Collect Application Form",
+          "description": "Obtain the trade license application form from your local City Corporation, Pourashava, or Union Parishad office. Some City Corporations also offer online application through their portals.",
+          "citations": []
+        },
+        {
+          "step_number": 2,
+          "title": "Submit Application with Documents",
+          "description": "Fill the application form and submit it along with all required documents including NID, TIN certificate, photographs, rent agreement or ownership proof, and trade association membership certificate.",
+          "citations": []
+        },
+        {
+          "step_number": 3,
+          "title": "Inspection and Verification",
+          "description": "The local authority may conduct an inspection of your business premises to verify the information provided in the application.",
+          "citations": []
+        },
+        {
+          "step_number": 4,
+          "title": "Pay Fees and Collect License",
+          "description": "Pay the applicable trade license fee (varies by business type, size, and location) and collect your trade license. Licenses are typically valid for one year and must be renewed annually.",
+          "citations": []
+        }
+      ],
+      "sections": {
+        "required_documents": [
+          { "label": "National ID (NID)", "description": "NID card of the business owner/applicant", "citations": [] },
+          { "label": "e-TIN Certificate", "description": "Tax Identification Number certificate from NBR", "citations": [] },
+          { "label": "Passport-size Photographs", "description": "Recent photographs of the applicant", "citations": [] },
+          { "label": "Rent Agreement or Ownership Proof", "description": "Proof of business premises - rental agreement or property ownership documents", "citations": [] },
+          { "label": "Trade Association Membership", "description": "Membership certificate from the relevant trade/business association", "citations": [] },
+          { "label": "Previous Trade License (for renewal)", "description": "Copy of previous year's trade license if renewing", "citations": [] }
+        ],
+        "fees": [
+          { "label": "Varies by Business Type", "description": "Trade license fees vary based on business type, size, and location. Contact your local City Corporation for exact fees.", "citations": [] },
+          { "label": "Annual Renewal Required", "description": "Trade licenses must be renewed every year, typically by June 30", "citations": [] }
+        ]
+      },
+      "variants": [],
+      "required_documents": null,
+      "fees": [],
+      "official_links": [],
+      "meta": {
+        "total_steps": 4,
+        "total_citations": 0,
+        "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 },
+        "last_crawled_at": null,
+        "source_domains": [],
+        "generated_at": "2026-01-05T15:02:49.494Z",
+        "last_updated_at": "2026-02-27T00:00:00.000Z",
+        "status": "draft"
+      }
+    },
+    {
+      "guide_id": "guide.rjsc",
+      "service_id": "svc.rjsc",
+      "agency_id": "agency.rjsc",
+      "agency_name": "Registrar of Joint Stock Companies and Firms (RJSC)",
+      "title": "Company Registration",
+      "overview": "Register a new company or firm with the Registrar of Joint Stock Companies and Firms (RJSC) through the online portal. Company registration is required for limited companies, partnerships, and trade organizations.",
+      "steps": [
+        {
+          "step_number": 1,
+          "title": "Name Clearance",
+          "description": "Apply for name clearance through the RJSC online portal (roc.portal.gov.bd). Submit up to 3 proposed company names. The registrar will approve one name within 2-3 working days.",
+          "citations": []
+        },
+        {
+          "step_number": 2,
+          "title": "Prepare MOA and AOA",
+          "description": "Prepare the Memorandum of Association (MOA) and Articles of Association (AOA) with the approved company name. These documents define the company's objectives, capital structure, and internal rules.",
+          "citations": []
+        },
+        {
+          "step_number": 3,
+          "title": "Submit Online Application",
+          "description": "Complete the online registration form on the RJSC portal. Upload all required documents including MOA, AOA, Form XII (registered office address), directors' information, and shareholder details.",
+          "citations": []
+        },
+        {
+          "step_number": 4,
+          "title": "Pay Registration Fees",
+          "description": "Pay the registration fee online. The fee varies based on the authorized capital of the company. Additional stamp duty and filing fees may apply.",
+          "citations": []
+        },
+        {
+          "step_number": 5,
+          "title": "Collect Certificate of Incorporation",
+          "description": "After verification and approval, the Certificate of Incorporation is issued. Download it from the portal or collect from the RJSC office.",
+          "citations": []
+        }
+      ],
+      "sections": {
+        "required_documents": [
+          { "label": "Directors' NID Cards", "description": "National ID cards of all proposed directors", "citations": [] },
+          { "label": "Memorandum of Association (MOA)", "description": "Document defining company objectives and authorized capital", "citations": [] },
+          { "label": "Articles of Association (AOA)", "description": "Document defining internal rules and regulations of the company", "citations": [] },
+          { "label": "Form XII", "description": "Declaration of registered office address", "citations": [] },
+          { "label": "Registered Office Proof", "description": "Rent agreement or ownership proof of the registered office address", "citations": [] },
+          { "label": "Directors' Photographs", "description": "Passport-size photographs of all directors", "citations": [] },
+          { "label": "Bank Certificate", "description": "Bank certificate showing paid-up capital deposit", "citations": [] }
+        ],
+        "fees": [
+          { "label": "Varies by Authorized Capital", "description": "Registration fee depends on the authorized capital amount. Name clearance fee is ৳500.", "citations": [] },
+          { "label": "Stamp Duty", "description": "Additional stamp duty applies based on authorized capital", "citations": [] }
+        ],
+        "processing_time": [
+          { "label": "Name Clearance: 2-3 working days", "description": "Time for name approval after submission", "citations": [] },
+          { "label": "Registration: 7-14 working days", "description": "Time for complete registration after document submission", "citations": [] }
+        ]
+      },
+      "variants": [],
+      "required_documents": null,
+      "fees": [],
+      "official_links": [
+        { "label": "RJSC Portal", "url": "https://roc.portal.gov.bd/" }
+      ],
+      "meta": {
+        "total_steps": 5,
+        "total_citations": 0,
+        "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 },
+        "last_crawled_at": null,
+        "source_domains": ["roc.portal.gov.bd"],
+        "generated_at": "2026-01-05T15:02:49.494Z",
+        "last_updated_at": "2026-02-27T00:00:00.000Z",
+        "status": "draft"
+      }
+    },
+    {
+      "guide_id": "guide.eporcha",
+      "service_id": "svc.eporcha",
+      "agency_id": "agency.mol",
+      "agency_name": "Ministry of Land",
+      "title": "E-Porcha / Land Records",
+      "overview": "Access and download land records (porcha/khatian) through the e-Porcha digital land records system. You can search for RS, SA, City Jordip, and BS/BRS records online.",
+      "steps": [
+        {
+          "step_number": 1,
+          "title": "Visit e-Porcha Portal",
+          "description": "Go to eporcha.gov.bd and select the type of land record you want to search: RS Porcha, SA Porcha, City Jordip Porcha, or BS/BRS Porcha.",
+          "citations": []
+        },
+        {
+          "step_number": 2,
+          "title": "Search by Location Details",
+          "description": "Enter the search criteria: Division, District, Upazila, Mouza, and either the Khatian Number or Plot (Dag) Number. You can also search by owner name in some record types.",
+          "citations": []
+        },
+        {
+          "step_number": 3,
+          "title": "View and Download Records",
+          "description": "View the land record details on screen. You can download or print the porcha for your records. The online record serves as a reference; certified copies must be obtained from the local land office.",
+          "citations": []
+        }
+      ],
+      "sections": {
+        "required_documents": [
+          { "label": "Mouza Name", "description": "Name of the mouza (revenue village) where the land is located", "citations": [] },
+          { "label": "JL Number", "description": "Jurisdiction List (JL) number of the mouza", "citations": [] },
+          { "label": "Khatian Number", "description": "Record of Rights (khatian) number, if known", "citations": [] },
+          { "label": "Dag/Plot Number", "description": "Plot number of the land parcel, if known", "citations": [] }
+        ],
+        "fees": [
+          { "label": "Free Online Search", "description": "Searching and viewing land records on eporcha.gov.bd is free of charge", "citations": [] },
+          { "label": "Certified Copy: Fees Apply", "description": "Obtaining a certified copy from the land office requires payment of applicable government fees", "citations": [] }
+        ]
+      },
+      "variants": [],
+      "required_documents": null,
+      "fees": [],
+      "official_links": [
+        { "label": "e-Porcha Portal", "url": "https://eporcha.gov.bd/" }
+      ],
+      "meta": {
+        "total_steps": 3,
+        "total_citations": 0,
+        "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 },
+        "last_crawled_at": null,
+        "source_domains": ["eporcha.gov.bd"],
+        "generated_at": "2026-01-05T15:02:49.494Z",
+        "last_updated_at": "2026-02-27T00:00:00.000Z",
+        "status": "draft"
+      }
+    },
+    {
+      "guide_id": "guide.land_mutation",
+      "service_id": "svc.land_mutation",
+      "agency_id": "agency.mol",
+      "agency_name": "Ministry of Land",
+      "title": "Land Mutation / Namjari",
+      "overview": "Apply for land mutation (namjari) to transfer land ownership records.",
+      "steps": null,
+      "sections": {},
+      "variants": [],
+      "required_documents": null,
+      "fees": [],
+      "official_links": [],
+      "meta": {
+        "total_steps": 0,
+        "total_citations": 0,
+        "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 },
+        "last_crawled_at": null,
+        "source_domains": [],
+        "generated_at": "2026-01-05T15:02:49.494Z",
+        "last_updated_at": "2026-01-05T15:02:49.494Z",
+        "status": "coming_soon"
+      }
+    },
+    {
+      "guide_id": "guide.marriage_registration",
+      "service_id": "svc.marriage_registration",
+      "agency_id": "agency.org",
+      "agency_name": "Office of Registrar General",
+      "title": "Marriage Registration",
+      "overview": "Register a marriage and obtain a marriage certificate.",
+      "steps": null,
+      "sections": {},
+      "variants": [],
+      "required_documents": null,
+      "fees": [],
+      "official_links": [],
+      "meta": {
+        "total_steps": 0,
+        "total_citations": 0,
+        "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 },
+        "last_crawled_at": null,
+        "source_domains": [],
+        "generated_at": "2026-01-05T15:02:49.494Z",
+        "last_updated_at": "2026-01-05T15:02:49.494Z",
+        "status": "coming_soon"
+      }
+    },
+    {
+      "guide_id": "guide.death_registration",
+      "service_id": "svc.death_registration",
+      "agency_id": "agency.org",
+      "agency_name": "Office of Registrar General",
+      "title": "Death Registration",
+      "overview": "Register a death and obtain a death certificate.",
+      "steps": null,
+      "sections": {},
+      "variants": [],
+      "required_documents": null,
+      "fees": [],
+      "official_links": [],
+      "meta": {
+        "total_steps": 0,
+        "total_citations": 0,
+        "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 },
+        "last_crawled_at": null,
+        "source_domains": [],
+        "generated_at": "2026-01-05T15:02:49.494Z",
+        "last_updated_at": "2026-01-05T15:02:49.494Z",
+        "status": "coming_soon"
+      }
+    },
+    {
+      "guide_id": "guide.income_tax_return",
+      "service_id": "svc.income_tax_return",
+      "agency_id": "agency.nbr",
+      "agency_name": "National Board of Revenue",
+      "title": "Income Tax Return Filing",
+      "overview": "File your annual income tax return online through the NBR e-Return system.",
+      "steps": null,
+      "sections": {},
+      "variants": [],
+      "required_documents": null,
+      "fees": [],
+      "official_links": [
+        { "label": "e-Return Portal", "url": "https://etaxnbr.gov.bd/" }
+      ],
+      "meta": {
+        "total_steps": 0,
+        "total_citations": 0,
+        "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 },
+        "last_crawled_at": null,
+        "source_domains": ["etaxnbr.gov.bd"],
+        "generated_at": "2026-01-05T15:02:49.494Z",
+        "last_updated_at": "2026-01-05T15:02:49.494Z",
+        "status": "coming_soon"
+      }
+    },
+    {
+      "guide_id": "guide.education_board_cert",
+      "service_id": "svc.education_board_cert",
+      "agency_id": "agency.edu_board",
+      "agency_name": "Education Board Bangladesh",
+      "title": "Education Board Certificate Verification",
+      "overview": "Verify and obtain certified copies of SSC/HSC certificates and mark sheets through the Education Board.",
+      "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [],
+      "official_links": [{ "label": "Education Board Portal", "url": "https://www.educationboard.gov.bd/" }],
+      "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": ["www.educationboard.gov.bd"], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" }
+    },
+    {
+      "guide_id": "guide.railway_eticket",
+      "service_id": "svc.railway_eticket",
+      "agency_id": "agency.br",
+      "agency_name": "Bangladesh Railway",
+      "title": "Railway E-Ticketing",
+      "overview": "Purchase train tickets online through the Bangladesh Railway e-ticketing system.",
+      "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [],
+      "official_links": [{ "label": "Railway E-Ticketing", "url": "https://eticket.railway.gov.bd/" }],
+      "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": ["eticket.railway.gov.bd"], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" }
+    },
+    {
+      "guide_id": "guide.electricity_connection",
+      "service_id": "svc.electricity_connection",
+      "agency_id": "agency.bpdb",
+      "agency_name": "Bangladesh Power Development Board / DPDC / DESCO",
+      "title": "Electricity Connection",
+      "overview": "Apply for a new electricity connection or manage your existing connection through the power distribution companies.",
+      "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [],
+      "official_links": [],
+      "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" }
+    },
+    {
+      "guide_id": "guide.gas_connection",
+      "service_id": "svc.gas_connection",
+      "agency_id": "agency.gas",
+      "agency_name": "Titas Gas / Bakhrabad Gas",
+      "title": "Gas Connection",
+      "overview": "Apply for a new gas connection for residential or commercial use.",
+      "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [],
+      "official_links": [],
+      "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" }
+    },
+    {
+      "guide_id": "guide.wasa_connection",
+      "service_id": "svc.wasa_connection",
+      "agency_id": "agency.wasa",
+      "agency_name": "WASA (Water Supply and Sewerage Authority)",
+      "title": "Water / WASA Connection",
+      "overview": "Apply for a new water supply and sewerage connection through WASA.",
+      "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [],
+      "official_links": [],
+      "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" }
+    },
+    {
+      "guide_id": "guide.vat_registration",
+      "service_id": "svc.vat_registration",
+      "agency_id": "agency.nbr",
+      "agency_name": "National Board of Revenue",
+      "title": "VAT Registration",
+      "overview": "Register for Value Added Tax (VAT) through the NBR online VAT system.",
+      "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [],
+      "official_links": [{ "label": "VAT Online Portal", "url": "https://vat.gov.bd/" }],
+      "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": ["vat.gov.bd"], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" }
+    },
+    {
+      "guide_id": "guide.import_registration",
+      "service_id": "svc.import_registration",
+      "agency_id": "agency.ccie",
+      "agency_name": "Chief Controller of Imports and Exports (CCI&E)",
+      "title": "Import Registration Certificate (IRC)",
+      "overview": "Obtain an Import Registration Certificate required for importing goods into Bangladesh.",
+      "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [],
+      "official_links": [],
+      "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" }
+    },
+    {
+      "guide_id": "guide.export_registration",
+      "service_id": "svc.export_registration",
+      "agency_id": "agency.ccie",
+      "agency_name": "Chief Controller of Imports and Exports (CCI&E)",
+      "title": "Export Registration Certificate (ERC)",
+      "overview": "Obtain an Export Registration Certificate required for exporting goods from Bangladesh.",
+      "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [],
+      "official_links": [],
+      "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" }
+    },
+    {
+      "guide_id": "guide.fire_license",
+      "service_id": "svc.fire_license",
+      "agency_id": "agency.fscd",
+      "agency_name": "Fire Service and Civil Defence",
+      "title": "Fire License / Fire Safety Certificate",
+      "overview": "Obtain a fire safety certificate required for commercial and industrial establishments.",
+      "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [],
+      "official_links": [],
+      "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" }
+    },
+    {
+      "guide_id": "guide.environment_clearance",
+      "service_id": "svc.environment_clearance",
+      "agency_id": "agency.doe",
+      "agency_name": "Department of Environment (DoE)",
+      "title": "Environment Clearance Certificate",
+      "overview": "Obtain environmental clearance required for industrial and development projects.",
+      "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [],
+      "official_links": [],
+      "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" }
+    },
+    {
+      "guide_id": "guide.bida_investment",
+      "service_id": "svc.bida_investment",
+      "agency_id": "agency.bida",
+      "agency_name": "Bangladesh Investment Development Authority (BIDA)",
+      "title": "BIDA Investment Registration",
+      "overview": "Register a foreign or joint venture investment through the BIDA One Stop Service.",
+      "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [],
+      "official_links": [{ "label": "BIDA OSS Portal", "url": "https://bidaquickserv.org/" }],
+      "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": ["bidaquickserv.org"], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" }
+    },
+    {
+      "guide_id": "guide.patent_trademark",
+      "service_id": "svc.patent_trademark",
+      "agency_id": "agency.dpdt",
+      "agency_name": "Department of Patents, Designs and Trademarks (DPDT)",
+      "title": "Patent / Trademark Registration",
+      "overview": "Register a patent, trademark, or industrial design to protect your intellectual property.",
+      "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [],
+      "official_links": [],
+      "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" }
+    },
+    {
+      "guide_id": "guide.hajj_registration",
+      "service_id": "svc.hajj_registration",
+      "agency_id": "agency.mora",
+      "agency_name": "Ministry of Religious Affairs",
+      "title": "Hajj Registration",
+      "overview": "Register for Hajj pilgrimage through the government Hajj management system.",
+      "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [],
+      "official_links": [],
+      "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" }
+    },
+    {
+      "guide_id": "guide.land_dev_tax",
+      "service_id": "svc.land_dev_tax",
+      "agency_id": "agency.mol",
+      "agency_name": "Ministry of Land",
+      "title": "Land Development Tax Payment",
+      "overview": "Pay annual land development tax (khajna) for your land holdings.",
+      "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [],
+      "official_links": [],
+      "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" }
+    },
+    {
+      "guide_id": "guide.non_encumbrance",
+      "service_id": "svc.non_encumbrance",
+      "agency_id": "agency.sub_reg",
+      "agency_name": "Sub-Registrar Office",
+      "title": "Non-Encumbrance Certificate",
+      "overview": "Obtain a non-encumbrance certificate to verify that a property is free from legal liabilities.",
+      "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [],
+      "official_links": [],
+      "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" }
+    },
+    {
+      "guide_id": "guide.succession_cert",
+      "service_id": "svc.succession_cert",
+      "agency_id": "agency.court",
+      "agency_name": "District Court",
+      "title": "Succession Certificate",
+      "overview": "Obtain a succession certificate from the court for inheritance and property transfer purposes.",
+      "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [],
+      "official_links": [],
+      "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" }
+    },
+    {
+      "guide_id": "guide.citizenship_cert",
+      "service_id": "svc.citizenship_cert",
+      "agency_id": "agency.dc",
+      "agency_name": "Deputy Commissioner's Office",
+      "title": "Citizenship Certificate",
+      "overview": "Obtain a citizenship certificate (নাগরিকত্ব সনদ) from the Deputy Commissioner's Office.",
+      "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [],
+      "official_links": [],
+      "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" }
+    },
+    {
+      "guide_id": "guide.btcl",
+      "service_id": "svc.btcl",
+      "agency_id": "agency.btcl",
+      "agency_name": "Bangladesh Telecommunications Company Limited (BTCL)",
+      "title": "BTCL Telephone / Internet Services",
+      "overview": "Apply for telephone or internet services from BTCL.",
+      "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [],
+      "official_links": [{ "label": "BTCL Portal", "url": "https://www.btcl.gov.bd/" }],
+      "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": ["www.btcl.gov.bd"], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" }
+    },
+    {
+      "guide_id": "guide.postal_ems",
+      "service_id": "svc.postal_ems",
+      "agency_id": "agency.postal",
+      "agency_name": "Bangladesh Post Office",
+      "title": "Postal Services / EMS",
+      "overview": "Access postal and express mail services including EMS, registered mail, and money orders.",
+      "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [],
+      "official_links": [{ "label": "Bangladesh Post Office", "url": "https://www.bangladeshpost.gov.bd/" }],
+      "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": ["www.bangladeshpost.gov.bd"], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" }
+    },
+    {
+      "guide_id": "guide.bb_complaints",
+      "service_id": "svc.bb_complaints",
+      "agency_id": "agency.bb",
+      "agency_name": "Bangladesh Bank",
+      "title": "Bangladesh Bank Complaints",
+      "overview": "File complaints regarding banking services and financial fraud through Bangladesh Bank.",
+      "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [],
+      "official_links": [{ "label": "Bangladesh Bank", "url": "https://www.bb.org.bd/" }],
+      "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": ["www.bb.org.bd"], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" }
+    },
+    {
+      "guide_id": "guide.social_safety_net",
+      "service_id": "svc.social_safety_net",
+      "agency_id": "agency.mosw",
+      "agency_name": "Ministry of Social Welfare",
+      "title": "Social Safety Net Programs",
+      "overview": "Access government social safety net programs including old age allowance, widow allowance, and disability benefits.",
+      "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [],
+      "official_links": [],
+      "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" }
+    },
+    {
+      "guide_id": "guide.disability_id",
+      "service_id": "svc.disability_id",
+      "agency_id": "agency.swid",
+      "agency_name": "Department of Social Services",
+      "title": "Disability ID Card",
+      "overview": "Apply for a disability identification card for accessing government benefits and services.",
+      "steps": null, "sections": {}, "variants": [], "required_documents": null, "fees": [],
+      "official_links": [],
+      "meta": { "total_steps": 0, "total_citations": 0, "verification_summary": { "total": 0, "verified": 0, "unverified": 0, "stale": 0, "deprecated": 0, "contradicted": 0 }, "last_crawled_at": null, "source_domains": [], "generated_at": "2026-02-27T00:00:00.000Z", "last_updated_at": "2026-02-27T00:00:00.000Z", "status": "coming_soon" }
     }
   ]
 }

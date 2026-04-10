@@ -1,6 +1,6 @@
 {
   "$schema_version": "3.0.0",
-  "generated_at": "2026-01-05T15:02:49.494Z",
+  "generated_at": "2026-03-01T13:52:48.750Z",
   "source_kb_version": 47,
   "entries": [
     {
@@ -12,14 +12,8 @@
       "keywords": [
         "e-passport",
         "application",
-        "online",
-        "payment",
-        "appointment",
-        "enrollment",
-        "delivery",
         "department",
         "immigration",
-        "and",
         "passports"
       ],
       "step_count": 5,
@@ -34,6 +28,7 @@
       "agency_name": "Bangladesh Election Commission - NID Wing",
       "keywords": [
         "national",
+        "id",
         "card",
         "services",
         "bangladesh",
@@ -42,7 +37,7 @@
         "nid",
         "wing"
       ],
-      "step_count": 0,
+      "step_count": 4,
       "citation_count": 4,
       "status": "draft"
     },
@@ -61,7 +56,7 @@
         "transport",
         "authority"
       ],
-      "step_count": 0,
+      "step_count": 5,
       "citation_count": 3,
       "status": "draft"
     },
@@ -80,7 +75,7 @@
         "transport",
         "authority"
       ],
-      "step_count": 0,
+      "step_count": 5,
       "citation_count": 1,
       "status": "draft"
     },
@@ -99,7 +94,7 @@
         "transport",
         "authority"
       ],
-      "step_count": 0,
+      "step_count": 4,
       "citation_count": 1,
       "status": "draft"
     },
@@ -118,7 +113,7 @@
         "transport",
         "authority"
       ],
-      "step_count": 0,
+      "step_count": 3,
       "citation_count": 1,
       "status": "draft"
     },
@@ -137,9 +132,572 @@
         "transport",
         "authority"
       ],
-      "step_count": 0,
+      "step_count": 3,
       "citation_count": 1,
       "status": "draft"
+    },
+    {
+      "guide_id": "guide.etin",
+      "service_id": "svc.etin",
+      "agency_id": "agency.nbr",
+      "title": "e-TIN Registration",
+      "agency_name": "National Board of Revenue",
+      "keywords": [
+        "e-tin",
+        "registration",
+        "national",
+        "board",
+        "revenue"
+      ],
+      "step_count": 4,
+      "citation_count": 0,
+      "status": "draft"
+    },
+    {
+      "guide_id": "guide.birth_registration",
+      "service_id": "svc.birth_registration",
+      "agency_id": "agency.org",
+      "title": "Birth Registration",
+      "agency_name": "Office of Registrar General",
+      "keywords": [
+        "birth",
+        "registration",
+        "office",
+        "registrar",
+        "general"
+      ],
+      "step_count": 5,
+      "citation_count": 0,
+      "status": "draft"
+    },
+    {
+      "guide_id": "guide.police_clearance",
+      "service_id": "svc.police_clearance",
+      "agency_id": "agency.police",
+      "title": "Police Clearance Certificate",
+      "agency_name": "Bangladesh Police",
+      "keywords": [
+        "police",
+        "clearance",
+        "certificate",
+        "bangladesh"
+      ],
+      "step_count": 5,
+      "citation_count": 0,
+      "status": "draft"
+    },
+    {
+      "guide_id": "guide.trade_license",
+      "service_id": "svc.trade_license",
+      "agency_id": "agency.city_corp",
+      "title": "Trade License",
+      "agency_name": "City Corporation / Municipality",
+      "keywords": [
+        "trade",
+        "license",
+        "city",
+        "corporation",
+        "municipality"
+      ],
+      "step_count": 4,
+      "citation_count": 0,
+      "status": "draft"
+    },
+    {
+      "guide_id": "guide.rjsc",
+      "service_id": "svc.rjsc",
+      "agency_id": "agency.rjsc",
+      "title": "Company Registration",
+      "agency_name": "Registrar of Joint Stock Companies and Firms (RJSC)",
+      "keywords": [
+        "company",
+        "registration",
+        "registrar",
+        "joint",
+        "stock",
+        "companies",
+        "firms",
+        "rjsc"
+      ],
+      "step_count": 5,
+      "citation_count": 0,
+      "status": "draft"
+    },
+    {
+      "guide_id": "guide.eporcha",
+      "service_id": "svc.eporcha",
+      "agency_id": "agency.mol",
+      "title": "E-Porcha / Land Records",
+      "agency_name": "Ministry of Land",
+      "keywords": [
+        "e-porcha",
+        "land",
+        "records",
+        "ministry"
+      ],
+      "step_count": 3,
+      "citation_count": 0,
+      "status": "draft"
+    },
+    {
+      "guide_id": "guide.land_mutation",
+      "service_id": "svc.land_mutation",
+      "agency_id": "agency.mol",
+      "title": "Land Mutation / Namjari",
+      "agency_name": "Ministry of Land",
+      "keywords": [
+        "land",
+        "mutation",
+        "namjari",
+        "ministry"
+      ],
+      "step_count": 0,
+      "citation_count": 0,
+      "status": "coming_soon"
+    },
+    {
+      "guide_id": "guide.marriage_registration",
+      "service_id": "svc.marriage_registration",
+      "agency_id": "agency.org",
+      "title": "Marriage Registration",
+      "agency_name": "Office of Registrar General",
+      "keywords": [
+        "marriage",
+        "registration",
+        "office",
+        "registrar",
+        "general"
+      ],
+      "step_count": 0,
+      "citation_count": 0,
+      "status": "coming_soon"
+    },
+    {
+      "guide_id": "guide.death_registration",
+      "service_id": "svc.death_registration",
+      "agency_id": "agency.org",
+      "title": "Death Registration",
+      "agency_name": "Office of Registrar General",
+      "keywords": [
+        "death",
+        "registration",
+        "office",
+        "registrar",
+        "general"
+      ],
+      "step_count": 0,
+      "citation_count": 0,
+      "status": "coming_soon"
+    },
+    {
+      "guide_id": "guide.income_tax_return",
+      "service_id": "svc.income_tax_return",
+      "agency_id": "agency.nbr",
+      "title": "Income Tax Return Filing",
+      "agency_name": "National Board of Revenue",
+      "keywords": [
+        "income",
+        "tax",
+        "return",
+        "filing",
+        "national",
+        "board",
+        "revenue"
+      ],
+      "step_count": 0,
+      "citation_count": 0,
+      "status": "coming_soon"
+    },
+    {
+      "guide_id": "guide.education_board_cert",
+      "service_id": "svc.education_board_cert",
+      "agency_id": "agency.edu_board",
+      "title": "Education Board Certificate Verification",
+      "agency_name": "Education Board Bangladesh",
+      "keywords": [
+        "education",
+        "board",
+        "certificate",
+        "verification",
+        "bangladesh"
+      ],
+      "step_count": 0,
+      "citation_count": 0,
+      "status": "coming_soon"
+    },
+    {
+      "guide_id": "guide.railway_eticket",
+      "service_id": "svc.railway_eticket",
+      "agency_id": "agency.br",
+      "title": "Railway E-Ticketing",
+      "agency_name": "Bangladesh Railway",
+      "keywords": [
+        "railway",
+        "e-ticketing",
+        "bangladesh"
+      ],
+      "step_count": 0,
+      "citation_count": 0,
+      "status": "coming_soon"
+    },
+    {
+      "guide_id": "guide.electricity_connection",
+      "service_id": "svc.electricity_connection",
+      "agency_id": "agency.bpdb",
+      "title": "Electricity Connection",
+      "agency_name": "Bangladesh Power Development Board / DPDC / DESCO",
+      "keywords": [
+        "electricity",
+        "connection",
+        "bangladesh",
+        "power",
+        "development",
+        "board",
+        "dpdc",
+        "desco"
+      ],
+      "step_count": 0,
+      "citation_count": 0,
+      "status": "coming_soon"
+    },
+    {
+      "guide_id": "guide.gas_connection",
+      "service_id": "svc.gas_connection",
+      "agency_id": "agency.gas",
+      "title": "Gas Connection",
+      "agency_name": "Titas Gas / Bakhrabad Gas",
+      "keywords": [
+        "gas",
+        "connection",
+        "titas",
+        "bakhrabad"
+      ],
+      "step_count": 0,
+      "citation_count": 0,
+      "status": "coming_soon"
+    },
+    {
+      "guide_id": "guide.wasa_connection",
+      "service_id": "svc.wasa_connection",
+      "agency_id": "agency.wasa",
+      "title": "Water / WASA Connection",
+      "agency_name": "WASA (Water Supply and Sewerage Authority)",
+      "keywords": [
+        "water",
+        "wasa",
+        "connection",
+        "supply",
+        "sewerage",
+        "authority"
+      ],
+      "step_count": 0,
+      "citation_count": 0,
+      "status": "coming_soon"
+    },
+    {
+      "guide_id": "guide.vat_registration",
+      "service_id": "svc.vat_registration",
+      "agency_id": "agency.nbr",
+      "title": "VAT Registration",
+      "agency_name": "National Board of Revenue",
+      "keywords": [
+        "vat",
+        "registration",
+        "national",
+        "board",
+        "revenue"
+      ],
+      "step_count": 0,
+      "citation_count": 0,
+      "status": "coming_soon"
+    },
+    {
+      "guide_id": "guide.import_registration",
+      "service_id": "svc.import_registration",
+      "agency_id": "agency.ccie",
+      "title": "Import Registration Certificate (IRC)",
+      "agency_name": "Chief Controller of Imports and Exports (CCI&E)",
+      "keywords": [
+        "import",
+        "registration",
+        "certificate",
+        "irc",
+        "chief",
+        "controller",
+        "imports",
+        "exports",
+        "cci"
+      ],
+      "step_count": 0,
+      "citation_count": 0,
+      "status": "coming_soon"
+    },
+    {
+      "guide_id": "guide.export_registration",
+      "service_id": "svc.export_registration",
+      "agency_id": "agency.ccie",
+      "title": "Export Registration Certificate (ERC)",
+      "agency_name": "Chief Controller of Imports and Exports (CCI&E)",
+      "keywords": [
+        "export",
+        "registration",
+        "certificate",
+        "erc",
+        "chief",
+        "controller",
+        "imports",
+        "exports",
+        "cci"
+      ],
+      "step_count": 0,
+      "citation_count": 0,
+      "status": "coming_soon"
+    },
+    {
+      "guide_id": "guide.fire_license",
+      "service_id": "svc.fire_license",
+      "agency_id": "agency.fscd",
+      "title": "Fire License / Fire Safety Certificate",
+      "agency_name": "Fire Service and Civil Defence",
+      "keywords": [
+        "fire",
+        "license",
+        "safety",
+        "certificate",
+        "service",
+        "civil",
+        "defence"
+      ],
+      "step_count": 0,
+      "citation_count": 0,
+      "status": "coming_soon"
+    },
+    {
+      "guide_id": "guide.environment_clearance",
+      "service_id": "svc.environment_clearance",
+      "agency_id": "agency.doe",
+      "title": "Environment Clearance Certificate",
+      "agency_name": "Department of Environment (DoE)",
+      "keywords": [
+        "environment",
+        "clearance",
+        "certificate",
+        "department",
+        "doe"
+      ],
+      "step_count": 0,
+      "citation_count": 0,
+      "status": "coming_soon"
+    },
+    {
+      "guide_id": "guide.bida_investment",
+      "service_id": "svc.bida_investment",
+      "agency_id": "agency.bida",
+      "title": "BIDA Investment Registration",
+      "agency_name": "Bangladesh Investment Development Authority (BIDA)",
+      "keywords": [
+        "bida",
+        "investment",
+        "registration",
+        "bangladesh",
+        "development",
+        "authority"
+      ],
+      "step_count": 0,
+      "citation_count": 0,
+      "status": "coming_soon"
+    },
+    {
+      "guide_id": "guide.patent_trademark",
+      "service_id": "svc.patent_trademark",
+      "agency_id": "agency.dpdt",
+      "title": "Patent / Trademark Registration",
+      "agency_name": "Department of Patents, Designs and Trademarks (DPDT)",
+      "keywords": [
+        "patent",
+        "trademark",
+        "registration",
+        "department",
+        "patents",
+        "designs",
+        "trademarks",
+        "dpdt"
+      ],
+      "step_count": 0,
+      "citation_count": 0,
+      "status": "coming_soon"
+    },
+    {
+      "guide_id": "guide.hajj_registration",
+      "service_id": "svc.hajj_registration",
+      "agency_id": "agency.mora",
+      "title": "Hajj Registration",
+      "agency_name": "Ministry of Religious Affairs",
+      "keywords": [
+        "hajj",
+        "registration",
+        "ministry",
+        "religious",
+        "affairs"
+      ],
+      "step_count": 0,
+      "citation_count": 0,
+      "status": "coming_soon"
+    },
+    {
+      "guide_id": "guide.land_dev_tax",
+      "service_id": "svc.land_dev_tax",
+      "agency_id": "agency.mol",
+      "title": "Land Development Tax Payment",
+      "agency_name": "Ministry of Land",
+      "keywords": [
+        "land",
+        "development",
+        "tax",
+        "payment",
+        "ministry"
+      ],
+      "step_count": 0,
+      "citation_count": 0,
+      "status": "coming_soon"
+    },
+    {
+      "guide_id": "guide.non_encumbrance",
+      "service_id": "svc.non_encumbrance",
+      "agency_id": "agency.sub_reg",
+      "title": "Non-Encumbrance Certificate",
+      "agency_name": "Sub-Registrar Office",
+      "keywords": [
+        "non-encumbrance",
+        "certificate",
+        "sub-registrar",
+        "office"
+      ],
+      "step_count": 0,
+      "citation_count": 0,
+      "status": "coming_soon"
+    },
+    {
+      "guide_id": "guide.succession_cert",
+      "service_id": "svc.succession_cert",
+      "agency_id": "agency.court",
+      "title": "Succession Certificate",
+      "agency_name": "District Court",
+      "keywords": [
+        "succession",
+        "certificate",
+        "district",
+        "court"
+      ],
+      "step_count": 0,
+      "citation_count": 0,
+      "status": "coming_soon"
+    },
+    {
+      "guide_id": "guide.citizenship_cert",
+      "service_id": "svc.citizenship_cert",
+      "agency_id": "agency.dc",
+      "title": "Citizenship Certificate",
+      "agency_name": "Deputy Commissioner's Office",
+      "keywords": [
+        "citizenship",
+        "certificate",
+        "deputy",
+        "commissioner",
+        "office"
+      ],
+      "step_count": 0,
+      "citation_count": 0,
+      "status": "coming_soon"
+    },
+    {
+      "guide_id": "guide.btcl",
+      "service_id": "svc.btcl",
+      "agency_id": "agency.btcl",
+      "title": "BTCL Telephone / Internet Services",
+      "agency_name": "Bangladesh Telecommunications Company Limited (BTCL)",
+      "keywords": [
+        "btcl",
+        "telephone",
+        "internet",
+        "services",
+        "bangladesh",
+        "telecommunications",
+        "company",
+        "limited"
+      ],
+      "step_count": 0,
+      "citation_count": 0,
+      "status": "coming_soon"
+    },
+    {
+      "guide_id": "guide.postal_ems",
+      "service_id": "svc.postal_ems",
+      "agency_id": "agency.postal",
+      "title": "Postal Services / EMS",
+      "agency_name": "Bangladesh Post Office",
+      "keywords": [
+        "postal",
+        "services",
+        "ems",
+        "bangladesh",
+        "post",
+        "office"
+      ],
+      "step_count": 0,
+      "citation_count": 0,
+      "status": "coming_soon"
+    },
+    {
+      "guide_id": "guide.bb_complaints",
+      "service_id": "svc.bb_complaints",
+      "agency_id": "agency.bb",
+      "title": "Bangladesh Bank Complaints",
+      "agency_name": "Bangladesh Bank",
+      "keywords": [
+        "bangladesh",
+        "bank",
+        "complaints"
+      ],
+      "step_count": 0,
+      "citation_count": 0,
+      "status": "coming_soon"
+    },
+    {
+      "guide_id": "guide.social_safety_net",
+      "service_id": "svc.social_safety_net",
+      "agency_id": "agency.mosw",
+      "title": "Social Safety Net Programs",
+      "agency_name": "Ministry of Social Welfare",
+      "keywords": [
+        "social",
+        "safety",
+        "net",
+        "programs",
+        "ministry",
+        "welfare"
+      ],
+      "step_count": 0,
+      "citation_count": 0,
+      "status": "coming_soon"
+    },
+    {
+      "guide_id": "guide.disability_id",
+      "service_id": "svc.disability_id",
+      "agency_id": "agency.swid",
+      "title": "Disability ID Card",
+      "agency_name": "Department of Social Services",
+      "keywords": [
+        "disability",
+        "id",
+        "card",
+        "department",
+        "social",
+        "services"
+      ],
+      "step_count": 0,
+      "citation_count": 0,
+      "status": "coming_soon"
     }
   ]
 }
